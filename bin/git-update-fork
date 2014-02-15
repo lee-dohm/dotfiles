@@ -7,9 +7,14 @@
 # remote named `origin`. It will only merge by fast-forward and will not push to the personal copy
 # unless the fetch and merge was successful.
 
+if ! git remote | grep upstream &> /dev/null; then
+    echo There is no upstream remote! >&2
+    exit 2
+fi
+
 if [ `git current-branch` != 'master' ]; then
-   echo Must be on the master branch to update the fork! >&2
-   return 1
+    echo Must be on the master branch to update the fork! >&2
+    exit 3
 fi
 
 git pull --ff-only upstream master && git push origin master
