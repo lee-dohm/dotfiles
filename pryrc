@@ -1,15 +1,15 @@
-Pry.config.editor = 'emacs'
+Pry.config.editor = 'ec'
 
 # Provides OS detection helper methods.
 module OS
   # @return [Boolean] Truthy if executing on a Windows system.
   def OS.windows?
-    (/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM) != nil
+    !(/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM).nil?
   end
 
   # @return [Boolean] Truthy if executing on an OS X system.
   def OS.mac?
-    (/darwin/ =~ RUBY_PLATFORM) != nil
+    !(/darwin/ =~ RUBY_PLATFORM).nil?
   end
 
   # @return [Boolean] Truthy if executing on any flavor of Unix (even OS X).
@@ -23,11 +23,11 @@ module OS
   end
 end
 
-class String
-  # Copies the contents of the string to the OS X clipboard.
-  def to_clipboard
-    fail "String#to_clipboard is not defined for #{RUBY_PLATFORM}" unless OS.mac?
-
-    IO::popen('pbcopy', 'w') { |io| io.write(self) } && self
+# Default Command Set, add custom methods here:
+default_command_set = Pry::CommandSet.new do
+  command 'pbcopy', 'Copy to clipboard' do |str|
+    str = "#{_pry_.input_array[-1]}#=> #{_pry_.last_result}\n" unless str
+    IO.popen('pbcopy', 'r+') { |io| io.puts str }
+    output.puts "-- Copy to clipboard --\n#{str}"
   end
 end
