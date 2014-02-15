@@ -1,11 +1,11 @@
 # No arguments: `git status`
 # With arguments: acts like `git`
 g() {
-  if [[ $# > 0 ]]; then
-    git $@
-  else
-    git st
-  fi
+    if [[ $# > 0 ]]; then
+        hub $@
+    else
+        hub st
+    fi
 }
 
 # Complete g like git

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Writes the name of the current branch to `STDOUT`.
+git branch --no-color | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'

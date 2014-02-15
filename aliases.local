@@ -1,14 +1,12 @@
-alias b='bundle'
-alias be='bundle exec'
-alias bi='bundle install'
-alias bre='bundle exec'
+# The list of aliases for shell commands
+#
+# Application-specific aliases are contained in their own initialization
+# file under zsh/init
 
 alias df='df -h'
 alias du='du -h'
 
 alias f='find . -name'
-
-alias gg='git l'
 
 alias l='ls -F'
 alias ll='ls -lhF'
