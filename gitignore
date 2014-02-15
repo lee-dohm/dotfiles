@@ -1,0 +1,48 @@
+### Miscellaneous ###
+
+*.sw[nop]
+
+### Ruby and Rails ###
+.bundle
+.env
+db/*.sqlite3
+log/*.log
+rerun.txt
+tags
+tmp/**/*
+!tmp/cache/.keep
+zeus.json
+
+### Emacs ###
+
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Org-mode
+.org-id-locations
+*_archive
+
+# flymake-mode
+*_flymake.*
+
+# Projectile
+.projectile
+
+### SublimeText ###
+
+/*.sublime-project
+*.sublime-workspace
+sftp-config*.json
+
+### OS X ###
+
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes

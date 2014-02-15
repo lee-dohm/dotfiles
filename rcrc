@@ -1,0 +1,2 @@
+EXCLUDES="README.md LICENSE LICENSE.md"
+DOTFILES_DIRS="$HOME/thoughtbot-dotfiles $HOME/personal-dotfiles"

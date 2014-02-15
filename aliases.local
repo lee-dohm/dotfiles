@@ -1,0 +1,15 @@
+alias b='bundle'
+alias be='bundle exec'
+alias bi='bundle install'
+alias bre='bundle exec'
+
+alias df='df -h'
+alias du='du -h'
+
+alias f='find . -name'
+
+alias gg='git l'
+
+alias l='ls -F'
+alias ll='ls -lhF'
+alias la='ls -lhaF'

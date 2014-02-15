@@ -1,0 +1,21 @@
+export EDITOR='ec'
+export VISUAL=$EDITOR
+
+export PATH=$PATH:$HOME/.cask/bin
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+
+# Set colorized terminal
+if [[ $(uname -s) == 'Darwin' ]]; then
+    export CLICOLOR=1
+    export LSCOLORS='Exfxcxdxbxegedabagacad'
+else
+    alias ls='ls --color=auto'
+fi
+
+# Ensure rbenv gets loaded if it is available
+if ! which rbenv &>/dev/null ; then
+  if [[ -d $HOME/.rbenv ]]; then
+    export PATH=$PATH:$HOME/.rbenv/bin
+    eval "$(rbenv init - --no-rehash)"
+  fi
+fi

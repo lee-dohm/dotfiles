@@ -1,0 +1,23 @@
+# Adds an indicator of where the HEAD is in the graph.
+#
+# If HEAD is on a branch, the branch name is output in green. If HEAD is
+# on a tag, the tag name is output in yellow. If HEAD is on neither a
+# branch nor a tag, the short SHA is output in yellow.
+git_prompt_info() {
+  ref=$(git symbolic-ref HEAD 2> /dev/null)
+  if [[ -n $ref ]]; then
+    echo "[%{$fg_bold[green]%}${ref#refs/heads/}%{$reset_color%}]"
+  else
+    tag=$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* (detached from \(.*\))/\1/")
+
+    if [[ -n $tag ]]; then
+      echo "[%{$fg_bold[yellow]%}${tag}%{$reset_color%}]"
+    fi
+  fi
+}
+
+exit_code() {
+  echo "%(?..[${fg_bold[red]}%?%{$reset_color%}])"
+}
+
+export PS1='$(git_prompt_info)[${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[blue]%}%~%{$reset_color%}]$(exit_code) '
