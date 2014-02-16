@@ -1,5 +1,4 @@
 [alias]
-  alias = !git config --list | grep alias | cut -c 7-
   aliases = !git config --list | grep alias | cut -c 7-
   ci = commit
   l = log --graph --decorate --pretty=oneline --abbrev-commit --all

@@ -1,3 +1,4 @@
+# Properly order the default path
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 # Set colorized terminal
@@ -10,5 +11,5 @@ fi
 
 # Perform any app-specific initializations
 for init in ~/.zsh/init/*; do
-  source $init
+  source "$init"
 done
