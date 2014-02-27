@@ -13,3 +13,6 @@ fi
 for init in ~/.zsh/init/*; do
   source "$init"
 done
+
+# Don't autocorrect arguments
+unsetopt correct_all
