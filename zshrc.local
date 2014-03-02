@@ -10,7 +10,7 @@ else
 fi
 
 # Perform any app-specific initializations
-for init in ~/.zsh/init/*; do
+for init in $HOME/.zsh/init/*.sh; do
   source "$init"
 done
 

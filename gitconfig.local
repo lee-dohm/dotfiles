@@ -20,3 +20,6 @@
 
 [include]
   path = .gitconfig.identity
+
+[core]
+  editor = atom --wait
