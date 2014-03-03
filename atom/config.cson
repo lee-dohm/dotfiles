@@ -27,3 +27,9 @@
   'ensureSingleTrailingNewline': true
 'auto-copyright':
   'owner': 'Lifted Studios'
+'spell-check':
+  'grammars': [
+    'source.gfm'
+    'text.git-commit'
+    'text.plain'
+  ]
