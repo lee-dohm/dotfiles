@@ -8,6 +8,9 @@
  * http://www.lesscss.org
  */
 
+@hints-color: #c5c8c6;
+@hints-opacity: 0.3;
+
 .tree-view {
   .status-ignored {
     display: none;
@@ -16,16 +19,14 @@
 
 .editor {
   .invisible-character {
-    color: rgba(197, 200, 198, 0.3);
+    color: @hints-color;
+    opacity: @hints-opacity;
   }
 
   .wrap-guide {
-    background-color: rgba(197, 200, 198, 0.3);
+    background-color: @hints-color;
+    opacity: @hints-opacity;
   }
-}
-
-.editor .cursor {
-
 }
 
 .comment {
