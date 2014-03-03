@@ -13,3 +13,15 @@
 #     'prefix': 'log'
 #     'body': 'console.log $1'
 #
+'.source.ruby':
+  'FactoryGirl Build':
+    'prefix': 'fgb'
+    'body': 'FactoryGirl.build($1)$0'
+'.source.ruby':
+  'FactoryGirl Build Stubbed':
+    'prefix': 'fgbs'
+    'body': 'FactoryGirl.build_stubbed($1)$0'
+'.source.ruby':
+  'FactoryGirl Create':
+    'prefix': 'fgc'
+    'body': 'FactoryGirl.create($1)$0'
