@@ -1,7 +1,7 @@
 'exception-reporting':
   'userId': 'ee24cf00-f793-9081-be2a-2cdae5536b7f'
 'release-notes':
-  'viewedVersion': '0.64.0'
+  'viewedVersion': '0.65.0'
 'welcome':
   'showOnStartup': false
 'metrics':
@@ -11,6 +11,11 @@
   'fontSize': 14
   'preferredLineLength': 100
   'showInvisibles': true
+  'invisibles':
+    'cr': '↩'
+    'eol': ''
+    'space': '·'
+    'tab': '⇥'
 'core':
   'projectHome': '/Volumes/Data/Users/Lee/Source'
   'themes': [
@@ -26,6 +31,7 @@
 'whitespace':
   'ensureSingleTrailingNewline': true
 'auto-copyright':
+  'buffer': 1
   'owner': 'Lifted Studios'
 'spell-check':
   'grammars': [
@@ -33,3 +39,5 @@
     'text.git-commit'
     'text.plain'
   ]
+'autosave':
+  'enabled': true

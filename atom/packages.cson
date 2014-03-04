@@ -1,0 +1,10 @@
+'packages': [
+  'Zen'
+  'autocomplete-plus'
+  'editor-stats'
+  'language-haml'
+  'language-rspec'
+  'railscasts-syntax'
+  'symbol-gen'
+  'toggle-quotes'
+]

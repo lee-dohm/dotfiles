@@ -18,17 +18,23 @@
 }
 
 .editor {
+  .comment {
+    font-style: normal;
+  }
+
   .invisible-character {
     color: @hints-color;
     opacity: @hints-opacity;
+  }
+
+  .trailing-whitespace {
+    background-color: red;
+    color: white;
+    opacity: 1.0;
   }
 
   .wrap-guide {
     background-color: @hints-color;
     opacity: @hints-opacity;
   }
-}
-
-.comment {
-  font-style: normal;
 }
