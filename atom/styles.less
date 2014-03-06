@@ -8,23 +8,22 @@
  * http://www.lesscss.org
  */
 
-@hints-color: #c5c8c6;
-@hints-opacity: 0.3;
-
-.tree-view {
-  .status-ignored {
-    display: none;
+#lcd {
+  .hints() {
+    color: #c5c8c6;
+    opacity: 0.3;
   }
 }
 
 .editor {
+  font-weight: lighter;
+
   .comment {
     font-style: normal;
   }
 
   .invisible-character {
-    color: @hints-color;
-    opacity: @hints-opacity;
+    #lcd > .hints;
   }
 
   .trailing-whitespace {
@@ -34,7 +33,12 @@
   }
 
   .wrap-guide {
-    background-color: @hints-color;
-    opacity: @hints-opacity;
+    #lcd > .hints;
+  }
+}
+
+.tree-view {
+  .status-ignored {
+    display: none;
   }
 }
