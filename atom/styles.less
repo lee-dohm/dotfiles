@@ -8,6 +8,8 @@
  * http://www.lesscss.org
  */
 
+@trailing-whitespace-bg-color: red;
+
 #lcd {
   .hints() {
     color: #c5c8c6;
@@ -16,10 +18,13 @@
 }
 
 .editor {
-  font-weight: lighter;
+  &:not(.mini) {
+    font-weight: lighter;
+  }
 
   .comment {
     font-style: normal;
+    opacity: 0.85;
   }
 
   .invisible-character {
@@ -27,18 +32,12 @@
   }
 
   .trailing-whitespace {
-    background-color: red;
-    color: white;
+    background-color: @trailing-whitespace-bg-color;
+    color: contrast(@trailing-whitespace-bg-color);
     opacity: 1.0;
   }
 
   .wrap-guide {
     #lcd > .hints;
-  }
-}
-
-.tree-view {
-  .status-ignored {
-    display: none;
   }
 }

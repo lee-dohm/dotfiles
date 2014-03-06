@@ -1,7 +1,7 @@
 'exception-reporting':
   'userId': 'ee24cf00-f793-9081-be2a-2cdae5536b7f'
 'release-notes':
-  'viewedVersion': '0.67.0'
+  'viewedVersion': '0.68.0'
 'welcome':
   'showOnStartup': false
 'metrics':
@@ -27,9 +27,7 @@
     '.svn'
     '.DS_Store'
   ]
-  'disabledPackages': [
-    'autocomplete-plus'
-  ]
+  'disabledPackages': []
 'whitespace':
   'ensureSingleTrailingNewline': true
   'ignoreWhitespaceOnCurrentLine': false
@@ -43,3 +41,6 @@
     'text.plain'
   ]
 'autocomplete-plus': {}
+'tree-view':
+  'hideVcsIgnoredFiles': true
+  'hideIgnoredNames': true
