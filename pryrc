@@ -1,4 +1,4 @@
-Pry.config.editor = 'ec'
+Pry.config.editor = 'atom'
 
 # Provides OS detection helper methods.
 module OS
