@@ -1,5 +1,6 @@
 'packages': [
   'Zen'
+  'atom-lint'
   'block-travel'
   'css-color-highlighting'
   'editor-stats'

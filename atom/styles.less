@@ -8,14 +8,9 @@
  * http://www.lesscss.org
  */
 
+@hints-color: #c5c8c6;
+@hints-opacity: 0.3;
 @trailing-whitespace-bg-color: red;
-
-#lcd {
-  .hints() {
-    color: #c5c8c6;
-    opacity: 0.3;
-  }
-}
 
 .editor {
   &:not(.mini) {
@@ -24,11 +19,18 @@
 
   .comment {
     font-style: normal;
-    opacity: 0.85;
+    // opacity: 0.85;
   }
 
   .invisible-character {
-    #lcd > .hints;
+    color: @hints-color;
+    opacity: @hints-opacity;
+  }
+
+  .source {
+    .gfm {
+      -webkit-font-smoothing: auto;
+    }
   }
 
   .trailing-whitespace {
@@ -38,6 +40,7 @@
   }
 
   .wrap-guide {
-    #lcd > .hints;
+    background-color: @hints-color;
+    opacity: 0.3;
   }
 }
