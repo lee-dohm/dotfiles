@@ -1,14 +1,13 @@
 'exception-reporting':
   'userId': 'ee24cf00-f793-9081-be2a-2cdae5536b7f'
 'release-notes':
-  'viewedVersion': '0.69.0'
+  'viewedVersion': '0.71.0'
 'welcome':
   'showOnStartup': false
 'metrics':
   'userId': '51eeb6113c1ae801c9aade9b6d679aa5189ced25'
 'editor':
-  'fontFamily': 'Source Code Pro'
-  'fontSize': 14
+  'fontFamily': 'SourceCodePro-Light'
   'preferredLineLength': 100
   'showInvisibles': true
   'invisibles':
@@ -16,18 +15,22 @@
     'eol': ''
     'space': '·'
     'tab': '⇥'
+  'tabLength': 2
+  'fontSize': 14
 'core':
   'projectHome': '/Volumes/Data/Users/Lee/Source'
   'themes': [
     'atom-dark-ui'
     'railscasts-syntax'
   ]
+  'disabledPackages': [
+    'status-stats'
+  ]
   'ignoredNames': [
     '.git'
     '.svn'
     '.DS_Store'
   ]
-  'disabledPackages': []
 'whitespace':
   'ensureSingleTrailingNewline': true
   'ignoreWhitespaceOnCurrentLine': false
@@ -43,4 +46,9 @@
 'autocomplete-plus': {}
 'tree-view':
   'hideVcsIgnoredFiles': true
-  'hideIgnoredNames': true
+'test-status':
+  'Rakefile': 'rake spec'
+  'Gruntfile': 'grunt spec'
+'autosave': {}
+'gist-it':
+  'userToken': 'foo'

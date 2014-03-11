@@ -1,25 +1,20 @@
 /*
- * Your Stylesheet
- *
- * This stylesheet is loaded when Atom starts up and is reloaded automatically
- * when it is changed.
- *
- * If you are unfamiliar with LESS, you can read more about it here:
- * http://www.lesscss.org
- */
+* Your Stylesheet
+*
+* This stylesheet is loaded when Atom starts up and is reloaded automatically
+* when it is changed.
+*
+* If you are unfamiliar with LESS, you can read more about it here:
+* http://www.lesscss.org
+*/
 
 @hints-color: #c5c8c6;
 @hints-opacity: 0.3;
 @trailing-whitespace-bg-color: red;
 
 .editor {
-  &:not(.mini) {
-    font-weight: lighter;
-  }
-
   .comment {
     font-style: normal;
-    // opacity: 0.85;
   }
 
   .invisible-character {
@@ -43,4 +38,12 @@
     background-color: @hints-color;
     opacity: 0.3;
   }
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
 }

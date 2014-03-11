@@ -16,7 +16,7 @@
 #   'ctrl-P': 'core:move-up'
 #   'ctrl-p': 'core:move-down'
 #
-'.editor':
+'.editor:not(.mini)':
   'cmd-T': 'window:run-package-specs'
 '.platform-darwin':
   'ctrl-cmd-r': 'tree-view:reveal-active-file'

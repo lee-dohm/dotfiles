@@ -10,5 +10,7 @@
   'railscasts-syntax'
   'status-stats'
   'symbol-gen'
+  'test-status'
   'toggle-quotes'
+  'travis-ci-status'
 ]
