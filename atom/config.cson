@@ -1,7 +1,7 @@
 'exception-reporting':
   'userId': 'ee24cf00-f793-9081-be2a-2cdae5536b7f'
 'release-notes':
-  'viewedVersion': '0.71.0'
+  'viewedVersion': '0.73.0'
 'welcome':
   'showOnStartup': false
 'metrics':
@@ -20,7 +20,7 @@
 'core':
   'projectHome': '/Volumes/Data/Users/Lee/Source'
   'themes': [
-    'atom-dark-ui'
+    'atom-soda-dark-ui'
     'railscasts-syntax'
   ]
   'disabledPackages': [
@@ -43,12 +43,15 @@
     'text.git-commit'
     'text.plain'
   ]
-'autocomplete-plus': {}
 'tree-view':
   'hideVcsIgnoredFiles': true
 'test-status':
   'Rakefile': 'rake spec'
   'Gruntfile': 'grunt spec'
 'autosave': {}
-'gist-it':
-  'userToken': 'foo'
+'gist-it': {}
+'remember-window':
+  'x': 575
+  'y': 22
+  'width': 1477
+  'height': 1211
