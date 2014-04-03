@@ -1,7 +1,7 @@
 'exception-reporting':
   'userId': 'ee24cf00-f793-9081-be2a-2cdae5536b7f'
 'release-notes':
-  'viewedVersion': '0.73.0'
+  'viewedVersion': '0.81.0'
 'welcome':
   'showOnStartup': false
 'metrics':
@@ -17,14 +17,17 @@
     'tab': '⇥'
   'tabLength': 2
   'fontSize': 14
+  'normalizeIndentOnPaste': false
 'core':
   'projectHome': '/Volumes/Data/Users/Lee/Source'
   'themes': [
-    'atom-soda-dark-ui'
+    'atom-dark-ui'
     'railscasts-syntax'
   ]
   'disabledPackages': [
     'status-stats'
+    'git-diff'
+    'language-rspec'
   ]
   'ignoredNames': [
     '.git'
@@ -33,7 +36,6 @@
   ]
 'whitespace':
   'ensureSingleTrailingNewline': true
-  'ignoreWhitespaceOnCurrentLine': false
 'auto-copyright':
   'buffer': 1
   'owner': 'Lifted Studios'
@@ -43,15 +45,26 @@
     'text.git-commit'
     'text.plain'
   ]
+'autocomplete-plus': {}
 'tree-view':
   'hideVcsIgnoredFiles': true
-'test-status':
-  'Rakefile': 'rake spec'
-  'Gruntfile': 'grunt spec'
-'autosave': {}
+'autosave':
+  'enabled': true
 'gist-it': {}
 'remember-window':
-  'x': 575
+  'x': 569
   'y': 22
   'width': 1477
   'height': 1211
+  'treeWidth': 289
+'tabs-to-spaces':
+  'onSave': 'untabify'
+'todo-show':
+  'findTheseRegexes': [
+    'FIXMEs'
+    '/FIXME:(.+$)/g'
+    'TODOs'
+    '/TODO:(.+$)/g'
+    'CHANGEDs'
+    '/CHANGED:(.+$)/g'
+  ]

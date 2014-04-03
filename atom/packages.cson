@@ -1,9 +1,8 @@
 'packages': [
-  'Zen'
   'atom-lint'
-  'atom-soda-dark-ui'
   'auto-copyright'
   'block-travel'
+  'color-picker'
   'css-color-highlighting'
   'editor-stats'
   'fancy-new-file'
@@ -19,5 +18,6 @@
   'sort-lines'
   'symbol-gen'
   'tabs-to-spaces'
+  'todo-show'
   'toggle-quotes'
 ]
