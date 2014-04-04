@@ -1,7 +1,7 @@
 'exception-reporting':
   'userId': 'ee24cf00-f793-9081-be2a-2cdae5536b7f'
 'release-notes':
-  'viewedVersion': '0.81.0'
+  'viewedVersion': '0.83.0'
 'welcome':
   'showOnStartup': false
 'metrics':
@@ -48,6 +48,9 @@
 'autocomplete-plus': {}
 'tree-view':
   'hideVcsIgnoredFiles': true
+'test-status':
+  'Rakefile': 'rake spec'
+  'Gruntfile': 'grunt spec'
 'autosave':
   'enabled': true
 'gist-it': {}
