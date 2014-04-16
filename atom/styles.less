@@ -17,6 +17,27 @@
     font-style: normal;
   }
 
+  .gutter .line-number {
+      // &[class*="git"] {
+      //     padding-left: 0 !important;
+      //     border-left: none !important;
+      //     color: #ffffff;
+      //     opacity: 1;
+      // }
+  
+      &.git-line-added {
+          background-color: rgba(168, 255, 96, 0.6);
+      }
+
+      &.git-line-modified {
+          background-color: rgba(233, 192, 98, 0.6);
+      }
+
+      &.git-line-removed {
+          background-color: rgba(204, 102, 102, 0.6);
+      }
+  }
+
   .invisible-character {
     color: @hints-color;
     opacity: @hints-opacity;

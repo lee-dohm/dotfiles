@@ -6,6 +6,7 @@
 #
 # An example hack to make opened Markdown files always be soft wrapped:
 #
+{$} = require 'atom'
 path = require 'path'
 
 atom.workspaceView.eachEditorView (editorView) ->

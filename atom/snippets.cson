@@ -25,7 +25,19 @@
   'FactoryGirl Create':
     'prefix': 'fgc'
     'body': 'FactoryGirl.create($1)$0'
-'.source.ruby.rspec':
-  'it':
-    'prefix': 'it'
+'.source.ruby':
+  'It do':
+    'prefix': 'itd'
     'body': "it '$1' do\n$0\nend"
+'.source.ruby':
+  'Describe':
+    'prefix': 'desc'
+    'body': "describe $1 do\n$0\nend"
+'.source.ruby':
+  'Let':
+    'prefix': 'let'
+    'body': 'let($1) { $0 }'
+'.source.ruby':
+  'It':
+    'prefix': 'it'
+    'body': 'it { $0 }'

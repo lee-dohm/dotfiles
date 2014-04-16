@@ -1,7 +1,7 @@
 'exception-reporting':
   'userId': 'ee24cf00-f793-9081-be2a-2cdae5536b7f'
 'release-notes':
-  'viewedVersion': '0.83.0'
+  'viewedVersion': '0.86.0'
 'welcome':
   'showOnStartup': false
 'metrics':
@@ -9,7 +9,6 @@
 'editor':
   'fontFamily': 'SourceCodePro-Light'
   'preferredLineLength': 100
-  'showInvisibles': true
   'invisibles':
     'cr': '↩'
     'eol': ''
@@ -18,6 +17,7 @@
   'tabLength': 2
   'fontSize': 14
   'normalizeIndentOnPaste': false
+  'showInvisibles': true
 'core':
   'projectHome': '/Volumes/Data/Users/Lee/Source'
   'themes': [
@@ -26,7 +26,6 @@
   ]
   'disabledPackages': [
     'status-stats'
-    'git-diff'
     'language-rspec'
   ]
   'ignoredNames': [
@@ -51,15 +50,14 @@
 'test-status':
   'Rakefile': 'rake spec'
   'Gruntfile': 'grunt spec'
-'autosave':
-  'enabled': true
+'autosave': {}
 'gist-it': {}
 'remember-window':
-  'x': 569
+  'x': 513
   'y': 22
-  'width': 1477
+  'width': 1570
   'height': 1211
-  'treeWidth': 289
+  'treeWidth': 199
 'tabs-to-spaces':
   'onSave': 'untabify'
 'todo-show':
