@@ -41,3 +41,11 @@
   'It':
     'prefix': 'it'
     'body': 'it { $0 }'
+'.source.ruby':
+  'Subject':
+    'prefix': 'subj'
+    'body': 'subject($1) { $0 }'
+'.source.ruby':
+  'Before':
+    'prefix': 'bef'
+    'body': 'before { $0 }'

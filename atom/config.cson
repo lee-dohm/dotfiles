@@ -1,7 +1,7 @@
 'exception-reporting':
   'userId': 'ee24cf00-f793-9081-be2a-2cdae5536b7f'
 'release-notes':
-  'viewedVersion': '0.86.0'
+  'viewedVersion': '0.89.0'
 'welcome':
   'showOnStartup': false
 'metrics':
@@ -27,11 +27,15 @@
   'disabledPackages': [
     'status-stats'
     'language-rspec'
+    'autocomplete-paths'
+    'autocomplete-plus'
+    'autocomplete-snippets'
   ]
   'ignoredNames': [
     '.git'
     '.svn'
     '.DS_Store'
+    '.keep'
   ]
 'whitespace':
   'ensureSingleTrailingNewline': true
@@ -44,7 +48,8 @@
     'text.git-commit'
     'text.plain'
   ]
-'autocomplete-plus': {}
+'autocomplete-plus':
+  'includeCompletionsFromAllBuffers': true
 'tree-view':
   'hideVcsIgnoredFiles': true
 'test-status':
@@ -53,11 +58,10 @@
 'autosave': {}
 'gist-it': {}
 'remember-window':
-  'x': 513
+  'x': 500
   'y': 22
   'width': 1570
   'height': 1211
-  'treeWidth': 199
 'tabs-to-spaces':
   'onSave': 'untabify'
 'todo-show':
@@ -69,3 +73,5 @@
     'CHANGEDs'
     '/CHANGED:(.+$)/g'
   ]
+'git-diff':
+  'showIconsInEditorGutter': true

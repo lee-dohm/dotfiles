@@ -7,7 +7,8 @@
 # remote named `origin`. It will only merge by fast-forward and will not push to the personal copy
 # unless the fetch and merge was successful.
 
-if ! git remote | grep upstream 2>&1 /dev/null; then
+# Piping to /dev/null seems to reverse the error condition for some reason
+if git remote | grep upstream 2>&1 /dev/null; then
     printf "There is no upstream remote!\n" >&2
     exit 2
 fi
