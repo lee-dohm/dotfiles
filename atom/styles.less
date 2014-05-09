@@ -12,30 +12,29 @@
 @hints-opacity: 0.3;
 @trailing-whitespace-bg-color: red;
 
+@added-color: rgb(168, 255, 96);
+@modified-color: rgb(233, 192, 98);
+@removed-color: rgb(204, 102, 102);
+
 .editor {
+  -webkit-font-smoothing: auto;
+
   .comment {
     font-style: normal;
   }
 
   .gutter .line-number {
-      // &[class*="git"] {
-      //     padding-left: 0 !important;
-      //     border-left: none !important;
-      //     color: #ffffff;
-      //     opacity: 1;
-      // }
-  
-      &.git-line-added {
-          background-color: rgba(168, 255, 96, 0.6);
-      }
+    &.git-line-added {
+      background-color: fade(@added-color, 0.6);
+    }
 
-      &.git-line-modified {
-          background-color: rgba(233, 192, 98, 0.6);
-      }
+    &.git-line-modified {
+      background-color: fade(@modified-color, 0.6);
+    }
 
-      &.git-line-removed {
-          background-color: rgba(204, 102, 102, 0.6);
-      }
+    &.git-line-removed {
+      background-color: fade(@removed-color, 0.6);
+    }
   }
 
   .invisible-character {
@@ -58,6 +57,22 @@
   .wrap-guide {
     background-color: @hints-color;
     opacity: @hints-opacity;
+  }
+}
+
+.tree-view {
+  font-size: 13px;
+
+  .status-added:after {
+    color: darken(@added-color, 20%);
+  }
+
+  .status-modified:after {
+    color: darken(@modified-color, 20%);
+  }
+
+  .status-removed:after {
+    color: darken(@removed-color, 20%);
   }
 }
 

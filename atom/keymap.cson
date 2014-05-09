@@ -18,5 +18,6 @@
 #
 '.editor:not(.mini)':
   'cmd-T': 'window:run-package-specs'
+  'alt-cmd-Z': 'pane:show-previous-item'
 '.platform-darwin':
   'ctrl-cmd-r': 'tree-view:reveal-active-file'

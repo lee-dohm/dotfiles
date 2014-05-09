@@ -1,7 +1,7 @@
 'exception-reporting':
   'userId': 'ee24cf00-f793-9081-be2a-2cdae5536b7f'
 'release-notes':
-  'viewedVersion': '0.89.0'
+  'viewedVersion': '0.94.0'
 'welcome':
   'showOnStartup': false
 'metrics':
@@ -15,9 +15,9 @@
     'space': '·'
     'tab': '⇥'
   'tabLength': 2
-  'fontSize': 14
   'normalizeIndentOnPaste': false
   'showInvisibles': true
+  'fontSize': 14
 'core':
   'projectHome': '/Volumes/Data/Users/Lee/Source'
   'themes': [
@@ -48,30 +48,18 @@
     'text.git-commit'
     'text.plain'
   ]
-'autocomplete-plus':
-  'includeCompletionsFromAllBuffers': true
 'tree-view':
   'hideVcsIgnoredFiles': true
-'test-status':
-  'Rakefile': 'rake spec'
-  'Gruntfile': 'grunt spec'
 'autosave': {}
-'gist-it': {}
 'remember-window':
-  'x': 500
+  'x': 538
   'y': 22
   'width': 1570
   'height': 1211
+  'treeWidth': 315
 'tabs-to-spaces':
   'onSave': 'untabify'
-'todo-show':
-  'findTheseRegexes': [
-    'FIXMEs'
-    '/FIXME:(.+$)/g'
-    'TODOs'
-    '/TODO:(.+$)/g'
-    'CHANGEDs'
-    '/CHANGED:(.+$)/g'
-  ]
 'git-diff':
   'showIconsInEditorGutter': true
+'autocomplete':
+  'includeCompletionsFromAllBuffers': true
