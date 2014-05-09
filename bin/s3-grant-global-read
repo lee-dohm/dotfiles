@@ -1,0 +1,50 @@
+#!/usr/bin/env ruby
+
+# Grants global read permissions to all files in a given S3 bucket.
+
+require 'aws-sdk'
+require 'trollop'
+require 'yaml'
+
+EVERYONE = 'http://acs.amazonaws.com/groups/global/AllUsers'
+
+opts = Trollop::options do
+  banner <<-EOS
+Grants global read permissions to all files in a given S3 bucket.
+
+Usage:
+    s3-grant-global-read [options] <bucket name>
+
+where [options] are:
+  EOS
+
+  opt :config, 'Path to YAML file containing the AWS access and secret keys', type: :string
+  opt :debug
+end
+
+bucket_name = ARGV[0]
+puts "Bucket name: #{bucket_name}" if opts[:debug]
+
+config = YAML.load_file(opts[:config])
+puts 'AWS Creds --' if opts[:debug]
+puts "  Access Key: #{config['access_key']}" if opts[:debug]
+puts "  Secret Key: #{config['secret_key']}" if opts[:debug]
+
+aws_config = AWS.config(access_key_id: config['access_key'],
+                        secret_access_key: config['secret_key'],
+                        region: 'us-west-2')
+puts 'AWS Config --' if opts[:debug]
+puts "  Access Key: #{aws_config.access_key_id}" if opts[:debug]
+puts "  Secret Key: #{aws_config.secret_access_key}" if opts[:debug]
+
+# Get the bucket information
+s3 = AWS::S3.new
+bucket = s3.buckets[bucket_name]
+
+# Update the ACL for each item in the bucket
+bucket.objects.each do |object|
+  puts object.key
+  acl = object.acl
+  acl.grant(:read).to(group_uri: EVERYONE)
+  object.acl = acl
+end
