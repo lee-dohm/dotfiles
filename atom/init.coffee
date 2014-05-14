@@ -4,13 +4,19 @@
 # after packages are loaded/activated and after the previous editor state
 # has been restored.
 #
-# An example hack to make opened Markdown files always be soft wrapped:
-#
 
 {$} = require 'atom'
 path = require 'path'
 
+fileMasks = {
+  "\\.md$": (editor) ->
+    editor.setSoftWrap(true)
+    editor.setTabLength(4)
+
+  "\\.py$": (editor) ->
+    editor.setTabLength(4)
+}
+
 atom.workspaceView.eachEditorView (editorView) ->
   editor = editorView.getEditor()
-  if path.extname(editor.getPath()) is '.md'
-    editor.setSoftWrap(true)
+  func(editor) for regex, func of fileMasks when new RegExp(regex).test(editor.getPath())
