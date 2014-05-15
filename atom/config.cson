@@ -1,7 +1,7 @@
 'exception-reporting':
   'userId': 'ee24cf00-f793-9081-be2a-2cdae5536b7f'
 'release-notes':
-  'viewedVersion': '0.94.0'
+  'viewedVersion': '0.95.0'
 'welcome':
   'showOnStartup': false
 'metrics':
@@ -22,7 +22,7 @@
   'projectHome': '/Volumes/Data/Users/Lee/Source'
   'themes': [
     'atom-dark-ui'
-    'railscasts-syntax'
+    'ya-railscasts-syntax'
   ]
   'disabledPackages': [
     'status-stats'
@@ -30,6 +30,7 @@
     'autocomplete-paths'
     'autocomplete-plus'
     'autocomplete-snippets'
+    'highlight-selected'
   ]
   'ignoredNames': [
     '.git'
@@ -50,6 +51,7 @@
   ]
 'tree-view':
   'hideVcsIgnoredFiles': true
+  'hideIgnoredNames': true
 'autosave': {}
 'remember-window':
   'x': 538
@@ -63,3 +65,5 @@
   'showIconsInEditorGutter': true
 'autocomplete':
   'includeCompletionsFromAllBuffers': true
+'fancy-new-file':
+  'suggestCurrentFilePath': true

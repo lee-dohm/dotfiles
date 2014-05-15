@@ -1,4 +1,5 @@
 GEM
+  remote: https://rubygems.org/
   specs:
     aws-sdk (1.34.1)
       json (~> 1.4)
