@@ -5,18 +5,23 @@
 # has been restored.
 #
 
-{$} = require 'atom'
-path = require 'path'
-
 fileMasks = {
-  "\\.md$": (editor) ->
+  "\\.md$": (editorView) ->
+    editor = editorView.getEditor()
     editor.setSoftWrap(true)
     editor.setTabLength(4)
 
-  "\\.py$": (editor) ->
+  "\\.py$": (editorView) ->
+    editor = editorView.getEditor()
     editor.setTabLength(4)
 }
 
-atom.workspaceView.eachEditorView (editorView) ->
+applySyntaxSettings = (editorView) ->
   editor = editorView.getEditor()
-  func(editor) for regex, func of fileMasks when new RegExp(regex).test(editor.getPath())
+  func(editorView) for regex, func of fileMasks when new RegExp(regex).test(editor.getPath())
+
+atom.workspaceView.eachEditorView (editorView) ->
+  applySyntaxSettings(editorView)
+
+  editorView.getEditor().on 'grammar-changed', ->
+    applySyntaxSettings(editorView)
