@@ -23,3 +23,6 @@
 
 [core]
   editor = atom --wait
+
+[merge]
+  ff = true
