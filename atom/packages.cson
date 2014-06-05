@@ -13,6 +13,7 @@
   'language-less'
   'language-r'
   'language-treetop'
+  'lifted-dark-ui'
   'package-sync'
   'remember-window'
   'revert-buffer'

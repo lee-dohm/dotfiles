@@ -8,13 +8,10 @@
 * http://www.lesscss.org
 */
 
+@import "ui-variables";
+
 @hints-color: #c5c8c6;
 @hints-opacity: 0.3;
-@trailing-whitespace-bg-color: red;
-
-@added-color: rgb(168, 255, 96);
-@modified-color: rgb(233, 192, 98);
-@removed-color: rgb(204, 102, 102);
 
 .atom-color-highlight {
   .color-highlight {
@@ -31,15 +28,15 @@
 
   .gutter .line-number {
     &.git-line-added {
-      background-color: fade(@added-color, 60%);
+      background-color: fade(@text-color-added, 60%);
     }
 
     &.git-line-modified {
-      background-color: fade(@modified-color, 60%);
+      background-color: fade(@text-color-modified, 60%);
     }
 
     &.git-line-removed {
-      background-color: fade(@removed-color, 60%);
+      background-color: fade(@text-color-removed, 60%);
     }
   }
 
@@ -55,26 +52,14 @@
   }
 
   .trailing-whitespace {
-    background-color: @trailing-whitespace-bg-color;
-    color: contrast(@trailing-whitespace-bg-color);
+    background-color: @background-color-error;
+    color: contrast(@background-color-error);
   }
 
   .wrap-guide {
     background-color: @hints-color;
     opacity: @hints-opacity;
   }
-}
-
-.tab-bar .tab {
-  font-size: 13px;
-}
-
-.tree-view {
-  font-size: 13px;
-}
-
-.workspace {
-  font-family: 'Helvetica Neue';
 }
 
 .bold {
