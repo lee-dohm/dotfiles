@@ -6,14 +6,14 @@
 #
 
 fileTypes = {
-  "source.gfm": (editor) ->
+  "GitHub Markdown": (editor) ->
     editor.setSoftWrap(true)
     editor.setTabLength(4)
 
-  "source.java": (editor) ->
+  "Java": (editor) ->
     editor.setTabLength(4)
 
-  "source.python": (editor) ->
+  "Python": (editor) ->
     editor.setTabLength(4)
 }
 
@@ -21,7 +21,7 @@ fileTypes = {
 #
 # editor - Editor to which to apply the grammar-specific settings.
 applySyntaxSettings = (editor) ->
-  func(editor) for scopeRegex, func of fileTypes when scopeRegex.test(editor.getGrammar().scopeName)
+  func(editor) for name, func of fileTypes when name is editor.getGrammar().name
 
 # Executes for each and every Editor, past and future.
 atom.workspace.eachEditor (editor) ->
