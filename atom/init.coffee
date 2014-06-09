@@ -5,7 +5,8 @@
 # has been restored.
 #
 
-fileTypes = {
+# Settings to assign based on grammar name.
+fileTypes =
   "GitHub Markdown": (editor) ->
     editor.setSoftWrap(true)
     editor.setTabLength(4)
@@ -15,7 +16,6 @@ fileTypes = {
 
   "Python": (editor) ->
     editor.setTabLength(4)
-}
 
 # Apply grammar-specific settings.
 #
