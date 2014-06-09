@@ -20,12 +20,12 @@ fileTypes = {
 # Apply grammar-specific settings.
 #
 # editor - Editor to which to apply the grammar-specific settings.
-applySyntaxSettings = (editor) ->
+applyGrammarSettings = (editor) ->
   func(editor) for name, func of fileTypes when name is editor.getGrammar().name
 
 # Executes for each and every Editor, past and future.
 atom.workspace.eachEditor (editor) ->
-  applySyntaxSettings(editor)
+  applyGrammarSettings(editor)
 
   editor.on 'grammar-changed', ->
-    applySyntaxSettings(editor)
+    applyGrammarSettings(editor)
