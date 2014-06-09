@@ -20,23 +20,16 @@
   'fontSize': 14
 'core':
   'projectHome': '/Volumes/Data/Users/Lee/Source'
-  'themes': [
-    'atom-dark-ui'
-    'ya-railscasts-syntax'
-  ]
-  'disabledPackages': [
-    'status-stats'
-    'language-rspec'
-    'autocomplete-paths'
-    'autocomplete-plus'
-    'autocomplete-snippets'
-    'highlight-selected'
-  ]
+  'disabledPackages': []
   'ignoredNames': [
     '.git'
     '.svn'
     '.DS_Store'
     '.keep'
+  ]
+  'themes': [
+    'lifted-dark-ui'
+    'ya-railscasts-syntax'
   ]
 'whitespace':
   'ensureSingleTrailingNewline': true
@@ -54,11 +47,11 @@
   'hideIgnoredNames': true
 'autosave': {}
 'remember-window':
-  'x': 538
   'y': 22
-  'width': 1570
-  'height': 1211
-  'treeWidth': 315
+  'width': 1665
+  'height': 1260
+  'x': 507
+  'treeWidth': 279
 'tabs-to-spaces':
   'onSave': 'untabify'
 'git-diff':

@@ -5,23 +5,27 @@
 # has been restored.
 #
 
-fileMasks = {
-  "\\.md$": (editorView) ->
-    editor = editorView.getEditor()
+fileTypes = {
+  "source.gfm": (editor) ->
     editor.setSoftWrap(true)
     editor.setTabLength(4)
 
-  "\\.py$": (editorView) ->
-    editor = editorView.getEditor()
+  "source.java": (editor) ->
+    editor.setTabLength(4)
+
+  "source.python": (editor) ->
     editor.setTabLength(4)
 }
 
-applySyntaxSettings = (editorView) ->
-  editor = editorView.getEditor()
-  func(editorView) for regex, func of fileMasks when new RegExp(regex).test(editor.getPath())
+# Apply grammar-specific settings.
+#
+# editor - Editor to which to apply the grammar-specific settings.
+applySyntaxSettings = (editor) ->
+  func(editor) for scopeRegex, func of fileTypes when scopeRegex.test(editor.getGrammar().scopeName)
 
-atom.workspaceView.eachEditorView (editorView) ->
-  applySyntaxSettings(editorView)
+# Executes for each and every Editor, past and future.
+atom.workspace.eachEditor (editor) ->
+  applySyntaxSettings(editor)
 
-  editorView.getEditor().on 'grammar-changed', ->
-    applySyntaxSettings(editorView)
+  editor.on 'grammar-changed', ->
+    applySyntaxSettings(editor)
