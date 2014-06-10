@@ -8,6 +8,7 @@
 # Settings to assign based on grammar name.
 grammarSettings =
   'GitHub Markdown':
+    showInvisibles: false
     softWrap: true
     tabLength: 4
   Java:
@@ -17,26 +18,28 @@ grammarSettings =
 
 # Apply the settings to the editor session.
 #
-# editor - Editor to which to apply the settings.
-# settings - The settings to apply.
-applySettingsForGrammar = (editor, settings) ->
+# editorView - EditorView to which to apply the settings.
+# settings   - The settings to apply.
+applySettingsForGrammar = (editorView, settings) ->
+  editor = editorView.getEditor()
   for key, value of settings
     switch key
+      when 'showInvisibles' then editorView.setShowInvisibles(value)
       when 'softWrap' then editor.setSoftWrap(value)
       when 'tabLength' then editor.setTabLength(value)
 
 # Apply grammar-specific settings.
 #
-# editor - Editor to which to apply the grammar-specific settings.
-applySettings = (editor) ->
-  settings = grammarSettings[editor.getGrammar().name]
+# editorView - EditorView to which to apply the grammar-specific settings.
+applySettings = (editorView) ->
+  settings = grammarSettings[editorView.getEditor().getGrammar().name]
   return unless settings?
 
-  applySettingsForGrammar(editor, settings)
+  applySettingsForGrammar(editorView, settings)
 
-# Executes for each and every Editor, past and future.
-atom.workspace.eachEditor (editor) ->
-  applySettings(editor)
+# Executes for each and every EditorView, past and future.
+atom.workspaceView.eachEditorView (editorView) ->
+  applySettings(editorView)
 
-  editor.on 'grammar-changed', ->
-    applySettings(editor)
+  editorView.getEditor().on 'grammar-changed', ->
+    applySettings(editorView)
