@@ -1,3 +1,4 @@
+#!/bin/sh
 # The list of aliases for shell commands
 #
 # Application-specific aliases are contained in their own initialization
