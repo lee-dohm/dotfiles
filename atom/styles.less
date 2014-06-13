@@ -13,15 +13,12 @@
 @hints-color: #c5c8c6;
 @hints-opacity: 0.3;
 
-.atom-color-highlight {
-  .color-highlight {
-    -webkit-font-smoothing: auto;
-  }
+body {
+  -webkit-font-smoothing: auto;
+  text-rendering: optimizeLegibility;
 }
 
 .editor {
-  -webkit-font-smoothing: auto;
-
   .comment {
     font-style: normal;
   }
@@ -68,4 +65,199 @@
 
 .italic {
   font-style: italic;
+}
+
+//
+// File Icons
+//
+
+@icon-size: @font-size + 4;
+
+[data-name]:before {
+  margin-right: 5px;
+  position: relative;
+  top: 1px;
+  font-family: 'Octicons Regular';
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  line-height: 1;
+  text-decoration: none;
+  font-size: @icon-size;
+  width: @icon-size;
+  height: @icon-size;
+}
+
+// Coffeescript files
+[data-name$='.coffee']:before,
+[data-name$='.litcoffee']:before,
+[data-name$='.coffee.md']:before,
+[data-name='Cakefile']:before {
+  content: '\f010';
+}
+
+// Meta configuration files
+[data-name$='gitignore']:before,
+[data-name$='.gitattributes']:before,
+[data-name$='.gitkeep']:before,
+[data-name$='.npmignore']:before,
+[data-name$='.npmrc']:before,
+[data-name$='.rspec']:before,
+[data-name$='.pairs']:before,
+[data-name$='.spectacular']:before,
+[data-name='Procfile']:before,
+[data-name$='.ruby-version']:before {
+  content: '\f02f';
+}
+
+// GIT repo
+[data-name$='.git']:before {
+  content: '\f00a';
+}
+
+
+// Source map file
+[data-name$='.map']:before,
+[data-name$='ctags']:before {
+  content: '\f060';
+}
+
+// Lock files
+[data-name$='.lock']:before {
+  content: '\f06a';
+}
+
+// Ruby files
+[data-name$='.rb']:before,
+[data-name$='.ru']:before,
+[data-name$='.rake']:before,
+[data-name$='.gemspec']:before,
+[data-name='Gemfile']:before,
+[data-name='Rakefile']:before,
+[data-name='Guardfile']:before,
+[data-name='Capfile']:before,
+[data-name='pryrc']:before {
+  content: '\f047';
+}
+
+// Stylesheets
+[data-name$='.styl']:before,
+[data-name$='.css']:before,
+[data-name$='.sass']:before,
+[data-name$='.scss']:before,
+[data-name$='.less']:before {
+  content: '\f058';
+}
+
+// Archives
+[data-name$='.zip']:before,
+[data-name$='.rar']:before,
+[data-name$='.gz']:before {
+  content: '\f013';
+}
+
+// Templates
+[data-name$='.jade']:before,
+[data-name$='.haml']:before,
+[data-name$='.erb']:before,
+[data-name$='.hbs']:before {
+  content: '\f05f';
+}
+
+// In project configuration files
+[data-name$='.json']:before,
+[data-name$='.cson']:before,
+[data-name$='.yml']:before  {
+  content: '\f07c';
+}
+
+// DS_Store
+[data-name$='.DS_Store']:before,
+[data-name*='.sublime-']:before {
+  content: '\f02f';
+}
+
+// PDF files
+[data-name$='.pdf']:before {
+  content: '\f014';
+}
+
+// Log files
+.file-icon-log:before,
+[data-name$='.log']:before {
+  content: '\f091';
+}
+
+// Database & dumps
+[data-name$='.sqlite']:before,
+[data-name$='.csv']:before,
+[data-name$='.sqlite3']:before,
+[data-name$='.dump']:before {
+  content: '\f096';
+}
+
+// Fonts files
+[data-name$='.woff']:before,
+[data-name$='.ttf']:before,
+[data-name$='.otf']:before,
+[data-name$='.eot']:before {
+  content: '\f05e';
+}
+
+// HTML files
+[data-name$='.html']:before {
+  content: "\f0b6";
+}
+
+// Ctags files
+[data-name='.ctags']:before,
+[data-name='.tags']:before,
+[data-name='.gemtags']:before,
+[data-name='tags']:before,
+[data-name='TAGS']:before {
+  content: '\f015';
+}
+
+
+// JS files
+[data-name$='.js']:before
+{
+  content: '\f011';
+}
+
+// Images files
+[data-name$='.jpg']:before,
+[data-name$='.png']:before,
+[data-name$='.gif']:before,
+[data-name$='.psd']:before,
+[data-name$='.svg']:before,
+[data-name$='.ico']:before {
+  content: '\f012';
+}
+
+// Videos files
+[data-name$='.mpg']:before,
+[data-name$='.avi']:before,
+[data-name$='.mov']:before,
+[data-name$='.flv']:before,
+[data-name$='.swf']:before,
+[data-name$='.ogg']:before {
+  content: '\f057';
+}
+
+// Markdown files
+[data-name$='.md']:before {
+  content: '\f0c9'
+}
+
+// Todos
+[data-name*='todo']:before {
+  content: '\f076';
+}
+
+// Shell scripts
+[data-path*='bin/']:before,
+[data-name$='.sh']:before,
+[data-name$='.bat']:before {
+  content: '\f0c8';
 }
