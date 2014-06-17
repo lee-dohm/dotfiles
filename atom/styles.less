@@ -72,8 +72,6 @@ body {
 // File Icons
 //
 
-@icon-size: @font-size + 4;
-
 [data-name]:before {
   margin-right: 5px;
   position: relative;
@@ -82,11 +80,11 @@ body {
   font-weight: normal;
   font-style: normal;
   display: inline-block;
-  line-height: 1;
+  line-height: @component-line-height;
   text-decoration: none;
-  font-size: @icon-size;
-  width: @icon-size;
-  height: @icon-size;
+  font-size: @component-icon-size;
+  width: @component-icon-size;
+  height: @component-icon-size;
 }
 
 // Coffeescript files
