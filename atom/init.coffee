@@ -15,6 +15,8 @@ grammarSettings =
     tabLength: 4
   Python:
     tabLength: 4
+  'Shell Script (Bash)':
+    tabLength: 4
 
 # Apply the settings to the editor session.
 #
