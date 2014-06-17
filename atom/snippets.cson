@@ -17,35 +17,27 @@
   'FactoryGirl Build':
     'prefix': 'fgb'
     'body': 'FactoryGirl.build($1)$0'
-'.source.ruby':
   'FactoryGirl Build Stubbed':
     'prefix': 'fgbs'
     'body': 'FactoryGirl.build_stubbed($1)$0'
-'.source.ruby':
   'FactoryGirl Create':
     'prefix': 'fgc'
     'body': 'FactoryGirl.create($1)$0'
-'.source.ruby':
   'It do':
     'prefix': 'itd'
     'body': "it '$1' do\n$0\nend"
-'.source.ruby':
   'Describe':
     'prefix': 'desc'
     'body': "describe $1 do\n$0\nend"
-'.source.ruby':
   'Let':
     'prefix': 'let'
     'body': 'let($1) { $0 }'
-'.source.ruby':
   'It':
     'prefix': 'it'
     'body': 'it { $0 }'
-'.source.ruby':
   'Subject':
     'prefix': 'subj'
     'body': 'subject($1) { $0 }'
-'.source.ruby':
   'Before':
     'prefix': 'bef'
     'body': 'before { $0 }'
