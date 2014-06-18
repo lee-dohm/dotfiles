@@ -21,3 +21,6 @@
 '.platform-darwin':
   'ctrl-cmd-r': 'tree-view:reveal-active-file'
   'cmd-T': 'window:run-package-specs'
+'.autocomplete-plus input.hidden-input':
+  'tab': 'unset!'
+  'enter': 'autocomplete-plus:confirm'

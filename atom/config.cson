@@ -48,10 +48,9 @@
 'autosave': {}
 'remember-window':
   'y': 22
-  'width': 1665
-  'height': 1260
-  'x': 507
-  'treeWidth': 279
+  'width': 1280
+  'height': 774
+  'treeWidth': 292
 'tabs-to-spaces':
   'onSave': 'untabify'
 'git-diff':
@@ -60,3 +59,5 @@
   'includeCompletionsFromAllBuffers': true
 'fancy-new-file':
   'suggestCurrentFilePath': true
+'autocomplete-plus':
+  'fileBlacklist': '.*'
