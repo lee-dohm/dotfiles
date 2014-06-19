@@ -31,6 +31,7 @@
     'lifted-dark-ui'
     'ya-railscasts-syntax'
   ]
+  'useReactEditor': true
 'whitespace':
   'ensureSingleTrailingNewline': true
 'auto-copyright':
@@ -48,9 +49,9 @@
 'autosave': {}
 'remember-window':
   'y': 22
-  'width': 1280
-  'height': 774
-  'treeWidth': 292
+  'width': 1509
+  'height': 1237
+  'x': 570
 'tabs-to-spaces':
   'onSave': 'untabify'
 'git-diff':
@@ -61,3 +62,5 @@
   'suggestCurrentFilePath': true
 'autocomplete-plus':
   'fileBlacklist': '.*'
+'autocomplete-emojis':
+  'fileWhitelist': '*.md, COMMIT_EDITMSG'
