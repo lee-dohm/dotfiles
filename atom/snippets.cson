@@ -17,6 +17,9 @@
   Describe:
     prefix: 'des'
     body: "describe '$1', ->$0"
+  It:
+    prefix: 'it'
+    body: "it '$1', ->$0"
 .source.ruby:
   Before:
     prefix: 'bef'
