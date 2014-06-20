@@ -10,34 +10,38 @@
 #
 # '.source.coffee':
 #   'Console log':
-#     'prefix': 'log'
-#     'body': 'console.log $1'
+#     prefix: 'log'
+#     body: 'console.log $1'
 #
-'.source.ruby':
+.source.coffee:
+  Describe:
+    prefix: 'des'
+    body: "describe '$1', ->$0"
+.source.ruby:
+  Before:
+    prefix: 'bef'
+    body: 'before { $0 }'
+  Describe:
+    prefix: 'desc'
+    body: "describe $1 do\n$0\nend"
   'FactoryGirl Build':
-    'prefix': 'fgb'
-    'body': 'FactoryGirl.build($1)$0'
+    prefix: 'fgb'
+    body: 'FactoryGirl.build($1)$0'
   'FactoryGirl Build Stubbed':
-    'prefix': 'fgbs'
-    'body': 'FactoryGirl.build_stubbed($1)$0'
+    prefix: 'fgbs'
+    body: 'FactoryGirl.build_stubbed($1)$0'
   'FactoryGirl Create':
-    'prefix': 'fgc'
-    'body': 'FactoryGirl.create($1)$0'
+    prefix: 'fgc'
+    body: 'FactoryGirl.create($1)$0'
+  It:
+    prefix: 'it'
+    body: 'it { $0 }'
   'It do':
-    'prefix': 'itd'
-    'body': "it '$1' do\n$0\nend"
-  'Describe':
-    'prefix': 'desc'
-    'body': "describe $1 do\n$0\nend"
-  'Let':
-    'prefix': 'let'
-    'body': 'let($1) { $0 }'
-  'It':
-    'prefix': 'it'
-    'body': 'it { $0 }'
-  'Subject':
-    'prefix': 'subj'
-    'body': 'subject($1) { $0 }'
-  'Before':
-    'prefix': 'bef'
-    'body': 'before { $0 }'
+    prefix: 'itd'
+    body: "it '$1' do\n$0\nend"
+  Let:
+    prefix: 'let'
+    body: 'let($1) { $0 }'
+  Subject:
+    prefix: 'subj'
+    body: 'subject($1) { $0 }'
