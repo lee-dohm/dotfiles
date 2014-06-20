@@ -6,9 +6,7 @@ if ! hash rbenv 2> /dev/null ; then
     fi
 fi
 
-if ! hash ruby 2> /dev/null ; then
-    alias b='bundle'
-    alias be='bundle exec'
-    alias bi='bundle install'
-    alias bre='bundle exec'
-fi
+alias b='bundle'
+alias be='bundle exec'
+alias bi='bundle install'
+alias bre='bundle exec'
