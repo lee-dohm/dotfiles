@@ -31,7 +31,6 @@
     'lifted-dark-ui'
     'ya-railscasts-syntax'
   ]
-  'useReactEditor': true
 'whitespace':
   'ensureSingleTrailingNewline': true
 'auto-copyright':
@@ -52,6 +51,7 @@
   'width': 1509
   'height': 1237
   'x': 570
+  'treeWidth': 338
 'tabs-to-spaces':
   'onSave': 'untabify'
 'git-diff':
