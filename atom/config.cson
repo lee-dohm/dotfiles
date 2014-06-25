@@ -47,11 +47,7 @@
   'hideIgnoredNames': true
 'autosave': {}
 'remember-window':
-  'y': 22
-  'width': 1509
-  'height': 1237
-  'x': 570
-  'treeWidth': 338
+  'storeOutsideMainConfig': true
 'tabs-to-spaces':
   'onSave': 'untabify'
 'git-diff':
