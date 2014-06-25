@@ -1,0 +1,8 @@
+#!/bin/bash
+
+ancestor=$(diff --old-line-format='' --new-line-format='' \
+    <(git rev-list --first-parent "${1:-master}") \
+    <(git rev-list --first-parent "${2:-HEAD}") | \
+    head -1)
+
+git rev-parse --short "$ancestor"
