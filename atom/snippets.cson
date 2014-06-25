@@ -13,20 +13,23 @@
 #     prefix: 'log'
 #     body: 'console.log $1'
 #
-.source.coffee:
+'.source.coffee':
   Describe:
     prefix: 'des'
     body: "describe '$1', ->$0"
   It:
     prefix: 'it'
     body: "it '$1', ->$0"
-.source.ruby:
+'.source.ruby':
   Before:
     prefix: 'bef'
     body: 'before { $0 }'
+  'Before - Do':
+    prefix: 'befd'
+    body: "before do$0\nend"
   Describe:
     prefix: 'desc'
-    body: "describe $1 do\n$0\nend"
+    body: "describe $1 do$0\nend"
   'FactoryGirl Build':
     prefix: 'fgb'
     body: 'FactoryGirl.build($1)$0'
@@ -39,12 +42,18 @@
   It:
     prefix: 'it'
     body: 'it { $0 }'
+  Its:
+    prefix: 'its'
+    body: 'its($1) { $0 }'
   'It do':
     prefix: 'itd'
     body: "it '$1' do\n$0\nend"
   Let:
     prefix: 'let'
     body: 'let($1) { $0 }'
+  'Subject - Named':
+    prefix: 'subjn'
+    body: 'subject($1) { $0 }'
   Subject:
     prefix: 'subj'
-    body: 'subject($1) { $0 }'
+    body: 'subject { $0 }'
