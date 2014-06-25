@@ -39,9 +39,16 @@ applySettings = (editorView) ->
 
   applySettingsForGrammar(editorView, settings)
 
+# Apply the default editor settings to the given view.
+#
+# editorView - EditorView to which to apply the defaults.
+applyDefaults = (editorView) ->
+  applySettingsForGrammar(editorView, atom.config.get('editor'))
+
 # Executes for each and every EditorView, past and future.
 atom.workspaceView.eachEditorView (editorView) ->
   applySettings(editorView)
 
   editorView.getEditor().on 'grammar-changed', ->
+    applyDefaults(editorView)
     applySettings(editorView)
