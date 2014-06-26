@@ -9,6 +9,11 @@ else
     alias ls='ls --color=auto'
 fi
 
+# Ensure the HOSTNAME environment variable is set so that `rcm` works properly
+if [[ -z "$HOSTNAME" ]]; then
+    export HOSTNAME=$(hostname -s)
+fi
+
 # Don't autocorrect arguments
 unsetopt correct_all
 
