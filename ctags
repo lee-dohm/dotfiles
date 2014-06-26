@@ -1,20 +1,36 @@
---langdef=coffee
---langmap=coffee:.coffee
---regex-coffee=/(^|=[ \t])*class ([A-Za-z]+\.)*([A-Za-z]+)( extends [A-Za-z.]+)?$/\3/c,class/
---regex-coffee=/^[ \t]*(module\.)?(exports\.)?@?([A-Za-z.]+):.*[-=]>.*$/\3/m,method/
---regex-coffee=/^[ \t]*(module\.)?(exports\.)?([A-Za-z.]+)[ \t]+=.*[-=]>.*$/\3/f,function/
---regex-coffee=/^[ \t]*([A-Za-z.]+)[ \t]+=[^->\n]*$/\1/v,variable/
---regex-coffee=/^[ \t]*@([A-Za-z.]+)[ \t]+=[^->\n]*$/\1/f,field/
---regex-coffee=/^[ \t]*@([A-Za-z.]+):[^->\n]*$/\1/f,static field/
---regex-coffee=/^[ \t]*([A-Za-z.]+):[^->\n]*$/\1/f,field/
---regex-coffee=/(constructor: \()@([A-Za-z.]+)/\2/f,field/
---regex-coffee=/(constructor: \()@[A-Za-z.]+(, @([A-Za-z.]+)){0}/\3/f,field/
---regex-coffee=/(constructor: \()@[A-Za-z.]+(, @([A-Za-z.]+)){1}/\3/f,field/
---regex-coffee=/(constructor: \()@[A-Za-z.]+(, @([A-Za-z.]+)){2}/\3/f,field/
---regex-coffee=/(constructor: \()@[A-Za-z.]+(, @([A-Za-z.]+)){3}/\3/f,field/
---regex-coffee=/(constructor: \()@[A-Za-z.]+(, @([A-Za-z.]+)){4}/\3/f,field/
---regex-coffee=/(constructor: \()@[A-Za-z.]+(, @([A-Za-z.]+)){5}/\3/f,field/
---regex-coffee=/(constructor: \()@[A-Za-z.]+(, @([A-Za-z.]+)){6}/\3/f,field/
---regex-coffee=/(constructor: \()@[A-Za-z.]+(, @([A-Za-z.]+)){7}/\3/f,field/
---regex-coffee=/(constructor: \()@[A-Za-z.]+(, @([A-Za-z.]+)){8}/\3/f,field/
---regex-coffee=/(constructor: \()@[A-Za-z.]+(, @([A-Za-z.]+)){9}/\3/f,field/
+--langdef=CoffeeScript
+--langmap=CoffeeScript:.coffee
+--regex-CoffeeScript=/^[ \t]*(@?[a-zA-Z$_\.1-9]+)[ \t]*(=|\:)[ \t]*(\(.*\))?[ \t]*(-|=)>/\1/f,function/
+--regex-CoffeeScript=/^[ \t]*([a-zA-Z$_1-9]+\:\:[a-zA-Z$_\.1-9]+)[ \t]*(=|\:)[ \t]*(\(.*\))?[ \t]*(-|=)>/\1/f,function/
+--regex-CoffeeScript=/^[ \t]*describe[ \t]"(.+)"[ \t]*,[ \t]+[-=]>/\1/f,function/
+--regex-CoffeeScript=/^[ \t]*describe[ \t]'(.+)'[ \t]*,[ \t]+[-=]>/\1/f,function/
+--regex-CoffeeScript=/^[ \t]*it[ \t]"([^"]+)"[ \t]*,[ \t]+[-=]>/\1/f,function/
+--regex-CoffeeScript=/^[ \t]*it[ \t]'([^']+)'[ \t]*,[ \t]+[-=]>/\1/f,function/
+--regex-CoffeeScript=/^[ \t]*f+describe[ \t]"(.+)"[ \t]*,[ \t]+[-=]>/focused\: \1/f,function/
+--regex-CoffeeScript=/^[ \t]*f+describe[ \t]'(.+)'[ \t]*,[ \t]+[-=]>/focused: \1/f,function/
+--regex-CoffeeScript=/^[ \t]*f+it[ \t]"([^"]+)"[ \t]*,[ \t]+[-=]>/focused: \1/f,function/
+--regex-CoffeeScript=/^[ \t]*f+it[ \t]'([^']+)'[ \t]*,[ \t]+[-=]>/focused: \1/f,function/
+--regex-CoffeeScript=/^[ \t]*xdescribe[ \t]"(.+)"[ \t]*,[ \t]+[-=]>/disabled\: \1/f,function/
+--regex-CoffeeScript=/^[ \t]*xdescribe[ \t]'(.+)'[ \t]*,[ \t]+[-=]>/disabled: \1/f,function/
+--regex-CoffeeScript=/^[ \t]*xit[ \t]"([^"]+)"[ \t]*,[ \t]+[-=]>/disabled: \1/f,function/
+--regex-CoffeeScript=/^[ \t]*xit[ \t]'([^']+)'[ \t]*,[ \t]+[-=]>/disabled: \1/f,function/
+--regex-CoffeeScript=/^[ \t]*class[ \t]*([a-zA-Z$_\.1-9]+)[ \t]*/\1/f,function/
+
+--langdef=Json
+--langmap=Json:.json
+--regex-Json=/^[ \t]*"([^"]+)"[ \t]*\:/\1/f,function/
+
+--langdef=Cson
+--langmap=Cson:.cson
+--langmap=Cson:+.gyp
+--regex-Cson=/^[ \t]*'([^']+)'[ \t]*\:/\1/f,function/
+--regex-Cson=/^[ \t]*"([^"]+)"[ \t]*\:/\1/f,function/
+--regex-Cson=/^[ \t]*([^'"]+)[ \t]*\:/\1/f,function/
+
+--langmap=C++:+.mm
+
+--langmap=Ruby:+(Rakefile)
+
+--exclude=*node_modules/*
+
+--JavaScript-kinds=fcm
