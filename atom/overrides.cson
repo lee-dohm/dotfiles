@@ -1,0 +1,11 @@
+source:
+  gfm:
+    showInvisibles: false
+    softWrap: true
+    tabLength: 4
+  java:
+    tabLength: 4
+  python:
+    tabLength: 4
+  shell:
+    tabLength: 4
