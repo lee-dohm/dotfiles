@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env ruby
+# rubocop:disable FileName
 
 # Updates a GitHub forked project with the latest code from the original and pushes the updated code
 # to the personal copy.
@@ -7,15 +8,34 @@
 # remote named `origin`. It will only merge by fast-forward and will not push to the personal copy
 # unless the fetch and merge was successful.
 
-# Piping to /dev/null seems to reverse the error condition for some reason
-if git remote | grep upstream 2>&1 /dev/null; then
-    printf "There is no upstream remote!\n" >&2
-    exit 2
-fi
+require 'optparse'
 
-if [ "$(git current-branch)" != 'master' ]; then
-    printf "Must be on the master branch to update the fork!\n" >&2
-    exit 3
-fi
+options = { upstream: 'upstream' }
+parser = OptionParser.new do |opts|
+  opts.banner = "Usage: #{opts.program_name} [options]"
 
-git pull --ff-only upstream master && git push origin master
+  opts.on('-u', '--upstream UPSTREAM', 'Name of upstream remote. Defaults to "upstream"') do |u|
+    options[:upstream] = u
+  end
+
+  opts.on('-h', '--help', 'Displays this help message') do
+    puts opts
+    exit
+  end
+end
+
+parser.parse(ARGV)
+
+upstream = options[:upstream]
+
+unless system("git remote | grep #{upstream}")
+  puts "The upstream remote '#{upstream}' could not be found"
+  exit 2
+end
+
+if `git current-branch` != 'master'
+  puts 'Must be on the master branch to update the fork'
+  exit 3
+end
+
+system("git pull --ff-only #{upstream} master && git push origin master")
