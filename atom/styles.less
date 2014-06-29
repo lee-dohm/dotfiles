@@ -13,15 +13,12 @@
 @hints-color: #c5c8c6;
 @hints-opacity: 0.3;
 
-body {
-  -webkit-font-smoothing: auto;
-}
-
-.react.editor .lines .line {
-  width: 100%;
-}
-
 .editor {
+  .bracket-matcher {
+    border: 1px solid @hints-color;
+    position: absolute;
+  }
+
   .comment {
     font-style: normal;
   }
@@ -43,10 +40,6 @@ body {
   .invisible-character {
     color: @hints-color;
     opacity: @hints-opacity;
-  }
-
-  .gfm {
-    -webkit-font-smoothing: auto;
   }
 
   .trailing-whitespace {
