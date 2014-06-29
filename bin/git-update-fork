@@ -14,6 +14,11 @@ require 'yaml'
 
 # An error that occurred while executing a `git` command.
 class GitError < StandardError
+  attr_reader :status
+
+  def initialize(status)
+    @status = status
+  end
 end
 
 # Executes a `git` command.
