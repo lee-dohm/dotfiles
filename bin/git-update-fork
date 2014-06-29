@@ -4,12 +4,13 @@
 # Updates a GitHub forked project with the latest code from the original and pushes the updated code
 # to the personal copy.
 #
-# Assumes that the original project is on a remote named `upstream` and the personal copy is on a
-# remote named `origin`. It will only merge by fast-forward and will not push to the personal copy
-# unless the fetch and merge was successful.
+# Assumes that the original project is on the remote named `origin` and the personal copy is on a
+# remote named with your GitHub user name. It will only merge by fast-forward and will not push to
+# the personal copy unless the fetch and merge was successful.
 
 require 'English'
 require 'optparse'
+require 'yaml'
 
 # An error that occurred while executing a `git` command.
 class GitError < StandardError
@@ -42,6 +43,14 @@ def git(arguments, options = {})
   out
 end
 
+# Retrieves your GitHub user name from either the `GITHUB_USER` environment variable or the
+# `~/.config/hub` configuration file.
+#
+# @return [String] GitHub user name.
+def github_user_name
+  ENV['GITHUB_USER'] || YAML.load_file("#{ENV['HOME']}/.config/hub")['github.com'][0]['user']
+end
+
 # Raises an error if there was a problem executing the `git` command.
 #
 # @param [Process::Status] status Exit status of the `git` command.
@@ -52,12 +61,7 @@ def raise_git_error(status, command)
   raise GitError.new(status), "Error executing '#{command}'" unless status.exitstatus == 0
 end
 
-options = {
-  master: 'master',
-  origin: 'origin',
-  upstream: 'upstream'
-}
-
+options = {}
 parser = OptionParser.new do |opts|
   opts.banner = "Usage: #{opts.program_name} [options]"
 
@@ -73,8 +77,10 @@ parser = OptionParser.new do |opts|
     options[:rebase] = r
   end
 
-  opts.on('-u', '--upstream UPSTREAM', 'Name of upstream remote. Defaults to "upstream".') do |u|
-    options[:upstream] = u
+  opts.on('-p',
+          '--personal PERSONAL',
+          'Name of personal remote. Defaults to your GitHub user name.') do |personal|
+    options[:personal] = personal
   end
 
   opts.on('-v', '--[no-]verbose', 'Display verbose output') do |v|
@@ -89,9 +95,9 @@ end
 
 parser.parse(ARGV)
 
-master = options[:master]
-origin = options[:origin]
-upstream = options[:upstream]
+master = options[:master] || 'master'
+origin = options[:origin] || 'origin'
+personal = options[:personal] || github_user_name
 verbose = options[:verbose]
 
 unless system("git remote | grep #{upstream} > /dev/null 2>&1")
@@ -104,8 +110,8 @@ alternate_branch = nil if alternate_branch == master
 
 git("checkout #{master}", verbose: verbose) unless alternate_branch.nil?
 
-git("pull --ff-only #{upstream} #{master}", verbose: verbose)
-git("push #{origin} #{master}", verbose: verbose)
+git("pull --ff-only #{origin} #{master}", verbose: verbose)
+git("push #{personal} #{master}", verbose: verbose)
 
 git("checkout #{alternate_branch}", verbose: verbose) unless alternate_branch.nil?
 

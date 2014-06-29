@@ -2,6 +2,7 @@
   aliases = !git config --list | grep alias | cut -c 7-
   ci = commit
   l = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  pr = pull-request
   st = status --branch --short
 
 [color "branch"]
