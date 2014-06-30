@@ -13,6 +13,10 @@
 @hints-color: #c5c8c6;
 @hints-opacity: 0.3;
 
+.body {
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
 .editor {
   .bracket-matcher {
     border: 1px solid @hints-color;
@@ -23,17 +27,38 @@
     font-style: normal;
   }
 
-  .gutter .line-number {
+  .gfm {
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+
+  .gutter {
+    border: 0px solid black;
+    border-width: 0px 1px 0px 0px;
+  }
+
+  .gutter.git-diff-icon .line-number {
     &.git-line-added {
       background-color: fade(@text-color-added, 60%);
+    }
+
+    &.git-line-added:before {
+      color: contrast(fade(@text-color-added, 60%));
     }
 
     &.git-line-modified {
       background-color: fade(@text-color-modified, 60%);
     }
 
+    &.git-line-modified:before {
+      color: contrast(fade(@text-color-modified, 60%));
+    }
+
     &.git-line-removed {
       background-color: fade(@text-color-removed, 60%);
+    }
+
+    &.git-line-removed:before {
+      color: contrast(fade(@text-color-removed, 60%));
     }
   }
 
