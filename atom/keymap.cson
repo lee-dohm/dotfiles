@@ -21,3 +21,5 @@
 '.platform-darwin':
   'ctrl-cmd-r': 'tree-view:reveal-active-file'
   'ctrl-cmd-t': 'window:run-package-specs'
+'.workspace':
+  'ctrl-shift-q': 'quippet:toggle'
