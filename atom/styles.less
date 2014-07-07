@@ -10,6 +10,8 @@
 
 @import "ui-variables";
 
+@import "packages/red-wavy-underline/stylesheets/red-wavy-underline";
+
 @hints-color: #c5c8c6;
 @hints-opacity: 0.3;
 
@@ -71,4 +73,9 @@
     background-color: @hints-color;
     opacity: @hints-opacity;
   }
+}
+
+// Fades any inactive panes in the window
+.pane:not(.active) {
+  opacity: 0.5;
 }
