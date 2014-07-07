@@ -78,9 +78,16 @@
         'tabLength': 4
 'the-closer':
   'closeWindowTogetherWithLastTab': false
-'minimap': {}
+'minimap':
+  'autoToggle': true
 'wrap-guide':
-  columns: [
-    { scope: 'source.gfm', column: -1 }
-    { pattern: '\.md$', column: -1 }
+  'columns': [
+    {
+      'scope': 'source.gfm'
+      'column': -1
+    }
+    {
+      'pattern': '.md$'
+      'column': -1
+    }
   ]
