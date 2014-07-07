@@ -7,7 +7,7 @@
 'metrics':
   'userId': '51eeb6113c1ae801c9aade9b6d679aa5189ced25'
 'editor':
-  'fontFamily': 'SourceCodePro-Light'
+  'fontFamily': 'Source Code Pro'
   'preferredLineLength': 100
   'invisibles':
     'cr': '↩'
@@ -20,7 +20,9 @@
   'fontSize': 14
 'core':
   'projectHome': '/Volumes/Data/Users/Lee/Source'
-  'disabledPackages': []
+  'disabledPackages': [
+    'highlight-selected'
+  ]
   'ignoredNames': [
     '.git'
     '.svn'
@@ -31,6 +33,7 @@
     'lifted-dark-ui'
     'ya-railscasts-syntax'
   ]
+  'useReactEditor': true
 'whitespace':
   'ensureSingleTrailingNewline': true
 'auto-copyright':
@@ -44,6 +47,7 @@
   ]
 'tree-view':
   'hideIgnoredNames': true
+  'hideVcsIgnoredFiles': true
 'autosave': {}
 'remember-window':
   'storeOutsideMainConfig': true
@@ -72,3 +76,11 @@
         'tabLength': 4
       'shell':
         'tabLength': 4
+'the-closer':
+  'closeWindowTogetherWithLastTab': false
+'minimap': {}
+'wrap-guide':
+  columns: [
+    { scope: 'source.gfm', column: -1 }
+    { pattern: '\.md$', column: -1 }
+  ]
