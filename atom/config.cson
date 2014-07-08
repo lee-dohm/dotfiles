@@ -87,7 +87,7 @@
       'column': -1
     }
     {
-      'pattern': '.md$'
-      'column': -1
+      'scope': 'text.git-commit'
+      'column': 72
     }
   ]
