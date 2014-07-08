@@ -105,8 +105,8 @@ origin = options[:origin] || 'origin'
 personal = options[:personal] || github_user_name
 verbose = options[:verbose]
 
-unless system("git remote | grep #{upstream} > /dev/null 2>&1")
-  puts "The upstream remote '#{upstream}' could not be found"
+unless system("git remote | grep #{origin} > /dev/null 2>&1")
+  puts "The upstream remote '#{origin}' could not be found"
   exit 2
 end
 
