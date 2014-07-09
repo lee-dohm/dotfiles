@@ -73,6 +73,22 @@
     color: contrast(@background-color-error);
   }
 
+  .violation-arrow {
+    border-bottom-color: @background-color;
+
+    &.violation-warning {
+      border-bottom-color: @background-color;
+    }
+
+    &.violation-error {
+      border-bottom-color: @background-color;
+    }
+  }
+
+  .violation-border {
+    .red-wavy-underline;
+  }
+
   .wrap-guide {
     background-color: @hints-color;
     opacity: @hints-opacity;
