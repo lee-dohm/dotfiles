@@ -91,3 +91,9 @@
       'column': 72
     }
   ]
+'atom-color-highlight':
+  'hideMarkersInComments': true
+'break':
+  'microBreakIntervalInSeconds': 900
+  'microBreakLengthInSeconds': 30
+  'macroBreakIntervalInMicroAmount': 4
