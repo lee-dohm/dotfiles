@@ -21,7 +21,6 @@
 'core':
   'projectHome': '/Volumes/Data/Users/Lee/Source'
   'disabledPackages': [
-    'highlight-selected'
   ]
   'ignoredNames': [
     '.git'
