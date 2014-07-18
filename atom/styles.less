@@ -64,6 +64,11 @@
     opacity: @hints-opacity;
   }
 
+  .indent-guide {
+    color: @hints-color;
+    opacity: @hints-opacity;
+  }
+
   .unit.css {
     color: lighten(@keyword-color, 15%);
   }
@@ -93,9 +98,4 @@
     background-color: @hints-color;
     opacity: @hints-opacity;
   }
-}
-
-// Fades any inactive panes in the window
-.pane:not(.active) {
-  opacity: 0.5;
 }
