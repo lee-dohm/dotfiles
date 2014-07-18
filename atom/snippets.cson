@@ -15,7 +15,7 @@
 #
 '.source.coffee':
   Describe:
-    prefix: 'des'
+    prefix: 'desc'
     body: "describe '$1', ->$0"
   It:
     prefix: 'it'

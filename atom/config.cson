@@ -20,8 +20,7 @@
   'fontSize': 14
 'core':
   'projectHome': '/Volumes/Data/Users/Lee/Source'
-  'disabledPackages': [
-  ]
+  'disabledPackages': []
   'ignoredNames': [
     '.git'
     '.svn'
