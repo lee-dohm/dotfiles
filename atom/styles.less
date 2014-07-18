@@ -36,26 +36,26 @@
   .gutter.git-diff-icon .line-number {
     &.git-line-added {
       background-color: fade(@text-color-added, 60%);
-    }
 
-    &.git-line-added:before {
-      color: contrast(fade(@text-color-added, 60%));
+      &:before {
+        color: contrast(fade(@text-color-added, 60%));
+      }
     }
 
     &.git-line-modified {
       background-color: fade(@text-color-modified, 60%);
-    }
 
-    &.git-line-modified:before {
-      color: contrast(fade(@text-color-modified, 60%));
+      &:before {
+        color: contrast(fade(@text-color-modified, 60%));
+      }
     }
 
     &.git-line-removed {
       background-color: fade(@text-color-removed, 60%);
-    }
 
-    &.git-line-removed:before {
-      color: contrast(fade(@text-color-removed, 60%));
+      &:before {
+        color: contrast(fade(@text-color-removed, 60%));
+      }
     }
   }
 
