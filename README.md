@@ -6,6 +6,10 @@ This is intended to replace my [environment project](https://github.com/lee-dohm
 
 ## Prerequisites
 
+1. Install [Laptop](https://github.com/thoughtbot/laptop)
+
+**or**
+
 1. Install [Homebrew](http://brew.sh/) if it isn't already
 1. Install [rcm](https://github.com/thoughtbot/rcm)
 
