@@ -18,8 +18,6 @@
 #
 '.editor:not(.mini)':
   'alt-cmd-Z': 'pane:show-previous-item'
-'.platform-darwin':
+'.workspace':
   'ctrl-cmd-r': 'tree-view:reveal-active-file'
   'ctrl-cmd-t': 'window:run-package-specs'
-'.workspace':
-  'ctrl-shift-q': 'quippet:toggle'
