@@ -59,6 +59,13 @@
       ## Copyright
 
     """
+  Installation:
+    prefix: 'inst'
+    body: """
+    This package can be installed from within Atom by entering the [package name] in the Package
+    Search box in the Settings View and clicking "Install". Or by entering `apm install [package name]`
+    at the command line.
+    """
 '.source.ruby':
   Before:
     prefix: 'bef'
