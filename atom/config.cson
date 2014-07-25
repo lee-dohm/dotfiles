@@ -20,9 +20,12 @@
   'fontSize': 14
 'core':
   'projectHome': '/Volumes/Data/Users/Lee/Source'
-  'disabledPackages': []
+  'disabledPackages': [
+    'autosave'
+  ]
   'ignoredNames': [
     '.git'
+    '.hg'
     '.svn'
     '.DS_Store'
     '.keep'
@@ -94,3 +97,5 @@
   'microBreakIntervalInSeconds': 900
   'microBreakLengthInSeconds': 30
   'macroBreakIntervalInMicroAmount': 4
+'package-generator':
+  'createInDevMode': true
