@@ -1,2 +1,2 @@
 DOTFILES_DIRS="$HOME/personal-dotfiles $HOME/thoughtbot-dotfiles"
-EXCLUDES="LICENSE LICENSE.md README.md"
+EXCLUDES="LICENSE LICENSE.md README.md Gemfile Gemfile.lock packages"
