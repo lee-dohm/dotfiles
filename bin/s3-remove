@@ -1,0 +1,70 @@
+#!/usr/bin/env ruby
+# rubocop:disable FileName
+
+# Grants global read permissions to all files in a given S3 bucket.
+
+require 'aws-sdk'
+require 'fileutils'
+require 'ruby-progressbar'
+require 'trollop'
+require 'yaml'
+
+def log(message)
+  puts message if DEBUG
+end
+
+opts = Trollop.options do
+  banner <<-EOS
+Removes all matching files in an S3 bucket.
+
+Usage:
+    s3-remove [options] <bucket name> [mask]
+
+where [options] are:
+  EOS
+
+  opt :config, 'Path to YAML file containing the AWS configuration', type: :string
+  opt :debug, 'Outputs debug logging'
+  opt :dryrun, 'Displays what would be deleted without deleting'
+end
+
+DEBUG = opts[:debug]
+
+bucket_name = ARGV[0]
+mask = ARGV[1] || '*'
+
+log "Bucket name: #{bucket_name}"
+log "Mask: #{mask}"
+
+config = YAML.load_file(opts[:config])
+log 'AWS Creds --'
+log "  Access Key: #{config['access_key']}"
+log "  Secret Key: #{config['secret_key']}"
+
+aws_config = AWS.config(config)
+log 'AWS Config --'
+log "  Access Key: #{aws_config.access_key_id}"
+log "  Secret Key: #{aws_config.secret_access_key}"
+log "  Region    : #{aws_config.region}"
+
+# Get the bucket information
+s3 = AWS::S3.new
+bucket = s3.buckets[bucket_name]
+
+total_bar = ProgressBar.create(title: 'Total', total: bucket.objects.count, format: '%t: |%B| %E')
+
+# Download each matching object
+bucket.objects.each do |object|
+  total_bar.increment
+  next unless File.fnmatch?(mask, object.key, File::FNM_PATHNAME)
+  next if object.key.end_with?('/')
+
+  if opts[:dryrun]
+    total_bar.log("Would delete: #{object.key}")
+  else
+    total_bar.log("Delete: #{object.key}")
+    object.delete
+  end
+end
+
+total_bar.finish
