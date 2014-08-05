@@ -103,3 +103,15 @@ html {
 .settings-view .config-menu .nav > li > a .package-author {
   font-size: inherit;
 }
+
+@syntax-selection-flash-color: #FFFF00;
+
+@-webkit-keyframes flash {
+  from { background-color: @syntax-selection-flash-color; }
+  to { background-color: null; }
+}
+.editor .flash.selection .region {
+  -webkit-animation-name: flash;
+  -webkit-animation-duration: 1.0s;
+  -webkit-animation-iteration-count: 1;
+}
