@@ -93,6 +93,7 @@
   ]
 'atom-color-highlight':
   'hideMarkersInComments': true
+  'hideMarkersInStrings': true
 'break':
   'microBreakIntervalInSeconds': 900
   'microBreakLengthInSeconds': 30
