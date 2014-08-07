@@ -7,7 +7,7 @@
 'metrics':
   'userId': '51eeb6113c1ae801c9aade9b6d679aa5189ced25'
 'editor':
-  'fontFamily': 'Source Code Pro'
+  'fontFamily': 'SourceCodePro-Light'
   'preferredLineLength': 100
   'invisibles':
     'cr': '↩'
