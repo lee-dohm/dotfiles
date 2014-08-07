@@ -1,15 +1,13 @@
 #!/usr/bin/env ruby
 # rubocop:disable FileName
 
-# Grants global read permissions to all files in a given S3 bucket.
+# Downloads all matching files in an S3 bucket.
 
 require 'aws-sdk'
 require 'fileutils'
 require 'ruby-progressbar'
 require 'trollop'
 require 'yaml'
-
-EVERYONE = 'http://acs.amazonaws.com/groups/global/AllUsers'
 
 def log(message)
   puts message if DEBUG
