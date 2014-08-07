@@ -16,13 +16,19 @@
 @hints-color: #c5c8c6;
 @hints-opacity: 0.3;
 
+.error-text {
+  background-color: @background-color-error;
+  color: contrast(@background-color-error);
+  opacity: 1.0;
+}
+
 html {
   -webkit-font-smoothing: subpixel-antialiased;
 }
 
 .editor {
   .bracket-matcher {
-    border: 1px solid @hints-color;
+    border: 1px solid #ff0;
   }
 
   .comment {
@@ -70,12 +76,11 @@ html {
   }
 
   .unit.css {
-    color: lighten(@keyword-color, 15%);
+    color: @operator-color;
   }
 
-  .trailing-whitespace {
-    background-color: @background-color-error;
-    color: contrast(@background-color-error);
+  .trailing-whitespace.invisible-character {
+    .error-text;
   }
 
   .violation-arrow {
@@ -100,18 +105,6 @@ html {
   }
 }
 
-.settings-view .config-menu .nav > li > a .package-author {
-  font-size: inherit;
-}
-
-@syntax-selection-flash-color: #FFFF00;
-
-@-webkit-keyframes flash {
-  from { background-color: @syntax-selection-flash-color; }
-  to { background-color: null; }
-}
-.editor .flash.selection .region {
-  -webkit-animation-name: flash;
-  -webkit-animation-duration: 1.0s;
-  -webkit-animation-iteration-count: 1;
+.package-author {
+  font-size: inherit !important;
 }
