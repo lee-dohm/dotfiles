@@ -90,6 +90,10 @@
       'scope': 'text.git-commit'
       'column': 72
     }
+    {
+      'scope': 'text.haml'
+      'column': -1
+    }
   ]
 'atom-color-highlight':
   'hideMarkersInComments': true

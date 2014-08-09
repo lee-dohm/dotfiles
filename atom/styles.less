@@ -13,13 +13,12 @@
 @import "packages/red-wavy-underline/stylesheets/red-wavy-underline";
 @import "packages/ya-railscasts-syntax/colors";
 
-@hints-color: #c5c8c6;
-@hints-opacity: 0.3;
+.diff-icon(@color: white) {
+  background-color: fade(@color, 60%);
 
-.error-text {
-  background-color: @background-color-error;
-  color: contrast(@background-color-error);
-  opacity: 1.0;
+  &:before {
+    color: contrast(fade(@color, 60%));
+  }
 }
 
 html {
@@ -27,10 +26,6 @@ html {
 }
 
 .editor {
-  .bracket-matcher {
-    border: 1px solid #ff0;
-  }
-
   .comment {
     font-style: normal;
   }
@@ -41,46 +36,16 @@ html {
 
   .gutter.git-diff-icon .line-number {
     &.git-line-added {
-      background-color: fade(@text-color-added, 60%);
-
-      &:before {
-        color: contrast(fade(@text-color-added, 60%));
-      }
+      .diff-icon(@text-color-added);
     }
 
     &.git-line-modified {
-      background-color: fade(@text-color-modified, 60%);
-
-      &:before {
-        color: contrast(fade(@text-color-modified, 60%));
-      }
+      .diff-icon(@text-color-modified);
     }
 
     &.git-line-removed {
-      background-color: fade(@text-color-removed, 60%);
-
-      &:before {
-        color: contrast(fade(@text-color-removed, 60%));
-      }
+      .diff-icon(@text-color-removed);
     }
-  }
-
-  .invisible-character {
-    color: @hints-color;
-    opacity: @hints-opacity;
-  }
-
-  .indent-guide {
-    color: @hints-color;
-    opacity: @hints-opacity;
-  }
-
-  .unit.css {
-    color: @operator-color;
-  }
-
-  .trailing-whitespace.invisible-character {
-    .error-text;
   }
 
   .violation-arrow {
@@ -98,13 +63,4 @@ html {
   .violation-border {
     .red-wavy-underline;
   }
-
-  .wrap-guide {
-    background-color: @hints-color;
-    opacity: @hints-opacity;
-  }
-}
-
-.package-author {
-  font-size: inherit !important;
 }
