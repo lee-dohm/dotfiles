@@ -16,8 +16,8 @@
     'tab': '⇥'
   'tabLength': 2
   'normalizeIndentOnPaste': false
-  'showInvisibles': true
   'fontSize': 14
+  'showInvisibles': true
 'core':
   'projectHome': '/Volumes/Data/Users/Lee/Source'
   'disabledPackages': [
@@ -67,7 +67,6 @@
   'scopes':
     'source':
       'gfm':
-        'showInvisibles': false
         'softWrap': true
         'tabLength': 4
       'java':
