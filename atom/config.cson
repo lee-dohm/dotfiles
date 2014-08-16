@@ -16,7 +16,7 @@
     'tab': '⇥'
   'tabLength': 2
   'normalizeIndentOnPaste': false
-  'fontSize': 14
+  'fontSize': 15
   'showInvisibles': true
 'core':
   'projectHome': '/Volumes/Data/Users/Lee/Source'
@@ -47,7 +47,6 @@
   ]
 'tree-view':
   'hideIgnoredNames': true
-  'hideVcsIgnoredFiles': true
 'autosave': {}
 'remember-window':
   'storeOutsideMainConfig': true
@@ -67,6 +66,7 @@
   'scopes':
     'source':
       'gfm':
+        'showInvisibles': false
         'softWrap': true
         'tabLength': 4
       'java':
@@ -103,3 +103,6 @@
   'macroBreakIntervalInMicroAmount': 4
 'package-generator':
   'createInDevMode': true
+'atom-lint':
+  'rubocop':
+    'showDisplayCopNames': true
