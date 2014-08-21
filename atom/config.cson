@@ -22,6 +22,7 @@
   'projectHome': '/Volumes/Data/Users/Lee/Source'
   'disabledPackages': [
     'autosave'
+    'minimap'
   ]
   'ignoredNames': [
     '.git'
