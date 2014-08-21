@@ -5,13 +5,13 @@
 
 require 'aws-sdk'
 require 'fileutils'
+require 'logger'
 require 'ruby-progressbar'
 require 'trollop'
 require 'yaml'
 
-def log(message)
-  puts message if DEBUG
-end
+logger = Logger.new(STDOUT)
+logger.level = Logger::WARN
 
 opts = Trollop.options do
   banner <<-EOS
@@ -27,24 +27,24 @@ where [options] are:
   opt :debug, 'Outputs debug logging'
 end
 
-DEBUG = opts[:debug]
+logger.level = Logger::DEBUG if opts[:debug]
 
 bucket_name = ARGV[0]
 mask = ARGV[1] || '*'
 
-log "Bucket name: #{bucket_name}"
-log "Mask: #{mask}"
+logger.debug "Bucket name: #{bucket_name}"
+logger.debug "Mask: #{mask}"
 
 config = YAML.load_file(opts[:config])
-log 'AWS Creds --'
-log "  Access Key: #{config['access_key']}"
-log "  Secret Key: #{config['secret_key']}"
+logger.debug 'AWS Creds --'
+logger.debug "  Access Key: #{config['access_key']}"
+logger.debug "  Secret Key: #{config['secret_key']}"
 
 aws_config = AWS.config(config)
-log 'AWS Config --'
-log "  Access Key: #{aws_config.access_key_id}"
-log "  Secret Key: #{aws_config.secret_access_key}"
-log "  Region    : #{aws_config.region}"
+logger.debug 'AWS Config --'
+logger.debug "  Access Key: #{aws_config.access_key_id}"
+logger.debug "  Secret Key: #{aws_config.secret_access_key}"
+logger.debug "  Region    : #{aws_config.region}"
 
 # Get the bucket information
 s3 = AWS::S3.new
