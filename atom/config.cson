@@ -14,7 +14,6 @@
     'eol': ''
     'space': '·'
     'tab': '⇥'
-  'tabLength': 2
   'normalizeIndentOnPaste': false
   'fontSize': 15
   'showInvisibles': true
@@ -48,6 +47,7 @@
   ]
 'tree-view':
   'hideIgnoredNames': true
+  'hideVcsIgnoredFiles': true
 'autosave': {}
 'remember-window':
   'storeOutsideMainConfig': true
@@ -107,3 +107,5 @@
 'atom-lint':
   'rubocop':
     'showDisplayCopNames': true
+'enhanced-package-list':
+  'highlightAuthor': 'lee-dohm'

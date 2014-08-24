@@ -64,3 +64,39 @@ html {
     .red-wavy-underline;
   }
 }
+
+.settings-view .config-menu .panels-packages {
+  .bundled-package .icon > span:first-child:before {
+    font-family: "Octicons Regular";
+    content: "\f00a";
+    margin-right: 5px;
+  }
+
+  .incompatible-package .icon > span:first-child:before {
+    font-family: "Octicons Regular";
+    content: "\f091";
+    margin-right: 5px;
+  }
+
+  .disabled-package {
+    opacity: 0.5;
+  }
+
+  .author-highlight .icon > span:first-child:before {
+    font-family: "Octicons Regular";
+    content: "\f018";
+    margin-right: 5px;
+  }
+
+  > li.author-highlight > a {
+    color: inherit;
+
+    &:hover {
+      color: inherit;
+    }
+
+    .package-author {
+      color: inherit;
+    }
+  }
+}
