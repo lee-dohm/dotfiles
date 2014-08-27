@@ -6,45 +6,72 @@
 require 'aws-sdk'
 require 'fileutils'
 require 'logger'
+require 'powerpack'
 require 'ruby-progressbar'
 require 'trollop'
 require 'yaml'
 
-logger = Logger.new(STDOUT)
-logger.level = Logger::WARN
+# @return [String] Banner for the help message.
+def create_help_banner
+  banner = <<-EOS
+    Downloads all matching files in an S3 bucket.
 
-opts = Trollop.options do
-  banner <<-EOS
-Downloads all matching files in an S3 bucket.
+    Usage:
+        s3-download [options] <bucket name> [mask]
 
-Usage:
-    s3-download [options] <bucket name> [mask]
-
-where [options] are:
+    where [options] are:
   EOS
 
-  opt :config, 'Path to YAML file containing the AWS configuration', type: :string
-  opt :debug, 'Outputs debug logging'
+  banner.strip_indent
 end
 
+# @return [Logger] Default logger.
+def create_logger
+  logger = Logger.new(STDOUT)
+  logger.level = Logger::WARN
+  logger
+end
+
+# Parses the command-line options.
+#
+# @return [Hash] Command-line options parsed representation.
+def parse_options
+  Trollop.options do
+    banner create_help_banner
+
+    opt :config,
+        'Path to YAML file containing the AWS configuration',
+        type: :string,
+        default: "#{ENV['HOME']}/.aws/config"
+
+    opt :debug, 'Outputs debug logging'
+    opt :verbose, 'Outputs verbose logging'
+  end
+end
+
+logger = create_logger
+opts = parse_options
+
+Trollop.die 'Must specify a bucket name' if ARGV[0].nil?
+
+unless File.exist?(opts[:config])
+  Trollop.die :config, "Could not find configuration: #{opts[:config]}"
+end
+
+logger.level = Logger::INFO if opts[:verbose]
 logger.level = Logger::DEBUG if opts[:debug]
 
 bucket_name = ARGV[0]
 mask = ARGV[1] || '*'
 
-logger.debug "Bucket name: #{bucket_name}"
-logger.debug "Mask: #{mask}"
+logger.debug("Command-line options: #{opts.inspect}")
+logger.debug("Command-line arguments: #{ARGV.inspect}")
 
 config = YAML.load_file(opts[:config])
-logger.debug 'AWS Creds --'
-logger.debug "  Access Key: #{config['access_key']}"
-logger.debug "  Secret Key: #{config['secret_key']}"
+logger.debug("Configuration: #{config.inspect}")
 
 aws_config = AWS.config(config)
-logger.debug 'AWS Config --'
-logger.debug "  Access Key: #{aws_config.access_key_id}"
-logger.debug "  Secret Key: #{aws_config.secret_access_key}"
-logger.debug "  Region    : #{aws_config.region}"
+logger.debug("AWS Configuration: #{aws_config.inspect}")
 
 # Get the bucket information
 s3 = AWS::S3.new
