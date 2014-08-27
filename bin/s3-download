@@ -82,7 +82,7 @@ total_bar = ProgressBar.create(title: 'Total', total: bucket.objects.count, form
 # Download each matching object
 bucket.objects.each do |object|
   total_bar.increment
-  total_bar.log object.key
+  total_bar.log(object.key) if opts[:verbose] || opts[:debug]
   next unless File.fnmatch?(mask, object.key)
   next if object.key.end_with?('/')
 
