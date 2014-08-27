@@ -32,6 +32,14 @@ def create_logger
   logger
 end
 
+# Loads the AWS configuration from the supplied path.
+#
+# @return [AWS::Configuration] AWS configuration information.
+def load_aws_config(path)
+  config = YAML.load_file(path)
+  AWS.config(config)
+end
+
 # Parses the command-line options.
 #
 # @return [Hash] Command-line options parsed representation.
@@ -49,14 +57,18 @@ def parse_options
   end
 end
 
+# Validates the command-line options.
+def validate_options(opts)
+  Trollop.die 'Must specify a bucket name' if ARGV[0].nil?
+
+  unless File.exist?(opts[:config])
+    Trollop.die :config, "Could not find configuration: #{opts[:config]}"
+  end
+end
+
 logger = create_logger
 opts = parse_options
-
-Trollop.die 'Must specify a bucket name' if ARGV[0].nil?
-
-unless File.exist?(opts[:config])
-  Trollop.die :config, "Could not find configuration: #{opts[:config]}"
-end
+validate_options(opts)
 
 logger.level = Logger::INFO if opts[:verbose]
 logger.level = Logger::DEBUG if opts[:debug]
@@ -67,22 +79,19 @@ mask = ARGV[1] || '*'
 logger.debug("Command-line options: #{opts.inspect}")
 logger.debug("Command-line arguments: #{ARGV.inspect}")
 
-config = YAML.load_file(opts[:config])
-logger.debug("Configuration: #{config.inspect}")
-
-aws_config = AWS.config(config)
+aws_config = load_aws_config(opts[:config])
 logger.debug("AWS Configuration: #{aws_config.inspect}")
 
 # Get the bucket information
 s3 = AWS::S3.new
 bucket = s3.buckets[bucket_name]
 
-total_bar = ProgressBar.create(title: 'Total', total: bucket.objects.count, format: '%t: |%B| %E')
+progress = ProgressBar.create(title: 'Total', total: bucket.objects.count, format: '%t: |%B| %E')
 
 # Download each matching object
 bucket.objects.each do |object|
-  total_bar.increment
-  total_bar.log(object.key) if opts[:verbose] || opts[:debug]
+  progress.increment
+  progress.log(object.key) if opts[:verbose] || opts[:debug]
   next unless File.fnmatch?(mask, object.key)
   next if object.key.end_with?('/')
 
@@ -94,4 +103,4 @@ bucket.objects.each do |object|
   end
 end
 
-total_bar.finish
+progress.finish
