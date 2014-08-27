@@ -85,19 +85,19 @@ logger.debug("AWS Configuration: #{aws_config.inspect}")
 # Get the bucket information
 s3 = AWS::S3.new
 bucket = s3.buckets[bucket_name]
-
-progress = ProgressBar.create(title: 'Total', total: bucket.objects.count, format: '%t: |%B| %E')
+matching_objects = bucket.objects.reject { |obj| obj.key.end_with?('/') }
+                                 .select { |obj| File.fnmatch?(mask, obj.key) }
 
 # Download each matching object
-bucket.objects.each do |object|
-  progress.increment
-  progress.log(object.key) if opts[:verbose] || opts[:debug]
-  next unless File.fnmatch?(mask, object.key)
-  next if object.key.end_with?('/')
+progress = ProgressBar.create(title: 'Total', total: matching_objects.count, format: '%t: |%B| %E')
 
-  FileUtils.mkdir_p(File.dirname(object.key))
-  File.open(object.key, 'wb') do |file|
-    bucket.objects[object.key].read do |chunk|
+matching_objects.each do |obj|
+  progress.increment
+  progress.log(obj.key) if opts[:verbose] || opts[:debug]
+
+  FileUtils.mkdir_p(File.dirname(obj.key))
+  File.open(obj.key, 'wb') do |file|
+    bucket.objects[obj.key].read do |chunk|
       file.write(chunk)
     end
   end
