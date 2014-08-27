@@ -10,7 +10,7 @@ GEM
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     ruby-progressbar (1.5.1)
-    trollop (1.16.2)
+    trollop (2.0)
     uuidtools (2.1.4)
 
 PLATFORMS
@@ -19,4 +19,4 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk
   ruby-progressbar
-  trollop
+  trollop (~> 2.0)
