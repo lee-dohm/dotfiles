@@ -25,10 +25,20 @@ def create_help_banner
   banner.strip_indent
 end
 
-# @return [Logger] Default logger.
-def create_logger
+# Creates and configures the logger.
+#
+# @param [Hash] opts Parsed command-line options.
+#
+# @return [Logger] Configured logger.
+def create_logger(opts)
   logger = Logger.new(STDOUT)
-  logger.level = Logger::WARN
+
+  logger.level = case
+                 when opts[:debug] then Logger::DEBUG
+                 when opts[:verbose] then Logger::INFO
+                 else Logger::WARN
+                 end
+
   logger
 end
 
@@ -66,12 +76,9 @@ def validate_options(opts)
   end
 end
 
-logger = create_logger
 opts = parse_options
 validate_options(opts)
-
-logger.level = Logger::INFO if opts[:verbose]
-logger.level = Logger::DEBUG if opts[:debug]
+logger = create_logger(opts)
 
 bucket_name = ARGV[0]
 mask = ARGV[1] || '*'
