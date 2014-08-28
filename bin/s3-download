@@ -88,17 +88,21 @@ bucket = s3.buckets[bucket_name]
 matching_objects = bucket.objects.reject { |obj| obj.key.end_with?('/') }
                                  .select { |obj| File.fnmatch?(mask, obj.key) }
 
+# rubocop:disable SingleLineBlockParams
+total_size = matching_objects.reduce { |sum, obj| sum + obj.content_length }
+# rubocop:enable SingleLineBlockParams
+
 # Download each matching object
-progress = ProgressBar.create(title: 'Total', total: matching_objects.count, format: '%t: |%B| %E')
+progress = ProgressBar.create(title: 'Total', total: total_size, format: '%t: |%B| %E')
 
 matching_objects.each do |obj|
-  progress.increment
   progress.log(obj.key) if opts[:verbose] || opts[:debug]
 
   FileUtils.mkdir_p(File.dirname(obj.key))
   File.open(obj.key, 'wb') do |file|
     bucket.objects[obj.key].read do |chunk|
       file.write(chunk)
+      progress.increment(chunk.length)
     end
   end
 end
