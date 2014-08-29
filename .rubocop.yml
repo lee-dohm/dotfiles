@@ -9,3 +9,6 @@ LineLength:
 SignalException:
   Enabled: true
   EnforcedStyle: only_raise
+
+SingleLineBlockParams:
+  Enabled: false
