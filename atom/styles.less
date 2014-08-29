@@ -21,8 +21,16 @@
   }
 }
 
+.diff-border(@color: white) {
+  border-color: lighten(@color, 15%);
+}
+
 html {
   -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.cursor {
+  transition: opacity 0.2s;
 }
 
 .editor {
@@ -32,6 +40,20 @@ html {
 
   .gfm {
     -webkit-font-smoothing: subpixel-antialiased;
+  }
+
+  .gutter .line-number {
+    &.git-line-added {
+      .diff-border(@text-color-added);
+    }
+
+    &.git-line-modified {
+      .diff-border(@text-color-modified);
+    }
+
+    &.git-line-removed {
+      .diff-border(@text-color-removed);
+    }
   }
 
   .gutter.git-diff-icon .line-number {

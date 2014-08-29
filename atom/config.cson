@@ -53,8 +53,7 @@
   'storeOutsideMainConfig': true
 'tabs-to-spaces':
   'onSave': 'untabify'
-'git-diff':
-  'showIconsInEditorGutter': true
+'git-diff': {}
 'autocomplete':
   'includeCompletionsFromAllBuffers': true
 'fancy-new-file':
