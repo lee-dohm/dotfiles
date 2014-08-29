@@ -43,11 +43,10 @@ def create_logger(opts)
 end
 
 # Loads the AWS configuration from the supplied path.
-#
-# @return [AWS::Configuration] AWS configuration information.
 def load_aws_config(path)
   config = YAML.load_file(path)
-  AWS.config(config)
+  aws_config = AWS.config(config)
+  logger.debug("AWS Configuration: #{aws_config.inspect}")
 end
 
 # Parses the command-line options.
@@ -86,8 +85,7 @@ mask = ARGV[1] || '*'
 logger.debug("Command-line options: #{opts.inspect}")
 logger.debug("Command-line arguments: #{ARGV.inspect}")
 
-aws_config = load_aws_config(opts[:config])
-logger.debug("AWS Configuration: #{aws_config.inspect}")
+load_aws_config(opts[:config])
 
 # Get the bucket information
 s3 = AWS::S3.new
