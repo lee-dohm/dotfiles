@@ -2,13 +2,13 @@
 # Copyright (c) 2013-2014 by Lifted Studios. All Rights Reserved.
 #
 
-LineLength:
+Style/LineLength:
   Enabled: true
   Max: 100
 
-SignalException:
+Style/SignalException:
   Enabled: true
   EnforcedStyle: only_raise
 
-SingleLineBlockParams:
+Style/SingleLineBlockParams:
   Enabled: false

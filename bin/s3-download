@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-# rubocop:disable FileName
 
 # Downloads all matching files in an S3 bucket.
 
@@ -70,9 +69,11 @@ end
 def validate_options(opts)
   Trollop.die 'Must specify a bucket name' if ARGV[0].nil?
 
+  # rubocop:disable Style/GuardClause
   unless File.exist?(opts[:config])
     Trollop.die :config, "Could not find configuration: #{opts[:config]}"
   end
+  # rubocop:enable Style/GuardClause
 end
 
 opts = parse_options
