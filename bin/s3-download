@@ -76,15 +76,10 @@ class CLI
   #
   # @return [nil]
   def load_aws_config(path)
-    if path.respond_to?(:to_path)
-      path = path.to_path
-    else
-      path = path.to_s
-    end
-
+    path = path.respond_to?(:to_path) ? path.to_path : path.to_s
     config = YAML.load_file(path)
     aws_config = AWS.config(config)
-    logger.debug("AWS Configuration: #{aws_config.inspect}")
+    logger.debug { "AWS Configuration: #{aws_config.inspect}" }
   end
 
   # @return [Logger] Logger for the utility.
