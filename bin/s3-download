@@ -109,7 +109,7 @@ class CLI
       opt :config,
           'Path to YAML file containing the AWS configuration',
           type: :string,
-          default: "#{ENV['HOME']}/.aws/config",
+          default: File.join(ENV['HOME'], '.aws', 'config'),
           required: true
 
       opt :debug, 'Outputs debug logging'
