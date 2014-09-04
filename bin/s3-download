@@ -10,105 +10,145 @@ require 'ruby-progressbar'
 require 'trollop'
 require 'yaml'
 
-# @return [String] Banner for the help message.
-def create_help_banner
-  banner = <<-EOS
-    Downloads all matching files in an S3 bucket.
+# Handles the command-line interface for this utility.
+class CLI
+  # Executes the download utility based on the command line information.
+  def run
+    init_options
+    create_logger
+    load_aws_config
 
-    Usage:
-        s3-download [options] <bucket name> [mask]
+    matching_objects.each do |obj|
+      progress_bar.log(obj.key) if @verbose || @debug
+      copy_object(obj)
+    end
 
-    where [options] are:
-  EOS
-
-  banner.strip_indent
-end
-
-# Creates and configures the logger.
-#
-# @param [Hash] opts Parsed command-line options.
-#
-# @return [Logger] Configured logger.
-def create_logger(opts)
-  logger = Logger.new(STDOUT)
-
-  logger.level = case
-                 when opts[:debug] then Logger::DEBUG
-                 when opts[:verbose] then Logger::INFO
-                 else Logger::WARN
-                 end
-
-  logger
-end
-
-# Loads the AWS configuration from the supplied path.
-def load_aws_config(path)
-  config = YAML.load_file(path)
-  aws_config = AWS.config(config)
-  logger.debug("AWS Configuration: #{aws_config.inspect}")
-end
-
-# Parses the command-line options.
-#
-# @return [Hash] Command-line options parsed representation.
-def parse_options
-  Trollop.options do
-    banner create_help_banner
-
-    opt :config,
-        'Path to YAML file containing the AWS configuration',
-        type: :string,
-        default: "#{ENV['HOME']}/.aws/config"
-
-    opt :debug, 'Outputs debug logging'
-    opt :verbose, 'Outputs verbose logging'
+    progress_bar.finish
   end
-end
 
-# Validates the command-line options.
-def validate_options(opts)
-  Trollop.die 'Must specify a bucket name' if ARGV[0].nil?
+  private
 
-  # rubocop:disable Style/GuardClause
-  unless File.exist?(opts[:config])
-    Trollop.die :config, "Could not find configuration: #{opts[:config]}"
+  # @return [AWS::S3::Bucket] Requested AWS bucket.
+  def bucket
+    return @bucket unless @bucket.nil?
+
+    s3 = AWS::S3.new
+    @bucket = s3.buckets[@bucket_name]
   end
-  # rubocop:enable Style/GuardClause
-end
 
-opts = parse_options
-validate_options(opts)
-logger = create_logger(opts)
-
-bucket_name = ARGV[0]
-mask = ARGV[1] || '*'
-
-logger.debug("Command-line options: #{opts.inspect}")
-logger.debug("Command-line arguments: #{ARGV.inspect}")
-
-load_aws_config(opts[:config])
-
-# Get the bucket information
-s3 = AWS::S3.new
-bucket = s3.buckets[bucket_name]
-matching_objects = bucket.objects.reject { |obj| obj.key.end_with?('/') }
-                                 .select { |obj| File.fnmatch?(mask, obj.key) }
-
-total_size = matching_objects.reduce { |sum, obj| sum + obj.content_length }
-
-# Download each matching object
-progress = ProgressBar.create(title: 'Total', total: total_size, format: '%t: |%B| %E')
-
-matching_objects.each do |obj|
-  progress.log(obj.key) if opts[:verbose] || opts[:debug]
-
-  FileUtils.mkdir_p(File.dirname(obj.key))
-  File.open(obj.key, 'wb') do |file|
-    bucket.objects[obj.key].read do |chunk|
-      file.write(chunk)
-      progress.increment(chunk.length)
+  # Copies the given object to the local file system.
+  #
+  # @param obj [AWS::S3::S3Object] Object to download.
+  #
+  # @return [nil]
+  def copy_object(obj)
+    File.open(obj.key, 'wb') do |file|
+      @bucket.objects[obj.key].read do |chunk|
+        file.write(chunk)
+        progress_bar.increment(chunk.length)
+      end
     end
   end
+
+  # @return [String] Banner for the help message.
+  def help_banner
+    banner = <<-EOS
+      Downloads all matching files in an S3 bucket.
+
+      Usage:
+          s3-download [options] <bucket name> [mask]
+
+      where [options] are:
+    EOS
+
+    banner.strip_indent
+  end
+
+  def init_options
+    parse_options
+    set_options
+    validate_options
+  end
+
+  # Loads the AWS configuration from the supplied path.
+  #
+  # @param path [#to_s, #to_path] Path where the AWS configuration is stored.
+  #
+  # @return [nil]
+  def load_aws_config(path)
+    if path.respond_to?(:to_path)
+      path = path.to_path
+    else
+      path = path.to_s
+    end
+
+    config = YAML.load_file(path)
+    aws_config = AWS.config(config)
+    logger.debug("AWS Configuration: #{aws_config.inspect}")
+  end
+
+  # @return [Logger] Logger for the utility.
+  def logger
+    return @logger unless @logger.nil?
+
+    @logger = Logger.new(STDOUT)
+    @logger.level = case
+                    when @debug then Logger::DEBUG
+                    when @verbose then Logger::INFO
+                    else Logger::WARN
+                    end
+
+    @logger
+  end
+
+  # @return [Array<AWS::S3::S3Object>] The set of S3 objects that match the given mask.
+  def matching_objects
+    @matching_objects ||= bucket.objects.reject { |obj| obj.key.end_with?('/') }
+                                        .select { |obj| File.fnmatch?(mask, obj.key) }
+  end
+
+  # Parses the command-line options.
+  def parse_options
+    @opts = Trollop.options do
+      banner help_banner
+
+      opt :config,
+          'Path to YAML file containing the AWS configuration',
+          type: :string,
+          default: "#{ENV['HOME']}/.aws/config"
+
+      opt :debug, 'Outputs debug logging'
+      opt :verbose, 'Outputs verbose logging'
+    end
+  end
+
+  # @return [ProgressBar] The standard progress bar.
+  def progress_bar
+    @progress_bar ||= ProgressBar.create(title: 'Total', total: total_size, format: '%t: |%B| %E')
+  end
+
+  # Sets the command-line options on the `CLI` instance.
+  def set_options
+    @debug = @opts[:debug]
+    @verbose = @opts[:verbose]
+    @config = @opts[:config]
+    @bucket_name = ARGV[0]
+    @mask = ARGV[1] || '*'
+  end
+
+  # @return [Integer] The total size of all the matching objects.
+  def total_size
+    @total_size ||= matching_objects.reduce { |sum, obj| sum + obj.content_length }
+  end
+
+  # Validates the command-line options, throwing an exception if there are errors.
+  #
+  # @raise [SystemExit] when an error occurs.
+  def validate_options
+    Trollop.die 'Must specify a bucket name' if @bucket_name.nil?
+    Trollop.die :config, "Could not find config: #{@config}" unless File.exist?(@config)
+  end
 end
 
-progress.finish
+cli = CLI.new
+cli.run
