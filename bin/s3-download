@@ -32,8 +32,7 @@ class CLI
   def bucket
     return @bucket unless @bucket.nil?
 
-    s3 = AWS::S3.new
-    @bucket = s3.buckets[@bucket_name]
+    @bucket = AWS::S3.new.buckets[@bucket_name]
   end
 
   # Copies the given object to the local file system.
@@ -43,7 +42,7 @@ class CLI
   # @return [nil]
   def copy_object(obj)
     File.open(obj.key, 'wb') do |file|
-      @bucket.objects[obj.key].read do |chunk|
+      bucket.objects[obj.key].read do |chunk|
         file.write(chunk)
         progress_bar.increment(chunk.length)
       end
@@ -142,7 +141,7 @@ class CLI
   # @raise [SystemExit] when an error occurs.
   def validate_options
     Trollop.die 'Must specify a bucket name' if @bucket_name.nil?
-    Trollop.die :config, "Could not find config: #{@config}" unless File.exist?(@config)
+    Trollop.die :config, "Could not find config file: #{@config}" unless File.exist?(@config)
   end
 end
 
