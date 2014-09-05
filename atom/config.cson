@@ -11,9 +11,9 @@
   'preferredLineLength': 100
   'invisibles':
     'cr': '↩'
-    'eol': ''
     'space': '·'
     'tab': '⇥'
+    'eol': ' '
   'normalizeIndentOnPaste': false
   'fontSize': 15
   'showInvisibles': true
