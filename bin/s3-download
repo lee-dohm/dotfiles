@@ -63,6 +63,7 @@ class CLI
     banner.strip_indent
   end
 
+  # Initializes the options from the command-line.
   def init_options
     parse_options
     set_options
