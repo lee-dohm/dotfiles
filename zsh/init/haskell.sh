@@ -1,3 +1,4 @@
-if [[ -d "$HOME/.cabal" ]]; then
-    export PATH=$PATH:$HOME/.cabal/bin
-fi
+cabal="$HOME/.cabal"
+cabal_bin="$cabal/bin"
+
+add_to_path $cabal $cabal_bin
