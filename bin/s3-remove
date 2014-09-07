@@ -5,66 +5,153 @@
 
 require 'aws-sdk'
 require 'fileutils'
+require 'logger'
+require 'powerpack'
 require 'ruby-progressbar'
 require 'trollop'
 require 'yaml'
 
-def log(message)
-  puts message if DEBUG
-end
+# Handles the command-line interface for the script.
+class CLI
+  # Executes the remove utility based on the command-line information.
+  #
+  # @return [nil]
+  def run
+    init_options
+    load_aws_config(@config)
 
-opts = Trollop.options do
-  banner <<-EOS
-Removes all matching files in an S3 bucket.
+    matching_objects.each { |obj| delete_object(obj) }
+    progress_bar.finish
+  end
 
-Usage:
-    s3-remove [options] <bucket name> [mask]
+  private
 
-where [options] are:
-  EOS
+  # @return [AWS::S3::Bucket] Requested AWS bucket.
+  def bucket
+    @bucket ||= AWS::S3.new.buckets[@bucket_name]
+  end
 
-  opt :config, 'Path to YAML file containing the AWS configuration', type: :string
-  opt :debug, 'Outputs debug logging'
-  opt :dryrun, 'Displays what would be deleted without deleting'
-end
+  # Deletes the given object.
+  #
+  # If the `--dryrun` command-line option was given, the object isn't deleted and a log message is
+  # displayed saying which object would have been deleted.
+  #
+  # @return [nil]
+  def delete_object(obj)
+    if @dryrun
+      progress_bar.log("Would delete: #{obj.key}")
+    else
+      progress_bar.log(obj.key) if @verbose || @debug
+      obj.delete
+    end
+  end
 
-DEBUG = opts[:debug]
+  # Loads the AWS configuration from the supplied path.
+  #
+  # @param path [#to_s, #to_path] Path where the AWS configuration is stored.
+  #
+  # @return [nil]
+  def load_aws_config(path)
+    path = path.respond_to?(:to_path) ? path.to_path : path.to_s
+    config = YAML.load_file(path)
+    aws_config = AWS.config(config)
+    logger.debug { "AWS Configuration: #{aws_config.inspect}" }
+  end
 
-bucket_name = ARGV[0]
-mask = ARGV[1] || '*'
+  # @return [Logger] Initialized logger.
+  def logger
+    return @logger unless @logger.nil?
 
-log "Bucket name: #{bucket_name}"
-log "Mask: #{mask}"
+    @logger = Logger.new(STDOUT)
 
-config = YAML.load_file(opts[:config])
-log 'AWS Creds --'
-log "  Access Key: #{config['access_key']}"
-log "  Secret Key: #{config['secret_key']}"
+    @logger.level = case
+                    when @opts[:debug] then Logger::DEBUG
+                    when @opts[:verbose] then Logger::INFO
+                    else Logger::WARN
+                    end
 
-aws_config = AWS.config(config)
-log 'AWS Config --'
-log "  Access Key: #{aws_config.access_key_id}"
-log "  Secret Key: #{aws_config.secret_access_key}"
-log "  Region    : #{aws_config.region}"
+    @logger
+  end
 
-# Get the bucket information
-s3 = AWS::S3.new
-bucket = s3.buckets[bucket_name]
+  # @return [String] Banner for the help text.
+  def help_banner
+    banner = <<-EOS
+      Removes all matching files in an S3 bucket.
 
-total_bar = ProgressBar.create(title: 'Total', total: bucket.objects.count, format: '%t: |%B| %E')
+      Usage:
+          s3-remove [options] <bucket name> [mask]
 
-# Download each matching object
-bucket.objects.each do |object|
-  total_bar.increment
-  next unless File.fnmatch?(mask, object.key, File::FNM_PATHNAME)
-  next if object.key.end_with?('/')
+      where [options] are:
+    EOS
 
-  if opts[:dryrun]
-    total_bar.log("Would delete: #{object.key}")
-  else
-    total_bar.log("Delete: #{object.key}")
-    object.delete
+    banner.strip_indent
+  end
+
+  # Initializes the options from the command-line.
+  #
+  # @return [nil]
+  def init_options
+    parse_options
+    set_options
+    validate_options
+  end
+
+  # rubocop:disable Metrics/MethodLength
+  # Parses the command-line options.
+  #
+  # @return [nil]
+  # @raise [SystemExit] When invalid command-line options are given.
+  def parse_options
+    banner_text = help_banner
+
+    @opts = Trollop.options do
+      banner banner_text
+
+      opt :config,
+          'Path to YAML file containing the AWS configuration',
+          type: :string,
+          default: File.join(ENV['HOME'], '.aws', 'config')
+
+      opt :debug, 'Outputs debug logging'
+      opt :dryrun, 'Displays what would be deleted without deleting', short: 'n'
+      opt :verbose, 'Outputs verbose logging'
+    end
+  end
+  # rubocop:enable Metrics/MethodLength
+
+  # @return [Array<AWS::S3::S3Object>] List of objects that match the given mask.
+  def matching_objects
+    @matching_objects ||= bucket.objects.reject { |obj| obj.key.end_with?('/') }
+                                        .select { |obj| File.fnmatch?(@mask, obj.key) }
+  end
+
+  # @return [ProgressBar] Bar for displaying progress.
+  def progress_bar
+    @progress_bar ||=
+      ProgressBar.create(title: 'Total', total: matching_objects.count, format: '%t: |%B| %E')
+  end
+
+  # Sets the command-line options on the `CLI` instance.
+  #
+  # @return [nil]
+  def set_options
+    @debug = @opts[:debug]
+    @dryrun = @opts[:dryrun]
+    @verbose = @opts[:verbose]
+    @config = @opts[:config]
+    @bucket_name = ARGV[0]
+    @mask = ARGV[1] || '*'
+  end
+
+  # Validates the command-line options.
+  #
+  # @return [nil]
+  # @raise [SystemExit] When invalid options are given.
+  def validate_options
+    Trollop.die 'Must specify bucket name' if @bucket_name.nil?
+    Trollop.die "Could not find config file: #{@config}" unless File.exist?(@config)
   end
 end
 
-total_bar.finish
+cli = CLI.new
+cli.run

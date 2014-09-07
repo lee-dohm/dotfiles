@@ -13,16 +13,13 @@ require 'yaml'
 # Handles the command-line interface for this utility.
 class CLI
   # Executes the download utility based on the command line information.
+  #
+  # @return [nil]
   def run
     init_options
-    create_logger
-    load_aws_config
+    load_aws_config(@config)
 
-    matching_objects.each do |obj|
-      progress_bar.log(obj.key) if @verbose || @debug
-      copy_object(obj)
-    end
-
+    matching_objects.each { |obj| copy_object(obj) }
     progress_bar.finish
   end
 
@@ -41,6 +38,8 @@ class CLI
   #
   # @return [nil]
   def copy_object(obj)
+    progress_bar.log(obj.key) if @verbose || @debug
+
     File.open(obj.key, 'wb') do |file|
       bucket.objects[obj.key].read do |chunk|
         file.write(chunk)
@@ -64,6 +63,8 @@ class CLI
   end
 
   # Initializes the options from the command-line.
+  #
+  # @return [nil]
   def init_options
     parse_options
     set_options
@@ -99,10 +100,12 @@ class CLI
   # @return [Array<AWS::S3::S3Object>] The set of S3 objects that match the given mask.
   def matching_objects
     @matching_objects ||= bucket.objects.reject { |obj| obj.key.end_with?('/') }
-                                        .select { |obj| File.fnmatch?(mask, obj.key) }
+                                        .select { |obj| File.fnmatch?(@mask, obj.key) }
   end
 
   # Parses the command-line options.
+  #
+  # @return [nil]
   def parse_options
     @opts = Trollop.options do
       banner help_banner
@@ -110,8 +113,7 @@ class CLI
       opt :config,
           'Path to YAML file containing the AWS configuration',
           type: :string,
-          default: File.join(ENV['HOME'], '.aws', 'config'),
-          required: true
+          default: File.join(ENV['HOME'], '.aws', 'config')
 
       opt :debug, 'Outputs debug logging'
       opt :verbose, 'Outputs verbose logging'
@@ -124,6 +126,8 @@ class CLI
   end
 
   # Sets the command-line options on the `CLI` instance.
+  #
+  # @return [nil]
   def set_options
     @debug = @opts[:debug]
     @verbose = @opts[:verbose]
@@ -139,6 +143,7 @@ class CLI
 
   # Validates the command-line options, throwing an exception if there are errors.
   #
+  # @return [nil]
   # @raise [SystemExit] when an error occurs.
   def validate_options
     Trollop.die 'Must specify a bucket name' if @bucket_name.nil?
