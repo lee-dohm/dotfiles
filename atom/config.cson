@@ -1,7 +1,5 @@
 'exception-reporting':
   'userId': 'ee24cf00-f793-9081-be2a-2cdae5536b7f'
-'release-notes':
-  'viewedVersion': '0.95.0'
 'welcome':
   'showOnStartup': false
 'metrics':
@@ -48,12 +46,10 @@
 'tree-view':
   'hideIgnoredNames': true
   'hideVcsIgnoredFiles': true
-'autosave': {}
 'remember-window':
   'storeOutsideMainConfig': true
 'tabs-to-spaces':
   'onSave': 'untabify'
-'git-diff': {}
 'autocomplete':
   'includeCompletionsFromAllBuffers': true
 'fancy-new-file':
@@ -97,10 +93,6 @@
 'atom-color-highlight':
   'hideMarkersInComments': true
   'hideMarkersInStrings': true
-'break':
-  'microBreakIntervalInSeconds': 900
-  'microBreakLengthInSeconds': 30
-  'macroBreakIntervalInMicroAmount': 4
 'package-generator':
   'createInDevMode': true
 'atom-lint':
