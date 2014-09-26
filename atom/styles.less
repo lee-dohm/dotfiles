@@ -12,6 +12,8 @@
 
 @import "packages/red-wavy-underline/stylesheets/red-wavy-underline";
 
+@ui-font-size: 13px;
+
 .workspace {
   font-family: 'Helvetica Neue', 'Lucida Grande', 'Segoe UI', sans-serif;
 }
@@ -122,10 +124,14 @@ html, body {
   }
 }
 
+.status-bar {
+  font-size: @ui-font-size;
+}
+
 .tab-bar .tab {
-  font-size: 13px;
+  font-size: @ui-font-size;
 }
 
 .tree-view {
-  font-size: 13px;
+  font-size: @ui-font-size;
 }
