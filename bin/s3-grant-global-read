@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-# rubocop:disable FileName
 
 # Grants global read permissions to all files in a given S3 bucket.
 
