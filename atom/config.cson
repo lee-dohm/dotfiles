@@ -21,7 +21,6 @@
   'projectHome': '/Volumes/Data/Users/Lee/Source'
   'disabledPackages': [
     'autosave'
-    'minimap'
     'emacs-flow'
   ]
   'ignoredNames': [
@@ -32,8 +31,8 @@
     '.keep'
   ]
   'themes': [
-    'lifted-dark-ui'
-    'ya-railscasts-syntax'
+    'soda-light-ui'
+    'solarized-light-syntax'
   ]
 'whitespace':
   'ensureSingleTrailingNewline': true

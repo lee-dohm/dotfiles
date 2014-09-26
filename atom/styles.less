@@ -11,7 +11,10 @@
 @import "ui-variables";
 
 @import "packages/red-wavy-underline/stylesheets/red-wavy-underline";
-@import "packages/ya-railscasts-syntax/colors";
+
+.workspace {
+  font-family: 'Helvetica Neue', 'Lucida Grande', 'Segoe UI', sans-serif;
+}
 
 .diff-icon(@color: white) {
   background-color: fade(@color, 60%);
@@ -25,7 +28,7 @@
   border-color: lighten(@color, 15%);
 }
 
-html {
+html, body {
   -webkit-font-smoothing: subpixel-antialiased;
 }
 
@@ -36,10 +39,6 @@ html {
 .editor {
   .comment {
     font-style: normal;
-  }
-
-  .gfm {
-    -webkit-font-smoothing: subpixel-antialiased;
   }
 
   .gutter .line-number {
@@ -71,14 +70,14 @@ html {
   }
 
   .violation-arrow {
-    border-bottom-color: @background-color;
+    border-bottom-color: @syntax-background-color;
 
     &.violation-warning {
-      border-bottom-color: @background-color;
+      border-bottom-color: @syntax-background-color;
     }
 
     &.violation-error {
-      border-bottom-color: @background-color;
+      border-bottom-color: @syntax-background-color;
     }
   }
 
@@ -121,4 +120,12 @@ html {
       color: inherit;
     }
   }
+}
+
+.tab-bar .tab {
+  font-size: 13px;
+}
+
+.tree-view {
+  font-size: 13px;
 }
