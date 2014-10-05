@@ -8,6 +8,7 @@
  * http://www.lesscss.org
  */
 
+@import "variables";
 @import "ui-variables";
 
 @import "packages/red-wavy-underline/stylesheets/red-wavy-underline";
@@ -124,6 +125,11 @@ html, body {
   }
 }
 
+.overlay .select-list ol.list-group li,
+.overlay.select-list ol.list-group li {
+  font-size: @ui-font-size;
+}
+
 .status-bar {
   font-size: @ui-font-size;
 }
@@ -138,9 +144,42 @@ html, body {
 
 // --- Theme-specific Styles ---
 
+.theme-soda-light-ui {
+  .editor {
+    .gutter .line-number {
+      border-left-width: 5px;
+      padding-left: 12px;
+
+      &.git-line-added {
+        padding-left: 7px;
+      }
+
+      &.git-line-modified {
+        padding-left: 7px;
+      }
+
+      &.git-line-removed {
+        padding-left: 7px;
+      }
+    }
+  }
+}
+
 .theme-solarized-light-syntax {
+  .editor {
+    .cursor-line {
+      .trailing-whitespace {
+        background-color: @base3;
+      }
+    }
+
+    .trailing-whitespace {
+      background-color: @red;
+    }
+  }
+
   .markup.raw {
     font-style: normal;
-    color: #2aa198;
+    color: @cyan;
   }
 }
