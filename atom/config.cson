@@ -5,11 +5,10 @@
 'metrics':
   'userId': '51eeb6113c1ae801c9aade9b6d679aa5189ced25'
 'editor':
-  'fontFamily': 'SourceCodePro-Light'
+  'fontFamily': 'Source Code Pro'
   'preferredLineLength': 100
   'invisibles':
     'cr': '↩'
-    'space': '·'
     'tab': '⇥'
     'eol': ' '
   'normalizeIndentOnPaste': false
@@ -32,8 +31,6 @@
     'soda-light-ui'
     'solarized-light-syntax'
   ]
-'whitespace':
-  'ensureSingleTrailingNewline': true
 'auto-copyright':
   'buffer': 1
   'owner': 'Lifted Studios'
@@ -71,10 +68,6 @@
         'tabLength': 4
       'shell':
         'tabLength': 4
-'the-closer':
-  'closeWindowTogetherWithLastTab': false
-'minimap':
-  'autoToggle': true
 'wrap-guide':
   'columns': [
     {
@@ -100,3 +93,5 @@
     'showDisplayCopNames': true
 'enhanced-package-list':
   'highlightAuthor': 'lee-dohm'
+'white-cursor':
+  'enabled': 'detect'
