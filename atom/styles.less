@@ -145,21 +145,23 @@ html, body {
 // --- Theme-specific Styles ---
 
 .theme-soda-light-ui {
+  @border-base: 4px;
+
   .editor {
     .gutter .line-number {
-      border-left-width: 5px;
-      padding-left: 12px;
+      border-left-width: @border-base;
+      padding-left: @border-base + 7;
 
       &.git-line-added {
-        padding-left: 7px;
+        padding-left: @border-base + 2;
       }
 
       &.git-line-modified {
-        padding-left: 7px;
+        padding-left: @border-base + 2;
       }
 
       &.git-line-removed {
-        padding-left: 7px;
+        padding-left: @border-base + 2;
       }
     }
   }
