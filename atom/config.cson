@@ -13,7 +13,6 @@
     'eol': ' '
   'normalizeIndentOnPaste': false
   'showInvisibles': true
-  'fontSize': 15
 'core':
   'projectHome': '/Volumes/Data/Users/Lee/Source'
   'disabledPackages': [
