@@ -15,9 +15,7 @@
 
 @ui-font-size: 14px;
 
-.workspace {
-  font-family: 'Helvetica Neue', 'Lucida Grande', 'Segoe UI', sans-serif;
-}
+// --- Mixins ---
 
 .diff-icon(@color: white) {
   background-color: fade(@color, 60%);
@@ -29,6 +27,18 @@
 
 .diff-border(@color: white) {
   border-color: lighten(@color, 15%);
+}
+
+.octicons(@char) {
+  font-family: "Octicons Regular";
+  content: @char;
+  margin-right: 5px;
+}
+
+// --- Rules ---
+
+.workspace {
+  font-family: 'Helvetica Neue', 'Lucida Grande', 'Segoe UI', sans-serif;
 }
 
 html, body {
@@ -91,15 +101,12 @@ html, body {
 
 .settings-view .config-menu .panels-packages {
   .bundled-package .icon > span:first-child:before {
-    font-family: "Octicons Regular";
-    content: "\f00a";
-    margin-right: 5px;
+    .octicons("\f00a");
   }
 
   .incompatible-package .icon > span:first-child:before {
-    font-family: "Octicons Regular";
-    content: "\f091";
-    margin-right: 5px;
+    .octicons("\f091");
+    color: @text-color-error;
   }
 
   .disabled-package {
@@ -107,9 +114,8 @@ html, body {
   }
 
   .author-highlight .icon > span:first-child:before {
-    font-family: "Octicons Regular";
-    content: "\f018";
-    margin-right: 5px;
+    .octicons("\f018");
+    color: @text-color-info;
   }
 
   > li.author-highlight > a {
