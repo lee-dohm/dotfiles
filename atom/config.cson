@@ -25,6 +25,7 @@
     '.svn'
     '.DS_Store'
     '.keep'
+    '._*'
   ]
   'themes': [
     'soda-light-ui'
