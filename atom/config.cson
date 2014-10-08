@@ -13,6 +13,7 @@
     'eol': ' '
   'normalizeIndentOnPaste': false
   'showInvisibles': true
+  'scrollPastEnd': true
 'core':
   'projectHome': '/Volumes/Data/Users/Lee/Source'
   'disabledPackages': [
@@ -26,6 +27,7 @@
     '.DS_Store'
     '.keep'
     '._*'
+    '*.pyc'
   ]
   'themes': [
     'soda-light-ui'
