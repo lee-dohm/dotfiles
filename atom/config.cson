@@ -1,99 +1,103 @@
-'exception-reporting':
-  'userId': 'ee24cf00-f793-9081-be2a-2cdae5536b7f'
-'welcome':
-  'showOnStartup': false
-'metrics':
-  'userId': '51eeb6113c1ae801c9aade9b6d679aa5189ced25'
-'editor':
-  'fontFamily': 'Source Code Pro'
-  'preferredLineLength': 100
-  'invisibles':
-    'cr': '↩'
-    'tab': '⇥'
-    'eol': ' '
-  'normalizeIndentOnPaste': false
-  'showInvisibles': true
-  'scrollPastEnd': true
-'core':
-  'projectHome': '/Volumes/Data/Users/Lee/Source'
-  'disabledPackages': [
-    'autosave'
-    'emacs-flow'
-  ]
-  'ignoredNames': [
-    '.git'
-    '.hg'
-    '.svn'
-    '.DS_Store'
-    '.keep'
-    '._*'
-    '*.pyc'
-  ]
-  'themes': [
-    'soda-light-ui'
-    'solarized-light-syntax'
-  ]
-'auto-copyright':
-  'buffer': 1
-  'owner': 'Lifted Studios'
-'spell-check':
-  'grammars': [
-    'source.gfm'
-    'text.git-commit'
-    'text.plain'
-  ]
-'tree-view':
-  'hideIgnoredNames': true
-  'hideVcsIgnoredFiles': true
-'remember-window':
-  'storeOutsideMainConfig': true
-'tabs-to-spaces':
-  'onSave': 'untabify'
-'autocomplete':
-  'includeCompletionsFromAllBuffers': true
-'fancy-new-file':
-  'suggestCurrentFilePath': true
-'autocomplete-plus':
-  'fileBlacklist': '.*'
-'autocomplete-emojis':
-  'fileWhitelist': '*.md, COMMIT_EDITMSG'
-'overrides':
-  'scopes':
-    'source':
-      'gfm':
-        'showInvisibles': false
-        'softWrap': true
-        'tabLength': 4
-      'java':
-        'tabLength': 4
-      'python':
-        'tabLength': 4
-      'shell':
-        'tabLength': 4
-'wrap-guide':
-  'columns': [
-    {
-      'scope': 'source.gfm'
-      'column': -1
-    }
-    {
-      'scope': 'text.git-commit'
-      'column': 72
-    }
-    {
-      'scope': 'text.haml'
-      'column': -1
-    }
-  ]
-'atom-color-highlight':
-  'hideMarkersInComments': true
-  'hideMarkersInStrings': true
-'package-generator':
-  'createInDevMode': true
-'atom-lint':
-  'rubocop':
-    'showDisplayCopNames': true
-'enhanced-package-list':
-  'highlightAuthor': 'lee-dohm'
-'white-cursor':
-  'enabled': 'detect'
+'.shell.source':
+  'editor':
+    'tabLength': 4
+'.python.source':
+  'editor':
+    'tabLength': 4
+'.java.source':
+  'editor':
+    'tabLength': 4
+'.gfm.source':
+  'editor':
+    'showInvisibles': false
+    'softWrap': true
+    'tabLength': 4
+'.c.source':
+  'editor':
+    'tabLength': 4
+'global':
+  'exception-reporting':
+    'userId': 'ee24cf00-f793-9081-be2a-2cdae5536b7f'
+  'welcome':
+    'showOnStartup': false
+  'metrics':
+    'userId': '51eeb6113c1ae801c9aade9b6d679aa5189ced25'
+  'editor':
+    'fontFamily': 'SourceCodePro-Regular'
+    'preferredLineLength': 100
+    'invisibles':
+      'cr': '↩'
+      'tab': '⇥'
+      'eol': ' '
+    'normalizeIndentOnPaste': false
+    'showInvisibles': true
+    'scrollPastEnd': true
+  'core':
+    'projectHome': '/Volumes/Data/Users/Lee/Source'
+    'disabledPackages': [
+      'autosave'
+      'emacs-flow'
+      'overrides'
+    ]
+    'ignoredNames': [
+      '.git'
+      '.hg'
+      '.svn'
+      '.DS_Store'
+      '.keep'
+      '._*'
+      '*.pyc'
+    ]
+    'themes': [
+      'soda-light-ui'
+      'solarized-light-syntax'
+    ]
+  'auto-copyright':
+    'buffer': 1
+    'owner': 'Lifted Studios'
+  'spell-check':
+    'grammars': [
+      'source.gfm'
+      'text.git-commit'
+      'text.plain'
+    ]
+  'tree-view':
+    'hideIgnoredNames': true
+    'hideVcsIgnoredFiles': true
+  'remember-window':
+    'storeOutsideMainConfig': true
+  'tabs-to-spaces':
+    'onSave': 'untabify'
+  'autocomplete':
+    'includeCompletionsFromAllBuffers': true
+  'fancy-new-file':
+    'suggestCurrentFilePath': true
+  'autocomplete-plus':
+    'fileBlacklist': '.*'
+  'atom-color-highlight':
+    'hideMarkersInComments': true
+    'hideMarkersInStrings': true
+  'package-generator':
+    'createInDevMode': true
+  'atom-lint':
+    'rubocop':
+      'showDisplayCopNames': true
+  'enhanced-package-list':
+    'highlightAuthor': 'lee-dohm'
+  'white-cursor':
+    'enabled': 'detect'
+  'wrap-guide':
+    'columns': [
+      {
+        'scope': 'source.gfm'
+        'column': -1
+      }
+      {
+        'scope': 'text.git-commit'
+        'column': 72
+      }
+      {
+        'scope': 'text.haml'
+        'column': -1
+      }
+    ]
