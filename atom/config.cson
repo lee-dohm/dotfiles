@@ -1,20 +1,3 @@
-'.shell.source':
-  'editor':
-    'tabLength': 4
-'.python.source':
-  'editor':
-    'tabLength': 4
-'.java.source':
-  'editor':
-    'tabLength': 4
-'.gfm.source':
-  'editor':
-    'showInvisibles': false
-    'softWrap': true
-    'tabLength': 4
-'.c.source':
-  'editor':
-    'tabLength': 4
 'global':
   'exception-reporting':
     'userId': 'ee24cf00-f793-9081-be2a-2cdae5536b7f'
@@ -35,9 +18,6 @@
   'core':
     'projectHome': '/Volumes/Data/Users/Lee/Source'
     'disabledPackages': [
-      'autosave'
-      'emacs-flow'
-      'overrides'
     ]
     'ignoredNames': [
       '.git'
@@ -101,3 +81,20 @@
         'column': -1
       }
     ]
+'.c.source':
+  'editor':
+    'tabLength': 4
+'.gfm.source':
+  'editor':
+    'showInvisibles': false
+    'softWrap': true
+    'tabLength': 4
+'.java.source':
+  'editor':
+    'tabLength': 4
+'.python.source':
+  'editor':
+    'tabLength': 4
+'.shell.source':
+  'editor':
+    'tabLength': 4
