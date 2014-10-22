@@ -6,7 +6,7 @@
   'metrics':
     'userId': '51eeb6113c1ae801c9aade9b6d679aa5189ced25'
   'editor':
-    'fontFamily': 'SourceCodePro-Regular'
+    'fontFamily': 'SourceCodePro-Light'
     'preferredLineLength': 100
     'invisibles':
       'cr': '↩'
@@ -17,8 +17,6 @@
     'scrollPastEnd': true
   'core':
     'projectHome': '/Volumes/Data/Users/Lee/Source'
-    'disabledPackages': [
-    ]
     'ignoredNames': [
       '.git'
       '.hg'
@@ -44,8 +42,6 @@
   'tree-view':
     'hideIgnoredNames': true
     'hideVcsIgnoredFiles': true
-  'remember-window':
-    'storeOutsideMainConfig': true
   'tabs-to-spaces':
     'onSave': 'untabify'
   'autocomplete':
@@ -81,13 +77,13 @@
         'column': -1
       }
     ]
-'.c.source':
-  'editor':
-    'tabLength': 4
 '.gfm.source':
   'editor':
     'showInvisibles': false
     'softWrap': true
+    'tabLength': 4
+'.c.source':
+  'editor':
     'tabLength': 4
 '.java.source':
   'editor':
