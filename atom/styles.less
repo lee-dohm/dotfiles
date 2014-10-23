@@ -12,6 +12,7 @@
 @import "ui-variables";
 
 @import "packages/red-wavy-underline/stylesheets/red-wavy-underline";
+@import "packages/white-cursor/stylesheets/white-cursor";
 
 @ui-font-size: 14px;
 
@@ -145,6 +146,10 @@ html, body {
 .tab-bar .tab, .tab-bar .tab.active {
   font-size: @ui-font-size;
   height: @ui-font-size * 2;
+}
+
+.terminal {
+  .white-cursor-image;
 }
 
 .tree-view {
