@@ -2,9 +2,9 @@
 # With arguments: acts like `git`
 g() {
     if [[ $# > 0 ]]; then
-        hub $@
+        git $@
     else
-        hub st
+        git st
     fi
 }
 
