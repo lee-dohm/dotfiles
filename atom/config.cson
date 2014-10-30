@@ -30,6 +30,9 @@
       'soda-light-ui'
       'solarized-light-syntax'
     ]
+    'disabledPackages': [
+      'feedback'
+    ]
   'auto-copyright':
     'buffer': 1
     'owner': 'Lifted Studios'
