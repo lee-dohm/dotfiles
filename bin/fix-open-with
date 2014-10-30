@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+#
+# Copyright (c) 2013 by Lifted Studios.  All Rights Reserved.
+#
+
+lsregister = "/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister"
+system("#{lsregister} -kill -r -domain local -domain system -domain user")
