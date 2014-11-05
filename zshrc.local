@@ -1,4 +1,5 @@
 #!/bin/zsh
+
 # Properly order the default path
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
@@ -45,5 +46,5 @@ export PS1='$(git_prompt_info)[${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$f
 
 # Perform any app-specific initializations
 for init in $HOME/.zsh/init/*.sh; do
-  source "$init"
+    source "$init"
 done
