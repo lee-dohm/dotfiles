@@ -19,6 +19,9 @@ fi
 # Don't autocorrect arguments
 unsetopt correct_all
 
+# Completion settings
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
 # Adds an indicator of where the HEAD is in the graph.
 #
 # If HEAD is on a branch, the branch name is output in green. If HEAD is
