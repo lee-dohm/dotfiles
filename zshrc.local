@@ -20,7 +20,7 @@ fi
 unsetopt correct_all
 
 # Completion settings
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 # Adds an indicator of where the HEAD is in the graph.
 #
