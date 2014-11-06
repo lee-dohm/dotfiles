@@ -21,5 +21,7 @@ else
     }
 fi
 
-# Complete g like git
-compdef g=git
+if [[ "$SHELL" = "/bin/zsh" ]]; then
+    # Complete g like git
+    compdef g=git
+fi
