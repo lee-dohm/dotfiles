@@ -38,7 +38,7 @@
 
 // --- Rules ---
 
-.workspace {
+atom-workspace {
   font-family: 'Helvetica Neue', 'Lucida Grande', 'Segoe UI', sans-serif;
   -webkit-font-smoothing: subpixel-antialiased;
 }
@@ -155,8 +155,8 @@
 
 // --- Theme-specific Styles ---
 
-.theme-soda-light-ui {
-  @border-base: 4px;
+.ui-adjustments {
+  @border-base: 5px;
 
   .editor {
     .gutter .line-number {
@@ -182,6 +182,14 @@
   }
 }
 
+.theme-atom-light-ui {
+  .ui-adjustments;
+}
+
+.theme-soda-light-ui {
+  .ui-adjustments;
+}
+
 .theme-solarized-light-syntax {
   .editor {
     .cursor-line {
@@ -195,7 +203,7 @@
     }
   }
 
-  .markup.raw {
+  .markup.raw.gfm {
     font-style: normal;
     color: @cyan;
   }
