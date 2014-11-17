@@ -34,7 +34,6 @@
       'feedback'
     ]
   'auto-copyright':
-    'buffer': 1
     'owner': 'Lifted Studios'
   'spell-check':
     'grammars': [
@@ -80,20 +79,20 @@
         'column': -1
       }
     ]
-'.gfm.source':
-  'editor':
-    'showInvisibles': false
-    'softWrap': true
-    'tabLength': 4
-'.c.source':
-  'editor':
-    'tabLength': 4
-'.java.source':
+'.shell.source':
   'editor':
     'tabLength': 4
 '.python.source':
   'editor':
     'tabLength': 4
-'.shell.source':
+'.java.source':
   'editor':
+    'tabLength': 4
+'.c.source':
+  'editor':
+    'tabLength': 4
+'.gfm.source':
+  'editor':
+    'showInvisibles': false
+    'softWrap': true
     'tabLength': 4
