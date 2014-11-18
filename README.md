@@ -12,12 +12,24 @@ This is intended to replace my [environment project](https://github.com/lee-dohm
 
 Since I'm using the Thoughtbot dotfiles as a basis and keeping my customizations separate, this is a little more complicated than perhaps it should be.
 
-1. Clone the Thoughtbot dotfiles: `git clone git://github.com/lee-dohm/thoughtbot-dotfiles.git thoughtbot-dotfiles`
-1. Clone this project: `git clone git@github.com:lee-dohm/dotfiles.git personal-dotfiles`
+1. Clone the Thoughtbot dotfiles:
+
+    ```bash
+    $ git clone git://github.com/lee-dohm/thoughtbot-dotfiles.git thoughtbot-dotfiles
+    ```
+
+1. Clone this project:
+
+    ```bash
+    $ git clone git@github.com:lee-dohm/dotfiles.git personal-dotfiles
+    ```
+
 1. Install the dotfiles (this has to be done in two steps currently due to a bug in rcm)
-    1. `rcup -d personal-dotfiles -x LICENSE.md -x README.md`
-    1. Press ENTER when prompted
-    1. `rcup`
+
+    ```bash
+    $ rcup -d personal-dotfiles -x LICENSE.md -x README.md
+    $ rcup
+    ```
 
 ## Copyright
 
