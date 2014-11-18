@@ -1,9 +1,13 @@
 #!/bin/zsh
 
+### PATH
+
 # Properly order the default path
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
-# Set colorized terminal
+### Color
+
+# Use colorized ls
 if [[ $(uname -s) == 'Darwin' ]]; then
     export CLICOLOR=1
     export LSCOLORS='Exfxcxdxbxegedabagacad'
@@ -11,16 +15,24 @@ else
     alias ls='ls --color=auto'
 fi
 
+### rcm
+
 # Ensure the HOSTNAME environment variable is set so that `rcm` works properly
 if [[ -z "$HOSTNAME" ]]; then
     export HOSTNAME=$(hostname -s)
 fi
 
+### ZSH Autocorrect
+
 # Don't autocorrect arguments
 unsetopt correct_all
 
-# Completion settings
+### ZSH Completion
+
+# Use case-insensitive completion matches
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+### PROMPT
 
 # Adds an indicator of where the HEAD is in the graph.
 #
@@ -46,6 +58,8 @@ exit_code() {
 }
 
 export PS1='$(git_prompt_info)[${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[blue]%}%~%{$reset_color%}]$(exit_code) '
+
+### Other Initializations
 
 # Perform any app-specific initializations
 for init in $HOME/.zsh/init/*.sh; do
