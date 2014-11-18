@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+# Usage: change-textexpander-activation file.textexpander regex new-activation
+
+require 'plist'
+
+path = ARGV[0]
+regex = ARGV[1]
+new_activation = ARGV[2]
+
+plist = Plist.parse_xml(path)
+snippets = plist['snippetsTE2']
+
+snippets.each do |snippet|
+  snippet['abbreviation'] = snippet['abbreviation'].gsub(/#{regex}/, "#{new_activation}\\1")
+end
+
+puts plist.to_plist
