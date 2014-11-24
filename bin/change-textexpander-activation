@@ -3,6 +3,29 @@
 # Usage: change-textexpander-activation file.textexpander regex new-activation
 
 require 'plist'
+require 'trollop'
+
+Trollop.options do
+  banner <<-EOS
+Accepts a TextExpander export file with a collection of snippets, a regular
+expression to parse the snippets and a new activation sequence to use for the
+snippets. It then outputs the updated TextExpander export file for later
+import back into TextExpander.
+
+Usage: #{File.basename($PROGRAM_NAME)} <path> <regex> <new_activation_sequence>
+
+Arguments:
+
+path - Path to a PList file containing one or more TextExpander snippets
+regex - Regular expression to match current snippets with. The first capture
+        is the part of the expression that is to be kept.
+new_activation_sequence - Key sequence to use as the new activation sequence.
+                          It will be prepended onto the contents of the
+                          capture from the `regex` parameter.
+
+Options:
+EOS
+end
 
 path = ARGV[0]
 regex = ARGV[1]
@@ -12,7 +35,7 @@ plist = Plist.parse_xml(path)
 snippets = plist['snippetsTE2']
 
 snippets.each do |snippet|
-  snippet['abbreviation'] = snippet['abbreviation'].gsub(/#{regex}/, "#{new_activation}\\1")
+  snippet['abbreviation'] = snippet['abbreviation'].gsub(/#{regex}/, "\\1#{new_activation}")
 end
 
 puts plist.to_plist
