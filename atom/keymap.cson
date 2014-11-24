@@ -19,6 +19,5 @@
 '.editor:not(.mini)':
   'alt-cmd-Z': 'pane:show-previous-item'
 '.workspace':
-  'cmd-.': 'key-peek:toggle'
   'ctrl-cmd-r': 'tree-view:reveal-active-file'
   'ctrl-cmd-t': 'window:run-package-specs'

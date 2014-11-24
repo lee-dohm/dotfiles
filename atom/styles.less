@@ -97,6 +97,11 @@ atom-workspace {
 
   .disabled-package {
     opacity: 0.5;
+
+    .icon > span:first-child:before {
+      .octicons("\f081");
+      color: @text-color-error;
+    }
   }
 
   .author-highlight .icon > span:first-child:before {

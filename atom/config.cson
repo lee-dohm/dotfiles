@@ -44,8 +44,6 @@
   'tree-view':
     'hideIgnoredNames': true
     'hideVcsIgnoredFiles': true
-  'tabs-to-spaces':
-    'onSave': 'untabify'
   'autocomplete':
     'includeCompletionsFromAllBuffers': true
   'fancy-new-file':
