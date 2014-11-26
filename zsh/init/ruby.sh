@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 # Ensure rbenv gets loaded if it is available
 if ! hash rbenv 2> /dev/null ; then
     if [[ -d $HOME/.rbenv ]]; then

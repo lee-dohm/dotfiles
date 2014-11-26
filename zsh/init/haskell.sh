@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 cabal="$HOME/.cabal"
 cabal_bin="$cabal/bin"
 

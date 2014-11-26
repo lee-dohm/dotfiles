@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 export EDITOR='atom'
 export VISUAL="$EDITOR"
 
