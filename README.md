@@ -1,22 +1,12 @@
 # Lee's Dotfile Customizations
 
-These are my extensions to the [Thoughtbot dotfiles project](https://github.com/thoughtbot/dotfiles). They coexist with the Thoughtbot configuration files wherever possible. Where coexistence isn't possible, like with the `.gitignore` configuration, this project is designed to clobber Thoughtbot's configuration file.
-
-This is intended to replace my [environment project](https://github.com/lee-dohm/environment).
+These are my myriad [dotfiles](http://dotfiles.github.io/). It has grown, morphed, shifted and developed since I discovered the [Thoughtbot dotfiles project](https://github.com/thoughtbot/dotfiles) and based this off of that. Hats off to the Thoughtbot folks for making basing my stuff off of theirs so easy! :laughing:
 
 ## Prerequisites
 
-* Install [Laptop](https://github.com/thoughtbot/laptop)
+* Install [Thoughtbot Laptop](https://github.com/thoughtbot/laptop)
 
 ## Installation
-
-Since I'm using the Thoughtbot dotfiles as a basis and keeping my customizations separate, this is a little more complicated than perhaps it should be.
-
-1. Clone the Thoughtbot dotfiles:
-
-    ```bash
-    $ git clone git://github.com/lee-dohm/thoughtbot-dotfiles.git thoughtbot-dotfiles
-    ```
 
 1. Clone this project:
 
@@ -24,11 +14,16 @@ Since I'm using the Thoughtbot dotfiles as a basis and keeping my customizations
     $ git clone git@github.com:lee-dohm/dotfiles.git personal-dotfiles
     ```
 
-1. Install the dotfiles (this has to be done in two steps currently due to a bug in rcm)
+1. Install the dotfiles
 
     ```bash
-    $ rcup -d personal-dotfiles -x LICENSE.md -x README.md
-    $ rcup
+    $ rcup -d personal-dotfiles
+    ```
+
+1. Create a symlink for the `packages` directory so Atom stylesheet stuff works correctly
+
+    ```bash
+    $ ln -s ~/.atom/packages ~/personal-dotfiles/atom/packages
     ```
 
 ## Copyright
