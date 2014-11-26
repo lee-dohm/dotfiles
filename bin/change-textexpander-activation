@@ -12,6 +12,11 @@ expression to parse the snippets and a new activation sequence to use for the
 snippets. It then outputs the updated TextExpander export file for later
 import back into TextExpander.
 
+For example, if your current snippets are of the form ",,foo" and you want to
+change them to use double-backticks after the snippet name, you would use the
+regex ",,(.*)" and the activation sequence of "``". The first capture in the
+regex is the part of the snippet that will be preserved.
+
 Usage: #{File.basename($PROGRAM_NAME)} <path> <regex> <new_activation_sequence>
 
 Arguments:
