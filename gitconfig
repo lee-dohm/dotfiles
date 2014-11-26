@@ -1,0 +1,48 @@
+[alias]
+  aa = add --all
+  aliases = !git config --list | grep alias | cut -c 7-
+  ap = add --patch
+  ca = commit --amend
+  ci = commit
+  co = checkout
+  co-pr = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
+  create-branch = !sh -c 'git push origin HEAD:refs/heads/$1 && git fetch origin && git branch --track $1 origin/$1 && cd . && git checkout $1' -
+  delete-branch = !sh -c 'git push origin :refs/heads/$1 && git branch -D $1' -
+  l = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  merge-branch = !git checkout master && git merge @{-1}
+  pr = !hub pull-request
+  st = status --branch --short
+  up = !git fetch origin && git rebase origin/master
+
+[color]
+  ui = auto
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "status"]
+  added = green     # Items that have been added to the index
+  changed = yellow  # Items that have been changed, but not added to the index
+  untracked = red   # Items that are untracked
+
+[commit]
+  template = ~/.gitmessage
+
+[core]
+  editor = atom --wait
+  excludesfile = ~/.gitignore
+  autocrlf = input
+
+[fetch]
+  prune = true
+
+[include]
+  path = ~/.gitconfig.identity
+
+[merge]
+  ff = true
+
+[push]
+  default = current
