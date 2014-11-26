@@ -3,22 +3,22 @@ Pry.config.editor = 'atom'
 # Provides OS detection helper methods.
 module OS
   # @return [Boolean] Truthy if executing on a Windows system.
-  def OS.windows?
+  def self.windows?
     !(/cygwin|mswin|mingw|bccwin|wince|emx/ =~ RUBY_PLATFORM).nil?
   end
 
   # @return [Boolean] Truthy if executing on an OS X system.
-  def OS.mac?
+  def self.mac?
     !(/darwin/ =~ RUBY_PLATFORM).nil?
   end
 
   # @return [Boolean] Truthy if executing on any flavor of Unix (even OS X).
-  def OS.unix?
+  def self.unix?
     !OS.windows?
   end
 
   # @return [Boolean] Truthy if executing on any flavor of Linux.
-  def OS.linux?
+  def self.linux?
     OS.unix? && !OS.mac?
   end
 end
