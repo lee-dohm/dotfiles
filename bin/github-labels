@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+require 'octokit'
+require 'trollop'
+
+# Gets the URL of the origin remote.
+#
+# @return [String] GitHub-style username/repo combination.
+def origin_remote
+  if `git config --get remote.origin.url` =~ %r{([^:/]+)/([^./]+)(\.git)?$}
+    "#{Regexp.last_match[1]}/#{Regexp.last_match[2]}"
+  else
+    nil
+  end
+end
+
+Trollop.options do
+  banner <<-EOS
+Lists the GitHub labels and their colors.
+
+Usage: #{File.basename($PROGRAM_NAME)} [options] [repo]
+
+Arguments:
+
+repo - (Optional) GitHub user/repo combination from where to retrieve the
+       labels. If not specified, it will retrieve the labels from the GitHub
+       repository specified by the "origin" remote.
+
+Options:
+  EOS
+end
+
+repo = ARGV[0] || origin_remote
+
+Octokit.labels(repo).each do |label|
+  puts "#{label.name} #{label.color}"
+end
