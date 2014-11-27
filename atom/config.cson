@@ -60,8 +60,6 @@
       'showDisplayCopNames': true
   'enhanced-package-list':
     'highlightAuthor': 'lee-dohm'
-  'white-cursor':
-    'enabled': 'detect'
   'wrap-guide':
     'columns': [
       {
@@ -76,6 +74,11 @@
         'scope': 'text.haml'
         'column': -1
       }
+    ]
+  'white-cursor':
+    'enabled': 'detect'
+    'darkThemes': [
+      'ya-railscasts-syntax'
     ]
 '.shell.source':
   'editor':

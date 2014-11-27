@@ -8,7 +8,6 @@
  * http://www.lesscss.org
  */
 
-@import "variables";
 @import "ui-variables";
 
 @import "packages/red-wavy-underline/stylesheets/red-wavy-underline";
@@ -171,8 +170,12 @@ atom-workspace {
   }
 
   .soft-wrap-indicator.lit {
-    text-shadow: 0px 0px @ui-font-size blue;
+    text-shadow: 0px 0px @ui-font-size yellow;
   }
+}
+
+.theme-lifted-dark-ui {
+  .ui-adjustments;
 }
 
 .theme-atom-light-ui {
@@ -184,6 +187,8 @@ atom-workspace {
 }
 
 .theme-solarized-light-syntax {
+  @import "variables";
+
   .editor {
     .cursor-line {
       .trailing-whitespace {
