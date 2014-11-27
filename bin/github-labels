@@ -1,7 +1,84 @@
 #!/usr/bin/env ruby
 
+require 'highline/import'
 require 'octokit'
 require 'trollop'
+
+# Adds the label to the repository.
+#
+# @param repo [String] Repository identifier.
+# @param name [String] Name for the label.
+# @param color [String] Color to assign to the label.
+def add_label(repo, name, color)
+  login
+
+  Octokit.add_label(repo, name, color)
+end
+
+# Gets the stored authorization token.
+#
+# @return [String] Token for adding or updating labels.
+def auth_token
+  File.read("#{ENV['HOME']}/.github/github-labels")
+end
+
+# Creates a GitHub authorization token.
+#
+# @return [String] Token for adding or updating labels.
+def create_auth_token
+  username = ask('GitHub Username: ')
+  password = ask('GitHub Password: ') { |q| q.echo = false }
+
+  client = Octokit::Client.new(login: username, password: password)
+
+  begin
+    create_auth_token_basic(client)
+  rescue Octokit::OneTimePasswordRequired
+    create_auth_token_two_factor(client)
+  end
+end
+
+# Creates a GitHub authorization token by using basic authentication.
+#
+# @param client [Octokit::Client] Client used to connect to GitHub.
+#
+# @return [String] Token for adding or updating labels.
+def create_auth_token_basic(client)
+  client.create_authorization(scopes: ['repo'], note: 'github-labels script').token
+end
+
+# Creates a GitHub authorization token by using two-factor authentication.
+#
+# @param client [Octokit::Client] Client used to connect to GitHub.
+#
+# @return [String] Token for adding or updating labels.
+def create_auth_token_two_factor(client)
+  two_factor = ask('Two-Factor Token: ')
+  client.create_authorization(scopes: ['repo'],
+                              note: 'github-labels script',
+                              headers: { 'X-GitHub-OTP' => two_factor }).token
+end
+
+# Logs in to GitHub.
+#
+# The process followed is:
+#
+# 1. If an authorization token is found, it is used
+# 2. If no auth token is found:
+#     1. Log in
+#     2. Create an auth token
+#     3. Store it for future use
+# 3. Use the auth token for future connections
+def login
+  if File.exist?("#{ENV['HOME']}/.github/github-labels")
+    auth = auth_token
+  else
+    auth = create_auth_token
+    store_auth_token(auth)
+  end
+
+  Octokit.access_token = auth
+end
 
 # Gets the URL of the origin remote.
 #
@@ -14,7 +91,38 @@ def origin_remote
   end
 end
 
-Trollop.options do
+# Stores the authorization token for future use.
+#
+# @param auth [String] Authorization token.
+def store_auth_token(auth)
+  Dir.mkdir("#{ENV['HOME']}/.github") unless Dir.exist?("#{ENV['HOME']}/.github")
+  File.write("#{ENV['HOME']}/.github/github-labels", auth)
+end
+
+# Updates the label to the given color.
+#
+# @param repo [String] GitHub repository identifier.
+# @param name [String] Name of the label.
+# @param color [String] Color to set the label to.
+def update_label(repo, name, color)
+  login
+
+  Octokit.update_label(repo, name, color: color)
+end
+
+standard_labels = {
+  'bug' => 'e11d21',
+  'documentation' => 'c7def8',
+  'enhancement' => '207de5',
+  'help-wanted' => 'bfe5bf',
+  'information-needed' => '009800',
+  'linux' => 'fbca04',
+  'mac' => 'fbca04',
+  'windows' => 'fbca04',
+  'wontfix' => 'eb6420'
+}
+
+opts = Trollop.options do
   banner <<-EOS
 Lists the GitHub labels and their colors.
 
@@ -28,10 +136,28 @@ repo - (Optional) GitHub user/repo combination from where to retrieve the
 
 Options:
   EOS
+
+  opt :standardize, 'Sets the repository to the standard set of labels'
 end
 
 repo = ARGV[0] || origin_remote
 
-Octokit.labels(repo).each do |label|
-  puts "#{label.name} #{label.color}"
+if opts[:standardize]
+  label_names = Octokit.labels(repo).map { |label| label.name }
+
+  standard_labels.each do |name, color|
+    if label_names.include?(name)
+      update_label(repo, name, color)
+    else
+      add_label(repo, name, color)
+    end
+  end
+else
+  labels = Octokit.labels(repo)
+  longest_name = labels.map { |label| label.name.to_s.length }.max
+  fmt = "%#{longest_name}s"
+
+  Octokit.labels(repo).each do |label|
+    puts "#{format(fmt, label.name)} #{label.color}"
+  end
 end
