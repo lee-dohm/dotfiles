@@ -4,6 +4,7 @@ td() {
     if [[ $# -gt 0 ]]; then
         todo.sh "$@"
     else
+        clear
         todo.sh ls
     fi
 }

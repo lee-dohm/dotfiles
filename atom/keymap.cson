@@ -21,3 +21,4 @@
 '.workspace':
   'ctrl-cmd-r': 'tree-view:reveal-active-file'
   'ctrl-cmd-t': 'window:run-package-specs'
+  'ctrl-shift-alt-t': 'custom:open-todo-list'

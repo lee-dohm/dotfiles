@@ -16,7 +16,7 @@
     'showInvisibles': true
     'scrollPastEnd': true
   'core':
-    'projectHome': '/Volumes/Data/Users/Lee/Source'
+    'projectHome': '/Users/Lee/Source'
     'ignoredNames': [
       '.git'
       '.hg'
@@ -27,7 +27,7 @@
       '*.pyc'
     ]
     'themes': [
-      'soda-light-ui'
+      'atom-light-ui'
       'solarized-light-syntax'
     ]
     'disabledPackages': [

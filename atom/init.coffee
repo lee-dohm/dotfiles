@@ -5,8 +5,15 @@
 # has been restored.
 #
 
+path = require 'path'
+
 oldWindowDimensions = {}
 oldThemes = []
+
+atom.commands.add 'atom-workspace',
+  'custom:open-todo-list': ->
+    todoList = path.join(process.env.HOME, 'Dropbox', 'todo', 'todo.txt')
+    atom.workspace.open(todoList)
 
 atom.workspaceView.command 'custom:screenshot-prep', ->
   oldWindowDimensions = atom.getWindowDimensions()
