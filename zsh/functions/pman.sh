@@ -3,6 +3,6 @@
 
 if [[ $(uname) == 'Darwin' ]]; then
     pman() {
-        man -t "$@" | open -f -a Preview;
+        man -t "$@" | open -f -a Preview
     }
 fi
