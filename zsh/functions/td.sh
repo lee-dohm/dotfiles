@@ -16,12 +16,17 @@ td() {
 
 # Displays the default list of todo items for the current location based on `$HOSTNAME`
 tt() {
-    clear
-
-    if [[ "$HOSTNAME" == "c82a14544e88" ]]; then
-        todo.sh ls @Work
+    if [[ $# -gt 0 ]]; then
+        # I was accidentally typing `tt` instead of `td` and losing information
+        todo.sh "$@"
     else
-        todo.sh ls -@Work
+        clear
+
+        if [[ "$HOSTNAME" == "c82a14544e88" ]]; then
+            todo.sh ls @Work
+        else
+            todo.sh ls -@Work
+        fi
     fi
 }
 
