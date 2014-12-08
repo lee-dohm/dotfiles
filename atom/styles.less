@@ -39,16 +39,17 @@
 
 atom-workspace {
   font-family: 'Helvetica Neue', 'Lucida Grande', 'Segoe UI', sans-serif;
+  font-size: @ui-font-size;
   -webkit-font-smoothing: subpixel-antialiased;
 }
 
-.cursor {
-  transition: opacity 0.2s;
-}
-
-.editor {
+.editor, atom-text-editor::shadow {
   .comment {
     font-style: normal;
+  }
+
+  .cursor {
+    transition: opacity 0.5s;
   }
 
   .gutter .line-number {
@@ -108,6 +109,10 @@ atom-workspace {
     color: @text-color-info;
   }
 
+  > li > a {
+    font-size: @ui-font-size;
+  }
+
   > li.author-highlight > a {
     color: inherit;
 
@@ -150,7 +155,7 @@ atom-workspace {
 .ui-adjustments {
   @border-base: 5px;
 
-  .editor {
+  .editor, atom-text-editor::shadow {
     .gutter .line-number {
       border-left-width: @border-base;
       padding-left: @border-base + 7;
@@ -189,24 +194,24 @@ atom-workspace {
 .theme-solarized-light-syntax {
   @import "variables";
 
-  .editor {
+  .editor, atom-text-editor::shadow {
     .cursor-line {
       .trailing-whitespace {
         background-color: @base3;
       }
     }
 
+    .markup.raw.gfm {
+      font-style: normal;
+      color: @cyan;
+    }
+
+    .shell.builtin {
+      color: @green;
+    }
+    
     .trailing-whitespace {
       background-color: @red;
     }
-  }
-
-  .markup.raw.gfm {
-    font-style: normal;
-    color: @cyan;
-  }
-
-  .shell.builtin {
-    color: @green;
   }
 }
