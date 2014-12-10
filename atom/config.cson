@@ -15,8 +15,8 @@
     'normalizeIndentOnPaste': false
     'showInvisibles': true
     'scrollPastEnd': true
+    'useShadowDOM': true
   'core':
-    'projectHome': '/Users/Lee/Source'
     'ignoredNames': [
       '.git'
       '.hg'
@@ -29,9 +29,6 @@
     'themes': [
       'atom-light-ui'
       'solarized-light-syntax'
-    ]
-    'disabledPackages': [
-      'feedback'
     ]
   'auto-copyright':
     'owner': 'Lifted Studios'
