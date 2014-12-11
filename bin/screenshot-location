@@ -10,7 +10,7 @@
 
 require 'trollop'
 
-opts = Trollop::options do
+opts = Trollop.options do
   opt :default, 'Set the screenshot location to the default of ~/Desktop'
 end
 
