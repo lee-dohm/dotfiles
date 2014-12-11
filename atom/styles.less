@@ -15,33 +15,14 @@
 
 @ui-font-size: 14px;
 
-// --- Mixins ---
-
-.diff-icon(@color: white) {
-  background-color: fade(@color, 60%);
-
-  &:before {
-    color: contrast(fade(@color, 60%));
-  }
-}
-
-.diff-border(@color: white) {
-  border-color: lighten(@color, 15%);
-}
-
-.octicons(@char) {
-  font-family: "Octicons Regular";
-  content: @char;
-  margin-right: 5px;
-}
-
-// --- Rules ---
+// UI font setting
 
 atom-workspace {
   font-family: 'Helvetica Neue', 'Lucida Grande', 'Segoe UI', sans-serif;
   font-size: @ui-font-size;
-  -webkit-font-smoothing: subpixel-antialiased;
 }
+
+// General editor modifications
 
 .editor, atom-text-editor::shadow {
   .comment {
@@ -52,7 +33,34 @@ atom-workspace {
     transition: opacity 0.5s;
   }
 
+  .markup.raw.gfm {
+    font-style: normal;
+  }
+}
+
+// Uses the white cursor in the terminal package view
+.terminal {
+  .white-cursor-image;
+}
+
+// Brightens the gutter diff indicators to make them more visible
+.diff-icon(@color) {
+  background-color: fade(@color, 60%);
+
+  &:before {
+    color: contrast(fade(@color, 60%));
+  }
+}
+
+.diff-border(@color) {
+  border-color: lighten(@color, 15%);
+  border-left-width: 4px;
+}
+
+.editor, atom-text-editor::shadow {
   .gutter .line-number {
+    padding-left: 10px;
+
     &.git-line-added {
       .diff-border(@text-color-added);
     }
@@ -63,6 +71,7 @@ atom-workspace {
 
     &.git-line-removed {
       .diff-border(@text-color-removed);
+      padding-left: 6px;
     }
   }
 
@@ -79,10 +88,20 @@ atom-workspace {
       .diff-icon(@text-color-removed);
     }
   }
+}
 
+// Replaces the atom-lint error highlight with the red wavy underline
+.editor, atom-text-editor::shadow {
   .violation-border {
     .red-wavy-underline;
   }
+}
+
+// Settings View package decorations ... adds icons depending on type of package
+.octicons(@char) {
+  font-family: "Octicons Regular";
+  content: @char;
+  margin-right: 5px;
 }
 
 .settings-view .config-menu .panels-packages {
@@ -126,6 +145,8 @@ atom-workspace {
   }
 }
 
+// Makes things bigger and more readable
+
 .overlay .select-list ol.list-group li,
 .overlay.select-list ol.list-group li {
   font-size: @ui-font-size;
@@ -142,76 +163,33 @@ atom-workspace {
   height: @ui-font-size * 2;
 }
 
-.terminal {
-  .white-cursor-image;
-}
-
 .tree-view {
   font-size: @ui-font-size;
 }
 
-// --- Theme-specific Styles ---
+// Highlights trailing whitespace except on the cursor line
 
-.ui-adjustments {
-  @border-base: 5px;
-
-  .editor, atom-text-editor::shadow {
-    .gutter .line-number {
-      border-left-width: @border-base;
-      padding-left: @border-base + 7;
-
-      &.git-line-added {
-        padding-left: @border-base + 2;
-      }
-
-      &.git-line-modified {
-        padding-left: @border-base + 2;
-      }
-
-      &.git-line-removed {
-        padding-left: @border-base + 2;
-      }
+.editor, atom-text-editor::shadow {
+  div.line:not(.cursor-line) {
+    .trailing-whitespace {
+      background-color: @background-color-error;
+      color: contrast(@background-color-error);
     }
   }
-
-  .soft-wrap-indicator.lit {
-    text-shadow: 0px 0px @ui-font-size yellow;
-  }
 }
 
-.theme-lifted-dark-ui {
-  .ui-adjustments;
-}
-
-.theme-atom-light-ui {
-  .ui-adjustments;
-}
-
-.theme-soda-light-ui {
-  .ui-adjustments;
-}
+// --- Theme-specific Styles ---
 
 .theme-solarized-light-syntax {
   @import "variables";
 
   .editor, atom-text-editor::shadow {
-    .cursor-line {
-      .trailing-whitespace {
-        background-color: @base3;
-      }
-    }
-
     .markup.raw.gfm {
-      font-style: normal;
       color: @cyan;
     }
 
     .shell.builtin {
       color: @green;
-    }
-    
-    .trailing-whitespace {
-      background-color: @red;
     }
   }
 }
