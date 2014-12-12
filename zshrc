@@ -6,8 +6,7 @@ setopt promptsubst
 fpath=(~/.zsh/completion $fpath)
 
 # completion
-autoload -U compinit
-compinit
+autoload -U compinit && compinit
 
 # Use case-insensitive completion matches
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
@@ -18,8 +17,7 @@ for function in ~/.zsh/functions/*; do
 done
 
 # makes color constants available
-autoload -U colors
-colors
+autoload -U colors && colors
 
 # history settings
 setopt hist_ignore_all_dups inc_append_history
@@ -76,6 +74,29 @@ fi
 # Don't autocorrect arguments
 unsetopt correct_all
 
+SEGMENT_START='['
+SEGMENT_END=']'
+
+# Draws a segment of the prompt if the given content is non-empty.
+prompt_segment() {
+    if [[ -n $1 ]]; then
+        echo -n "$SEGMENT_START$1%{%f%b%k%}$SEGMENT_END"
+    fi
+}
+
+# Builds the complete prompt
+build_prompt() {
+    exit=$?
+
+    prompt_segment "$(git_prompt_info)"
+    prompt_segment "%B%F{blue}%~"
+    if [[ $exit -gt 0 ]]; then
+        prompt_segment "$(exit_code)"
+    fi
+
+    echo -n " "
+}
+
 # Adds an indicator of where the HEAD is in the graph.
 #
 # If HEAD is on a branch, the branch name is output in green. If HEAD is
@@ -84,22 +105,22 @@ unsetopt correct_all
 git_prompt_info() {
     ref=$(git symbolic-ref HEAD 2> /dev/null)
     if [[ -n $ref ]]; then
-        echo "[%{$fg_bold[green]%}${ref#refs/heads/}%{$reset_color%}]"
+        echo "%{$fg_bold[green]%}${ref#refs/heads/}"
     else
         tag=$(git branch --no-color 2> /dev/null |
                   sed -e '/^[^*]/d' -e "s/* (detached from \(.*\))/\1/")
 
         if [[ -n $tag ]]; then
-            echo "[%{$fg_bold[yellow]%}${tag}%{$reset_color%}]"
+            echo "%{$fg_bold[yellow]%}${tag}"
         fi
     fi
 }
 
 exit_code() {
-    echo "%(?..[${fg_bold[red]}%?%{$reset_color%}])"
+    echo -n "%(?..${fg_bold[red]}%?)"
 }
 
-export PS1='$(git_prompt_info)[${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[blue]%}%~%{$reset_color%}]$(exit_code) '
+export PROMPT='%{%f%b%k%}$(build_prompt)'
 
 # Perform any app-specific initializations
 for init in $HOME/.zsh/init/*.sh; do
