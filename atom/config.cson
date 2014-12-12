@@ -27,8 +27,8 @@
       '*.pyc'
     ]
     'themes': [
-      'atom-light-ui'
-      'solarized-light-syntax'
+      'atom-dark-ui'
+      'solarized-dark-syntax'
     ]
   'auto-copyright':
     'owner': 'Lifted Studios'
@@ -77,20 +77,20 @@
     'darkThemes': [
       'ya-railscasts-syntax'
     ]
-'.shell.source':
+'.gfm.source':
   'editor':
+    'showInvisibles': false
+    'softWrap': true
     'tabLength': 4
-'.python.source':
+'.c.source':
   'editor':
     'tabLength': 4
 '.java.source':
   'editor':
     'tabLength': 4
-'.c.source':
+'.python.source':
   'editor':
     'tabLength': 4
-'.gfm.source':
+'.shell.source':
   'editor':
-    'showInvisibles': false
-    'softWrap': true
     'tabLength': 4
