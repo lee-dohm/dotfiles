@@ -9,7 +9,6 @@
  */
 
 @import "ui-variables";
-@import "variables";
 
 @import "packages/red-wavy-underline/stylesheets/red-wavy-underline";
 @import "packages/white-cursor/stylesheets/white-cursor";
@@ -25,7 +24,7 @@ atom-workspace {
 // Highlights the cursor line
 .editor, atom-text-editor::shadow {
   .cursor-line {
-    background-color: fade(@syntax-background-color, 10%)
+    background-color: @background-color-highlight;
   }
 }
 
@@ -33,6 +32,15 @@ atom-workspace {
 .editor, atom-text-editor::shadow {
   .comment {
     font-style: normal;
+  }
+}
+
+// Makes comments that aren't on the cursor line less opaque to focus the eye on the code
+.editor, atom-text-editor::shadow {
+  div.line:not(.cursor-line) {
+    .comment {
+      opacity: 0.6;
+    }
   }
 }
 
@@ -69,21 +77,25 @@ atom-workspace {
   border-left-width: 4px;
 }
 
+@gutter-padding: 15px;
+
 .editor, atom-text-editor::shadow {
   .gutter .line-number {
-    padding-left: 10px;
+    padding-left: @gutter-padding;
 
     &.git-line-added {
       .diff-border(@text-color-added);
+      padding-left: @gutter-padding - 4;
     }
 
     &.git-line-modified {
       .diff-border(@text-color-modified);
+      padding-left: @gutter-padding - 4;
     }
 
     &.git-line-removed {
       .diff-border(@text-color-removed);
-      padding-left: 6px;
+      padding-left: @gutter-padding;
     }
   }
 
@@ -184,20 +196,6 @@ atom-workspace {
     .trailing-whitespace {
       background-color: @background-color-error;
       color: contrast(@background-color-error);
-    }
-  }
-}
-
-// --- Theme-specific Styles ---
-
-.theme-solarized-light-syntax {
-  .editor, atom-text-editor::shadow {
-    .markup.raw.gfm {
-      color: @cyan;
-    }
-
-    .shell.builtin {
-      color: @green;
     }
   }
 }
