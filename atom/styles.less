@@ -9,30 +9,42 @@
  */
 
 @import "ui-variables";
+@import "variables";
 
 @import "packages/red-wavy-underline/stylesheets/red-wavy-underline";
 @import "packages/white-cursor/stylesheets/white-cursor";
 
 @ui-font-size: 14px;
 
-// UI font setting
-
+// Sets the UI font to Helvetica Neue
 atom-workspace {
   font-family: 'Helvetica Neue', 'Lucida Grande', 'Segoe UI', sans-serif;
   font-size: @ui-font-size;
 }
 
-// General editor modifications
+// Highlights the cursor line
+.editor, atom-text-editor::shadow {
+  .cursor-line {
+    background-color: fade(@syntax-background-color, 10%)
+  }
+}
 
+// Un-italicizes comments
 .editor, atom-text-editor::shadow {
   .comment {
     font-style: normal;
   }
+}
 
+// Makes the cursor pulse instead of blink
+.editor, atom-text-editor::shadow {
   .cursor {
     transition: opacity 0.5s;
   }
+}
 
+// Un-italicizes code markup in Markdown
+.editor, atom-text-editor::shadow {
   .markup.raw.gfm {
     font-style: normal;
   }
@@ -145,8 +157,7 @@ atom-workspace {
   }
 }
 
-// Makes things bigger and more readable
-
+// Makes things bigger and more readable throughout the UI
 .overlay .select-list ol.list-group li,
 .overlay.select-list ol.list-group li {
   font-size: @ui-font-size;
@@ -168,7 +179,6 @@ atom-workspace {
 }
 
 // Highlights trailing whitespace except on the cursor line
-
 .editor, atom-text-editor::shadow {
   div.line:not(.cursor-line) {
     .trailing-whitespace {
@@ -181,8 +191,6 @@ atom-workspace {
 // --- Theme-specific Styles ---
 
 .theme-solarized-light-syntax {
-  @import "variables";
-
   .editor, atom-text-editor::shadow {
     .markup.raw.gfm {
       color: @cyan;
