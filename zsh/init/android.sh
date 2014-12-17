@@ -5,5 +5,9 @@ android_path="$HOME/android-sdk-macosx/tools:$HOME/android-sdk-macosx/platform-t
 
 add_to_path "$android" "$android_path"
 
-export ANDROID_HOME="$android"
-export JAVA_HOME="$(/usr/libexec/java_home)"
+if [[ -d "$android" ]]; then
+    export ANDROID_HOME="$android"
+    export JAVA_HOME="$(/usr/libexec/java_home)"
+
+    alias stayon="adb shell svc power stayon true"
+fi
