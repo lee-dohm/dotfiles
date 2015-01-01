@@ -17,7 +17,7 @@
 
 // Sets the UI font to Helvetica Neue
 atom-workspace {
-  font-family: 'Helvetica Neue', 'Lucida Grande', 'Segoe UI', sans-serif;
+  font-family: 'Helvetica Neue', sans-serif;
   font-size: @ui-font-size;
 }
 
@@ -32,15 +32,6 @@ atom-workspace {
 .editor, atom-text-editor::shadow {
   .comment {
     font-style: normal;
-  }
-}
-
-// Makes comments that aren't on the cursor line less opaque to focus the eye on the code
-.editor, atom-text-editor::shadow {
-  div.line:not(.cursor-line) {
-    .comment {
-      opacity: 0.6;
-    }
   }
 }
 
@@ -118,54 +109,6 @@ atom-workspace {
 .editor, atom-text-editor::shadow {
   .violation-border {
     .red-wavy-underline;
-  }
-}
-
-// Settings View package decorations ... adds icons depending on type of package
-.octicons(@char) {
-  font-family: "Octicons Regular";
-  content: @char;
-  margin-right: 5px;
-}
-
-.settings-view .config-menu .panels-packages {
-  .bundled-package .icon > span:first-child:before {
-    .octicons("\f00a");
-  }
-
-  .incompatible-package .icon > span:first-child:before {
-    .octicons("\f091");
-    color: @text-color-error;
-  }
-
-  .disabled-package {
-    opacity: 0.5;
-
-    .icon > span:first-child:before {
-      .octicons("\f081");
-      color: @text-color-error;
-    }
-  }
-
-  .author-highlight .icon > span:first-child:before {
-    .octicons("\f018");
-    color: @text-color-info;
-  }
-
-  > li > a {
-    font-size: @ui-font-size;
-  }
-
-  > li.author-highlight > a {
-    color: inherit;
-
-    &:hover {
-      color: inherit;
-    }
-
-    .package-author {
-      color: inherit;
-    }
   }
 }
 

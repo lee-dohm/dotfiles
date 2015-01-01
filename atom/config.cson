@@ -1,4 +1,4 @@
-'global':
+'*':
   'exception-reporting':
     'userId': 'ee24cf00-f793-9081-be2a-2cdae5536b7f'
   'welcome':
@@ -6,16 +6,15 @@
   'metrics':
     'userId': '51eeb6113c1ae801c9aade9b6d679aa5189ced25'
   'editor':
-    'fontFamily': 'Source Code Pro'
-    'preferredLineLength': 100
-    'invisibles':
-      'cr': '↩'
-      'tab': '⇥'
-      'eol': ' '
-    'normalizeIndentOnPaste': false
+    'fontFamily': 'SourceCodePro-Light'
     'showInvisibles': true
+    'preferredLineLength': 100
     'scrollPastEnd': true
     'useShadowDOM': true
+    'invisibles':
+      'eol': ' '
+      'tab': '⇥'
+      'cr': '↩'
   'core':
     'ignoredNames': [
       '.git'
@@ -28,7 +27,7 @@
     ]
     'themes': [
       'atom-dark-ui'
-      'solarized-dark-syntax'
+      'advanced-railscasts-syntax'
     ]
   'auto-copyright':
     'owner': 'Lifted Studios'
@@ -39,8 +38,8 @@
       'text.plain'
     ]
   'tree-view':
-    'hideIgnoredNames': true
     'hideVcsIgnoredFiles': true
+    'hideIgnoredNames': true
   'autocomplete':
     'includeCompletionsFromAllBuffers': true
   'fancy-new-file':
@@ -57,41 +56,33 @@
       'showDisplayCopNames': true
   'enhanced-package-list':
     'highlightAuthor': 'lee-dohm'
-  'wrap-guide':
-    'columns': [
-      {
-        'scope': 'source.gfm'
-        'column': -1
-      }
-      {
-        'scope': 'text.git-commit'
-        'column': 72
-      }
-      {
-        'scope': 'text.haml'
-        'column': -1
-      }
-    ]
   'white-cursor':
-    'enabled': 'detect'
     'darkThemes': [
-      'ya-railscasts-syntax'
+      'railscasts'
     ]
-  'jekyll': {}
+    'enabled': 'detect'
+'.haml.text':
+  'wrap-guide':
+    'enabled': false
+'.git-commit.text':
+  'editor':
+    'preferredLineLength': 72
 '.gfm.source':
   'editor':
     'showInvisibles': false
     'softWrap': true
     'tabLength': 4
-'.c.source':
-  'editor':
-    'tabLength': 4
-'.java.source':
+  'wrap-guide':
+    'enabled': false
+'.shell.source':
   'editor':
     'tabLength': 4
 '.python.source':
   'editor':
     'tabLength': 4
-'.shell.source':
+'.java.source':
+  'editor':
+    'tabLength': 4
+'.c.source':
   'editor':
     'tabLength': 4
