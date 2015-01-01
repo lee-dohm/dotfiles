@@ -10,6 +10,8 @@ class CLI
   def run
     parse_options
 
+    login if @opts[:login]
+
     if @opts[:standardize]
       label_names = Octokit.labels(@repo).map { |label| label.name }
 
@@ -143,19 +145,20 @@ class CLI
   def parse_options
     @opts = Trollop.options do
       banner <<-EOS
-      Lists the GitHub labels and their colors.
+Lists the GitHub labels and their colors.
 
-      Usage: #{File.basename($PROGRAM_NAME)} [options] [repo]
+Usage: #{File.basename($PROGRAM_NAME)} [options] [repo]
 
-      Arguments:
+Arguments:
 
-      repo - (Optional) GitHub user/repo combination from where to retrieve the
-      labels. If not specified, it will retrieve the labels from the GitHub
-      repository specified by the "origin" remote.
+repo - (Optional) GitHub user/repo combination from where to retrieve the
+       labels. If not specified, it will retrieve the labels from the GitHub
+       repository specified by the "origin" remote.
 
-      Options:
+Options:
       EOS
 
+      opt :login, 'Forces a login for private repositories'
       opt :standardize, 'Sets the repository to the standard set of labels'
     end
 
