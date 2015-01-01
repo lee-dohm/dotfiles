@@ -25,3 +25,4 @@
 # * :white_check_mark:  when adding tests
 # * :lock:              when dealing with security
 # * :arrow_up:          when upgrading dependencies
+# * :arrow_down:        when downgrading dependencies
