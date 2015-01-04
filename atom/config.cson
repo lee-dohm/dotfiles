@@ -49,6 +49,7 @@
   'atom-color-highlight':
     'hideMarkersInComments': true
     'hideMarkersInStrings': true
+    'markersAtEndOfLine': true
   'package-generator':
     'createInDevMode': true
   'atom-lint':
@@ -77,12 +78,12 @@
 '.shell.source':
   'editor':
     'tabLength': 4
-'.python.source':
-  'editor':
-    'tabLength': 4
 '.java.source':
   'editor':
     'tabLength': 4
 '.c.source':
+  'editor':
+    'tabLength': 4
+'.python.source':
   'editor':
     'tabLength': 4
