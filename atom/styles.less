@@ -105,6 +105,14 @@ atom-workspace {
   }
 }
 
+// Makes the bracket matcher highlight more noticeable
+.editor, atom-text-editor::shadow {
+  .bracket-matcher .region {
+    background-color: rgba(255, 255, 0, 0.3);
+    border: 1px solid yellow;
+  }
+}
+
 // Replaces the atom-lint error highlight with the red wavy underline
 .editor, atom-text-editor::shadow {
   .violation-border {
