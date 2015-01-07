@@ -25,8 +25,9 @@
       '._*'
       '*.pyc'
     ]
+    'followSymlinks': true
     'themes': [
-      'atom-dark-ui'
+      'one-dark-ui'
       'advanced-railscasts-syntax'
     ]
   'auto-copyright':
@@ -47,9 +48,9 @@
   'autocomplete-plus':
     'fileBlacklist': '.*'
   'atom-color-highlight':
+    'markersAtEndOfLine': true
     'hideMarkersInComments': true
     'hideMarkersInStrings': true
-    'markersAtEndOfLine': true
   'package-generator':
     'createInDevMode': true
   'atom-lint':
@@ -62,6 +63,8 @@
       'railscasts'
     ]
     'enabled': 'detect'
+  'minimap':
+    'v4Preview': true
 '.haml.text':
   'wrap-guide':
     'enabled': false
