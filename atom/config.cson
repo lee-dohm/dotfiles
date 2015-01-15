@@ -1,92 +1,95 @@
-'*':
-  'exception-reporting':
-    'userId': 'ee24cf00-f793-9081-be2a-2cdae5536b7f'
-  'welcome':
-    'showOnStartup': false
-  'metrics':
-    'userId': '51eeb6113c1ae801c9aade9b6d679aa5189ced25'
-  'editor':
-    'fontFamily': 'SourceCodePro-Light'
-    'showInvisibles': true
-    'preferredLineLength': 100
-    'scrollPastEnd': true
-    'useShadowDOM': true
-    'invisibles':
-      'eol': ' '
-      'tab': '⇥'
-      'cr': '↩'
-  'core':
-    'ignoredNames': [
-      '.git'
-      '.hg'
-      '.svn'
-      '.DS_Store'
-      '.keep'
-      '._*'
-      '*.pyc'
+"*":
+  "exception-reporting":
+    userId: "ee24cf00-f793-9081-be2a-2cdae5536b7f"
+  welcome:
+    showOnStartup: false
+  metrics:
+    userId: "51eeb6113c1ae801c9aade9b6d679aa5189ced25"
+  editor:
+    fontFamily: "SourceCodePro-Light"
+    showInvisibles: true
+    preferredLineLength: 100
+    scrollPastEnd: true
+    useShadowDOM: true
+    invisibles:
+      eol: " "
+      tab: "⇥"
+      cr: "↩"
+  core:
+    ignoredNames: [
+      ".git"
+      ".hg"
+      ".svn"
+      ".DS_Store"
+      ".keep"
+      "._*"
+      "*.pyc"
     ]
-    'followSymlinks': true
-    'themes': [
-      'one-dark-ui'
-      'advanced-railscasts-syntax'
+    followSymlinks: true
+    themes: [
+      "atom-dark-ui"
+      "advanced-railscasts-syntax"
     ]
-  'auto-copyright':
-    'owner': 'Lifted Studios'
-  'spell-check':
-    'grammars': [
-      'source.gfm'
-      'text.git-commit'
-      'text.plain'
+  "auto-copyright":
+    owner: "Lifted Studios"
+  "spell-check":
+    grammars: [
+      "source.gfm"
+      "text.git-commit"
+      "text.plain"
     ]
-  'tree-view':
-    'hideVcsIgnoredFiles': true
-    'hideIgnoredNames': true
-  'autocomplete':
-    'includeCompletionsFromAllBuffers': true
-  'fancy-new-file':
-    'suggestCurrentFilePath': true
-  'autocomplete-plus':
-    'fileBlacklist': '.*'
-  'atom-color-highlight':
-    'markersAtEndOfLine': true
-    'hideMarkersInComments': true
-    'hideMarkersInStrings': true
-  'package-generator':
-    'createInDevMode': true
-  'atom-lint':
-    'rubocop':
-      'showDisplayCopNames': true
-  'enhanced-package-list':
-    'highlightAuthor': 'lee-dohm'
-  'white-cursor':
-    'darkThemes': [
-      'railscasts'
+  "tree-view":
+    hideVcsIgnoredFiles: true
+    hideIgnoredNames: true
+  autocomplete:
+    includeCompletionsFromAllBuffers: true
+  "fancy-new-file":
+    suggestCurrentFilePath: true
+  "autocomplete-plus":
+    fileBlacklist: ".*"
+  "atom-color-highlight":
+    markersAtEndOfLine: true
+    hideMarkersInComments: true
+    hideMarkersInStrings: true
+  "package-generator":
+    createInDevMode: true
+  "atom-lint":
+    rubocop:
+      showDisplayCopNames: true
+  "enhanced-package-list":
+    highlightAuthor: "lee-dohm"
+  "white-cursor":
+    darkThemes: [
+      "railscasts"
     ]
-    'enabled': 'detect'
-  'minimap':
-    'v4Preview': true
-'.haml.text':
-  'wrap-guide':
-    'enabled': false
-'.git-commit.text':
-  'editor':
-    'preferredLineLength': 72
-'.gfm.source':
-  'editor':
-    'showInvisibles': false
-    'softWrap': true
-    'tabLength': 4
-  'wrap-guide':
-    'enabled': false
-'.shell.source':
-  'editor':
-    'tabLength': 4
-'.java.source':
-  'editor':
-    'tabLength': 4
-'.c.source':
-  'editor':
-    'tabLength': 4
-'.python.source':
-  'editor':
-    'tabLength': 4
+    enabled: "detect"
+  minimap:
+    v4Preview: true
+".haml.text":
+  "wrap-guide":
+    enabled: false
+".git-commit.text":
+  editor:
+    preferredLineLength: 72
+".gfm.source":
+  editor:
+    showInvisibles: false
+    softWrap: true
+    tabLength: 4
+  "wrap-guide":
+    enabled: false
+".shell.source":
+  editor:
+    tabLength: 4
+".java.source":
+  editor:
+    tabLength: 4
+".c.source":
+  editor:
+    tabLength: 4
+".python.source":
+  editor:
+    tabLength: 4
+".json.source":
+  editor:
+    preferredLineLength: 100

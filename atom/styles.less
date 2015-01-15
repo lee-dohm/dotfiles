@@ -108,8 +108,7 @@ atom-workspace {
 // Makes the bracket matcher highlight more noticeable
 .editor, atom-text-editor::shadow {
   .bracket-matcher .region {
-    background-color: rgba(255, 255, 0, 0.3);
-    border: 1px solid yellow;
+    border-bottom: 1px solid yellow;
   }
 }
 
@@ -139,6 +138,18 @@ atom-workspace {
 
 .tree-view {
   font-size: @ui-font-size;
+}
+
+.settings-view {
+  font-size: @ui-font-size;
+
+  .setting-description {
+    font-size: @ui-font-size / 14 * 12;
+  }
+
+  .settings-panel label {
+    font-size: @ui-font-size;
+  }
 }
 
 // Highlights trailing whitespace except on the cursor line

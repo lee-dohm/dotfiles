@@ -20,3 +20,6 @@ atom.commands.add 'atom-workspace',
 
   'custom:screenshot-restore': ->
     atom.setWindowDimensions(oldWindowDimensions)
+
+  'custom:throw-error': ->
+    throw new Error
