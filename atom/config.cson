@@ -30,6 +30,7 @@
       "atom-dark-ui"
       "advanced-railscasts-syntax"
     ]
+    projectHome: "/Users/Lee/Source"
   "auto-copyright":
     owner: "Lifted Studios"
   "spell-check":
@@ -43,7 +44,7 @@
     hideIgnoredNames: true
   autocomplete:
     includeCompletionsFromAllBuffers: true
-  "fancy-new-file":
+  "advanced-new-file":
     suggestCurrentFilePath: true
   "autocomplete-plus":
     fileBlacklist: ".*"
