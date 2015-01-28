@@ -73,12 +73,21 @@
     onSave: "untabify"
   fonts:
     fontFamily: "Anonymous Pro"
-".haml.text":
-  "wrap-guide":
-    enabled: false
-".git-commit.text":
+".json.source":
   editor:
-    preferredLineLength: 72
+    preferredLineLength: 100
+".python.source":
+  editor:
+    tabLength: 4
+".c.source":
+  editor:
+    tabLength: 4
+".java.source":
+  editor:
+    tabLength: 4
+".shell.source":
+  editor:
+    tabLength: 4
 ".gfm.source":
   editor:
     showInvisibles: false
@@ -86,18 +95,9 @@
     tabLength: 4
   "wrap-guide":
     enabled: false
-".shell.source":
+".git-commit.text":
   editor:
-    tabLength: 4
-".java.source":
-  editor:
-    tabLength: 4
-".c.source":
-  editor:
-    tabLength: 4
-".python.source":
-  editor:
-    tabLength: 4
-".json.source":
-  editor:
-    preferredLineLength: 100
+    preferredLineLength: 72
+".haml.text":
+  "wrap-guide":
+    enabled: false
