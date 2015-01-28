@@ -6,7 +6,7 @@
   metrics:
     userId: "51eeb6113c1ae801c9aade9b6d679aa5189ced25"
   editor:
-    fontFamily: "SourceCodePro-Light"
+    fontFamily: "Anonymous Pro"
     showInvisibles: true
     preferredLineLength: 100
     scrollPastEnd: true
@@ -26,8 +26,12 @@
       "*.pyc"
     ]
     followSymlinks: true
+    disabledPackages: [
+      "live-archive"
+      "fonts"
+    ]
     themes: [
-      "atom-dark-ui"
+      "one-dark-ui"
       "advanced-railscasts-syntax"
     ]
     projectHome: "/Users/Lee/Source"
@@ -46,8 +50,7 @@
     includeCompletionsFromAllBuffers: true
   "advanced-new-file":
     suggestCurrentFilePath: true
-  "autocomplete-plus":
-    fileBlacklist: ".*"
+  "autocomplete-plus": {}
   "atom-color-highlight":
     markersAtEndOfLine: true
     hideMarkersInComments: true
@@ -66,6 +69,10 @@
     enabled: "detect"
   minimap:
     v4Preview: true
+  "tabs-to-spaces":
+    onSave: "untabify"
+  fonts:
+    fontFamily: "Anonymous Pro"
 ".haml.text":
   "wrap-guide":
     enabled: false
