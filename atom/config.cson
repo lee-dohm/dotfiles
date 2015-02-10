@@ -30,11 +30,11 @@
       "live-archive"
       "fonts"
     ]
+    projectHome: "/Users/Lee/Source"
     themes: [
       "one-dark-ui"
       "advanced-railscasts-syntax"
     ]
-    projectHome: "/Users/Lee/Source"
   "auto-copyright":
     owner: "Lifted Studios"
   "spell-check":
@@ -44,8 +44,8 @@
       "text.plain"
     ]
   "tree-view":
-    hideVcsIgnoredFiles: true
     hideIgnoredNames: true
+    hideVcsIgnoredFiles: true
   autocomplete:
     includeCompletionsFromAllBuffers: true
   "advanced-new-file":
@@ -73,12 +73,36 @@
     onSave: "untabify"
   fonts:
     fontFamily: "Anonymous Pro"
-".json.source":
+".basic.html.text":
+  editor:
+    preferredLineLength: 100
+".python.regexp.source":
+  editor:
+    preferredLineLength: 100
+".python.text.traceback":
+  editor:
+    preferredLineLength: 100
+".console.python.text":
+  editor:
+    preferredLineLength: 100
+".html.php.text":
+  editor:
+    preferredLineLength: 100
+".haml.text":
+  "wrap-guide":
+    enabled: false
+  editor:
+    preferredLineLength: 100
+".hamlc.text":
   editor:
     preferredLineLength: 100
 ".python.source":
   editor:
     tabLength: 4
+    preferredLineLength: 100
+".json.source":
+  editor:
+    preferredLineLength: 100
 ".c.source":
   editor:
     tabLength: 4
@@ -98,6 +122,3 @@
 ".git-commit.text":
   editor:
     preferredLineLength: 72
-".haml.text":
-  "wrap-guide":
-    enabled: false
