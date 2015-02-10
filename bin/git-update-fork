@@ -58,8 +58,8 @@ end
 
 # Raises an error if there was a problem executing the `git` command.
 #
-# @param [Process::Status] status Exit status of the `git` command.
-# @param [String] command Command that was executed.
+# @param status [Process::Status] Exit status of the `git` command.
+# @param command [String] Command that was executed.
 #
 # @raise [GitError] when the `git` command returned a non-zero exit code.
 def raise_git_error(status, command)
