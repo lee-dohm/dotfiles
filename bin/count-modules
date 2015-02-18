@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require 'set'
+
+package_dir = "#{ENV['HOME']}/.atom/packages"
+packages = Dir[File.join(package_dir, '*')].select { |file| File.directory?(file) }
+
+dependencies = {}
+packages.each do |package|
+  metadata = JSON.parse(File.read(File.join(package, 'package.json')))
+  next unless metadata['dependencies']
+
+  metadata['dependencies'].each do |key, value|
+    dependencies[key] ||= Set.new
+    dependencies[key] << value
+  end
+end
+
+total = 0
+keys = dependencies.keys.sort { |a, b| -(dependencies[a].count <=> dependencies[b].count) }
+keys.each do |key|
+  total += dependencies[key].count
+  puts "#{key}: #{dependencies[key].count} => #{dependencies[key].to_a}"
+end
+
+puts
+puts "Total Packages: #{packages.count}"
+puts "Total Different Versions: #{total}"
+puts "Average Dependencies per Package: #{total.to_f / packages.count}"
+puts "Average Number of Versions per Dependency: #{total.to_f / keys.count}"
