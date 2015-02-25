@@ -13,37 +13,34 @@
 @import "packages/red-wavy-underline/styles/red-wavy-underline";
 @import "packages/white-cursor/styles/white-cursor";
 
-@ui-font-size: 14px;
-
 // Sets the UI font to Helvetica Neue
 atom-workspace {
   font-family: 'Helvetica Neue', sans-serif;
-  font-size: @ui-font-size;
 }
 
 // Highlights the cursor line
-.editor, atom-text-editor::shadow {
+atom-text-editor::shadow {
   .cursor-line {
     background-color: @background-color-highlight;
   }
 }
 
 // Un-italicizes comments
-.editor, atom-text-editor::shadow {
+atom-text-editor::shadow {
   .comment {
     font-style: normal;
   }
 }
 
 // Makes the cursor pulse instead of blink
-.editor, atom-text-editor::shadow {
+atom-text-editor::shadow {
   .cursor {
     transition: opacity 0.5s;
   }
 }
 
 // Un-italicizes code markup in Markdown
-.editor, atom-text-editor::shadow {
+atom-text-editor::shadow {
   .markup.raw.gfm {
     font-style: normal;
   }
@@ -70,7 +67,7 @@ atom-workspace {
 
 @gutter-padding: 15px;
 
-.editor, atom-text-editor::shadow {
+atom-text-editor::shadow {
   .gutter .line-number {
     padding-left: @gutter-padding;
 
@@ -106,54 +103,21 @@ atom-workspace {
 }
 
 // Makes the bracket matcher highlight more noticeable
-.editor, atom-text-editor::shadow {
+atom-text-editor::shadow {
   .bracket-matcher .region {
     border-bottom: 1px solid yellow;
   }
 }
 
 // Replaces the atom-lint error highlight with the red wavy underline
-.editor, atom-text-editor::shadow {
+atom-text-editor::shadow {
   .violation-border {
     .red-wavy-underline;
   }
 }
 
-// Makes things bigger and more readable throughout the UI
-.overlay .select-list ol.list-group li,
-.overlay.select-list ol.list-group li {
-  font-size: @ui-font-size;
-}
-
-.status-bar {
-  font-size: @ui-font-size;
-  height: @ui-font-size * 2;
-  line-height: @ui-font-size * 2 - 4;
-}
-
-.tab-bar .tab, .tab-bar .tab.active {
-  font-size: @ui-font-size;
-  height: @ui-font-size * 2;
-}
-
-.tree-view {
-  font-size: @ui-font-size;
-}
-
-.settings-view {
-  font-size: @ui-font-size;
-
-  .setting-description {
-    font-size: @ui-font-size / 14 * 12;
-  }
-
-  .settings-panel label {
-    font-size: @ui-font-size;
-  }
-}
-
 // Highlights trailing whitespace except on the cursor line
-.editor, atom-text-editor::shadow {
+atom-text-editor::shadow {
   div.line:not(.cursor-line) {
     .trailing-whitespace {
       background-color: @background-color-error;

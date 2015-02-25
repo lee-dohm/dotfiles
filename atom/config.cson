@@ -15,6 +15,7 @@
       eol: " "
       tab: "⇥"
       cr: "↩"
+    fontSize: 14
   core:
     ignoredNames: [
       ".git"
@@ -32,7 +33,7 @@
     ]
     projectHome: "/Users/Lee/Source"
     themes: [
-      "one-dark-ui"
+      "atom-dark-ui"
       "advanced-railscasts-syntax"
     ]
   "auto-copyright":
@@ -73,45 +74,25 @@
     onSave: "untabify"
   fonts:
     fontFamily: "Anonymous Pro"
-".basic.html.text":
-  editor:
-    preferredLineLength: 100
-".python.regexp.source":
-  editor:
-    preferredLineLength: 100
-".python.text.traceback":
+  "bug-report": {}
+".html.php.text":
   editor:
     preferredLineLength: 100
 ".console.python.text":
   editor:
     preferredLineLength: 100
-".html.php.text":
+".python.text.traceback":
   editor:
     preferredLineLength: 100
-".haml.text":
-  "wrap-guide":
-    enabled: false
+".python.regexp.source":
   editor:
     preferredLineLength: 100
-".hamlc.text":
+".basic.html.text":
   editor:
     preferredLineLength: 100
-".python.source":
+".git-commit.text":
   editor:
-    tabLength: 4
-    preferredLineLength: 100
-".json.source":
-  editor:
-    preferredLineLength: 100
-".c.source":
-  editor:
-    tabLength: 4
-".java.source":
-  editor:
-    tabLength: 4
-".shell.source":
-  editor:
-    tabLength: 4
+    preferredLineLength: 72
 ".gfm.source":
   editor:
     showInvisibles: false
@@ -119,6 +100,27 @@
     tabLength: 4
   "wrap-guide":
     enabled: false
-".git-commit.text":
+".shell.source":
   editor:
-    preferredLineLength: 72
+    tabLength: 4
+".java.source":
+  editor:
+    tabLength: 4
+".c.source":
+  editor:
+    tabLength: 4
+".json.source":
+  editor:
+    preferredLineLength: 100
+".python.source":
+  editor:
+    tabLength: 4
+    preferredLineLength: 100
+".hamlc.text":
+  editor:
+    preferredLineLength: 100
+".haml.text":
+  "wrap-guide":
+    enabled: false
+  editor:
+    preferredLineLength: 100
