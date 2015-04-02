@@ -169,6 +169,7 @@ Options:
   def standard_labels
     {
       'bug' => 'e11d21',
+      'deprecation' => 'e11d21',
       'documentation' => 'c7def8',
       'enhancement' => '207de5',
       'help-wanted' => 'bfe5bf',
