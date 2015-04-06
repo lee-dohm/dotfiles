@@ -20,3 +20,7 @@
   'ctrl-cmd-r': 'tree-view:reveal-active-file'
   'ctrl-cmd-t': 'window:run-package-specs'
   'ctrl-shift-alt-t': 'custom:open-todo-list'
+'atom-text-editor':
+  'ctrl-shift-a': 'asciidoc-preview:toggle'
+'atom-workspace':
+  'ctrl-shift-alt-z': 'tabs-to-spaces:untabify'

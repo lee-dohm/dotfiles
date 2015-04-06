@@ -110,10 +110,8 @@ atom-text-editor::shadow {
 }
 
 // Replaces the atom-lint error highlight with the red wavy underline
-atom-text-editor::shadow {
-  .violation-border {
-    .red-wavy-underline;
-  }
+.lint .violation-border.violation-warning {
+  .red-wavy-underline;
 }
 
 // Highlights trailing whitespace except on the cursor line
