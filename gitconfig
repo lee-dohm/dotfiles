@@ -46,6 +46,3 @@
 
 [push]
   default = current
-[amazon]
-	append-cr-url = true
-	pull-request-by-default = true

@@ -1,13 +1,18 @@
 #!/bin/zsh
 
-android="$HOME/android-sdk-macosx"
-android_path="$HOME/android-sdk-macosx/tools:$HOME/android-sdk-macosx/platform-tools"
+if [[ $(uname) == "Linux" ]]; then
+    android="$HOME/android-sdk"
+    export JAVA_HOME="/usr/lib/jvm/java-1.7.0-openjdk-amd64"
+else
+    android="$HOME/android-sdk-macosx"
+    export JAVA_HOME="$(/usr/libexec/java_home)"
+fi
 
-add_to_path "$android" "$android_path"
+android_path="$android/tools:$android/platform-tools"
 
 if [[ -d "$android" ]]; then
     export ANDROID_HOME="$android"
-    export JAVA_HOME="$(/usr/libexec/java_home)"
+    add_to_path "$android" "$android_path"
 
     alias stayon="adb shell svc power stayon true"
 fi
