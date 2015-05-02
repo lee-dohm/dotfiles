@@ -27,23 +27,14 @@
       "*.pyc"
     ]
     followSymlinks: true
-    disabledPackages: [
-      "live-archive"
-      "fonts"
-    ]
+    disabledPackages: []
+    projectHome: "/Users/Lee/Source"
     themes: [
       "atom-dark-ui"
       "advanced-railscasts-syntax"
     ]
-    projectHome: "/Users/Lee/Source"
   "auto-copyright":
     owner: "Lifted Studios"
-  "spell-check":
-    grammars: [
-      "source.gfm"
-      "text.git-commit"
-      "text.plain"
-    ]
   "tree-view":
     hideIgnoredNames: true
     hideVcsIgnoredFiles: true
@@ -51,7 +42,6 @@
     includeCompletionsFromAllBuffers: true
   "advanced-new-file":
     suggestCurrentFilePath: true
-  "autocomplete-plus": {}
   "atom-color-highlight":
     markersAtEndOfLine: true
     hideMarkersInComments: true
@@ -72,17 +62,14 @@
     v4Preview: true
   "tabs-to-spaces":
     onSave: "untabify"
-  fonts:
-    fontFamily: "Anonymous Pro"
-  "bug-report": {}
-  "asciidoc-preview": {}
-  feedback: {}
-".html.php.text":
+  "markdown-table-formatter":
+    formatOnSave: false
+  linter:
+    lintOnChange: false
+    statusBar: "Show all errors"
+".java.source":
   editor:
-    preferredLineLength: 100
-".basic.html.text":
-  editor:
-    preferredLineLength: 100
+    tabLength: 4
 ".git-commit.text":
   editor:
     preferredLineLength: 72
@@ -96,31 +83,20 @@
 ".shell.source":
   editor:
     tabLength: 4
-".java.source":
-  editor:
-    tabLength: 4
 ".c.source":
   editor:
     tabLength: 4
 ".json.source":
-  editor:
-    preferredLineLength: 100
   "wrap-guide":
     enabled: false
 ".python.source":
   editor:
     tabLength: 4
-    preferredLineLength: 100
-".hamlc.text":
-  editor:
-    preferredLineLength: 100
-".haml.text":
-  "wrap-guide":
-    enabled: false
-  editor:
-    preferredLineLength: 100
 ".asciidoc.source":
   "wrap-guide":
     enabled: false
   editor:
     softWrap: true
+".haml.text":
+  "wrap-guide":
+    enabled: false
