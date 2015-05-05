@@ -42,7 +42,6 @@ bindkey "^R" history-incremental-search-backward
 bindkey "^P" history-search-backward
 bindkey "^Y" accept-and-hold
 bindkey "^N" insert-last-word
-bindkey -s "^T" "^[Isudo ^[A" # "t" for "toughguy"
 
 # ensure dotfiles bin directory is loaded first
 export PATH="$HOME/.bin:/usr/local/bin:/usr/local/sbin:$PATH"
@@ -80,6 +79,9 @@ prompt_segment() {
 build_prompt() {
     exit=$?
 
+    if [[ -n "$SSH_CONSOLE" ]] || [[ -n "$SSH_TTY" ]]; then
+        prompt_segment "%B%F{yellow}ssh:#{$HOSTNAME}"
+    fi
     prompt_segment "$(git_prompt_info)"
     prompt_segment "%B%F{blue}%~"
     if [[ $exit -gt 0 ]]; then
