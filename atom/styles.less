@@ -72,32 +72,32 @@ atom-text-editor::shadow {
     padding-left: @gutter-padding;
 
     &.git-line-added {
-      .diff-border(@text-color-added);
+      .diff-border(@text-color-success);
       padding-left: @gutter-padding - 4;
     }
 
     &.git-line-modified {
-      .diff-border(@text-color-modified);
+      .diff-border(@text-color-warning);
       padding-left: @gutter-padding - 4;
     }
 
     &.git-line-removed {
-      .diff-border(@text-color-removed);
+      .diff-border(@text-color-error);
       padding-left: @gutter-padding;
     }
   }
 
   .gutter.git-diff-icon .line-number {
     &.git-line-added {
-      .diff-icon(@text-color-added);
+      .diff-icon(@text-color-success);
     }
 
     &.git-line-modified {
-      .diff-icon(@text-color-modified);
+      .diff-icon(@text-color-warning);
     }
 
     &.git-line-removed {
-      .diff-icon(@text-color-removed);
+      .diff-icon(@text-color-error);
     }
   }
 }

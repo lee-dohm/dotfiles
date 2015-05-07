@@ -21,6 +21,9 @@
     prefix: 'it'
     body: "it '$1', ->$0"
 '.source.gfm':
+  'Test':
+    prefix: 'test'
+    body: 'foo$1bar$1'
   'MIT License':
     prefix: 'mit'
     body: """

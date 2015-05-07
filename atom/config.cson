@@ -17,6 +17,15 @@
       cr: "↩"
     fontSize: 14
   core:
+    followSymlinks: true
+    disabledPackages: [
+      "autocomplete-paths"
+    ]
+    projectHome: "/Users/Lee/Source"
+    themes: [
+      "atom-dark-ui"
+      "advanced-railscasts-syntax"
+    ]
     ignoredNames: [
       ".git"
       ".hg"
@@ -25,13 +34,6 @@
       ".keep"
       "._*"
       "*.pyc"
-    ]
-    followSymlinks: true
-    disabledPackages: []
-    projectHome: "/Users/Lee/Source"
-    themes: [
-      "atom-dark-ui"
-      "advanced-railscasts-syntax"
     ]
   "auto-copyright":
     owner: "Lifted Studios"
@@ -67,6 +69,22 @@
   linter:
     lintOnChange: false
     statusBar: "Show all errors"
+  "isotope-ui":
+    backgroundColor: "false"
+    fontFamily: "System Default"
+    customBackgroundColorPicker:
+      red: 12
+      green: 22
+      blue: 60
+      alpha: 1
+    backgroundGradient: true
+    fontWeight: "Regular"
+  "notational-velocity":
+    directory: "/Users/Lee/Dropbox/nvNotes"
+  "autocomplete-plus": {}
+".html.php.text":
+  editor:
+    preferredLineLength: 100
 ".java.source":
   editor:
     tabLength: 4
