@@ -79,8 +79,8 @@ prompt_segment() {
 build_prompt() {
     exit=$?
 
-    if [[ -n "$SSH_CONSOLE" ]] || [[ -n "$SSH_TTY" ]]; then
-        prompt_segment "%B%F{yellow}ssh:#{$HOSTNAME}"
+    if [[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]]; then
+        prompt_segment "%B%F{yellow}ssh:$HOSTNAME"
     fi
     prompt_segment "$(git_prompt_info)"
     prompt_segment "%B%F{blue}%~"

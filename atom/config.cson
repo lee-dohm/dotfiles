@@ -6,7 +6,7 @@
   metrics:
     userId: "51eeb6113c1ae801c9aade9b6d679aa5189ced25"
   editor:
-    fontFamily: "Anonymous Pro"
+    fontFamily: "InputMono-ExtraLight"
     showInvisibles: true
     preferredLineLength: 100
     scrollPastEnd: true
@@ -69,28 +69,32 @@
   linter:
     lintOnChange: false
     statusBar: "Show all errors"
-  "isotope-ui":
-    backgroundColor: "false"
-    fontFamily: "System Default"
-    customBackgroundColorPicker:
-      red: 12
-      green: 22
-      blue: 60
-      alpha: 1
-    backgroundGradient: true
-    fontWeight: "Regular"
+    subtleLinterErrors: [
+      "shellcheck"
+      "rubocop"
+    ]
   "notational-velocity":
-    directory: "/Users/Lee/Dropbox/nvNotes"
-  "autocomplete-plus": {}
-".html.php.text":
+    directory: "/Users/lcdohm/Documents/Notebook"
+".haml.text":
+  "wrap-guide":
+    enabled: false
+".asciidoc.source":
+  "wrap-guide":
+    enabled: false
   editor:
-    preferredLineLength: 100
-".java.source":
+    softWrap: true
+".python.source":
   editor:
     tabLength: 4
-".git-commit.text":
+".json.source":
+  "wrap-guide":
+    enabled: false
+".c.source":
   editor:
-    preferredLineLength: 72
+    tabLength: 4
+".shell.source":
+  editor:
+    tabLength: 4
 ".gfm.source":
   editor:
     showInvisibles: false
@@ -98,23 +102,9 @@
     tabLength: 4
   "wrap-guide":
     enabled: false
-".shell.source":
+".git-commit.text":
+  editor:
+    preferredLineLength: 72
+".java.source":
   editor:
     tabLength: 4
-".c.source":
-  editor:
-    tabLength: 4
-".json.source":
-  "wrap-guide":
-    enabled: false
-".python.source":
-  editor:
-    tabLength: 4
-".asciidoc.source":
-  "wrap-guide":
-    enabled: false
-  editor:
-    softWrap: true
-".haml.text":
-  "wrap-guide":
-    enabled: false

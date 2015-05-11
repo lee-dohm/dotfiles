@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Appends an entry to the `PATH` iff the path exists.
 #
 # One argument - Checks to see if the path exists, appends it if it does.
