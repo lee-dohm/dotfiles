@@ -3,6 +3,8 @@
 require 'json'
 require 'optparse'
 
+PACKAGE_NAME = 'atom-amd64.deb'
+
 def call_api(url)
   JSON.parse(`curl -s #{url}`)
 end
@@ -28,10 +30,10 @@ unless `uname` == 'Linux'
   exit
 end
 
-asset = latest_release['assets'].find { |a| a['name'] == 'atom-amd64.deb' }
+asset = latest_release['assets'].find { |a| a['name'] == PACKAGE_NAME }
 url = asset['browser_download_url']
 
 raise StandardError, "Could not download #{url}" unless system("wget #{url}")
 system('sudo dpkg --install atom-amd64.deb')
 
-File.unlink('atom-amd64.deb') if File.exist?('atom-amd64.deb')
+File.unlink(PACKAGE_NAME) if File.exist?(PACKAGE_NAME)
