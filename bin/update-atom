@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'json'
+require 'optparse'
 
 def call_api(url)
   JSON.parse(`curl -s #{url}`)
@@ -8,6 +9,23 @@ end
 
 def latest_release
   call_api('https://api.github.com/repos/atom/atom/releases')[0]
+end
+
+OptionParser.new do |p|
+  p.banner = 'Downloads and installs the latest Atom editor release for Ubuntu machines.'
+
+  p.separator ''
+  p.separator 'Specific options:'
+
+  p.on_tail('-h', '--help', 'Show this message') do
+    puts p
+    exit
+  end
+end.parse!
+
+unless `uname` == 'Linux'
+  puts 'This script is designed only for Ubuntu machines'
+  exit
 end
 
 asset = latest_release['assets'].find { |a| a['name'] == 'atom-amd64.deb' }
