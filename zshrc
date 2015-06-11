@@ -19,6 +19,13 @@ done
 # makes color constants available
 autoload -U colors && colors
 
+# Required for compatibility with old version of zsh
+for COLOR in RED GREEN YELLOW BLUE MAGENTA CYAN BLACK WHITE; do
+    eval $COLOR='%{$fg_no_bold[${(L)COLOR}]%}'  #wrap colours between %{ %} to avoid weird gaps in autocomplete
+    eval BOLD_$COLOR='%{$fg_bold[${(L)COLOR}]%}'
+done
+eval RESET='%{$reset_color%}'
+
 # history settings
 setopt hist_ignore_all_dups inc_append_history
 HISTFILE=~/.zhistory
@@ -71,7 +78,7 @@ SEGMENT_END=']'
 # Draws a segment of the prompt if the given content is non-empty.
 prompt_segment() {
     if [[ -n $1 ]]; then
-        echo -n "$SEGMENT_START$1%{%f%b%k%}$SEGMENT_END"
+        echo -n "$SEGMENT_START$1$RESET$SEGMENT_END"
     fi
 }
 
@@ -80,10 +87,10 @@ build_prompt() {
     exit=$?
 
     if [[ -n "$SSH_CLIENT" ]] || [[ -n "$SSH_TTY" ]]; then
-        prompt_segment "%B%F{yellow}ssh:$HOSTNAME"
+        prompt_segment "${BOLD_YELLOW}ssh:$HOSTNAME"
     fi
     prompt_segment "$(git_prompt_info)"
-    prompt_segment "%B%F{blue}%~"
+    prompt_segment "${BOLD_BLUE}%~"
     if [[ $exit -gt 0 ]]; then
         prompt_segment "$(exit_code)"
     fi
@@ -99,22 +106,22 @@ build_prompt() {
 git_prompt_info() {
     ref=$(git symbolic-ref HEAD 2> /dev/null)
     if [[ -n $ref ]]; then
-        echo "%{$fg_bold[green]%}${ref#refs/heads/}"
+        echo "${BOLD_GREEN}${ref#refs/heads/}"
     else
         tag=$(git branch --no-color 2> /dev/null |
                   sed -e '/^[^*]/d' -e "s/* (detached from \(.*\))/\1/")
 
         if [[ -n $tag ]]; then
-            echo "%{$fg_bold[yellow]%}${tag}"
+            echo "${BOLD_YELLOW}${tag}"
         fi
     fi
 }
 
 exit_code() {
-    echo -n "%(?..${fg_bold[red]}%?)"
+    echo -n "%(?..${BOLD_RED}%?)"
 }
 
-export PROMPT='%{%f%b%k%}$(build_prompt)'
+export PROMPT='$RESET$(build_prompt)'
 
 # Perform any app-specific initializations
 for init in $HOME/.zsh/init/*.sh; do
