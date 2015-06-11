@@ -1,4 +1,5 @@
-#!/bin/zsh
+#!/bin/sh
+
 alias tlf="tail -f"
 alias ln='ln -v'
 alias mkdir='mkdir -p'
@@ -7,7 +8,6 @@ alias -g G='| grep'
 alias -g M='| less'
 alias -g L='| wc -l'
 
-# Rails
 alias migrate="rake db:migrate db:rollback && rake db:migrate"
 alias m="migrate"
 alias rk="rake"
@@ -21,3 +21,5 @@ alias f='find . -name'
 alias l='ls -F'
 alias ll='ls -lhF'
 alias la='ls -lhaF'
+
+alias sssh='screen-ssh'

@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+hostname = ARGV.first
+exec("ssh -t #{hostname} screen -R")
