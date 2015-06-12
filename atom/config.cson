@@ -6,8 +6,7 @@
   metrics:
     userId: "51eeb6113c1ae801c9aade9b6d679aa5189ced25"
   editor:
-    fontFamily: "InputMono-ExtraLight"
-    showInvisibles: true
+    fontFamily: "Source Code Pro"
     preferredLineLength: 100
     scrollPastEnd: true
     useShadowDOM: true
@@ -15,17 +14,11 @@
       eol: " "
       tab: "⇥"
       cr: "↩"
-    fontSize: 14
+    showInvisibles: true
   core:
     followSymlinks: true
-    disabledPackages: [
-      "autocomplete-paths"
-    ]
+    disabledPackages: []
     projectHome: "/Users/Lee/Source"
-    themes: [
-      "atom-dark-ui"
-      "advanced-railscasts-syntax"
-    ]
     ignoredNames: [
       ".git"
       ".hg"
@@ -34,6 +27,10 @@
       ".keep"
       "._*"
       "*.pyc"
+    ]
+    themes: [
+      "one-light-ui"
+      "one-light-syntax"
     ]
   "auto-copyright":
     owner: "Lifted Studios"
@@ -64,6 +61,7 @@
     v4Preview: true
   "tabs-to-spaces":
     onSave: "untabify"
+    changeSoftTabsMode: true
   "markdown-table-formatter":
     formatOnSave: false
   linter:
@@ -74,10 +72,39 @@
       "rubocop"
     ]
   "notational-velocity":
-    directory: "/Users/lcdohm/Documents/Notebook"
+    directory: "/Users/Lee/Documents/Notebook"
+  "spell-check": {}
+  "fuzzy-finder":
+    preserveLastSearch: true
+  "autocomplete-plus": {}
+  whitespace: {}
+  "one-light-ui": {}
+  "markdown-preview":
+    useGitHubStyle: true
+  "status-bar":
+    cursorPositionFormat: "L:%L C:%C"
+  tabs:
+    usePreviewTabs: true
+".erb.html.text":
+  editor:
+    preferredLineLength: 100
+".ruby.source":
+  editor:
+    preferredLineLength: 100
+".pyjade.source":
+  editor:
+    preferredLineLength: 100
+".jade.source":
+  editor:
+    preferredLineLength: 100
 ".haml.text":
   "wrap-guide":
     enabled: false
+  editor:
+    preferredLineLength: 100
+".hamlc.text":
+  editor:
+    preferredLineLength: 100
 ".asciidoc.source":
   "wrap-guide":
     enabled: false
@@ -95,16 +122,17 @@
 ".shell.source":
   editor:
     tabLength: 4
-".gfm.source":
-  editor:
-    showInvisibles: false
-    softWrap: true
-    tabLength: 4
-  "wrap-guide":
-    enabled: false
 ".git-commit.text":
   editor:
     preferredLineLength: 72
 ".java.source":
   editor:
     tabLength: 4
+".gfm.source":
+  editor:
+    showInvisibles: false
+    softWrap: true
+    tabLength: 4
+    preferredLineLength: 100
+  "wrap-guide":
+    enabled: false
