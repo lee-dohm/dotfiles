@@ -1,62 +1,76 @@
-#!/usr/bin/ruby
-#
-# Put this on your $PATH (~/bin is recommended).
-#
-# Show churn for the files changed in the branch:
-#
-#   $ git-churn
-#
+#!/usr/bin/env elixir
 
-class GitChurn
-  attr_accessor :all_files_with_churn_count, :changed_files, :result
+defmodule GitChurn do
+  @doc """
+  Calculates the number of times individual files have been changed on this branch.
+  """
 
-  def calculate
-    get_all_files_with_churn_count
-    get_changed_files
-    filter_into_result
-    print_result
+  def calculate do
+    files_with_churn
+    |> select_changed
+    |> Enum.sort(fn({_, churn_a}, {_, churn_b}) -> churn_a > churn_b end)
+    |> Enum.take(10)
+    |> Enum.each(fn({path, churn}) ->
+      IO.puts "#{String.rjust(Integer.to_string(churn), 4)}: #{path}"
+    end)
   end
 
-  private
-
-  def get_all_files_with_churn_count
-    self.all_files_with_churn_count =
-      `git log --all #{format_logs} | #{remove_blank_lines} | #{sort_by_ascending_churn_count}`.split("\n")
+  @doc """
+  Gets the files and the number of times they have been changed.
+  """
+  defp files_with_churn do
+    git("log --all --name-only --format=format:")
+    |> remove_blanks
+    |> count_duplicates
   end
 
-  def format_logs
-    "--name-only --format='format:'"
+  @doc """
+  Gets the list of files that have changed since `origin/master`.
+  """
+  defp changed_since_origin_master do
+    git("log origin/master..HEAD --name-only --format=format:")
+    |> remove_blanks
+    |> Enum.uniq
   end
 
-  def remove_blank_lines
-    "grep -v '^$'"
+  @doc """
+  Selects only the items in `files` that have changed since `origin/master`.
+  """
+  defp select_changed(files) do
+    changed = changed_since_origin_master
+    Enum.filter(files, fn({file, _}) -> file in changed end)
   end
 
-  def sort_by_ascending_churn_count
-    'sort | uniq -c | sort'
+  @doc """
+  Transforms lists of the form `[[x, x, ...], [y, y, ...], ...]` into a list of tuples of the form
+  `[{x, count_x}, {y, count_y}, ...]`.
+  """
+  defp count_chunks([]), do: []
+  defp count_chunks([[value | rest] | tail]), do: [{value, length(rest) + 1}] ++ count_chunks(tail)
+
+  @doc """
+  Counts the occurrences of each value in a list and returns a list of `{value, count}` tuples.
+  """
+  defp count_duplicates(files) do
+    Enum.sort(files)
+    |> Enum.chunk_by(&(&1))
+    |> count_chunks
   end
 
-  def get_changed_files
-    self.changed_files =
-      `git log origin/master..HEAD #{format_logs} | #{remove_blank_lines} | #{remove_duplicates}`.split("\n")
+  @doc """
+  Executes a Git command and returns a list of lines of output for parsing.
+  """
+  defp git(command) do
+    {output, 0} = System.cmd("git", OptionParser.split(command))
+    String.split(output, ~r{\n})
   end
 
-  def remove_duplicates
-    'sort | uniq'
-  end
-
-  def filter_into_result
-    self.result = all_files_with_churn_count.select { |file| file_changed?(file) }.join("\n")
-  end
-
-  def file_changed?(file)
-    changed_files.any? { |changed_file| file.include?(changed_file) }
-  end
-
-  def print_result
-    puts result
-  end
+  @doc """
+  Removes all blank strings from the given list.
+  """
+  defp remove_blanks([]), do: []
+  defp remove_blanks(["" | tail]), do: remove_blanks(tail)
+  defp remove_blanks([head | tail]), do: [head] ++ remove_blanks(tail)
 end
 
-git_churn = GitChurn.new
-git_churn.calculate
+GitChurn.calculate
