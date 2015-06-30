@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 
 export EDITOR='atom'
 export VISUAL="$EDITOR"

@@ -6,18 +6,16 @@
   metrics:
     userId: "51eeb6113c1ae801c9aade9b6d679aa5189ced25"
   editor:
-    fontFamily: "Source Code Pro"
     preferredLineLength: 100
     scrollPastEnd: true
-    useShadowDOM: true
     invisibles:
       eol: " "
       tab: "⇥"
       cr: "↩"
     showInvisibles: true
+    fontFamily: "Source Code Pro"
   core:
     followSymlinks: true
-    disabledPackages: []
     projectHome: "/Users/Lee/Source"
     ignoredNames: [
       ".git"
@@ -30,7 +28,7 @@
     ]
     themes: [
       "one-light-ui"
-      "duotone-light-syntax"
+      "advanced-railscasts-light-syntax"
     ]
   "auto-copyright":
     owner: "Lifted Studios"
@@ -54,7 +52,7 @@
     highlightAuthor: "lee-dohm"
   "white-cursor":
     darkThemes: [
-      "railscasts"
+      "railscasts-syntax"
     ]
     enabled: "detect"
   minimap:
@@ -73,7 +71,7 @@
     ]
     showErrorInline: false
   "notational-velocity":
-    directory: "/Users/Lee/Documents/Notebook"
+    directory: "/Users/Lee/Dropbox/Notebook"
   "spell-check": {}
   "fuzzy-finder":
     preserveLastSearch: true
@@ -86,6 +84,8 @@
     cursorPositionFormat: "L:%L C:%C"
   tabs:
     usePreviewTabs: true
+    enableVcsColoring: true
+  pigments: {}
 ".erb.html.text":
   editor:
     preferredLineLength: 100
