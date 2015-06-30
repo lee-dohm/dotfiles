@@ -1,25 +1,35 @@
-#!/usr/bin/env ruby -w
-
-#
-# Copyright (c) 2013-2014 by Lifted Studios.  All Rights Reserved.
-#
+#!/usr/bin/env elixir
 
 # Changes the default location for storing screenshots using the OS X keyboard commands.
 #
 # From: http://osxdaily.com/2011/01/26/change-the-screenshot-save-file-location-in-mac-os-x/
 
-require 'trollop'
+defmodule Defaults do
+  def read(args) do
+    {output, 0} = System.cmd("defaults", ["read"] ++ OptionParser.split(args))
+    output
+  end
 
-opts = Trollop.options do
-  opt :default, 'Set the screenshot location to the default of ~/Desktop'
+  def write(args) do
+    {output, 0} = System.cmd("defaults", ["write"] ++ OptionParser.split(args))
+    output
+  end
 end
 
-unless opts[:default] || ARGV.count == 1
-  system('defaults read com.apple.screencapture location')
-  exit 0
+defmodule ScreenshotLocation do
+  def execute([default: true], _), do: write_location("~/Desktop")
+  def execute(_, [location | _]), do: write_location(location)
+  def execute(_, _), do: read_location
+
+  defp read_location do
+    IO.write Defaults.read("com.apple.screencapture location")
+  end
+
+  defp write_location(location) do
+    location = Path.expand(location)
+    IO.write Defaults.write("com.apple.screencapture location #{location}/")
+  end
 end
 
-location = ARGV[0] || File.expand_path('~/Desktop')
-
-system("defaults write com.apple.screencapture location #{location}/")
-system('killall SystemUIServer')
+{options, args, _} = OptionParser.parse(System.argv(), strict: [default: :boolean])
+ScreenshotLocation.execute(options, args)
