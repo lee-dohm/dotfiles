@@ -6,8 +6,10 @@
 
 defmodule Defaults do
   def read(args) do
-    {output, 0} = System.cmd("defaults", ["read"] ++ OptionParser.split(args))
-    output
+    case System.cmd("defaults", ["read"] ++ OptionParser.split(args), stderr_to_stdout: true) do
+      {output, 0} -> output
+      {_, 1}      -> "Default for '#{args}' does not exist\n"
+    end
   end
 
   def write(args) do
