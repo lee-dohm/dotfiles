@@ -20,6 +20,25 @@
       ## Copyright
 
     """
+'.source.java':
+  'private static final':
+    prefix: 'psf'
+    body: 'private static final'
+  'private static final String':
+    prefix: 'psfs'
+    body: 'private static final String'
+  'JUnit Test':
+    prefix: 'test'
+    body: """
+    @Test
+    public void ${1:testName}() {$0\n}
+    """
+  'JUnit Test with Expected Exception':
+    prefix: 'testex'
+    body: """
+    @Test(expected=${1:Exception}.class)
+    public void ${2:throwsOnSomething}() {$0\n}
+    """
 '.source.ruby':
   Before:
     prefix: 'bef'

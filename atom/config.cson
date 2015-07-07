@@ -28,7 +28,7 @@
     ]
     themes: [
       "one-light-ui"
-      "advanced-railscasts-light-syntax"
+      "one-light-syntax"
     ]
   "auto-copyright":
     owner: "Lifted Studios"
@@ -80,15 +80,65 @@
   "one-light-ui": {}
   "markdown-preview":
     useGitHubStyle: true
+    openPreviewInSplitPane: false
   "status-bar":
     cursorPositionFormat: "L:%L C:%C"
   tabs:
     usePreviewTabs: true
     enableVcsColoring: true
   pigments: {}
+".elixir.html.text":
+  editor:
+    preferredLineLength: 100
 ".erb.html.text":
   editor:
     preferredLineLength: 100
+".elixir.source":
+  editor:
+    preferredLineLength: 100
+".elixir.text":
+  editor:
+    preferredLineLength: 100
+".ruby.source":
+  editor:
+    preferredLineLength: 100
+".pyjade.source":
+  editor:
+    preferredLineLength: 100
+".jade.source":
+  editor:
+    preferredLineLength: 100
+".haml.text":
+  "wrap-guide":
+    enabled: false
+  editor:
+    preferredLineLength: 100
+".hamlc.text":
+  editor:
+    preferredLineLength: 100
+".asciidoc.source":
+  "wrap-guide":
+    enabled: false
+  editor:
+    softWrap: true
+".python.source":
+  editor:
+    tabLength: 4
+".json.source":
+  "wrap-guide":
+    enabled: false
+".c.source":
+  editor:
+    tabLength: 4
+".shell.source":
+  editor:
+    tabLength: 4
+".git-commit.text":
+  editor:
+    preferredLineLength: 72
+".java.source":
+  editor:
+    tabLength: 4
 ".gfm.source":
   editor:
     showInvisibles: false
@@ -97,43 +147,3 @@
     preferredLineLength: 100
   "wrap-guide":
     enabled: false
-".java.source":
-  editor:
-    tabLength: 4
-".git-commit.text":
-  editor:
-    preferredLineLength: 72
-".shell.source":
-  editor:
-    tabLength: 4
-".c.source":
-  editor:
-    tabLength: 4
-".json.source":
-  "wrap-guide":
-    enabled: false
-".python.source":
-  editor:
-    tabLength: 4
-".asciidoc.source":
-  "wrap-guide":
-    enabled: false
-  editor:
-    softWrap: true
-".hamlc.text":
-  editor:
-    preferredLineLength: 100
-".haml.text":
-  "wrap-guide":
-    enabled: false
-  editor:
-    preferredLineLength: 100
-".jade.source":
-  editor:
-    preferredLineLength: 100
-".pyjade.source":
-  editor:
-    preferredLineLength: 100
-".ruby.source":
-  editor:
-    preferredLineLength: 100
