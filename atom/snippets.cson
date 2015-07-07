@@ -39,6 +39,25 @@
     @Test(expected=${1:Exception}.class)
     public void ${2:throwsOnSomething}() {$0\n}
     """
+'.source.elixir':
+  Context:
+    prefix: 'con'
+    body: 'context "$1" do$0\nend'
+  Describe:
+    prefix: 'desc'
+    body: 'describe "$1" do$0\nend'
+  It:
+    prefix: 'it'
+    body: 'it "$1" do$0\nend'
+  'It One-Line':
+    prefix: 'itd'
+    body: 'it "$1", do: $0'
+  Let:
+    prefix: 'let'
+    body: 'let :$1 do$0\nend'
+  'Let One-Line':
+    prefix: 'letd'
+    body: 'let :$1, do: $0'
 '.source.ruby':
   Before:
     prefix: 'bef'
