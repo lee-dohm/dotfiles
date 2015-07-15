@@ -39,6 +39,15 @@
     @Test(expected=${1:Exception}.class)
     public void ${2:throwsOnSomething}() {$0\n}
     """
+  'JUnit Before':
+    prefix: 'bef'
+    body: """
+    @Before
+    public void setUp() {$0\n}
+    """
+  'Assert':
+    prefix: 'ass'
+    body: "assertThat(${1:expected}, ${2:actual});$0"
 '.source.elixir':
   Context:
     prefix: 'con'
