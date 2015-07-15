@@ -129,3 +129,24 @@ atom-text-editor::shadow {
     }
   }
 }
+
+// https://discuss.atom.io/t/crazy-3d-angled-tree-view/18765
+#atom-perspective() {
+  @viewing-distance: 12in;
+  @rotation: 20deg;
+
+  .tree-view-scroller {
+    transform: translateY(-10vh) perspective(@viewing-distance) rotateY(@rotation);
+    padding-top: 12vh;
+    padding-bottom: 12vh;
+    transform-origin: left;
+    width: 120%;
+    height: 120%;
+  }
+  body /deep/ atom-text-editor-minimap {
+    transform: perspective(@viewing-distance) rotateY(-@rotation);
+    transform-origin: right;
+  }
+}
+
+// #atom-perspective;
