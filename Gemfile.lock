@@ -8,13 +8,19 @@ GEM
       nokogiri (>= 1.4.4)
       uuidtools (~> 2.1)
     coderay (1.1.0)
+    domain_name (0.5.24)
+      unf (>= 0.0.5, < 1.0.0)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     highline (1.6.21)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
     json (1.8.1)
     method_source (0.8.2)
+    mime-types (2.6.1)
     mini_portile (0.5.2)
     multipart-post (2.0.0)
+    netrc (0.10.3)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     octokit (3.5.2)
@@ -30,6 +36,10 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     rainbow (2.0.0)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     rubocop (0.25.0)
       parser (>= 2.2.0.pre.4, < 3.0)
       powerpack (~> 0.0.6)
@@ -45,6 +55,9 @@ GEM
       sass (~> 3.4.1)
     slop (3.6.0)
     trollop (2.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.1)
     uuidtools (2.1.4)
 
 PLATFORMS
@@ -58,6 +71,7 @@ DEPENDENCIES
   plist
   powerpack
   pry
+  rest-client
   rubocop
   ruby-progressbar
   scss-lint
