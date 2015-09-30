@@ -5,7 +5,7 @@ if [[ $(uname) == "Linux" ]]; then
     export JAVA_HOME="/usr/lib/jvm/java-1.7.0-openjdk-amd64"
 else
     android="$HOME/android-sdk-macosx"
-    export JAVA_HOME="$(/usr/libexec/java_home)"
+    export JAVA_HOME="$(/usr/libexec/java_home 2> /dev/null)"
 fi
 
 android_path="$android/tools:$android/platform-tools"
