@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+require 'rest_client'
+
+# Counts the packages with names matching a regular expression.
+
+def get_batch(page = 1)
+  RestClient::Request.execute(method: :get,
+                              url: "https://api.atom.io/api/packages?page=#{page}",
+                              verify_ssl: OpenSSL::SSL::VERIFY_NONE)
+end
+
+regex = /#{ARGV[0]}/
+count = 0
+page = 1
+response = get_batch(page)
+while response.code == 200 && response.body != '[]' do
+  names = JSON.parse(response.body).map { |package| package['name'] }
+                                   .select { |name| name =~ regex }
+  count += names.size
+  puts names
+
+  page += 1
+  response = get_batch(page)
+  sleep 0.5
+end
+
+puts '====='
+puts "Count: #{count}"
