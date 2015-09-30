@@ -14,13 +14,11 @@
       cr: "↩"
     showInvisibles: true
     fontFamily: "Source Code Pro"
+    backUpBeforeSaving: true
+    tabType: "soft"
   core:
     followSymlinks: true
     projectHome: "/Users/Lee/Source"
-    themes: [
-      "one-light-ui"
-      "one-light-syntax"
-    ]
     ignoredNames: [
       ".git"
       ".hg"
@@ -30,6 +28,15 @@
       "._*"
       "*.pyc"
       "Thumbs.db"
+    ]
+    themes: [
+      "one-light-ui"
+      "one-light-syntax"
+    ]
+    audioBeep: false
+    disabledPackages: [
+      "minimap"
+      "minimap-find-and-replace"
     ]
   "auto-copyright":
     owner: "Lifted Studios"
@@ -58,6 +65,8 @@
     enabled: "detect"
   minimap:
     v4Preview: true
+    plugins:
+      "find-and-replace": true
   "tabs-to-spaces":
     onSave: "untabify"
     changeSoftTabsMode: true
@@ -71,9 +80,6 @@
   "autocomplete-plus": {}
   whitespace: {}
   "one-light-ui": {}
-  "markdown-preview":
-    useGitHubStyle: true
-    openPreviewInSplitPane: false
   "status-bar":
     cursorPositionFormat: "L:%L C:%C"
   tabs:
@@ -86,16 +92,44 @@
     showErrorPanel: false
     statusIconPosition: "Right"
     lintOnFly: false
-".elixir.html.text":
+  "advanced-open-file":
+    createFileInstantly: true
+  "asciidoc-preview": {}
+  "find-and-replace":
+    openProjectFindResultsInRightPane: true
+".html.php.text":
   editor:
     preferredLineLength: 100
-".erb.html.text":
+".elixir.html.text":
   editor:
     preferredLineLength: 100
 ".basic.html.text":
   editor:
     preferredLineLength: 100
-".source.yaml":
+".erb.html.text":
+  editor:
+    preferredLineLength: 100
+".console.python.text":
+  editor:
+    preferredLineLength: 100
+".python.text.traceback":
+  editor:
+    preferredLineLength: 100
+".python.regexp.source":
+  editor:
+    preferredLineLength: 100
+".gfm.source":
+  editor:
+    showInvisibles: false
+    softWrap: true
+    tabLength: 4
+    preferredLineLength: 100
+  "wrap-guide":
+    enabled: false
+".litcoffee.source":
+  editor:
+    preferredLineLength: 100
+".coffee.source":
   editor:
     preferredLineLength: 100
 ".elixir.source":
@@ -104,7 +138,7 @@
 ".elixir.text":
   editor:
     preferredLineLength: 100
-".ruby.source":
+".source.yaml":
   editor:
     preferredLineLength: 100
 ".pyjade.source":
@@ -126,15 +160,9 @@
     enabled: false
   editor:
     softWrap: true
-".python.source":
-  editor:
-    tabLength: 4
 ".json.source":
   "wrap-guide":
     enabled: false
-".c.source":
-  editor:
-    tabLength: 4
 ".shell.source":
   editor:
     tabLength: 4
@@ -144,11 +172,20 @@
 ".java.source":
   editor:
     tabLength: 4
-".gfm.source":
+".plain.text":
   editor:
-    showInvisibles: false
-    softWrap: true
+    preferredLineLength: 100
+".ruby.source":
+  editor:
+    preferredLineLength: 100
+".python.source":
+  editor:
     tabLength: 4
     preferredLineLength: 100
-  "wrap-guide":
-    enabled: false
+".c.source":
+  editor:
+    tabLength: 4
+    preferredLineLength: 100
+".cpp.source":
+  editor:
+    preferredLineLength: 100

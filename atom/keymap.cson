@@ -6,3 +6,4 @@
   'ctrl-shift-a': 'asciidoc-preview:toggle'
 '.platform-darwin atom-workspace':
   'ctrl-"': 'toggle-quotes:toggle'
+  'alt-cmd-n': 'advanced-open-file:toggle'

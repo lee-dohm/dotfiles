@@ -8,21 +8,17 @@
  * http://www.lesscss.org
  */
 
+@import "syntax-variables";
 @import "ui-variables";
 
 @import "packages/red-wavy-underline/styles/red-wavy-underline";
-@import "packages/white-cursor/styles/white-cursor";
 
-.theme-one-light-ui {
+.theme-one-light-ui, .theme-one-dark-ui {
   .status-bar { font-size: 14px; }
   .tab-bar { font-size: 14px; }
   .tree-view { font-size: 14px; }
 }
 
-// Sets the UI font to Helvetica Neue
-atom-workspace {
-  font-family: 'Helvetica Neue', sans-serif;
-}
 
 // Highlights the cursor line
 atom-text-editor::shadow {
@@ -49,12 +45,8 @@ atom-text-editor::shadow {
 atom-text-editor::shadow {
   .markup.raw.gfm {
     font-style: normal;
+    color: @syntax-color-keyword;
   }
-}
-
-// Uses the white cursor in the terminal package view
-.terminal {
-  .white-cursor-image;
 }
 
 // Brightens the gutter diff indicators to make them more visible
@@ -149,4 +141,5 @@ atom-text-editor::shadow {
   }
 }
 
+// Comment or uncomment the next line to control whether the atom-perspective feature is enabled
 // #atom-perspective;
