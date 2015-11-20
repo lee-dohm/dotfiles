@@ -6,30 +6,43 @@
 
 defmodule Defaults do
   def read(args) do
-    case System.cmd("defaults", ["read"] ++ OptionParser.split(args), stderr_to_stdout: true) do
-      {output, 0} -> output
-      {_, 1}      -> "Default for '#{args}' does not exist\n"
-    end
+    results = System.cmd("defaults", ["read"] ++ OptionParser.split(args), stderr_to_stdout: true)
+    read_results(results, args)
   end
 
   def write(args) do
     {output, 0} = System.cmd("defaults", ["write"] ++ OptionParser.split(args))
     output
   end
+
+  defp read_results({output, 0}, _), do: output
+  defp read_results({_, 1}, args), do: "Default for '#{args}' does not exist\n"
 end
 
 defmodule ScreenshotLocation do
-  def execute([default: true], _), do: write_location("~/Desktop")
-  def execute(_, [location | _]), do: write_location(location)
-  def execute(_, _), do: read_location
+  @errors %{
+    default_and_location: "Cannot specify 'default' and a location together\n",
+    more_than_one_location: "Cannot specify more than one location\n"
+  }
+
+  def execute([default: true], []), do: write_location("~/Desktop")
+  def execute([default: true], _), do: display_error(:default_and_location)
+  def execute(_, [location]), do: write_location(location)
+  def execute(_, []), do: read_location
+  def execute(_, args) when is_list(args), do: display_error(:more_than_one_location)
+
+  defp display_error(error), do: IO.write @errors[error]
 
   defp read_location do
-    IO.write Defaults.read("com.apple.screencapture location")
+    Defaults.read("com.apple.screencapture location")
+      |> IO.write
   end
 
   defp write_location(location) do
     location = Path.expand(location)
-    IO.write Defaults.write("com.apple.screencapture location #{location}/")
+
+    Defaults.write("com.apple.screencapture location #{location}/")
+      |> IO.write
   end
 end
 
