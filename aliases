@@ -25,5 +25,5 @@ alias la='ls -lhaF'
 alias sssh='screen-ssh'
 
 alias a='atom'
+alias aa='atom-alpha'
 alias ab='atom-beta'
-alias e="$EDITOR"
