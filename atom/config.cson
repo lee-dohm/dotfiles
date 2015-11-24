@@ -6,8 +6,6 @@
   metrics:
     userId: "51eeb6113c1ae801c9aade9b6d679aa5189ced25"
   editor:
-    preferredLineLength: 100
-    scrollPastEnd: true
     invisibles:
       eol: " "
       tab: "⇥"
@@ -16,6 +14,8 @@
     fontFamily: "Source Code Pro"
     backUpBeforeSaving: true
     tabType: "soft"
+    scrollPastEnd: true
+    preferredLineLength: 100
   core:
     followSymlinks: true
     projectHome: "/Users/Lee/Source"
@@ -34,11 +34,11 @@
       "one-light-syntax"
     ]
     audioBeep: false
-    disabledPackages: [
-    ]
+    disabledPackages: []
   "auto-copyright":
     owner: "Lifted Studios"
   "tree-view":
+    squashDirectoryNames: true
     hideIgnoredNames: true
     hideVcsIgnoredFiles: true
   autocomplete:
@@ -95,32 +95,31 @@
   "asciidoc-preview": {}
   "find-and-replace":
     openProjectFindResultsInRightPane: true
-".c.source":
+  "autocomplete-erlang":
+    elixirPath: "/usr/local/bin/elixir"
+  "autocomplete-elixir":
+    elixirPath: "/usr/local/bin/elixir"
+    erlangHome: "/usr/local/Cellar/erlang/18.1/bin"
+  "markdown-preview":
+    openPreviewInSplitPane: false
+".js.regexp.replacement.source":
   editor:
-    tabLength: 4
-".python.source":
+    preferredLineLength: 100
+".erlang.html.text.yaws":
   editor:
-    tabLength: 4
-".java.source":
+    preferredLineLength: 100
+".js.regexp.source":
   editor:
-    tabLength: 4
-".git-commit.text":
+    preferredLineLength: 100
+".css.scss.source":
   editor:
-    preferredLineLength: 72
-".shell.source":
+    preferredLineLength: 100
+".js.source":
   editor:
-    tabLength: 4
-".json.source":
-  "wrap-guide":
-    enabled: false
-".asciidoc.source":
-  "wrap-guide":
-    enabled: false
+    preferredLineLength: 100
+".plain.text":
   editor:
-    softWrap: true
-".haml.text":
-  "wrap-guide":
-    enabled: false
+    preferredLineLength: 80
 ".gfm.source":
   editor:
     showInvisibles: false
@@ -128,3 +127,35 @@
     tabLength: 4
   "wrap-guide":
     enabled: false
+".haml.text":
+  "wrap-guide":
+    enabled: false
+".asciidoc.source":
+  "wrap-guide":
+    enabled: false
+  editor:
+    softWrap: true
+".json.source":
+  "wrap-guide":
+    enabled: false
+".shell.source":
+  editor:
+    tabLength: 4
+".git-commit.text":
+  editor:
+    preferredLineLength: 72
+".java.source":
+  editor:
+    tabLength: 4
+".python.source":
+  editor:
+    tabLength: 4
+".c.source":
+  editor:
+    tabLength: 4
+".erlang.source":
+  editor:
+    preferredLineLength: 100
+".sass.source":
+  editor:
+    preferredLineLength: 100
