@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require 'open-uri'
+require 'ostruct'
+
+def parse_github_issue_spec(spec)
+  if /((?<owner>[^\/]+)\/(?<repo>[^#]+)#)?(?<issue_number>\d+)/ =~ spec
+    [owner || 'atom', repo || 'atom', issue_number]
+  else
+    raise ArgumentError, "Unrecognized GitHub Issue format: #{spec}"
+  end
+end
+
+spec = ARGV[0]
+owner, repo, issue_number = parse_github_issue_spec(spec)
+spec = "##{spec}" unless spec.include?('#')
+api_uri = "https://api.github.com/repos/#{owner}/#{repo}/issues/#{issue_number}"
+web_uri = "https://github.com/#{owner}/#{repo}/issues/#{issue_number}"
+
+issue = OpenStruct.new(JSON.parse(open(api_uri).read))
+
+puts "[#{spec} - #{issue.title}](#{web_uri})"
