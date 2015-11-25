@@ -2,6 +2,7 @@
 
 require 'json'
 require 'open-uri'
+require 'optparse'
 require 'ostruct'
 
 def parse_github_issue_spec(spec)
@@ -12,7 +13,27 @@ def parse_github_issue_spec(spec)
   end
 end
 
+parser = OptionParser.new do |opts|
+  opts.banner = <<EOL
+Creates a Markdown link to the given GitHub Issue after retrieving the Issue title.
+
+The ISSUE can be either an atom/atom Issue number or a full GitHub Issue specification.
+
+Usage: #{opts.program_name} [options] ISSUE
+EOL
+
+  opts.separator ""
+  opts.separator "Specific options:"
+
+  opts.on_tail("-h", "--help", "Show this message") do
+    puts opts
+    exit
+  end
+end
+
+parser.parse!(ARGV)
 spec = ARGV[0]
+
 owner, repo, issue_number = parse_github_issue_spec(spec)
 spec = "##{spec}" unless spec.include?('#')
 api_uri = "https://api.github.com/repos/#{owner}/#{repo}/issues/#{issue_number}"
