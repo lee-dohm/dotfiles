@@ -15,8 +15,8 @@ defmodule Defaults do
     output
   end
 
-  defp read_results({output, 0}, _), do: output
-  defp read_results({_, 1}, args), do: "Default for '#{args}' does not exist\n"
+  defp read_results({output, 0}, _), do: {:ok, output}
+  defp read_results({_, 1}, args), do: {:error, "Default for '#{args}' does not exist\n"}
 end
 
 defmodule ScreenshotLocation do
@@ -34,8 +34,10 @@ defmodule ScreenshotLocation do
   defp display_error(error), do: IO.write @errors[error]
 
   defp read_location do
-    Defaults.read("com.apple.screencapture location")
-      |> IO.write
+    case Defaults.read("com.apple.screencapture location") do
+      {:ok, output} -> IO.write output
+      {:error, _}   -> IO.write(Path.join(System.get_env("HOME"), "Desktop"))
+    end
   end
 
   defp write_location(location) do
