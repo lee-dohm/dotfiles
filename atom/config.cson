@@ -1,24 +1,30 @@
 "*":
-  "exception-reporting":
-    userId: "ee24cf00-f793-9081-be2a-2cdae5536b7f"
-  welcome:
-    showOnStartup: false
-  metrics:
-    userId: "51eeb6113c1ae801c9aade9b6d679aa5189ced25"
-  editor:
-    invisibles:
-      eol: " "
-      tab: "⇥"
-      cr: "↩"
-    showInvisibles: true
-    fontFamily: "Source Code Pro"
-    backUpBeforeSaving: true
-    tabType: "soft"
-    scrollPastEnd: true
-    preferredLineLength: 100
+  "advanced-new-file":
+    suggestCurrentFilePath: true
+  "advanced-open-file":
+    createFileInstantly: true
+  "asciidoc-preview": {}
+  "atom-color-highlight":
+    hideMarkersInComments: true
+    hideMarkersInStrings: true
+    markersAtEndOfLine: true
+  "atom-lint":
+    rubocop:
+      showDisplayCopNames: true
+  "auto-copyright":
+    owner: "Lifted Studios"
+  autocomplete:
+    includeCompletionsFromAllBuffers: true
+  "autocomplete-elixir":
+    elixirPath: "/usr/local/bin/elixir"
+    erlangHome: "/usr/local/Cellar/erlang/18.1/bin"
+  "autocomplete-erlang":
+    elixirPath: "/usr/local/bin/elixir"
+  "autocomplete-plus":
+    defaultProvider: "Fuzzy"
   core:
+    audioBeep: false
     followSymlinks: true
-    projectHome: "/Users/Lee/Source"
     ignoredNames: [
       ".git"
       ".hg"
@@ -29,131 +35,144 @@
       "*.pyc"
       "Thumbs.db"
     ]
+    projectHome: "/Users/Lee/Source"
     themes: [
       "one-light-ui"
       "one-light-syntax"
     ]
-    audioBeep: false
-    disabledPackages: []
-  "auto-copyright":
-    owner: "Lifted Studios"
-  "tree-view":
-    squashDirectoryNames: true
-    hideIgnoredNames: true
-    hideVcsIgnoredFiles: true
-  autocomplete:
-    includeCompletionsFromAllBuffers: true
-  "advanced-new-file":
-    suggestCurrentFilePath: true
-  "atom-color-highlight":
-    markersAtEndOfLine: true
-    hideMarkersInComments: true
-    hideMarkersInStrings: true
-  "package-generator":
-    createInDevMode: true
-  "atom-lint":
-    rubocop:
-      showDisplayCopNames: true
+  editor:
+    backUpBeforeSaving: true
+    fontFamily: "Source Code Pro"
+    invisibles:
+      cr: "↩"
+      eol: " "
+      tab: "⇥"
+    preferredLineLength: 100
+    scrollPastEnd: true
+    showInvisibles: true
+    tabType: "soft"
   "enhanced-package-list":
     highlightAuthor: "lee-dohm"
+  "exception-reporting":
+    userId: "ee24cf00-f793-9081-be2a-2cdae5536b7f"
+  "find-and-replace": {}
+  "fuzzy-finder":
+    preserveLastSearch: true
+  linter:
+    lintOnFly: false
+    showErrorPanel: false
+    showErrorTabFile: false
+    showErrorTabProject: false
+    statusIconPosition: "Right"
+  "markdown-preview":
+    useGitHubStyle: true
+  "markdown-table-formatter":
+    formatOnSave: false
+  metrics:
+    userId: "51eeb6113c1ae801c9aade9b6d679aa5189ced25"
+  minimap:
+    plugins:
+      "find-and-replace": true
+    v4Preview: true
+  "notational-velocity":
+    directory: "/Users/Lee/Dropbox/Notebook"
+  "one-light-ui": {}
+  "package-generator":
+    createInDevMode: true
+  pigments:
+    markerType: "dot"
+  "spell-check": {}
+  "status-bar":
+    cursorPositionFormat: "L:%L C:%C"
+  tabs:
+    enableVcsColoring: true
+    usePreviewTabs: true
+  "tabs-to-spaces":
+    changeSoftTabsMode: true
+    onSave: "untabify"
+  "tree-view":
+    hideIgnoredNames: true
+    hideVcsIgnoredFiles: true
+    squashDirectoryNames: true
+  welcome:
+    showOnStartup: false
   "white-cursor":
     darkThemes: [
       "railscasts-syntax"
     ]
     enabled: "detect"
-  minimap:
-    v4Preview: true
-    plugins:
-      "find-and-replace": true
-  "tabs-to-spaces":
-    onSave: "untabify"
-    changeSoftTabsMode: true
-  "markdown-table-formatter":
-    formatOnSave: false
-  "notational-velocity":
-    directory: "/Users/Lee/Dropbox/Notebook"
-  "spell-check": {}
-  "fuzzy-finder":
-    preserveLastSearch: true
-  "autocomplete-plus": {}
   whitespace: {}
-  "one-light-ui": {}
-  "status-bar":
-    cursorPositionFormat: "L:%L C:%C"
-  tabs:
-    usePreviewTabs: true
-    enableVcsColoring: true
-  pigments: {}
-  linter:
-    showErrorTabProject: false
-    showErrorTabFile: false
-    showErrorPanel: false
-    statusIconPosition: "Right"
-    lintOnFly: false
-  "advanced-open-file":
-    createFileInstantly: true
-  "asciidoc-preview": {}
-  "find-and-replace":
-    openProjectFindResultsInRightPane: true
-  "autocomplete-erlang":
-    elixirPath: "/usr/local/bin/elixir"
-  "autocomplete-elixir":
-    elixirPath: "/usr/local/bin/elixir"
-    erlangHome: "/usr/local/Cellar/erlang/18.1/bin"
-  "markdown-preview":
-    openPreviewInSplitPane: false
-".js.regexp.replacement.source":
+".asciidoc.source":
+  editor:
+    softWrap: true
+  "wrap-guide":
+    enabled: false
+".c.source":
+  editor:
+    tabLength: 4
+".css.scss.source":
+  editor:
+    preferredLineLength: 100
+".erb.html.text":
   editor:
     preferredLineLength: 100
 ".erlang.html.text.yaws":
   editor:
     preferredLineLength: 100
-".js.regexp.source":
+".erlang.source":
   editor:
     preferredLineLength: 100
-".css.scss.source":
-  editor:
-    preferredLineLength: 100
-".js.source":
-  editor:
-    preferredLineLength: 100
-".plain.text":
-  editor:
-    preferredLineLength: 80
 ".gfm.source":
   editor:
+    preferredLineLength: 100
     showInvisibles: false
     softWrap: true
     tabLength: 4
   "wrap-guide":
     enabled: false
-".haml.text":
-  "wrap-guide":
-    enabled: false
-".asciidoc.source":
-  "wrap-guide":
-    enabled: false
-  editor:
-    softWrap: true
-".json.source":
-  "wrap-guide":
-    enabled: false
-".shell.source":
-  editor:
-    tabLength: 4
 ".git-commit.text":
   editor:
     preferredLineLength: 72
+".haml.text":
+  "wrap-guide":
+    enabled: false
+".html.ruby.text":
+  editor:
+    preferredLineLength: 100
 ".java.source":
   editor:
     tabLength: 4
+".js.rails.source source.jquery.js":
+  editor:
+    preferredLineLength: 100
+".js.regexp.replacement.source":
+  editor:
+    preferredLineLength: 100
+".js.regexp.source":
+  editor:
+    preferredLineLength: 100
+".js.source":
+  editor:
+    preferredLineLength: 100
+".json.source":
+  "wrap-guide":
+    enabled: false
+".plain.text":
+  editor:
+    preferredLineLength: 80
 ".python.source":
   editor:
     tabLength: 4
-".c.source":
+".rails.rjs.ruby.source":
   editor:
-    tabLength: 4
-".erlang.source":
+    preferredLineLength: 100
+".rails.ruby.source":
+  editor:
+    preferredLineLength: 100
+".ruby.source":
+  editor:
+    preferredLineLength: 100
+".ruby.source.sql":
   editor:
     preferredLineLength: 100
 ".sass.source":
