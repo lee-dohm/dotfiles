@@ -44,6 +44,9 @@
 [merge]
   ff = true
 
+[pull]
+  rebase = true
+
 [push]
   default = current
 
