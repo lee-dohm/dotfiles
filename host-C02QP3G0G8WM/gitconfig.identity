@@ -1,0 +1,9 @@
+[user]
+  email = lee-dohm@github.com
+  name = Lee Dohm
+
+[credential]
+  helper = /opt/boxen/bin/boxen-git-credential
+
+[core]
+  excludesfile = /opt/boxen/config/git/gitignore

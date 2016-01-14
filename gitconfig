@@ -51,6 +51,6 @@
   clean = git lfs clean %f
   smudge = git lfs smudge %f
   required = true
-[user]
-	email = lee-dohm@github.com
-	name = Lee DohM
+
+[hub]
+  protocol = https
