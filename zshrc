@@ -56,6 +56,9 @@ export PATH="$HOME/.bin:/usr/local/bin:/usr/local/sbin:$PATH"
 # aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 
+# environment variables
+[[ -f ~/.env ]] && source ~/.env
+
 # Use colorized ls
 if [[ $(uname -s) == 'Darwin' ]]; then
     export CLICOLOR=1
