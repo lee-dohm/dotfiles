@@ -17,11 +17,14 @@
     includeCompletionsFromAllBuffers: true
   "autocomplete-elixir":
     elixirPath: "/usr/local/bin/elixir"
-    erlangHome: "/usr/local/Cellar/erlang/18.1/bin"
+    erlangHome: "/usr/local/lib/erlang/bin"
   "autocomplete-erlang":
     elixirPath: "/usr/local/bin/elixir"
   "autocomplete-plus":
     defaultProvider: "Fuzzy"
+    scopeBlacklist: [
+      ".string"
+    ]
   core:
     audioBeep: false
     followSymlinks: true
@@ -65,6 +68,7 @@
     showErrorTabProject: false
     statusIconPosition: "Right"
   "markdown-preview":
+    openPreviewInSplitPane: false
     useGitHubStyle: true
   "markdown-table-formatter":
     formatOnSave: false
@@ -133,6 +137,12 @@
 ".git-commit.text":
   editor:
     preferredLineLength: 72
+".git-config.source":
+  editor:
+    preferredLineLength: 100
+".git-rebase.text":
+  editor:
+    preferredLineLength: 100
 ".haml.text":
   "wrap-guide":
     enabled: false
