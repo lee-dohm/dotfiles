@@ -4,6 +4,9 @@
   "advanced-open-file":
     createFileInstantly: true
   "asciidoc-preview": {}
+  "atom-beautify":
+    _analyticsUserId: "628f791d-dc9a-4907-89ef-e27445244039"
+    js_indent_with_tabs: true
   "atom-color-highlight":
     hideMarkersInComments: true
     hideMarkersInStrings: true
@@ -21,12 +24,22 @@
   "autocomplete-erlang":
     elixirPath: "/usr/local/bin/elixir"
   "autocomplete-plus":
+    confirmCompletion: "tab"
     defaultProvider: "Fuzzy"
     scopeBlacklist: [
       ".string"
     ]
   core:
     audioBeep: false
+    customFileTypes:
+      "text.xml.plist": [
+        "plist"
+      ]
+    disabledPackages: [
+      "spell-check-test"
+      "autocomplete-elixir"
+      "autocomplete-erlang"
+    ]
     followSymlinks: true
     ignoredNames: [
       ".git"
@@ -45,7 +58,8 @@
     ]
   editor:
     backUpBeforeSaving: true
-    fontFamily: "Source Code Pro"
+    fontFamily: "Input Mono Narrow"
+    fontSize: 16
     invisibles:
       cr: "↩"
       eol: " "
@@ -58,7 +72,6 @@
     highlightAuthor: "lee-dohm"
   "exception-reporting":
     userId: "ee24cf00-f793-9081-be2a-2cdae5536b7f"
-  "find-and-replace": {}
   "fuzzy-finder":
     preserveLastSearch: true
   linter:
@@ -75,6 +88,8 @@
   metrics:
     userId: "51eeb6113c1ae801c9aade9b6d679aa5189ced25"
   minimap:
+    charHeight: 4
+    charWidth: 2
     plugins:
       "find-and-replace": true
     v4Preview: true
@@ -84,8 +99,10 @@
   "package-generator":
     createInDevMode: true
   pigments:
+    ignoredScopes: [
+      "\\.elixir"
+    ]
     markerType: "dot"
-  "spell-check": {}
   "status-bar":
     cursorPositionFormat: "L:%L C:%C"
   tabs:
@@ -114,21 +131,8 @@
 ".c.source":
   editor:
     tabLength: 4
-".css.scss.source":
-  editor:
-    preferredLineLength: 100
-".erb.html.text":
-  editor:
-    preferredLineLength: 100
-".erlang.html.text.yaws":
-  editor:
-    preferredLineLength: 100
-".erlang.source":
-  editor:
-    preferredLineLength: 100
 ".gfm.source":
   editor:
-    preferredLineLength: 100
     showInvisibles: false
     softWrap: true
     tabLength: 4
@@ -137,54 +141,15 @@
 ".git-commit.text":
   editor:
     preferredLineLength: 72
-".git-config.source":
-  editor:
-    preferredLineLength: 100
-".git-rebase.text":
-  editor:
-    preferredLineLength: 100
 ".haml.text":
   "wrap-guide":
     enabled: false
-".html.ruby.text":
-  editor:
-    preferredLineLength: 100
 ".java.source":
   editor:
     tabLength: 4
-".js.rails.source source.jquery.js":
-  editor:
-    preferredLineLength: 100
-".js.regexp.replacement.source":
-  editor:
-    preferredLineLength: 100
-".js.regexp.source":
-  editor:
-    preferredLineLength: 100
-".js.source":
-  editor:
-    preferredLineLength: 100
 ".json.source":
   "wrap-guide":
     enabled: false
-".plain.text":
-  editor:
-    preferredLineLength: 80
 ".python.source":
   editor:
     tabLength: 4
-".rails.rjs.ruby.source":
-  editor:
-    preferredLineLength: 100
-".rails.ruby.source":
-  editor:
-    preferredLineLength: 100
-".ruby.source":
-  editor:
-    preferredLineLength: 100
-".ruby.source.sql":
-  editor:
-    preferredLineLength: 100
-".sass.source":
-  editor:
-    preferredLineLength: 100
