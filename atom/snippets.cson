@@ -67,6 +67,13 @@
   'Let One-Line':
     prefix: 'letd'
     body: 'let :$1, do: $0'
+  '@typedoc':
+    prefix: 'tdoc'
+    body: '''
+      @typedoc """
+      $0
+      """
+    '''
 '.source.ruby':
   Before:
     prefix: 'bef'
