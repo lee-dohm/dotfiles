@@ -100,11 +100,12 @@ atom-text-editor::shadow {
 }
 
 // Makes the bracket matcher highlight more noticeable
-atom-text-editor::shadow {
-  .bracket-matcher .region {
-    border-bottom: 1px solid yellow;
-  }
-}
+// Only works on dark themes
+// atom-text-editor::shadow {
+//   .bracket-matcher .region {
+//     border-bottom: 1px solid yellow;
+//   }
+// }
 
 // Replaces the atom-lint error highlight with the red wavy underline
 .lint .violation-border.violation-warning {
