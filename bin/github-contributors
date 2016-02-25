@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require 'net/http'
+
+body = nil
+Net::HTTP.start('api.github.com', use_ssl: true) do |http|
+  resp = http.get("/repos/#{ARGV[0]}/stats/contributors")
+  body = resp.body
+end
+
+data = JSON.parse(body)
+names = data.map { |item| item["author"]["login"] }
+
+names.sort.each { |name| puts name }
+puts "\nCount = #{names.size}"
