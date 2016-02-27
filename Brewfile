@@ -1,3 +1,13 @@
 tap "thoughtbot/formulae"
+
+brew "ctags"
+brew "elixir"
+brew "git"
+brew "heroku-toolbelt"
+brew "hub"
+brew "nvm"
+brew "rbenv"
 brew "rcm"
+brew "ruby-build"
+brew "the_silver_searcher"
 brew "todo-txt"

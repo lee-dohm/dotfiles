@@ -4,7 +4,7 @@ These are my myriad [dotfiles](http://dotfiles.github.io/). It has grown, morphe
 
 ## Prerequisites
 
-* Install [Thoughtbot Laptop](https://github.com/thoughtbot/laptop)
+* Install [strap](https://github.com/mikemcquaid/strap) to configure a minimum development environment
 
 ## Installation
 
