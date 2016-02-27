@@ -1,3 +1,3 @@
-tap thoughtbot/formulae
-install rcm
-install todo-txt
+tap "thoughtbot/formulae"
+brew "rcm"
+brew "todo-txt"
