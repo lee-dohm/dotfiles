@@ -59,7 +59,7 @@
   editor:
     backUpBeforeSaving: true
     fontFamily: "Input Mono Narrow"
-    fontSize: 16
+    fontSize: 15
     invisibles:
       cr: "↩"
       eol: " "
@@ -114,7 +114,6 @@
   "tree-view":
     hideIgnoredNames: true
     hideVcsIgnoredFiles: true
-    squashDirectoryNames: true
   welcome:
     showOnStartup: false
   "white-cursor":
