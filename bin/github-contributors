@@ -2,15 +2,69 @@
 
 require 'json'
 require 'net/http'
+require 'optparse'
 
-body = nil
-Net::HTTP.start('api.github.com', use_ssl: true) do |http|
-  resp = http.get("/repos/#{ARGV[0]}/stats/contributors")
-  body = resp.body
+def names(body)
+  data = JSON.parse(body)
+  data.map do |item|
+    begin
+      item["author"]["login"]
+    rescue
+    end
+  end
 end
 
-data = JSON.parse(body)
-names = data.map { |item| item["author"]["login"] }
+def page(url)
+  if url =~ /page=(?<page>\d+)$/
+    Regexp.last_match[:page]
+  end
+end
 
-names.sort.each { |name| puts name }
+def parse_arguments(args)
+  options = {}
+
+  OptionParser.new do |opts|
+    opts.on("-tTOKEN", "--token=TOKEN", "Access token") do |t|
+      options[:token] = t
+    end
+  end.parse!(args)
+
+  options
+end
+
+def parse_next(text)
+  if text =~ /<(?<url>[^>]*)>; rel="next"/
+    Regexp.last_match[:url]
+  end
+end
+
+def request(path)
+  Net::HTTP.start('api.github.com', use_ssl: true) { |http| http.get(path) }
+end
+
+options = parse_arguments(ARGV)
+
+
+contributors = []
+url = "/repos/#{ARGV[0]}/commits"
+url += "?access_token=#{options[:token]}" if options[:token]
+puts url
+resp = request(url)
+contributors += names(resp.body)
+puts "Page 1"
+
+begin
+  while resp["link"] do
+    url = parse_next(resp["link"]).sub("https://api.github.com", "")
+    puts "Page #{page(url)}"
+    puts "Rate Limit Remaining = #{resp["x-ratelimit-remaining"]}"
+    resp = request(url)
+    contributors += names(resp.body)
+  end
+rescue
+end
+
+puts "Folding, spindling and mutilating ... one moment ..."
+contributors = contributors.reject { |name| name.nil? }
+contributors.sort.uniq.each { |name| puts name }
 puts "\nCount = #{names.size}"
