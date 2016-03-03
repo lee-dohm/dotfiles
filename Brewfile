@@ -11,3 +11,6 @@ brew "rcm"
 brew "ruby-build"
 brew "the_silver_searcher"
 brew "todo-txt"
+brew "zsh"
+
+cask "mojibar"
