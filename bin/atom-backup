@@ -1,0 +1,50 @@
+#!/usr/bin/env elixir
+
+# Backs up the `~/.atom` directory
+
+defmodule AtomBackup do
+  require Logger
+
+  @dirs %{atom: "~/.atom", backup: "~/.atom-backup"}
+
+  def backup do
+    clobber(:backup)
+    copy(:atom, :backup)
+  end
+
+  def restore do
+    clobber(:atom)
+    copy(:backup, :atom)
+  end
+
+  def start(argv) do
+    {options, _, _} = OptionParser.parse(argv)
+
+    if Keyword.get(options, :restore) do
+      AtomBackup.restore
+    else
+      AtomBackup.backup
+    end
+  end
+
+  defp clobber(dir) when is_atom(dir), do: clobber(abs_path(dir))
+  defp clobber(dir) when is_binary(dir) do
+    Logger.info("Delete: #{dir}")
+    File.rm_rf!(dir)
+  end
+
+  defp copy(from, to) when is_atom(from), do: copy(abs_path(from), to)
+  defp copy(from, to) when is_atom(to), do: copy(from, abs_path(to))
+
+  defp copy(from, to) when is_binary(from) and is_binary(to) do
+    Logger.info("Create directory: #{to}")
+    File.mkdir_p!(to)
+
+    Logger.info("Copy #{from} to #{to}")
+    File.cp_r!(from, to)
+  end
+
+  defp abs_path(path), do: Path.expand(@dirs[path])
+end
+
+AtomBackup.start(System.argv)
