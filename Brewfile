@@ -13,4 +13,5 @@ brew "the_silver_searcher"
 brew "todo-txt"
 brew "zsh"
 
+cask "keycastr"
 cask "mojibar"
