@@ -13,7 +13,7 @@ alias m="migrate"
 alias rk="rake"
 alias s="rspec"
 
-alias df='df -h'
+alias df='df -h -T hfs'
 alias du='du -h'
 
 alias f='find . -name'
