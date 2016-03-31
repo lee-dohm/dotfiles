@@ -1,8 +1,0 @@
-#!/usr/bin/env ruby
-
-require 'octokit'
-
-client = Octokit::Client.new(access_token: "ccf9a591cb9b0174042ee0629dbab665fa6debb7")
-client.auto_paginate = true
-repos = client.repositories("atom")
-repos.each { |repo| puts repo.name }
