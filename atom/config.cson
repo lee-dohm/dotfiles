@@ -32,6 +32,16 @@
   core:
     audioBeep: false
     customFileTypes:
+      "source.ini": [
+        ".buckconfig"
+        ".flowconfig"
+      ]
+      "source.json": [
+        ".arcconfig"
+      ]
+      "source.python": [
+        "BUCK"
+      ]
       "text.xml.plist": [
         "plist"
       ]
@@ -39,6 +49,9 @@
       "spell-check-test"
       "autocomplete-elixir"
       "autocomplete-erlang"
+      "pigments"
+      "atom-elixir"
+      "hyperclick"
     ]
     followSymlinks: true
     ignoredNames: [
@@ -50,6 +63,7 @@
       "._*"
       "*.pyc"
       "Thumbs.db"
+      "**/node_modules"
     ]
     projectHome: "/Users/Lee/Source"
     themes: [
@@ -58,7 +72,7 @@
     ]
   editor:
     backUpBeforeSaving: true
-    fontFamily: "Input Mono Narrow"
+    fontFamily: "InputMonoNarrow-Light"
     fontSize: 15
     invisibles:
       cr: "↩"
@@ -72,6 +86,8 @@
     highlightAuthor: "lee-dohm"
   "exception-reporting":
     userId: "ee24cf00-f793-9081-be2a-2cdae5536b7f"
+  "file-watcher":
+    promptWhenFileHasChangedOnDisk: false
   "fuzzy-finder":
     preserveLastSearch: true
   linter:
@@ -81,7 +97,6 @@
     showErrorTabProject: false
     statusIconPosition: "Right"
   "markdown-preview":
-    openPreviewInSplitPane: false
     useGitHubStyle: true
   "markdown-table-formatter":
     formatOnSave: false
@@ -95,6 +110,9 @@
     v4Preview: true
   "notational-velocity":
     directory: "/Users/Lee/Dropbox/Notebook"
+  nuclide:
+    "nuclide-home":
+      showHome: false
   "one-light-ui": {}
   "package-generator":
     createInDevMode: true
@@ -103,6 +121,7 @@
       "\\.elixir"
     ]
     markerType: "dot"
+  "spell-check": {}
   "status-bar":
     cursorPositionFormat: "L:%L C:%C"
   tabs:
@@ -113,7 +132,6 @@
     onSave: "untabify"
   "tree-view":
     hideIgnoredNames: true
-    hideVcsIgnoredFiles: true
   welcome:
     showOnStartup: false
   "white-cursor":
@@ -130,6 +148,15 @@
 ".c.source":
   editor:
     tabLength: 4
+".elixir.html.text":
+  editor:
+    preferredLineLength: 100
+".elixir.source":
+  editor:
+    preferredLineLength: 100
+".elixir.text":
+  editor:
+    preferredLineLength: 100
 ".gfm.source":
   editor:
     showInvisibles: false

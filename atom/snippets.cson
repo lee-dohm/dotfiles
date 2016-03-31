@@ -111,3 +111,7 @@
   Subject:
     prefix: 'subj'
     body: 'subject { $0 }'
+'.text.elixir':
+  Octicon:
+    prefix: 'oct'
+    body: '<%= octicon($1) %>'
