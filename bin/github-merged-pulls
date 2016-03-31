@@ -4,14 +4,9 @@ require 'json'
 require 'net/http'
 require 'optparse'
 
-def names(body)
-  data = JSON.parse(body)
-  data.map do |item|
-    begin
-      item["author"]["login"]
-    rescue
-    end
-  end
+def items(body)
+  JSON.parse(body)
+      .reject { |p| p["merged_at"].nil? }
 end
 
 def page(url)
@@ -49,14 +44,14 @@ end
 options = parse_arguments(ARGV)
 
 repos = ARGV
-contributors = []
+contributions = 0
 
 repos.each do |repo|
   $stderr.puts repo
-  url = "/repos/#{repo}/commits?per_page=100"
+  url = "/repos/#{repo}/pulls?per_page=100&state=closed"
   url += "&access_token=#{options[:token]}" if options[:token]
   resp = request(url)
-  contributors += names(resp.body)
+  contributions += items(resp.body).count
   $stderr.puts "Page 1" if options[:verbose]
 
   while resp["link"] do
@@ -66,9 +61,8 @@ repos.each do |repo|
     $stderr.puts "Page #{page(url)}" if options[:verbose]
     $stderr.puts "Rate Limit Remaining = #{resp["x-ratelimit-remaining"]}" if options[:verbose]
     resp = request(url)
-    contributors += names(resp.body)
+    contributions += items(resp.body).count
   end
 end
 
-contributors = contributors.reject { |name| name.nil? }
-contributors.sort.uniq.each { |name| puts name }
+puts contributions
