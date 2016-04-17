@@ -20,31 +20,26 @@ defmodule Defaults do
 end
 
 defmodule ScreenshotLocation do
-  @errors %{
-    default_and_location: "Cannot specify 'default' and a location together\n",
-    more_than_one_location: "Cannot specify more than one location\n"
-  }
-
   def execute([default: true], []), do: write_location("~/Desktop")
   def execute([default: true], _), do: display_error(:default_and_location)
   def execute(_, [location]), do: write_location(location)
   def execute(_, []), do: read_location
   def execute(_, args) when is_list(args), do: display_error(:more_than_one_location)
 
-  defp display_error(error), do: IO.write @errors[error]
+  defp display_error(:default_and_location), do: IO.puts("Cannot specify 'default' and a location together")
+  defp display_error(:more_than_one_location), do: IO.puts("Cannot specify more than one location")
 
-  defp read_location do
-    case Defaults.read("com.apple.screencapture location") do
-      {:ok, output} -> IO.write output
-      {:error, _}   -> IO.write(Path.join(System.get_env("HOME"), "Desktop"))
-    end
-  end
+  defp display_location({:ok, output}), do: IO.puts(output)
+  defp display_location({:error, _}), do: IO.puts(Path.join(System.get_env("HOME"), "Desktop"))
+
+  defp read_location, do: display_location(Defaults.read("com.apple.screencapture location"))
 
   defp write_location(location) do
     location = Path.expand(location)
 
-    Defaults.write("com.apple.screencapture location #{location}/")
-      |> IO.write
+    "com.apple.screencapture location #{location}/"
+    |> Defaults.write
+    |> IO.puts
   end
 end
 
