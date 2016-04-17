@@ -5,6 +5,10 @@ path = require 'path'
 oldWindowDimensions = {}
 
 atom.commands.add 'atom-workspace',
+  'custom:insert-timestamp': ->
+    now = new Date()
+    atom.workspace.getActiveTextEditor().insertText(now.toISOString())
+
   'custom:open-todo-list': ->
     todoList = path.join(process.env.HOME, 'Dropbox/todo/todo.txt')
     atom.workspace.open(todoList)
