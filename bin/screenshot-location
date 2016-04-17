@@ -29,10 +29,14 @@ defmodule ScreenshotLocation do
   defp display_error(:default_and_location), do: IO.puts("Cannot specify 'default' and a location together")
   defp display_error(:more_than_one_location), do: IO.puts("Cannot specify more than one location")
 
-  defp display_location({:ok, output}), do: IO.puts(output)
+  defp display_location({:ok, output}), do: IO.puts(String.strip(output))
   defp display_location({:error, _}), do: IO.puts(Path.join(System.get_env("HOME"), "Desktop"))
 
-  defp read_location, do: display_location(Defaults.read("com.apple.screencapture location"))
+  defp read_location do
+    "com.apple.screencapture location"
+    |> Defaults.read
+    |> display_location
+  end
 
   defp write_location(location) do
     location = Path.expand(location)
