@@ -1,11 +1,13 @@
-tap "thoughtbot/formulae"
+tap "thoughtbot/formulae"      # Required for parity and rcm
 
 brew "ctags"
 brew "elixir"
+brew "fortune"                 # Dependency of Atom package fortune-background-tips
 brew "git"
 brew "heroku-toolbelt"
 brew "hub"
 brew "nvm"
+brew "parity"
 brew "rbenv"
 brew "rcm"
 brew "ruby-build"
@@ -14,4 +16,4 @@ brew "todo-txt"
 brew "zsh"
 
 cask "keycastr"
-cask "mojibar"
+cask "mojibar"                 # Emoji quick-reference menubar app
