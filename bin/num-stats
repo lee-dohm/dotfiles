@@ -1,0 +1,42 @@
+#!/usr/bin/env elixir
+
+# Accepts a series of integers and outputs some standard statistics on the list:
+#
+# * count
+# * sum
+# * minimum
+# * maximum
+# * average
+
+defmodule NumStats do
+  def min(nil, nil), do: nil
+  def min(a, nil), do: a
+  def min(nil, b), do: b
+  def min(a, b) when a < b, do: a
+  def min(_, b), do: b
+
+  def max(nil, nil), do: nil
+  def max(a, nil), do: a
+  def max(nil, b), do: b
+  def max(a, b) when a > b, do: a
+  def max(_, b), do: b
+
+  def read(func, input) do
+    case IO.read(:stdio, :line) do
+      :eof -> input
+      {:error, reason} -> IO.puts("Error: #{reason}")
+      data ->
+        output = func.(data, input)
+        read(func, output)
+    end
+  end
+end
+
+calc = fn(line, {count, sum, minimum, maximum}) ->
+         {number, _} = Integer.parse(line)
+
+         {count + 1, sum + number, NumStats.min(number, minimum), NumStats.max(number, maximum)}
+       end
+
+{count, sum, minimum, maximum} = NumStats.read(calc, {0, 0, nil, nil})
+IO.puts(Enum.join([count, sum, minimum, maximum, sum / count], "\t"))
