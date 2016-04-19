@@ -1,0 +1,32 @@
+#!/usr/bin/env elixir
+
+defmodule ToCalendarWeek do
+  def parse(timestamp) do
+    parsed = Regex.named_captures(~r/^(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})T/, timestamp)
+
+    :calendar.iso_week_number({to_i(parsed["year"]), to_i(parsed["month"]), to_i(parsed["day"])})
+  end
+
+  def convert(timestamp) do
+    {year, week_number} = parse(timestamp)
+    "Y#{year}W#{String.rjust(Integer.to_string(week_number), 2, ?0)}"
+  end
+
+  def convert_all do
+    case IO.read(:stdio, :line) do
+      :eof -> :ok
+      {:error, reason} -> IO.puts("Error: #{reason}")
+      data ->
+        IO.puts(convert(data))
+        convert_all
+    end
+  end
+
+  defp to_i(text) do
+    {num, _} = Integer.parse(text)
+
+    num
+  end
+end
+
+ToCalendarWeek.convert_all
