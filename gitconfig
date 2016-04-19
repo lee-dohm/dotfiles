@@ -12,6 +12,7 @@
   merge-branch = !git checkout master && git merge @{-1}
   pr = !hub pull-request
   st = status --branch --short
+  su = submodule update --init --recursive
   up = !git fetch origin && git rebase origin/master
 
 [color]
