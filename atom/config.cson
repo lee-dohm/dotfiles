@@ -6,14 +6,13 @@
   "asciidoc-preview": {}
   "atom-beautify":
     _analyticsUserId: "628f791d-dc9a-4907-89ef-e27445244039"
+    general:
+      _analyticsUserId: "8baac05e-0ab1-4c0f-bf95-e7c3fd57da66"
     js_indent_with_tabs: true
   "atom-color-highlight":
     hideMarkersInComments: true
     hideMarkersInStrings: true
     markersAtEndOfLine: true
-  "atom-lint":
-    rubocop:
-      showDisplayCopNames: true
   "auto-copyright":
     owner: "Lifted Studios"
   autocomplete:
@@ -32,26 +31,20 @@
   core:
     audioBeep: false
     customFileTypes:
+      "source.git-config": [
+        "gitconfig"
+      ]
       "source.ini": [
-        ".buckconfig"
         ".flowconfig"
       ]
-      "source.json": [
-        ".arcconfig"
-      ]
-      "source.python": [
-        "BUCK"
+      "source.ruby": [
+        "Brewfile"
       ]
       "text.xml.plist": [
         "plist"
       ]
     disabledPackages: [
-      "spell-check-test"
-      "autocomplete-elixir"
-      "autocomplete-erlang"
-      "pigments"
-      "atom-elixir"
-      "hyperclick"
+      "background-tips"
     ]
     followSymlinks: true
     ignoredNames: [
@@ -63,7 +56,6 @@
       "._*"
       "*.pyc"
       "Thumbs.db"
-      "**/node_modules"
     ]
     projectHome: "/Users/Lee/Source"
     themes: [
@@ -73,7 +65,7 @@
   editor:
     backUpBeforeSaving: true
     fontFamily: "InputMonoNarrow-Light"
-    fontSize: 15
+    fontSize: 16
     invisibles:
       cr: "↩"
       eol: " "
@@ -82,20 +74,14 @@
     scrollPastEnd: true
     showInvisibles: true
     tabType: "soft"
-  "enhanced-package-list":
-    highlightAuthor: "lee-dohm"
   "exception-reporting":
     userId: "ee24cf00-f793-9081-be2a-2cdae5536b7f"
-  "file-watcher":
-    promptWhenFileHasChangedOnDisk: false
+  "find-and-replace":
+    openProjectFindResultsInRightPane: false
+  "fortune-background-tips":
+    fortuneCommand: "fortune -s computers"
   "fuzzy-finder":
     preserveLastSearch: true
-  linter:
-    lintOnFly: false
-    showErrorPanel: false
-    showErrorTabFile: false
-    showErrorTabProject: false
-    statusIconPosition: "Right"
   "markdown-preview":
     useGitHubStyle: true
   "markdown-table-formatter":
@@ -110,9 +96,6 @@
     v4Preview: true
   "notational-velocity":
     directory: "/Users/Lee/Dropbox/Notebook"
-  nuclide:
-    "nuclide-home":
-      showHome: false
   "one-light-ui": {}
   "package-generator":
     createInDevMode: true
@@ -149,15 +132,6 @@
 ".c.source":
   editor:
     tabLength: 4
-".elixir.html.text":
-  editor:
-    preferredLineLength: 100
-".elixir.source":
-  editor:
-    preferredLineLength: 100
-".elixir.text":
-  editor:
-    preferredLineLength: 100
 ".gfm.source":
   editor:
     showInvisibles: false
