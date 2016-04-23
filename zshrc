@@ -120,6 +120,7 @@ git_prompt_info() {
     fi
 }
 
+# Add any non-zero exit code in red
 exit_code() {
     echo -n "%(?..${BOLD_RED}%?)"
 }
