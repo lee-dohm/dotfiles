@@ -73,6 +73,7 @@
     preferredLineLength: 100
     scrollPastEnd: true
     showInvisibles: true
+    tabLength: 4
     tabType: "soft"
   "exception-reporting":
     userId: "ee24cf00-f793-9081-be2a-2cdae5536b7f"
@@ -129,6 +130,9 @@
     softWrap: true
   "wrap-guide":
     enabled: false
+".basic.html.text":
+  editor:
+    tabLength: 4
 ".c.source":
   editor:
     tabLength: 4
