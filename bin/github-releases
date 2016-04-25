@@ -1,0 +1,72 @@
+#!/usr/bin/env ruby
+
+require 'date'
+require 'json'
+require 'net/http'
+require 'optparse'
+
+def page(url)
+  if url =~ /page=(?<page>\d+)$/
+    Regexp.last_match[:page]
+  end
+end
+
+def parse_arguments(args)
+  options = {}
+
+  OptionParser.new do |opts|
+    opts.on("-tTOKEN", "--token=TOKEN", "Access token") do |t|
+      options[:token] = t
+    end
+
+    opts.on("-v", "--verbose", "Verbose output") do |v|
+      options[:verbose] = v
+    end
+  end.parse!(args)
+
+  options
+end
+
+def parse_next(text)
+  if text =~ /<(?<url>[^>]*)>; rel="next"/
+    Regexp.last_match[:url]
+  end
+end
+
+def request(path)
+  Net::HTTP.start('api.github.com', use_ssl: true) { |http| http.get(path) }
+end
+
+def downloads(body)
+  releases = JSON.parse(body)
+
+  count = 0
+
+  releases.each do |release|
+    release["assets"].each do |asset|
+      count += asset["download_count"]
+    end
+  end
+
+  count
+end
+
+options = parse_arguments(ARGV)
+
+nwo = ARGV.first
+url = "/repos/#{nwo}/releases?per_page=100"
+url += "&access_token=#{options[:token]}" if options[:token]
+resp = request(url)
+download_count = downloads(resp.body)
+$stderr.puts "Count = #{download_count}" if options[:verbose]
+
+while resp["link"] do
+  next_link = parse_next(resp["link"])
+  break if next_link.nil?
+  url = parse_next(resp["link"]).sub("https://api.github.com", "")
+  $stderr.puts "Page #{page(url)}" if options[:verbose]
+  $stderr.puts "Rate Limit Remaining = #{resp["x-ratelimit-remaining"]}" if options[:verbose]
+  resp = request(url)
+  download_count += downloads(resp.body)
+  $stderr.puts "Count = #{download_count}" if options[:verbose]
+end
