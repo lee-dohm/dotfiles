@@ -64,7 +64,7 @@
     ]
   editor:
     backUpBeforeSaving: true
-    fontFamily: "InputMonoNarrow-Light"
+    fontFamily: "InputMono-ExtraLight"
     fontSize: 16
     invisibles:
       cr: "↩"
@@ -73,7 +73,6 @@
     preferredLineLength: 100
     scrollPastEnd: true
     showInvisibles: true
-    tabLength: 4
     tabType: "soft"
   "exception-reporting":
     userId: "ee24cf00-f793-9081-be2a-2cdae5536b7f"
