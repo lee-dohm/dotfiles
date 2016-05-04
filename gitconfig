@@ -30,6 +30,7 @@
 
 [commit]
   template = ~/.gitmessage
+  gpgsign = true
 
 [core]
   editor = atom --wait
@@ -44,9 +45,6 @@
 
 [merge]
   ff = true
-
-[pull]
-  rebase = true
 
 [push]
   default = current
@@ -64,3 +62,6 @@
 
 [credential]
   helper = osxkeychain
+
+[user]
+  signingkey = 5CA680CA
