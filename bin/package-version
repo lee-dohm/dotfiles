@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'json'
+
+package = JSON.load(File.read('package.json'))
+puts "#{package["name"]}@#{package["version"]}"

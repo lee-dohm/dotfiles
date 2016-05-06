@@ -37,18 +37,24 @@ def request(path)
   Net::HTTP.start('api.github.com', use_ssl: true) { |http| http.get(path) }
 end
 
-def downloads(body)
+def print_downloads(body)
   releases = JSON.parse(body)
 
-  count = 0
-
   releases.each do |release|
-    release["assets"].each do |asset|
-      count += asset["download_count"]
-    end
-  end
+    count = 0
+    release_name = release["tag_name"]
+    next unless release["published_at"]
+    release_date = DateTime.parse(release["published_at"]).to_date.iso8601
 
-  count
+    release["assets"].each do |asset|
+      asset_name = asset["name"]
+      if (asset_name.start_with?("electron") || asset_name.start_with?("atom-shell")) && !(asset_name =~ /sym/)
+        count += asset["download_count"].to_i
+      end
+    end
+
+    puts "#{release_date},#{release_name},#{count}" unless count == 0
+  end
 end
 
 options = parse_arguments(ARGV)
@@ -57,8 +63,7 @@ nwo = ARGV.first
 url = "/repos/#{nwo}/releases?per_page=100"
 url += "&access_token=#{options[:token]}" if options[:token]
 resp = request(url)
-download_count = downloads(resp.body)
-$stderr.puts "Count = #{download_count}" if options[:verbose]
+print_downloads(resp.body)
 
 while resp["link"] do
   next_link = parse_next(resp["link"])
@@ -67,6 +72,5 @@ while resp["link"] do
   $stderr.puts "Page #{page(url)}" if options[:verbose]
   $stderr.puts "Rate Limit Remaining = #{resp["x-ratelimit-remaining"]}" if options[:verbose]
   resp = request(url)
-  download_count += downloads(resp.body)
-  $stderr.puts "Count = #{download_count}" if options[:verbose]
+  print_downloads(resp.body)
 end

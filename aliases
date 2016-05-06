@@ -27,3 +27,5 @@ alias sssh='screen-ssh'
 alias a='atom'
 alias aa='atom-alpha'
 alias ab='atom-beta'
+
+alias pv='package-version'
