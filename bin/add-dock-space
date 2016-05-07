@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Adds a spacer tile to the OS X Dock
+#
+# From: http://www.imore.com/add-space-your-mac-dock
+#
+
+defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="spacer-tile";}'; killall Dock
