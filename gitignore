@@ -9,3 +9,6 @@
 ._*
 .Spotlight-V100
 .Trashes
+
+### Dump files ###
+erl_crash.dump
