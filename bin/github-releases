@@ -40,6 +40,7 @@ end
 def print_downloads(body)
   releases = JSON.parse(body)
 
+  total = 0
   releases.each do |release|
     count = 0
     release_name = release["tag_name"]
@@ -48,13 +49,16 @@ def print_downloads(body)
 
     release["assets"].each do |asset|
       asset_name = asset["name"]
-      if (asset_name.start_with?("electron") || asset_name.start_with?("atom-shell")) && !(asset_name =~ /sym/)
+      if !(asset_name =~ /symbols/) && (asset_name != /atom-api.json/)
         count += asset["download_count"].to_i
       end
     end
 
+    total += count
     puts "#{release_date},#{release_name},#{count}" unless count == 0
   end
+
+  total
 end
 
 options = parse_arguments(ARGV)
@@ -65,6 +69,7 @@ url += "&access_token=#{options[:token]}" if options[:token]
 resp = request(url)
 print_downloads(resp.body)
 
+total = 0
 while resp["link"] do
   next_link = parse_next(resp["link"])
   break if next_link.nil?
@@ -72,5 +77,7 @@ while resp["link"] do
   $stderr.puts "Page #{page(url)}" if options[:verbose]
   $stderr.puts "Rate Limit Remaining = #{resp["x-ratelimit-remaining"]}" if options[:verbose]
   resp = request(url)
-  print_downloads(resp.body)
+  total += print_downloads(resp.body)
 end
+
+puts "Total = #{total}"
