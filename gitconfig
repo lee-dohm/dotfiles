@@ -62,6 +62,3 @@
 
 [credential]
   helper = osxkeychain
-
-[user]
-  signingkey = 5CA680CA
