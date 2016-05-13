@@ -22,7 +22,7 @@ else
 fi
 
 # If $SHELL ends with "zsh" (rather than simply comparing directly against `/bin/zsh`)
-echo "$SHELL" | grep 'zsh$'
+echo "$SHELL" | grep 'zsh$' > /dev/null
 if [ $? -eq 0 ]; then
     # Complete g like git
     compdef g=git
