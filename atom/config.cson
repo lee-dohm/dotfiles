@@ -3,12 +3,6 @@
     suggestCurrentFilePath: true
   "advanced-open-file":
     createFileInstantly: true
-  "asciidoc-preview": {}
-  "atom-beautify":
-    _analyticsUserId: "628f791d-dc9a-4907-89ef-e27445244039"
-    general:
-      _analyticsUserId: "8baac05e-0ab1-4c0f-bf95-e7c3fd57da66"
-    js_indent_with_tabs: true
   "atom-color-highlight":
     hideMarkersInComments: true
     hideMarkersInStrings: true
@@ -99,7 +93,6 @@
     v4Preview: true
   "notational-velocity":
     directory: "/Users/Lee/Dropbox/Notebook"
-  "one-light-ui": {}
   "package-generator":
     createInDevMode: true
   pigments:
@@ -138,15 +131,6 @@
 ".c.source":
   editor:
     tabLength: 4
-".elixir.html.text":
-  editor:
-    preferredLineLength: 100
-".elixir.source":
-  editor:
-    preferredLineLength: 100
-".elixir.text":
-  editor:
-    preferredLineLength: 100
 ".gfm.source":
   editor:
     showInvisibles: false
