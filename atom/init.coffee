@@ -5,6 +5,19 @@ path = require 'path'
 oldWindowDimensions = {}
 
 atom.commands.add 'atom-workspace',
+  'custom:wrap-with-strong': ->
+    editor = atom.workspace.getActiveTextEditor()
+    for selection in editor.getSelections()
+      textToWrap = selection.getText()
+      selection.insertText("<strong>#{textToWrap}</strong>")
+
+  'custom:insert-numbers': ->
+    editor = atom.workspace.getActiveTextEditor()
+    count = 0
+    for selection in editor.getSelections()
+      count += 1
+      selection.insertText("#{count}")
+
   'custom:insert-timestamp': ->
     now = new Date()
     atom.workspace.getActiveTextEditor().insertText(now.toISOString())
