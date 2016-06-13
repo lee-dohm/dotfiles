@@ -43,4 +43,6 @@ if answer.strip != 'y'
   exit 0
 end
 
-`echo #{branches} | xargs -n 1 git branch -d`
+branches.split.each do |branch|
+  system("git branch -d #{branch}")
+end
