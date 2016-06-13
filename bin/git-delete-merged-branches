@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require 'optparse'
+
 # Original inspiration from:
 # https://gist.github.com/bxt/566fd7de151bf73a937d
 
@@ -8,7 +10,21 @@ def prompt(*args)
   gets
 end
 
-main = 'master'
+options = {}
+OptionParser.new do |opts|
+  opts.banner = 'Usage: git delete-merged-branches [options]'
+
+  opts.on('-bBRANCH', '--branch BRANCH', 'Branch to check for being merged into') do |b|
+    options[:branch] = b
+  end
+
+  opts.on('-h', '--help', 'Show this help information') do |h|
+    puts opts
+    exit
+  end
+end.parse!
+
+main = options[:branch] || 'master'
 branches = `git branch --merged #{main} | grep -v -e 'master\\|staging\\|development\\|\\*'`
 
 if branches.strip.empty?
