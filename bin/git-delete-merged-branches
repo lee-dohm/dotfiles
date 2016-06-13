@@ -1,15 +1,27 @@
-#!/bin/bash
+#!/usr/bin/env ruby
 
-MAIN=master
-BRANCHES=$(git branch --merged $MAIN | grep -v -e 'master\|staging\|development\|\*')
+def prompt(*args)
+  print(*args)
+  gets
+end
 
-if [ "$BRANCHES" = "" ]; then echo "All branches still open" && exit; fi
+main = 'master'
+branches = `git branch --merged #{main} | grep -v -e 'master\\|staging\\|development\\|\\*'`
 
-echo "Branches merged into $MAIN:"
-echo "$BRANCHES"
+if branches.strip.empty?
+  puts "No merged branches to delete"
+  exit 0
+end
 
-read -p "Delete these branches (y/n)? " answer
+puts "Branches merged into #{main}"
+puts branches
+puts
 
-if [ "$answer" != "y" ]; then echo aborting && exit; fi
+answer = prompt('Delete these branches (y/N)? ')
 
-echo "$BRANCHES" | xargs -n 1 git branch -d
+if answer.strip! != 'y'
+  puts "Aborting"
+  exit 0
+end
+
+`echo #{branches} | xargs -n 1 git branch -d`
