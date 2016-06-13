@@ -1,0 +1,15 @@
+#!/bin/bash
+
+MAIN=master
+BRANCHES=$(git branch --merged $MAIN | grep -v -e 'master\|staging\|development\|\*')
+
+if [ "$BRANCHES" = "" ]; then echo "All branches still open" && exit; fi
+
+echo "Branches merged into $MAIN:"
+echo "$BRANCHES"
+
+read -p "Delete these branches (y/n)? " answer
+
+if [ "$answer" != "y" ]; then echo aborting && exit; fi
+
+echo "$BRANCHES" | xargs -n 1 git branch -d
