@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
+# Original inspiration from:
+# https://gist.github.com/bxt/566fd7de151bf73a937d
+
 def prompt(*args)
   print(*args)
   gets
