@@ -38,7 +38,7 @@ puts
 
 answer = prompt('Delete these branches (y/N)? ')
 
-if answer.strip! != 'y'
+if answer.strip != 'y'
   puts "Aborting"
   exit 0
 end
