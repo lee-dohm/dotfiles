@@ -14,6 +14,13 @@ These are my myriad [dotfiles](http://dotfiles.github.io/). It has grown, morphe
     $ git clone git@github.com:lee-dohm/dotfiles.git personal-dotfiles
     ```
 
+1. Install [rcm](https://github.com/thoughtbot/rcm) if it wasn't installed as part of your `.Brewfile` by strap
+
+    ```bash
+    $ brew tap thoughtbot/formulae
+    $ brew install rcm
+    ```
+
 1. Install the dotfiles
 
     ```bash
