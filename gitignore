@@ -4,7 +4,7 @@
 ### ctags ###
 /tags
 
-### OS X ###
+### macOS ###
 .DS_Store
 ._*
 .Spotlight-V100
