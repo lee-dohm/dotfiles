@@ -6,7 +6,8 @@ brew "fortune"                 # Dependency of Atom package fortune-background-t
 brew "git"
 brew "heroku-toolbelt"
 brew "hub"
-brew "nvm"
+brew "keybase"                 # Command-line encryption tool
+brew "nodenv"
 brew "parity"
 brew "rbenv"
 brew "rcm"
