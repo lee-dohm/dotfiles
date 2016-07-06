@@ -1,6 +1,6 @@
 path = require 'path'
 
-# require('web-frame').setZoomFactor(1.15)
+# require('web-frame').setZoomFactor(3)
 
 oldWindowDimensions = {}
 

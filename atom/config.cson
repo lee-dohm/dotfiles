@@ -7,10 +7,6 @@
     hideMarkersInComments: true
     hideMarkersInStrings: true
     markersAtEndOfLine: true
-  "auto-copyright":
-    owner: "Lifted Studios"
-  autocomplete:
-    includeCompletionsFromAllBuffers: true
   "autocomplete-elixir":
     elixirPath: "/usr/local/bin/elixir"
     erlangHome: "/usr/local/lib/erlang/bin"
@@ -58,7 +54,7 @@
     ]
   editor:
     backUpBeforeSaving: true
-    fontFamily: "InputMono-ExtraLight"
+    fontFamily: "InputMono-Light"
     fontSize: 16
     invisibles:
       cr: "↩"
@@ -73,9 +69,11 @@
   "find-and-replace":
     openProjectFindResultsInRightPane: false
   "fortune-background-tips":
-    fortuneCommand: "fortune -s computers"
+    fortuneCommand: "fortune -s Computers"
   "fuzzy-finder":
     preserveLastSearch: true
+  "highlight-selected":
+    showInStatusBar: false
   "markdown-preview":
     useGitHubStyle: true
   "markdown-table-formatter":
@@ -90,9 +88,8 @@
       cursorline: true
       cursorlineDecorationsZIndex: 0
       "find-and-replace": true
-    v4Preview: true
-  "notational-velocity":
-    directory: "/Users/Lee/Dropbox/Notebook"
+  "one-light-ui":
+    tabSizing: "Even"
   "package-generator":
     createInDevMode: true
   pigments:
@@ -100,26 +97,19 @@
       "\\.elixir"
     ]
     markerType: "dot"
-  "spell-check": {}
   "status-bar":
     cursorPositionFormat: "L:%L C:%C"
   tabs:
     enableVcsColoring: true
-    usePreviewTabs: true
   "tabs-to-spaces":
     changeSoftTabsMode: true
     onSave: "untabify"
   "tree-view":
     hideIgnoredNames: true
     hideVcsIgnoredFiles: true
+    squashDirectoryNames: true
   welcome:
     showOnStartup: false
-  "white-cursor":
-    darkThemes: [
-      "railscasts-syntax"
-    ]
-    enabled: "detect"
-  whitespace: {}
 ".asciidoc.source":
   editor:
     softWrap: true
@@ -127,9 +117,18 @@
     enabled: false
 ".basic.html.text":
   editor:
+    preferredLineLength: 100
     tabLength: 4
 ".c.source":
   editor:
+    preferredLineLength: 100
+    tabLength: 4
+".console.python.text":
+  editor:
+    preferredLineLength: 100
+".cpp.source":
+  editor:
+    preferredLineLength: 100
     tabLength: 4
 ".gfm.source":
   editor:
@@ -144,12 +143,22 @@
 ".haml.text":
   "wrap-guide":
     enabled: false
+".html.php.text":
+  editor:
+    preferredLineLength: 100
 ".java.source":
   editor:
     tabLength: 4
 ".json.source":
   "wrap-guide":
     enabled: false
+".python.regexp.source":
+  editor:
+    preferredLineLength: 100
 ".python.source":
   editor:
+    preferredLineLength: 100
     tabLength: 4
+".python.text.traceback":
+  editor:
+    preferredLineLength: 100

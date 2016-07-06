@@ -1,3 +1,55 @@
+'.source.js':
+  Babel:
+    prefix: 'bab'
+    body: "'use babel'"
+  Describe:
+    prefix: 'desc'
+    body: """
+    describe('$1', function () {
+      $0
+    })
+    """
+  AsyncDescribe:
+    prefix: 'desca'
+    body: """
+    describe('$1', async function () {
+      $0
+    })
+    """
+  AfterEach:
+    prefix: 'afe'
+    body: """
+    afterEach(function () {
+      $0
+    })
+    """
+  BeforeEach:
+    prefix: 'befe'
+    body: """
+    beforeEach(function () {
+      $0
+    })
+    """
+  AsyncIt:
+    prefix: 'ita'
+    body: """
+    it('$1', async function () {
+      $0
+    })
+    """
+  It:
+    prefix: 'it'
+    body: """
+    it('$1', function () {
+      $0
+    })
+    """
+  Expect:
+    prefix: 'ex'
+    body: "expect($1).to"
+  ExpectEqual:
+    prefix: 'exeq'
+    body: "expect($1).to.equal($2)"
 '.source.coffee':
   Describe:
     prefix: 'desc'
