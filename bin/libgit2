@@ -1,0 +1,8 @@
+#!/bin/sh
+if [ -z "$*" ]
+then
+  echo "Error: git command needed!" >&2
+  exit 1
+fi
+
+"$(brew --prefix libgit2)"/share/libgit2/examples/$@

@@ -7,6 +7,7 @@ brew "git"
 brew "heroku-toolbelt"
 brew "hub"
 brew "keybase"                 # Command-line encryption tool
+brew "libgit2"
 brew "nodenv"
 brew "parity"
 brew "rbenv"
