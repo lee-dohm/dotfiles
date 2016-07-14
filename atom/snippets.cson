@@ -72,6 +72,9 @@
       ## Copyright
 
     """
+  'Image Link':
+    'prefix': 'img'
+    'body': '![$1]($2 "$1")'
 '.source.java':
   'private static final':
     prefix: 'psf'
