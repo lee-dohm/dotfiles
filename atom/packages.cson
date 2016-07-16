@@ -1,0 +1,17 @@
+packages: [
+  "advanced-open-file"
+  "bug-report"
+  "convert-date"
+  "file-type-icons"
+  "highlight-selected"
+  "indentation-indicator"
+  "language-generic-config"
+  "less-than-slash"
+  "minimap"
+  "package-sync"
+  "red-wavy-underline"
+  "right-case"
+  "set-syntax"
+  "soft-wrap-indicator"
+  "tabs-to-spaces"
+]
