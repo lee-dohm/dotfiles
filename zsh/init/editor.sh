@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export EDITOR='atom-beta'
+export EDITOR="atom"
 export VISUAL="$EDITOR"
 
 export ATOM_REPOS_HOME="$HOME/Source"
