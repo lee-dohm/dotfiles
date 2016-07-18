@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+
+require 'CSV'
+
+# Takes the output from the github-issues script and post-processes it
+
+def update_month(by_month, month_opened, month_closed)
+  by_month[month_opened] = [0, 0] unless by_month[month_opened]
+  by_month[month_closed] = [0, 0] if month_closed && !by_month[month_closed]
+
+  stats = by_month[month_opened]
+  stats = [stats[0] + 1, stats[1]]
+  by_month[month_opened] = stats
+
+  if month_closed
+    stats = by_month[month_closed]
+    stats = [stats[0], stats[1] + 1]
+    by_month[month_opened] = stats
+  end
+end
+
+def which_month(date)
+  parts = date.split('T')
+              .first
+              .split('-')
+
+  return "#{parts[0]}-#{parts[1]}-01"
+end
+
+by_month = {}
+
+ARGF.each_line do |line|
+  CSV.parse(line) do |row|
+    month_opened = which_month(row[3])
+    month_closed = row[2] == 'closed' ? which_month(row[5]) : nil
+    update_month(by_month, month_opened, month_closed)
+  end
+end
+
+months = by_month.keys.sort
+months.each do |month|
+  puts "#{month},#{by_month[month][0]},#{by_month[month][1]}"
+end

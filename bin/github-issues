@@ -23,6 +23,10 @@ def parse_arguments(args)
       options[:token] = t
     end
 
+    opts.on("-sSINCE", '--since=SINCE', "Only get issues since this date") do |s|
+      options[:since] = s
+    end
+
     opts.on("-v", "--verbose", "Verbose output") do |v|
       options[:verbose] = v
     end
@@ -75,6 +79,7 @@ options = parse_arguments(ARGV)
 org = ARGV.first
 url = "/orgs/#{org}/issues?per_page=100&filter=all&state=all"
 url += "&access_token=#{options[:token]}" if options[:token]
+url += "&since=#{options[:since]}" if options[:since]
 resp = request(url)
 write_issues(resp.body)
 
