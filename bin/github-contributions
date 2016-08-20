@@ -1,67 +1,36 @@
 #!/usr/bin/env ruby
 
-require 'json'
-require 'net/http'
-require 'optparse'
+require 'octokit'
 
-def items(body)
-  JSON.parse(body)
-end
+token_path = File.join(ENV['HOME'], '.github')
 
-def page(url)
-  if url =~ /page=(?<page>\d+)$/
-    Regexp.last_match[:page]
-  end
-end
+token_file = File.join(token_path, File.basename(__FILE__))
+token_file = File.join(token_path, 'default_token') unless File.exist?(token_file)
+token = File.read(token_file).strip
 
-def parse_arguments(args)
-  options = {}
+client = Octokit::Client.new(access_token: token)
+client.auto_paginate = true
 
-  OptionParser.new do |opts|
-    opts.on("-tTOKEN", "--token=TOKEN", "Access token") do |t|
-      options[:token] = t
-    end
+org = ARGV[0]
 
-    opts.on("-v", "--verbose", "Verbose output") do |v|
-      options[:verbose] = v
-    end
-  end.parse!(args)
+repos = client.repositories(org)
 
-  options
-end
-
-def parse_next(text)
-  if text =~ /<(?<url>[^>]*)>; rel="next"/
-    Regexp.last_match[:url]
-  end
-end
-
-def request(path)
-  Net::HTTP.start('api.github.com', use_ssl: true) { |http| http.get(path) }
-end
-
-options = parse_arguments(ARGV)
-
-repos = ARGV
-contributions = 0
-
+total_commits = 0
+total_merged_prs = 0
 repos.each do |repo|
-  $stderr.puts repo
-  url = "/repos/#{repo}/commits?per_page=100"
-  url += "&access_token=#{options[:token]}" if options[:token]
-  resp = request(url)
-  contributions += items(resp.body).count
-  $stderr.puts "Page 1" if options[:verbose]
+  name = repo.full_name
 
-  while resp["link"] do
-    next_link = parse_next(resp["link"])
-    break if next_link.nil?
-    url = parse_next(resp["link"]).sub("https://api.github.com", "")
-    $stderr.puts "Page #{page(url)}" if options[:verbose]
-    $stderr.puts "Rate Limit Remaining = #{resp["x-ratelimit-remaining"]}" if options[:verbose]
-    resp = request(url)
-    contributions += items(resp.body).count
-  end
+  commit_count = client.commits(name).count
+  merged_pr_count = client.pull_requests(name, state: 'closed')
+                          .reject { |pull| pull[:merged_at].nil? }
+                          .count
+
+  total_commits += commit_count
+  total_merged_prs += merged_pr_count
+
+  puts "#{name},#{commit_count},#{merged_pr_count}"
 end
 
-puts contributions
+puts
+puts "Total Commits = #{total_commits}"
+puts "Total Merged PRs = #{total_merged_prs}"
