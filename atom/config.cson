@@ -3,6 +3,9 @@
     suggestCurrentFilePath: true
   "advanced-open-file":
     createFileInstantly: true
+  "atom-beautify":
+    general:
+      _analyticsUserId: "0ad7da6d-8f3a-447c-aa25-b731478a0f71"
   "atom-color-highlight":
     hideMarkersInComments: true
     hideMarkersInStrings: true
@@ -53,8 +56,7 @@
       "one-light-syntax"
     ]
   editor:
-    backUpBeforeSaving: true
-    fontFamily: "InputMono-Light"
+    fontFamily: "Source Code Pro"
     fontSize: 16
     invisibles:
       cr: "↩"
@@ -88,8 +90,6 @@
       cursorline: true
       cursorlineDecorationsZIndex: 0
       "find-and-replace": true
-  "one-light-ui":
-    tabSizing: "Even"
   "package-generator":
     createInDevMode: true
   pigments:
@@ -118,7 +118,6 @@
 ".basic.html.text":
   editor:
     preferredLineLength: 100
-    tabLength: 4
 ".c.source":
   editor:
     preferredLineLength: 100
@@ -132,6 +131,7 @@
     tabLength: 4
 ".gfm.source":
   editor:
+    preferredLineLength: 100
     showInvisibles: false
     softWrap: true
     tabLength: 4
