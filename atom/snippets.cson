@@ -1,7 +1,32 @@
 '.source.js':
   Babel:
     prefix: 'bab'
-    body: "'use babel'"
+    body: "/** @babel */"
+  Etch:
+    prefix: 'etch'
+    body: """
+    /** @jsx etch.dom */
+
+    import etch from 'etch'
+
+    export default class $1 {
+      constructor ($0) {
+        etch.initialize(this)
+      }
+
+      render () {
+        return <div></div>
+      }
+
+      update () {
+        return etch.update(this)
+      }
+
+      destroy () {
+        etch.destroy(this)
+      }
+    }
+    """
   Describe:
     prefix: 'desc'
     body: """
@@ -75,6 +100,19 @@
   'Image Link':
     'prefix': 'img'
     'body': '![$1]($2 "$1")'
+  Planet:
+    # Used in my No Man's Sky notes repo
+    prefix: 'planet'
+    body: """
+    ## ${1:Planet Name}
+
+    * Weather: ${2:Weather Type}
+    * Sentinels: ${3:Sentinel Activity}
+    * Flora: ${4:Flora Level}
+    * Fauna: ${5:Fauna Level}
+
+    * Resources Found (besides Carbon and Iron)
+    """
 '.source.java':
   'private static final':
     prefix: 'psf'
