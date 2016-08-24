@@ -1,2 +1,1 @@
-DOTFILES_DIRS="$HOME/personal-dotfiles"
 EXCLUDES="*.md coffeelint.json Gemfile Gemfile.lock packages"

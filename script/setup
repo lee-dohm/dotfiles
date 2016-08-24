@@ -15,3 +15,7 @@ if [ -f "Brewfile" ] && [ "$(uname -s)" = "Darwin" ]; then
     brew bundle
   }
 fi
+
+# Install the `.rcrc` file first to make installing the rest simple using the second call
+rcup rcrc
+rcup
