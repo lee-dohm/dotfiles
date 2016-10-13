@@ -1,0 +1,116 @@
+#!/usr/bin/env elixir
+
+require Logger
+
+defmodule Git do
+  @doc """
+  Clones the GitHub repository named by `[owner]/[repo]` into a temporary directory.
+
+  Returns a tuple consisting of the path where the repository was cloned and the exit code of
+  the clone operation.
+  """
+  def clone(nwo) do
+    [_, repo] = Path.split(nwo)
+    temp_dir = System.tmp_dir!
+    target = Path.join(temp_dir, repo)
+    url = create_url(nwo)
+
+    Logger.info("Clone #{url} into #{target}")
+    {_, exit_code} = System.cmd("git", ["clone", url, target])
+
+    {target, exit_code}
+  end
+
+  @doc """
+  Returns a list of tuples consisting of:
+
+  * Commit SHA
+  * Author Date
+  * Author Name
+  """
+  def commit_list(target) do
+    Logger.info("Get commit list")
+    {output, 0} = System.cmd("git", ["log", "--format=%h %ai %an"], cd: target)
+    split_commits(output)
+  end
+
+  defp create_url(nwo), do: "https://github.com/#{nwo}.git"
+
+  defp split_commits(output) do
+    output
+    |> String.split("\n")
+    |> Enum.map(fn(line) ->
+         {hash, rest} = String.split_at(line, 8)
+         hash = String.trim(hash)
+
+         {author_date, author_name} = String.split_at(rest, 26)
+         author_date = String.trim(author_date)
+         author_name = String.trim(author_name)
+
+         {hash, author_date, author_name}
+       end)
+  end
+end
+
+defmodule PonyFactor do
+  @commit_percentage 0.5
+
+  def calculate(path, directory: true), do: calculate_from_local_repo(path)
+
+  def calculate(nwo, _) do
+    {clone_dir, 0} = Git.clone(nwo)
+
+    pony_list = calculate_from_local_repo(clone_dir)
+
+    File.rm_rf!(clone_dir)
+    pony_list
+  end
+
+  defp calculate_from_local_repo(clone_dir) do
+    commits = Git.commit_list(clone_dir)
+
+    Logger.info("Calculate Pony Factor")
+    commit_count = Enum.count(commits)
+    committers = calculate_committers(commits)
+    ranked_committers = rank_committers(committers)
+
+    calculate_from_ranked_committers(ranked_committers, commit_count)
+  end
+
+  defp calculate_committers(commits), do: calculate_committers(%{}, commits)
+
+  defp calculate_committers(committers, []), do: committers
+  defp calculate_committers(committers, [{_, date, name} | commits]) do
+    {_, new_committers} = Map.get_and_update(committers, name, fn
+                            nil                     -> {name, {name, date, 1}}
+                            {_, commit_date, count} -> {name, {name, max_date(date, commit_date), count + 1}}
+                          end)
+
+    calculate_committers(new_committers, commits)
+  end
+
+  defp max_date(a, b) when a > b, do: a
+  defp max_date(_, b), do: b
+
+  defp calculate_from_ranked_committers(committers, commit_count) do
+    pony(0, [], committers, commit_count * @commit_percentage)
+  end
+
+  defp pony(sum, list, _, count) when sum >= count, do: Enum.reverse(list)
+  defp pony(sum, list, [{name, _, author_count} | committers], count),
+    do: pony(sum + author_count, [{name, author_count} | list], committers, count)
+
+  defp rank_committers(committers) do
+    committers
+    |> Map.values
+    |> Enum.sort_by(fn({_, _, count}) -> count end, &>=/2)
+  end
+end
+
+{options, [nwo | _]} = OptionParser.parse!(System.argv)
+pony_list = PonyFactor.calculate(nwo, options)
+
+Enum.each(pony_list, fn({name, count}) -> IO.puts("#{name} #{count}") end)
+
+IO.puts(nil)
+IO.puts("Pony Factor = #{Enum.count(pony_list)}")
