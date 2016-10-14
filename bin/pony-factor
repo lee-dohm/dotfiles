@@ -2,6 +2,9 @@
 
 require Logger
 
+@@doc """
+Interfaces with Git to extract needed information from the repository.
+"""
 defmodule Git do
   @commit_pattern ~r/(?<hash>[0-9a-f]+)\s+(?<date>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} [+-]\d{4})\s+(?<name>.+)/
   @doc """
@@ -23,11 +26,13 @@ defmodule Git do
   end
 
   @doc """
-  Returns a list of tuples consisting of:
+  Returns the list of commits as three-element tuples in the form
+  `{sha, date_authored, author_name}` where:
 
-  * Commit SHA
-  * Author Date
-  * Author Name
+  * `sha` is a String containing the shortened Git hash for the commit
+  * `date_authored` is a String containing the
+    [ISO8601-formatted](https://en.wikipedia.org/wiki/ISO_8601) date when the commit was authored
+  * `author_name` is the display name of the author of the commit
   """
   def commit_list(target) do
     Logger.info("Get commit list")
@@ -48,8 +53,36 @@ defmodule Git do
   end
 end
 
+@doc """
+Calculates the [Pony Factor](https://ke4qqq.wordpress.com/2015/02/08/pony-factor-math/) of a GitHub
+repository.
+"""
 defmodule PonyFactor do
   @commit_percentage 0.5
+
+  @doc """
+  Calculates the Pony Factor of the `location`.
+
+  The `location` can either be a GitHub `owner/repo` name or a path to a local repository if the
+  `:directory` option is specified. If a GitHub repository is specified, the repo will be cloned
+  to the local filesystem for the calculations and then deleted afterward.
+
+  It returns a list of two-element tuples of the form `{name, commit_count}` where:
+
+  * `name` is the display name of the contributor
+  * `commit_count` is the number of commits that person has contributed
+
+  The list is sorted from most commits to least.
+
+  You can get the length of the list to determine the Pony Factor number.
+
+  ### Options
+
+  The following options are supported:
+
+  * `:directory` - Set to `true` to supply the path to a local repository as the location
+  """
+  def calculate(location, options \\ [])
 
   def calculate(path, directory: true), do: calculate_from_local_repo(path)
 

@@ -19,7 +19,7 @@
     confirmCompletion: "tab"
     defaultProvider: "Fuzzy"
     scopeBlacklist: [
-      ".string"
+      ".string .comment"
     ]
   core:
     audioBeep: false
@@ -50,7 +50,9 @@
       "*.pyc"
       "Thumbs.db"
     ]
+    openEmptyEditorOnStart: false
     projectHome: "/Users/Lee/Source"
+    telemetryConsent: "limited"
     themes: [
       "one-light-ui"
       "one-light-syntax"
@@ -68,6 +70,8 @@
     tabType: "soft"
   "exception-reporting":
     userId: "ee24cf00-f793-9081-be2a-2cdae5536b7f"
+  "file-icons":
+    coloured: false
   "find-and-replace":
     openProjectFindResultsInRightPane: false
   "fortune-background-tips":
@@ -97,6 +101,7 @@
       "\\.elixir"
     ]
     markerType: "dot"
+  "spell-check": {}
   "status-bar":
     cursorPositionFormat: "L:%L C:%C"
   tabs:
@@ -105,6 +110,8 @@
     changeSoftTabsMode: true
     onSave: "untabify"
   "tree-view":
+    autoReveal: true
+    focusOnReveal: false
     hideIgnoredNames: true
     hideVcsIgnoredFiles: true
     squashDirectoryNames: true
@@ -155,10 +162,14 @@
 ".python.regexp.source":
   editor:
     preferredLineLength: 100
+    tabLength: 4
 ".python.source":
   editor:
     preferredLineLength: 100
     tabLength: 4
 ".python.text.traceback":
+  editor:
+    preferredLineLength: 100
+".source.yaml":
   editor:
     preferredLineLength: 100
