@@ -115,7 +115,7 @@ defmodule PonyFactor do
   end
 
   def display(pony_list) do
-    Enum.each(pony_list, fn({name, count}) -> IO.puts("#{name}\t#{count}") end)
+    Enum.each(pony_list, fn({name, date, count}) -> IO.puts("#{name}\t#{count}\t#{date}") end)
 
     IO.puts(nil)
     IO.puts("Pony Factor = #{Enum.count(pony_list)}")
@@ -172,8 +172,8 @@ defmodule PonyFactor do
   defp pony(sum, list, _, count) when sum >= count, do: Enum.reverse(list)
   defp pony(sum, _, [], count),
     do: {:error, "Augmented Pony Factor undefined: only #{Float.round(sum / (count / @commit_percentage) * 100, 2)}% of commits are covered by committers who are still active"}
-  defp pony(sum, list, [{name, _, author_count} | committers], count),
-    do: pony(sum + author_count, [{name, author_count} | list], committers, count)
+  defp pony(sum, list, [committer = {_, _, author_count} | committers], count),
+    do: pony(sum + author_count, [committer | list], committers, count)
 
   defp sort_committers(committers) do
     committers
@@ -182,7 +182,7 @@ defmodule PonyFactor do
   end
 end
 
-{options, [location | _]} = OptionParser.parse!(System.argv, strict: [augmenteddirectory: :boolean])
+{options, [location | _]} = OptionParser.parse!(System.argv, strict: [directory: :boolean])
 
 location
 |> PonyFactor.calculate(options)
