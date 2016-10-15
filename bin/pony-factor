@@ -2,11 +2,13 @@
 
 require Logger
 
-@@doc """
-Interfaces with Git to extract needed information from the repository.
-"""
 defmodule Git do
+  @moduledoc """
+  Interfaces with Git to extract needed information from the repository.
+  """
+
   @commit_pattern ~r/(?<hash>[0-9a-f]+)\s+(?<date>\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2} [+-]\d{4})\s+(?<name>.+)/
+
   @doc """
   Clones the GitHub repository named by `[owner]/[repo]` into a temporary directory.
 
@@ -53,11 +55,12 @@ defmodule Git do
   end
 end
 
-@doc """
-Calculates the [Pony Factor](https://ke4qqq.wordpress.com/2015/02/08/pony-factor-math/) of a GitHub
-repository.
-"""
 defmodule PonyFactor do
+  @moduledoc """
+  Calculates the [Pony Factor](https://ke4qqq.wordpress.com/2015/02/08/pony-factor-math/) of a GitHub
+  repository.
+  """
+
   @commit_percentage 0.5
 
   @doc """
@@ -106,15 +109,57 @@ defmodule PonyFactor do
     pony_list
   end
 
+  def display({:error, message}) do
+    IO.puts(message)
+    exit({:shutdown, 1})
+  end
+
+  def display(pony_list) do
+    Enum.each(pony_list, fn({name, count}) -> IO.puts("#{name}\t#{count}") end)
+
+    IO.puts(nil)
+    IO.puts("Pony Factor = #{Enum.count(pony_list)}")
+  end
+
   defp calculate_from_local_repo(clone_dir) do
     commits = Git.commit_list(clone_dir)
     commit_count = Enum.count(commits)
 
     Logger.info("Calculate Pony Factor")
+
     commits
-    |> reduce_committers
+    |> collect_committers
     |> sort_committers
+    |> filter_committers
     |> pony(commit_count)
+  end
+
+  defp collect_committers(commits), do: collect_committers(%{}, commits)
+
+  defp collect_committers(committers, []), do: committers
+  defp collect_committers(committers, [{_, date, name} | commits]) do
+    {_, new_committers} = Map.get_and_update(committers, name, fn
+                            nil                     -> {name, {name, date, 1}}
+                            {_, commit_date, count} -> {name, {name, max_date(date, commit_date), count + 1}}
+                          end)
+
+    collect_committers(new_committers, commits)
+  end
+
+  defp filter_committers(committers) do
+    now = DateTime.utc_now
+    year = Integer.to_string(now.year - 1)
+    month = pad_date_part(now.month)
+    day = pad_date_part(now.day)
+    one_year_ago = "#{year}-#{month}-#{day}"
+
+    Enum.filter(committers, fn({_, commit_date, _}) -> one_year_ago < commit_date end)
+  end
+
+  defp pad_date_part(part) do
+    part
+    |> Integer.to_string
+    |> String.pad_leading(2, "0")
   end
 
   defp max_date(a, b) when a > b, do: a
@@ -125,20 +170,10 @@ defmodule PonyFactor do
   end
 
   defp pony(sum, list, _, count) when sum >= count, do: Enum.reverse(list)
+  defp pony(sum, _, [], count),
+    do: {:error, "Augmented Pony Factor undefined: only #{Float.round(sum / (count / @commit_percentage) * 100, 2)}% of commits are covered by committers who are still active"}
   defp pony(sum, list, [{name, _, author_count} | committers], count),
     do: pony(sum + author_count, [{name, author_count} | list], committers, count)
-
-  defp reduce_committers(commits), do: reduce_committers(%{}, commits)
-
-  defp reduce_committers(committers, []), do: committers
-  defp reduce_committers(committers, [{_, date, name} | commits]) do
-    {_, new_committers} = Map.get_and_update(committers, name, fn
-                            nil                     -> {name, {name, date, 1}}
-                            {_, commit_date, count} -> {name, {name, max_date(date, commit_date), count + 1}}
-                          end)
-
-    reduce_committers(new_committers, commits)
-  end
 
   defp sort_committers(committers) do
     committers
@@ -147,10 +182,8 @@ defmodule PonyFactor do
   end
 end
 
-{options, [nwo | _]} = OptionParser.parse!(System.argv, strict: [directory: :boolean])
-pony_list = PonyFactor.calculate(nwo, options)
+{options, [location | _]} = OptionParser.parse!(System.argv, strict: [augmenteddirectory: :boolean])
 
-Enum.each(pony_list, fn({name, count}) -> IO.puts("#{name}\t#{count}") end)
-
-IO.puts(nil)
-IO.puts("Pony Factor = #{Enum.count(pony_list)}")
+location
+|> PonyFactor.calculate(options)
+|> PonyFactor.display
