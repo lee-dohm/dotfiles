@@ -29,3 +29,5 @@ alias aa='atom-alpha'
 alias ab='atom-beta'
 
 alias pv='package-version'
+
+alias flushdns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder; echo 'Flushed DNS, btw here is your hosts file just in case:'; cat /etc/hosts"

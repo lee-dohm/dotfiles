@@ -19,6 +19,24 @@
   .tree-view { font-size: 16px; }
 }
 
+.tree-view .selected:before {
+  background: hsla(0, 0%, 100%, .2); // show lines underneath
+}
+
+.tree-view .directory {
+  & > .list-item:before {
+    visibility: hidden; // hide arrows
+  }
+
+  .selected > .header.list-item ~ .entries.list-tree {
+    background: linear-gradient(to right, transparent 24px, darken(@base-background-color, 30%) 24px, darken(@base-background-color, 30%) 25px, transparent 25px);
+  }
+
+  .header.list-item:hover ~ .entries.list-tree {
+    background: linear-gradient(to right, transparent 24px, @text-color 24px, @text-color 25px, transparent 25px);
+  }
+}
+
 // Highlights the cursor line
 atom-text-editor::shadow {
   .cursor-line {
