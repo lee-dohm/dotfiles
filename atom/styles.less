@@ -44,6 +44,15 @@ atom-text-editor::shadow {
   }
 }
 
+// Displays an error background shading behind spelling errors
+//
+// atom-text-editor::shadow .misspelling {
+//   background-color: @background-color-error;
+//   opacity: 0.4;
+//   border-radius: 6px;
+//   border: none;
+// }
+
 // Un-italicizes comments
 atom-text-editor::shadow {
   .comment {
@@ -52,11 +61,18 @@ atom-text-editor::shadow {
 }
 
 // Makes the cursor pulse instead of blink
-atom-text-editor::shadow {
+atom-text-editor, atom-text-editor::shadow {
   .cursor {
     transition: opacity 0.5s;
   }
 }
+
+// Makes the cursor not blink at all
+// atom-text-editor::shadow {
+//   .cursors.blink-off .cursor {
+//     opacity: 1;
+//   }
+// }
 
 // Un-italicizes code markup in Markdown
 atom-text-editor::shadow {
@@ -140,6 +156,11 @@ atom-text-editor::shadow {
   }
 }
 
+// Disable the close icon on file tabs
+// .tab .close-icon {
+//   display: none;
+// }
+
 // https://discuss.atom.io/t/crazy-3d-angled-tree-view/18765
 #atom-perspective() {
   @viewing-distance: 12in;
@@ -161,8 +182,3 @@ atom-text-editor::shadow {
 
 // Comment or uncomment the next line to control whether the atom-perspective feature is enabled
 // #atom-perspective;
-
-// Disable the close icon on file tabs
-// .tab .close-icon {
-//   display: none;
-// }
