@@ -1,0 +1,6 @@
+[user]
+  name = Lee Dohm
+  email = lee@lee-dohm.com
+
+[commit]
+  gpgsign = false
