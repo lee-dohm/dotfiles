@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'aws-sdk'
 gem 'highline'
+gem 'jekyll'
 gem 'octokit'
 gem 'parity'
 gem 'plist'
