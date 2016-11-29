@@ -60,7 +60,7 @@
       "one-light-syntax"
     ]
   editor:
-    fontFamily: "Source Code Pro"
+    fontFamily: "Anonymous Pro"
     fontSize: 16
     invisibles:
       cr: "↩"
@@ -84,6 +84,7 @@
   "highlight-selected":
     showInStatusBar: false
   "markdown-preview":
+    openPreviewInSplitPane: false
     useGitHubStyle: true
   "markdown-table-formatter":
     formatOnSave: false
@@ -113,8 +114,6 @@
     changeSoftTabsMode: true
     onSave: "untabify"
   "tree-view":
-    autoReveal: true
-    focusOnReveal: false
     hideIgnoredNames: true
     hideVcsIgnoredFiles: true
     squashDirectoryNames: true
@@ -125,23 +124,14 @@
     softWrap: true
   "wrap-guide":
     enabled: false
-".basic.html.text":
-  editor:
-    preferredLineLength: 100
 ".c.source":
   editor:
-    preferredLineLength: 100
     tabLength: 4
-".console.python.text":
-  editor:
-    preferredLineLength: 100
 ".cpp.source":
   editor:
-    preferredLineLength: 100
     tabLength: 4
 ".gfm.source":
   editor:
-    preferredLineLength: 100
     showInvisibles: false
     softWrap: true
     tabLength: 4
@@ -153,9 +143,6 @@
 ".haml.text":
   "wrap-guide":
     enabled: false
-".html.php.text":
-  editor:
-    preferredLineLength: 100
 ".java.source":
   editor:
     tabLength: 4
@@ -164,15 +151,7 @@
     enabled: false
 ".python.regexp.source":
   editor:
-    preferredLineLength: 100
     tabLength: 4
 ".python.source":
   editor:
-    preferredLineLength: 100
     tabLength: 4
-".python.text.traceback":
-  editor:
-    preferredLineLength: 100
-".source.yaml":
-  editor:
-    preferredLineLength: 100
