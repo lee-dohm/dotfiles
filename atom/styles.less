@@ -13,11 +13,19 @@
 
 @import "packages/red-wavy-underline/styles/red-wavy-underline";
 
-.theme-one-light-ui, .theme-one-dark-ui {
+.theme-one-light-ui, .theme-one-dark-ui, .theme-atom-material-ui {
+  .advanced-open-file { font-size: 16px; }
+  .git-Panel { font-size: 16px; }
   .status-bar { font-size: 16px; }
   .tab-bar { font-size: 16px; }
   .tree-view { font-size: 16px; }
 }
+
+// Make the line number portion of the gutter a larger minimum width so that the gutter doesn't
+// grow and shrink on tiny files
+// atom-text-editor::shadow .gutter .line-number {
+//     min-width: 100px;
+// }
 
 .tree-view .selected:before {
   background: hsla(0, 0%, 100%, .2); // show lines underneath
@@ -134,12 +142,11 @@ atom-text-editor::shadow {
 }
 
 // Makes the bracket matcher highlight more noticeable
-// Only works on dark themes
-// atom-text-editor::shadow {
-//   .bracket-matcher .region {
-//     border-bottom: 1px solid yellow;
-//   }
-// }
+atom-text-editor::shadow {
+  .bracket-matcher .region {
+    border-bottom: 2px solid blue;
+  }
+}
 
 // Replaces the atom-lint error highlight with the red wavy underline
 .lint .violation-border.violation-warning {
