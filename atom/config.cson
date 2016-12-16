@@ -116,7 +116,6 @@
   "tree-view":
     hideIgnoredNames: true
     hideVcsIgnoredFiles: true
-    squashDirectoryNames: true
   welcome:
     showOnStartup: false
 ".asciidoc.source":
