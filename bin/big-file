@@ -1,6 +1,9 @@
 #!/usr/bin/env ruby
 
-File.open('dump.txt', 'w') do |file|
+test_dir = File.expand_path('~/big-test-files')
+Dir.mkdir(test_dir) unless Dir.exist?(test_dir)
+
+File.open(File.join(test_dir, 'dump.txt'), 'w') do |file|
   1.upto(224_000) do
     file.write("The quick brown fox jumped over the lazy dog.\n")
   end
