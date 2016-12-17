@@ -11,6 +11,7 @@ class CLI
     parse_options
 
     login if @opts[:login]
+    Octokit.auto_paginate = true
 
     if @opts[:standardize]
       label_names = Octokit.labels(@repo).map { |label| label.name }
@@ -27,7 +28,7 @@ class CLI
       longest_name = labels.map { |label| label.name.to_s.length }.max
       fmt = "%#{longest_name}s"
 
-      Octokit.labels(@repo).each do |label|
+      labels.each do |label|
         puts "#{format(fmt, label.name)} #{label.color}"
       end
     end
@@ -168,16 +169,32 @@ Options:
   # @return [Hash] Standard set of labels for repositories.
   def standard_labels
     {
-      'bug' => 'e11d21',
-      'deprecation' => 'e11d21',
+      'beginner' => '5319e7',
+      'blocked' => 'd4c5f9',
+      'bug' => 'f7c6c7',
       'documentation' => 'c7def8',
-      'enhancement' => '207de5',
-      'help-wanted' => 'bfe5bf',
-      'information-needed' => '009800',
-      'linux' => 'fbca04',
-      'mac' => 'fbca04',
-      'windows' => 'fbca04',
-      'wontfix' => 'eb6420'
+      'duplicate' => 'cccccc',
+      'enhancement' => 'bfd4f2',
+      'feedback' => 'fbca04',
+      'help-wanted' => '159818',
+      'invalid' => 'e6e6e6',
+      'linux' => 'c7def8',
+      'mac' => 'c7def8',
+      'more-information-needed' => '009800',
+      'needs-reproduction' => '009800',
+      'needs-review' => 'bfe5bf',
+      'needs-testing' => 'bfe5bf',
+      'package-idea' => 'bfd4f2',
+      'performance' => 'd4c5f9',
+      'question' => 'ededed',
+      'regression' => 'b60205',
+      'requires-changes' => 'fef2c0',
+      'tracking' => 'bfdadc',
+      'triaged' => '00bb00',
+      'uncaught-exception' => 'e11d21',
+      'windows' => 'c7def8',
+      'wontfix' => 'ffffff',
+      'wrong-repo' => 'e6e6e6'
     }
   end
 end
