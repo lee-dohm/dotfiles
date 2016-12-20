@@ -1,5 +1,4 @@
 #!/bin/zsh
-
 setopt promptsubst
 
 # load our own completion functions
@@ -13,6 +12,10 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:
 
 # load custom executable functions
 for function in ~/.zsh/functions/*; do
+    if [[ -n "$DEBUG" ]]; then
+        echo "Sourcing $function"
+    fi
+
     source "$function"
 done
 
@@ -54,10 +57,22 @@ bindkey "^N" insert-last-word
 export PATH="$HOME/.bin:/usr/local/bin:/usr/local/sbin:$PATH"
 
 # aliases
-[[ -f ~/.aliases ]] && source ~/.aliases
+if [[ -f ~/.aliases ]]; then
+    if [[ -n "$DEBUG" ]]; then
+        echo "Sourcing ~/.aliases"
+    fi
+
+    source ~/.aliases
+fi
 
 # environment variables
-[[ -f ~/.env ]] && source ~/.env
+if [[ -f ~/.env ]]; then
+    if [[ -n "$DEBUG" ]]; then
+        echo "Sourcing ~/.env"
+    fi
+
+    source ~/.env
+fi
 
 # Use colorized ls
 if [[ $(uname -s) == 'Darwin' ]]; then
@@ -129,5 +144,9 @@ export PROMPT='$RESET$(build_prompt)'
 
 # Perform any app-specific initializations
 for init in $HOME/.zsh/init/*.sh; do
+    if [[ -n "$DEBUG" ]]; then
+        echo "Sourcing $init"
+    fi
+
     source "$init"
 done
