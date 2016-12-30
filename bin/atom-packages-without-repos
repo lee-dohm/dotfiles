@@ -1,0 +1,82 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require 'net/http'
+require 'uri'
+
+def get(host, path)
+  response = nil
+
+  Net::HTTP.start(host, use_ssl: true) do |http|
+    response = http.get(path)
+  end
+
+  response
+end
+
+def head(host, path, redirect_count = 0)
+  Net::HTTP.start(host, use_ssl: true) do |http|
+    response = http.head(path)
+
+    if response.code == '301'
+      return response if redirect_count == 10
+
+      uri = URI.parse(response['location'])
+      head(uri.host, uri.path, redirect_count + 1)
+    else
+      response
+    end
+  end
+end
+
+def print_report(missing, package_count, out = $stdout)
+  out.puts "# Packages Missing Repositories"
+  out.puts
+
+  missing.each do |m|
+    out.puts "* #{m}"
+  end
+
+  out.puts
+  out.puts "Percent missing = #{(missing.length / package_count * 100).round(2)}%"
+end
+
+body = nil
+done = nil
+page = 1
+package_count = 0
+
+missing = []
+until done do
+  response = get('atom.io', "/api/packages?page=#{page}")
+  done = true unless response.code == '200'
+
+  packages = JSON.parse(response.body)
+  if packages.length == 0
+    done = true
+    next
+  end
+
+  package_count += packages.length
+
+  packages.each do |p|
+    name = p['name']
+    url = p['repository']['url']
+    print "Check '#{name}' at #{url}: "
+
+    uri = URI.parse(url)
+    response = head(uri.hostname, uri.path)
+
+    if response.code == '200'
+      puts '✅'
+    else
+      missing.push(name)
+      puts "❌ - status code #{response.code}"
+    end
+  end
+
+  page += 1
+end
+
+File.open(File.expand_path('~/missing.md', 'w')) { |f| print_report(missing, package_count, f) }
+print_report(missing, package_count)
