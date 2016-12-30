@@ -3,7 +3,7 @@
 # Ensure rbenv gets loaded if it is available
 if [[ -d $HOME/.rbenv ]]; then
     export PATH=$PATH:$HOME/.rbenv/bin
-    eval "$(rbenv init - --no-rehash)"
+    eval "$(rbenv init -)"
 fi
 
 alias b='bundle'
