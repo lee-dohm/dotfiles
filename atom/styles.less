@@ -13,6 +13,12 @@
 
 @import "packages/red-wavy-underline/styles/red-wavy-underline";
 
+// Change the cursor to an underline
+// atom-text-editor::shadow .cursor, atom-text-editor .cursor {
+//   border-left: none;
+//   border-bottom: 2px solid #526fff;
+// }
+
 .theme-one-light-ui, .theme-one-dark-ui, .theme-atom-material-ui {
   .advanced-open-file { font-size: 16px; }
   .git-Panel { font-size: 16px; }
@@ -25,6 +31,13 @@
 // grow and shrink on tiny files
 // atom-text-editor::shadow .gutter .line-number {
 //     min-width: 100px;
+// }
+
+// Set the font size larger only in editors in the active pane
+// .pane.active {
+//   atom-text-editor {
+//     font-size: 20px;
+//   }
 // }
 
 .tree-view .selected:before {
