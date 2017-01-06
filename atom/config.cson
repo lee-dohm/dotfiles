@@ -72,10 +72,8 @@
     tabType: "soft"
   "exception-reporting":
     userId: "ee24cf00-f793-9081-be2a-2cdae5536b7f"
-  "file-icons":
-    coloured: false
   "find-and-replace":
-    openProjectFindResultsInRightPane: false
+    scrollToResultOnLiveSearch: true
   "fortune-background-tips":
     fortuneCommand: "fortune -s Computers"
   "fuzzy-finder":
@@ -115,6 +113,7 @@
   "tree-view":
     hideIgnoredNames: true
     hideVcsIgnoredFiles: true
+    squashDirectoryNames: true
   welcome:
     showOnStartup: false
 ".asciidoc.source":
