@@ -33,7 +33,7 @@ OptionParser.new do |opts|
 end.parse!
 
 main = options[:branch] || 'master'
-branches = `git branch --merged #{main} | grep -v -e 'master\\|staging\\|development\\|\\*'`
+branches = `git branch --merged #{main} | grep -v -e '#{main}\\|staging\\|development\\|\\*'`
 
 if branches.strip.empty?
   puts "No merged branches to delete" if options[:verbose]
