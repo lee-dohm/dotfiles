@@ -5,8 +5,8 @@ require 'optparse'
 # Original inspiration from:
 # https://gist.github.com/bxt/566fd7de151bf73a937d
 
-def prompt(*args)
-  print(*args)
+def prompt(text)
+  print(text)
   gets
 end
 
@@ -16,6 +16,14 @@ OptionParser.new do |opts|
 
   opts.on('-bBRANCH', '--branch BRANCH', 'Branch to check for being merged into') do |b|
     options[:branch] = b
+  end
+
+  opts.on('-y', '--yes', 'Answer yes to all confirmations') do |y|
+    options[:yes] = y
+  end
+
+  opts.on('-v', '--verbose', 'Verbose logging') do |v|
+    options[:verbose] = v
   end
 
   opts.on('-h', '--help', 'Show this help information') do |h|
@@ -28,21 +36,25 @@ main = options[:branch] || 'master'
 branches = `git branch --merged #{main} | grep -v -e 'master\\|staging\\|development\\|\\*'`
 
 if branches.strip.empty?
-  puts "No merged branches to delete"
+  puts "No merged branches to delete" if options[:verbose]
   exit 0
 end
 
-puts "Branches merged into #{main}"
-puts branches
-puts
+unless options[:yes]
+  puts "Branches merged into #{main}"
+  puts branches
+  puts
 
-answer = prompt('Delete these branches (y/N)? ')
+  answer = prompt('Delete these branches (y/N)? ', options)
 
-if answer.strip.downcase != 'y'
-  puts "Aborting"
-  exit 0
+  if answer.strip.downcase != 'y'
+    puts "Aborting"
+    exit 0
+  end
 end
 
 branches.split.each do |branch|
+  puts "Delete #{branch}" if options[:verbose]
+
   system("git branch -d #{branch}")
 end
