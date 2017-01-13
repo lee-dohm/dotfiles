@@ -14,7 +14,7 @@
 @import "packages/red-wavy-underline/styles/red-wavy-underline";
 
 // Change the cursor to an underline
-// atom-text-editor::shadow .cursor, atom-text-editor .cursor {
+// atom-text-editor .cursor {
 //   border-left: none;
 //   border-bottom: 2px solid #526fff;
 // }
@@ -29,7 +29,7 @@
 
 // Make the line number portion of the gutter a larger minimum width so that the gutter doesn't
 // grow and shrink on tiny files
-// atom-text-editor::shadow .gutter .line-number {
+// atom-text-editor .gutter .line-number {
 //     min-width: 100px;
 // }
 
@@ -59,7 +59,7 @@
 }
 
 // Highlights the cursor line
-atom-text-editor::shadow {
+atom-text-editor {
   .cursor-line {
     background-color: @background-color-highlight;
   }
@@ -67,7 +67,7 @@ atom-text-editor::shadow {
 
 // Displays an error background shading behind spelling errors
 //
-// atom-text-editor::shadow .misspelling {
+// atom-text-editor .misspelling {
 //   background-color: @background-color-error;
 //   opacity: 0.4;
 //   border-radius: 6px;
@@ -75,29 +75,29 @@ atom-text-editor::shadow {
 // }
 
 // Un-italicizes comments
-atom-text-editor::shadow {
-  .comment {
+atom-text-editor {
+  .syntax--comment {
     font-style: normal;
   }
 }
 
 // Makes the cursor pulse instead of blink
-atom-text-editor, atom-text-editor::shadow {
+atom-text-editor, atom-text-editor {
   .cursor {
     transition: opacity 0.5s;
   }
 }
 
 // Makes the cursor not blink at all
-// atom-text-editor::shadow {
+// atom-text-editor {
 //   .cursors.blink-off .cursor {
 //     opacity: 1;
 //   }
 // }
 
 // Un-italicizes code markup in Markdown
-atom-text-editor::shadow {
-  .markup.raw.gfm {
+atom-text-editor {
+  .syntax--markup.syntax--raw.syntax--gfm {
     font-style: normal;
     color: @syntax-color-keyword;
   }
@@ -119,7 +119,7 @@ atom-text-editor::shadow {
 
 @gutter-padding: 15px;
 
-atom-text-editor::shadow {
+atom-text-editor {
   .gutter .line-number {
     padding-left: @gutter-padding;
 
@@ -155,7 +155,7 @@ atom-text-editor::shadow {
 }
 
 // Makes the bracket matcher highlight more noticeable
-atom-text-editor::shadow {
+atom-text-editor {
   .bracket-matcher .region {
     border-bottom: 2px solid blue;
   }
@@ -167,7 +167,7 @@ atom-text-editor::shadow {
 }
 
 // Highlights trailing whitespace except on the cursor line
-atom-text-editor::shadow {
+atom-text-editor {
   div.line:not(.cursor-line) {
     .trailing-whitespace {
       background-color: @background-color-error;
