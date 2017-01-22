@@ -43,6 +43,7 @@
       ]
     disabledPackages: [
       "background-tips"
+      "fonts"
     ]
     followSymlinks: true
     ignoredNames: [
@@ -77,6 +78,8 @@
     userId: "ee24cf00-f793-9081-be2a-2cdae5536b7f"
   "find-and-replace":
     scrollToResultOnLiveSearch: true
+  fonts:
+    fontFamily: "Anonymous Pro"
   "fortune-background-tips":
     fortuneCommand: "fortune -s Computers"
   "fuzzy-finder":

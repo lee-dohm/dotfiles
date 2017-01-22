@@ -1,23 +1,12 @@
 /*
- * Your Stylesheet
+ * See my gists for more tweaks that I don't use but have tested to work
  *
- * This stylesheet is loaded when Atom starts up and is reloaded automatically
- * when it is changed.
- *
- * If you are unfamiliar with LESS, you can read more about it here:
- * http://www.lesscss.org
+ * https://gist.github.com/search?utf8=%E2%9C%93&q=user%3Alee-dohm+Atom+Style+Tweak&ref=searchresults
  */
-
 @import "syntax-variables";
 @import "ui-variables";
 
 @import "packages/red-wavy-underline/styles/red-wavy-underline";
-
-// Change the cursor to an underline
-// atom-text-editor .cursor {
-//   border-left: none;
-//   border-bottom: 2px solid #526fff;
-// }
 
 .theme-one-light-ui, .theme-one-dark-ui, .theme-atom-material-ui {
   .advanced-open-file { font-size: 16px; }
@@ -26,19 +15,6 @@
   .tab-bar { font-size: 16px; }
   .tree-view { font-size: 16px; }
 }
-
-// Make the line number portion of the gutter a larger minimum width so that the gutter doesn't
-// grow and shrink on tiny files
-// atom-text-editor .gutter .line-number {
-//     min-width: 100px;
-// }
-
-// Set the font size larger only in editors in the active pane
-// .pane.active {
-//   atom-text-editor {
-//     font-size: 20px;
-//   }
-// }
 
 .tree-view .selected:before {
   background: hsla(0, 0%, 100%, .2); // show lines underneath
@@ -65,16 +41,6 @@ atom-text-editor {
   }
 }
 
-// Displays an error background shading behind spelling errors
-//
-// atom-text-editor .misspelling {
-//   background-color: @background-color-error;
-//   opacity: 0.4;
-//   border-radius: 6px;
-//   border: none;
-// }
-
-// Un-italicizes comments
 atom-text-editor {
   .syntax--comment {
     font-style: normal;
@@ -82,18 +48,11 @@ atom-text-editor {
 }
 
 // Makes the cursor pulse instead of blink
-atom-text-editor, atom-text-editor {
+atom-text-editor {
   .cursor {
     transition: opacity 0.5s;
   }
 }
-
-// Makes the cursor not blink at all
-// atom-text-editor {
-//   .cursors.blink-off .cursor {
-//     opacity: 1;
-//   }
-// }
 
 // Un-italicizes code markup in Markdown
 atom-text-editor {
@@ -175,30 +134,3 @@ atom-text-editor {
     }
   }
 }
-
-// Disable the close icon on file tabs
-// .tab .close-icon {
-//   display: none;
-// }
-
-// https://discuss.atom.io/t/crazy-3d-angled-tree-view/18765
-#atom-perspective() {
-  @viewing-distance: 12in;
-  @rotation: 20deg;
-
-  .tree-view-scroller {
-    transform: translateY(-10vh) perspective(@viewing-distance) rotateY(@rotation);
-    padding-top: 12vh;
-    padding-bottom: 12vh;
-    transform-origin: left;
-    width: 120%;
-    height: 120%;
-  }
-  body /deep/ atom-text-editor-minimap {
-    transform: perspective(@viewing-distance) rotateY(-@rotation);
-    transform-origin: right;
-  }
-}
-
-// Comment or uncomment the next line to control whether the atom-perspective feature is enabled
-// #atom-perspective;
