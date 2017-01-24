@@ -6,7 +6,7 @@ require 'optparse'
 # https://gist.github.com/bxt/566fd7de151bf73a937d
 
 def prompt(text)
-  print(text)
+  print(text + ' ')
   gets
 end
 
@@ -45,7 +45,7 @@ unless options[:yes]
   puts branches
   puts
 
-  answer = prompt('Delete these branches (y/N)? ', options)
+  answer = prompt('Delete these branches (y/N)?')
 
   if answer.strip.downcase != 'y'
     puts "Aborting"
