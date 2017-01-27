@@ -6,5 +6,13 @@
 # available Gems. This allows me to stop having to type `be rake` everywhere and just type `rake`.
 #
 
-# mkdir .git/safe in the root of repositories you trust
-export PATH=".git/safe/../../bin:$PATH"
+# mark-repo-binsafe in the root of repositories you trust
+export PATH=".git/bin-safe/../../bin:$PATH"
+
+clear-repo-binsafe() {
+  rm -rf "$(git rev-parse --show-toplevel)/.git/bin-safe"
+}
+
+mark-repo-binsafe() {
+  mkdir "$(git rev-parse --show-toplevel)/.git/bin-safe"
+}
