@@ -15,6 +15,7 @@
   su = submodule update --init --recursive
   up = !git fetch origin && git rebase origin/master
   dmb = delete-merged-branches
+  root = rev-parse --show-toplevel
 
 [color]
   ui = auto
