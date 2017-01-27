@@ -32,4 +32,5 @@ alias pv='package-version'
 
 alias flushdns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder; echo 'Flushed DNS, btw here is your hosts file just in case:'; cat /etc/hosts"
 
+# Un-wedge the built-in camera
 alias kill-camera="sudo killall VDCAssistant"
