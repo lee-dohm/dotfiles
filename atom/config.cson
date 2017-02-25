@@ -1,13 +1,8 @@
 "*":
-  Pompomodoro:
-    workIntervalLength: 1
   "advanced-new-file":
     suggestCurrentFilePath: true
   "advanced-open-file":
     createFileInstantly: true
-  "atom-beautify":
-    general:
-      _analyticsUserId: "0ad7da6d-8f3a-447c-aa25-b731478a0f71"
   "atom-color-highlight":
     hideMarkersInComments: true
     hideMarkersInStrings: true
@@ -31,6 +26,9 @@
       ]
       "source.ini": [
         ".flowconfig"
+      ]
+      "source.json": [
+        ".compilerc"
       ]
       "source.ruby": [
         "Brewfile"
@@ -56,7 +54,6 @@
       "*.pyc"
       "Thumbs.db"
     ]
-    openEmptyEditorOnStart: false
     projectHome: "/Users/Lee/Source"
     telemetryConsent: "limited"
     themes: [
