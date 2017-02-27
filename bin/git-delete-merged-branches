@@ -32,7 +32,7 @@ OptionParser.new do |opts|
   end
 end.parse!
 
-main = options[:branch] || 'master'
+main = options[:branch] || `git remote show origin | grep "HEAD branch" | sed "s/  HEAD branch: //"`.strip
 branches = `git branch --merged #{main} | grep -v -e '#{main}\\|staging\\|development\\|\\*'`
 
 if branches.strip.empty?
