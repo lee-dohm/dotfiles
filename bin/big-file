@@ -2,28 +2,35 @@
 
 require 'optparse'
 
+LOREM = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
 options = {}
 
 OptionParser.new do |opts|
+  opts.on('-cCOUNT', '--chars=CONUT', Integer, 'Number of characters per line') do |c|
+    options[:chars] = c
+  end
+
   opts.on('-lCOUNT', '--lines=COUNT', Integer, 'Number of lines per file') do |l|
     options[:lines] = l
   end
 
-  opts.on('-nCOUNT', '--count=COUNT', Integer, 'Number of files to generate') do |n|
-    options[:count] = n
+  opts.on('-nCOUNT', '--files=COUNT', Integer, 'Number of files to generate') do |n|
+    options[:files] = n
   end
 end.parse!(ARGV)
 
-options[:count] ||= 1
+options[:chars] ||= 100
+options[:files] ||= 1
 options[:lines] ||= 1_000
 
 test_dir = File.expand_path('~/big-test-files')
 Dir.mkdir(test_dir) unless Dir.exist?(test_dir)
 
-1.upto(options[:count]) do |i|
+1.upto(options[:files]) do |i|
   File.open(File.join(test_dir, "dump#{i}.txt"), 'w') do |file|
     1.upto(options[:lines]) do
-      file.write("The quick brown fox jumped over the lazy dog.\n")
+      file.write(LOREM[0, options[:chars]] + "\n")
     end
   end
 end
