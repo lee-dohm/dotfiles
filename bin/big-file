@@ -11,6 +11,10 @@ OptionParser.new do |opts|
     options[:chars] = c
   end
 
+  opts.on('-eEXT', '--extension=EXT', 'Extension for each file') do |e|
+    options[:ext] = e
+  end
+
   opts.on('-lCOUNT', '--lines=COUNT', Integer, 'Number of lines per file') do |l|
     options[:lines] = l
   end
@@ -21,6 +25,7 @@ OptionParser.new do |opts|
 end.parse!(ARGV)
 
 options[:chars] ||= 100
+options[:ext] ||= 'txt'
 options[:files] ||= 1
 options[:lines] ||= 1_000
 
@@ -28,7 +33,7 @@ test_dir = File.expand_path('~/big-test-files')
 Dir.mkdir(test_dir) unless Dir.exist?(test_dir)
 
 1.upto(options[:files]) do |i|
-  File.open(File.join(test_dir, "dump#{i}.txt"), 'w') do |file|
+  File.open(File.join(test_dir, "dump#{i}.#{options[:ext]}"), 'w') do |file|
     1.upto(options[:lines]) do
       file.write(LOREM[0, options[:chars]] + "\n")
     end
