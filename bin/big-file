@@ -1,10 +1,29 @@
 #!/usr/bin/env ruby
 
+require 'optparse'
+
+options = {}
+
+OptionParser.new do |opts|
+  opts.on('-lCOUNT', '--lines=COUNT', Integer, 'Number of lines per file') do |l|
+    options[:lines] = l
+  end
+
+  opts.on('-nCOUNT', '--count=COUNT', Integer, 'Number of files to generate') do |n|
+    options[:count] = n
+  end
+end.parse!(ARGV)
+
+options[:count] ||= 1
+options[:lines] ||= 1_000
+
 test_dir = File.expand_path('~/big-test-files')
 Dir.mkdir(test_dir) unless Dir.exist?(test_dir)
 
-File.open(File.join(test_dir, 'dump.txt'), 'w') do |file|
-  1.upto(224_000) do
-    file.write("The quick brown fox jumped over the lazy dog.\n")
+1.upto(options[:count]) do |i|
+  File.open(File.join(test_dir, "dump#{i}.txt"), 'w') do |file|
+    1.upto(options[:lines]) do
+      file.write("The quick brown fox jumped over the lazy dog.\n")
+    end
   end
 end
