@@ -1,7 +1,5 @@
 path = require 'path'
 
-# require('web-frame').setZoomFactor(3)
-
 oldWindowDimensions = {}
 
 atom.commands.add 'atom-workspace',
