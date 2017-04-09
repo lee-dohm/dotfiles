@@ -1,3 +1,4 @@
+tap "nodenv/nodenv"            # Required for nodenv-package-json-engine
 tap "thoughtbot/formulae"      # Required for parity and rcm
 
 brew "ctags"
@@ -8,7 +9,9 @@ brew "git"
 brew "heroku-toolbelt"
 brew "hub"
 brew "keybase"                 # Command-line encryption tool
+brew "node-build"
 brew "nodenv"
+brew "nodenv-package-json-engine"
 brew "parity"
 brew "rbenv"
 brew "rcm"
