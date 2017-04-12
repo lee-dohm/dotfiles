@@ -1,0 +1,3 @@
+#!/bin/sh
+
+cat "$@" | zcat | grep "EVENT" | wc -l
