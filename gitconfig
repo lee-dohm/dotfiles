@@ -5,17 +5,17 @@
   ca = commit --amend
   ci = commit
   co = checkout
-  coi = checkout-interactive
   co-pr = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
+  coi = checkout-interactive
   cp = cherry-pick
+  dmb = delete-merged-branches
   done = !git checkout master && git pull && git delete-merged-branches
   l = log --graph --decorate --pretty=oneline --abbrev-commit --all
   pr = !hub pull-request
+  root = rev-parse --show-toplevel
   st = status --branch --short
   su = submodule update --init --recursive
   up = !git fetch origin && git rebase origin/master
-  dmb = delete-merged-branches
-  root = rev-parse --show-toplevel
 
 [branch]
   autoSetupMerge = always
