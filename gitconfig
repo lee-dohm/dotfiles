@@ -20,6 +20,9 @@
   dmb = delete-merged-branches
   root = rev-parse --show-toplevel
 
+[branch]
+  autoSetupMerge = always
+
 [color]
   ui = auto
 
@@ -42,8 +45,22 @@
   excludesfile = ~/.gitignore
   autocrlf = input
 
+[credential]
+  helper = osxkeychain
+
 [fetch]
   prune = true
+
+[filter "lfs"]
+  clean = git lfs clean %f
+  smudge = git lfs smudge %f
+  required = true
+
+[github]
+  user = lee-dohm
+
+[hub]
+  protocol = https
 
 [include]
   path = ~/.gitconfig.identity
@@ -51,27 +68,10 @@
 [merge]
   ff = true
 
-[push]
-  default = current
-
-[filter "lfs"]
-  clean = git lfs clean %f
-  smudge = git lfs smudge %f
-  required = true
-
-[hub]
-  protocol = https
-
-[github]
-  user = lee-dohm
-
-[credential]
-  helper = osxkeychain
-
 [pager]
   log = diff-highlight | less
   show = diff-highlight | less
   diff = diff-highlight | less
 
-[branch]
-  autoSetupMerge = always
+[push]
+  default = current
