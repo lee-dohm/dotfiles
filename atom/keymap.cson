@@ -7,3 +7,5 @@
 '.platform-darwin atom-workspace':
   'ctrl-"': 'toggle-quotes:toggle'
   'alt-cmd-n': 'advanced-open-file:toggle'
+'.tree-view':
+  'shift-m': 'chmod:selected-entry'
