@@ -1,0 +1,78 @@
+#!/usr/bin/env ruby
+
+require 'octokit'
+require 'optparse'
+require 'terminal-table'
+
+def platform(asset)
+  case asset.name
+  when /\.(nupkg|msi|exe)$/ then :windows
+  when /windows.zip$/ then :windows
+  when /\.(deb|gz|rpm)$/ then :linux
+  when /mac.zip$/ then :mac
+  else :none
+  end
+end
+
+def parse_arguments(args)
+  options = {}
+
+  OptionParser.new do |opts|
+    opts.on('-p', '--platform', 'Sum everything by platform before display') do |p|
+      options[:platform] = p
+    end
+  end.parse!(args)
+
+  options
+end
+
+token_path = File.join(ENV['HOME'], '.github')
+
+token_file = File.join(token_path, File.basename(__FILE__))
+token_file = File.join(token_path, 'default_token') unless File.exist?(token_file)
+token = File.read(token_file).strip
+
+options = parse_arguments(ARGV)
+
+client = Octokit::Client.new(access_token: token)
+client.auto_paginate = true
+
+latest_release = client.latest_release(ARGV[0])
+assets = client.release_assets(latest_release.url)
+
+rows = []
+if options[:platform]
+  platforms = {
+    linux: 0,
+    mac: 0,
+    windows: 0,
+    none: 0
+  }
+
+  assets.each do |asset|
+    platforms[platform(asset)] += asset.download_count
+  end
+
+  rows = [
+    ['Linux', platforms[:linux]],
+    ['macOS', platforms[:mac]],
+    ['Windows', platforms[:windows]],
+    ['None', platforms[:none]]
+  ]
+else
+  assets.each do |asset|
+    rows << [asset.name, platform(asset), asset.download_count]
+  end
+end
+
+rows = rows.sort { |a,b| b[-1] <=> a[-1] }
+
+total_downloads = rows.reduce(0) { |sum, row| sum += row[-1] }
+
+rows.each do |row|
+  percentage = row[-1].to_f / total_downloads * 100
+  row << "#{percentage.round(1)}%"
+end
+
+table = Terminal::Table.new(rows: rows)
+puts table
