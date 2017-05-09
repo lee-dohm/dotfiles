@@ -1,17 +1,17 @@
-tap "nodenv/nodenv"            # Required for nodenv-package-json-engine
-tap "thoughtbot/formulae"      # Required for parity and rcm
+tap "nodenv/nodenv"                  # Required for nodenv-package-json-engine
+tap "thoughtbot/formulae"            # Required for parity and rcm
 
 brew "ctags"
 brew "elixir"
-brew "fortune"                 # Dependency of Atom package fortune-background-tips
+brew "fortune"                       # Dependency of Atom package fortune-background-tips
 brew "fzf"
 brew "git"
 brew "heroku-toolbelt"
 brew "hub"
-brew "keybase"                 # Command-line encryption tool
+brew "keybase"                       # Command-line encryption tool
 brew "node-build"
 brew "nodenv"
-brew "nodenv-package-json-engine"
+brew "nodenv-package-json-engine"    # Reads required node version from `package.json`
 brew "parity"
 brew "rbenv"
 brew "rcm"
@@ -22,4 +22,4 @@ brew "todo-txt"
 brew "zsh"
 
 cask "keycastr"
-cask "mojibar"                 # Emoji quick-reference menubar app
+cask "mojibar"                       # Emoji quick-reference menubar app
