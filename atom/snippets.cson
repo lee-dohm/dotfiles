@@ -75,6 +75,48 @@
   ExpectEqual:
     prefix: 'exeq'
     body: "expect($1).to.equal($2)"
+  SemicolonDescribe:
+    prefix: 'sdesc'
+    body: """
+    describe('$1', function () {
+      $0
+    });
+    """
+  SemicolonAsyncDescribe:
+    prefix: 'sdesca'
+    body: """
+    describe('$1', async function () {
+      $0
+    });
+    """
+  SemicolonAfterEach:
+    prefix: 'safe'
+    body: """
+    afterEach(function () {
+      $0
+    });
+    """
+  SemicolonBeforeEach:
+    prefix: 'sbefe'
+    body: """
+    beforeEach(function () {
+      $0
+    });
+    """
+  SemicolonAsyncIt:
+    prefix: 'sita'
+    body: """
+    it('$1', async function () {
+      $0
+    });
+    """
+  SemicolonIt:
+    prefix: 'sit'
+    body: """
+    it('$1', function () {
+      $0
+    });
+    """
 '.source.coffee':
   Describe:
     prefix: 'desc'
