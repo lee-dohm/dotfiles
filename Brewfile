@@ -8,6 +8,7 @@ brew "fzf"
 brew "git"
 brew "heroku-toolbelt"
 brew "hub"
+brew "httpie"
 brew "keybase"                       # Command-line encryption tool
 brew "node-build"
 brew "nodenv"
