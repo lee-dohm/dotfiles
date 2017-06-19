@@ -34,8 +34,8 @@ Dir.mkdir(test_dir) unless Dir.exist?(test_dir)
 
 1.upto(options[:files]) do |i|
   File.open(File.join(test_dir, "dump#{i}.#{options[:ext]}"), 'w') do |file|
-    1.upto(options[:lines]) do
-      file.write(LOREM[0, options[:chars]] + "\n")
+    1.upto(options[:lines]) do |line_num|
+      file.write("#{line_num} #{LOREM[0, options[:chars]]}\n")
     end
   end
 end
