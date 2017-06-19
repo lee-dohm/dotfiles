@@ -9,7 +9,7 @@
   coi = checkout-interactive
   cp = cherry-pick
   dmb = delete-merged-branches
-  done = !git checkout master && git pull && git delete-merged-branches
+  done = !git checkout master && git pull && git delete-merged-branches --yes
   l = log --graph --decorate --pretty=oneline --abbrev-commit --all
   pr = !hub pull-request
   root = rev-parse --show-toplevel
