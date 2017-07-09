@@ -93,14 +93,10 @@
     formatOnSave: false
   metrics:
     userId: "51eeb6113c1ae801c9aade9b6d679aa5189ced25"
-  minimap:
+  "minimap-plus":
     charHeight: 4
     charWidth: 2
     ignoreWhitespacesInTokens: true
-    plugins:
-      cursorline: true
-      cursorlineDecorationsZIndex: 0
-      "find-and-replace": true
   "package-generator":
     createInDevMode: true
   pigments:
