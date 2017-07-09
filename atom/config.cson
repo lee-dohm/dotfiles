@@ -63,6 +63,8 @@
       "one-light-ui"
       "one-light-syntax"
     ]
+  docblockr:
+    align_tags: "no"
   editor:
     fontFamily: "Anonymous Pro"
     fontSize: 16
