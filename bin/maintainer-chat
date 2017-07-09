@@ -1,0 +1,63 @@
+#!/usr/bin/env elixir
+
+# 1. Change directory to `~/Source/atom/maintainers-log`
+# 2. Check that we're on `master` and pull latest changes
+# 3. Create branch `maintainer-chat-{target_date}`
+# 4. Create file `meetings/{target_date}-notes.md` according to template
+# 5. Commit file
+# 6. Push branch
+# 7. Execute `git browse`
+
+defmodule MaintainerChat do
+  def run do
+    File.cd!(Path.expand("~/Source/atom/maintainers-log"))
+    ensure_branch!("master")
+    {_, 0} = git(["pull"])
+
+    target_date = List.first(System.argv())
+    {_, 0} = git(["checkout", "-b", "maintainer-chat-#{target_date}"])
+
+    create_file("meetings/#{target_date}-notes.md", target_date)
+
+    {_, 0} = git(["add", "--all"])
+    {_, 0} = git(["commit", "-m", "\"Add maintainer chat template for #{target_date}\""])
+    {_, 0} = git(["push", "-u", "origin", "maintainer-chat-#{target_date}"])
+    {_, 0} = git(["browse"])
+  end
+
+  defp create_file(path, target_date) do
+    content = """
+    # #{target_date} Maintainer Office Hours
+
+    * When: #{target_date} [11am Pacific, 1800 UTC](https://www.timeanddate.com/worldclock/converter.html?iso=20170330T180000&p1=tz_pt)
+
+    ## Zoom Info
+
+    Join from PC, Mac, Linux, iOS or Android: https://github.zoom.us/j/744701996
+
+    * [Full Zoom Info](./zoom-info.md)
+
+    ## Agenda
+
+    * Introductions, if necessary
+    * Roundtable
+    """
+
+    File.write!(path, content)
+  end
+
+  defp ensure_branch!(name) do
+    {output, 0} = git(["branch"])
+    true = Regex.match?(~r/^\* #{name}$/m, output)
+  end
+
+  defp git(args, opts \\ []) do
+    IO.puts("git #{Enum.join(args, " ")}")
+    {output, exit_code} = System.cmd("git", args, opts)
+    IO.puts(output)
+
+    {output, exit_code}
+  end
+end
+
+MaintainerChat.run()
