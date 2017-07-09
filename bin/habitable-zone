@@ -1,0 +1,7 @@
+#!/usr/bin/env elixir
+
+[arg | _] = System.argv()
+{stellar_masses, _} = Float.parse(arg)
+habitable_zone = Float.round(:math.pow(stellar_masses, 2), 3)
+
+IO.puts("Habitable Zone => #{habitable_zone} AU")

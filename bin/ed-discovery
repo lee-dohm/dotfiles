@@ -1,0 +1,72 @@
+#!/usr/bin/env elixir
+
+defmodule EDDiscovery do
+  def calc_payout(earth_masses, type) do
+    {type, terraformable} = terraformable?(type)
+    base = base_payout(earth_masses, type)
+    bonus =
+      if terraformable do
+        bonus_payout(earth_masses, type)
+      else
+        0
+      end
+
+    base + bonus
+  end
+
+  defp base_payout(earth_masses, type) do
+    k = world_constant(type)
+
+    k + (3 * k * :math.pow(earth_masses, 0.199977) / 5.3)
+  end
+
+  defp bonus_payout(earth_masses, type) do
+    k = terraformable_world_constant(type)
+
+    k + (3 * k * :math.pow(earth_masses, 0.199977) / 5.3)
+  end
+
+  def normalize_inputs(arg1, arg2) do
+    {arg1, arg2} = fix_leading_decimal(arg1, arg2)
+
+    case Float.parse(arg1) do
+      {s, _} -> {s, String.upcase(arg2)}
+      :error ->
+        {s, _} = Float.parse(arg2)
+        {s, String.upcase(arg1)}
+    end
+  end
+
+  defp terraformable?(type) do
+    matches = Regex.run(~r{([^+]*)(\+T)?}, type)
+    type = Enum.fetch(matches, 1)
+    terraformable = Enum.fetch(matches, 2) != :error
+
+    {type, terraformable}
+  end
+
+  defp fix_leading_decimal(arg1, "." <> rest), do: {arg1, "0.#{rest}"}
+  defp fix_leading_decimal("." <> rest, arg2), do: {"0.#{rest}", arg2}
+  defp fix_leading_decimal(arg1, arg2), do: {arg1, arg2}
+
+  defp world_constant("MRW"), do: 52_292
+  defp world_constant("AW"), do: 232_619
+  defp world_constant("C1GG"), do: 3_974
+  defp world_constant("C2GG"), do: 23_168
+  defp world_constant("HMC"), do: 23_168
+  defp world_constant("WW"), do: 155_581
+  defp world_constant("ELW"), do: 155_581
+  defp world_constant(_), do: 720
+
+  defp terraformable_world_constant("HMC"), do: 241_607
+  defp terraformable_world_constant("WW"), do: 279_088
+  defp terraformable_world_constant("ELW"), do: 279_088
+  defp terraformable_world_constant(_), do: 223_971
+end
+
+[arg1 | [arg2 | _]] = System.argv()
+
+{earth_masses, type} = EDDiscovery.normalize_inputs(arg1, arg2)
+payout = round(EDDiscovery.calc_payout(earth_masses, type))
+
+IO.puts "Payout for #{earth_masses} #{type} = #{payout}"
