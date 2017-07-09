@@ -120,16 +120,21 @@ build_prompt() {
 #
 # If HEAD is on a branch, the branch name is output in green. If HEAD is
 # on a tag, the tag name is output in yellow. If HEAD is on neither a
-# branch nor a tag, the short SHA is output in yellow.
+# branch nor a tag, the short SHA is output in red.
+#
+# The code assumes that if the HEAD is detached and the ref matches the
+# format of a SHA, it is a SHA; otherwise it is a tag.
 git_prompt_info() {
     ref=$(git symbolic-ref HEAD 2> /dev/null)
     if [[ -n $ref ]]; then
         echo "${BOLD_GREEN}${ref#refs/heads/}"
     else
         tag=$(git branch --no-color 2> /dev/null |
-                  sed -e '/^[^*]/d' -e "s/* (detached from \(.*\))/\1/")
+                  sed -e '/^[^*]/d' -e "s/* (HEAD detached at \(.*\))/\1/")
 
-        if [[ -n $tag ]]; then
+        if [[ -n $tag ]] && [[ $tag =~ ^[a-f0-9]+$ ]]; then
+            echo "${BOLD_RED}${tag}"
+        elif [[ -n $tag ]]; then
             echo "${BOLD_YELLOW}${tag}"
         fi
     fi
