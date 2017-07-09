@@ -27,6 +27,9 @@
       "source.ini": [
         ".flowconfig"
       ]
+      "source.js": [
+        "jsdoc"
+      ]
       "source.json": [
         ".compilerc"
       ]
