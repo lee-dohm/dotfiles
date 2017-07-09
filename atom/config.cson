@@ -66,8 +66,8 @@
   docblockr:
     align_tags: "no"
   editor:
-    fontFamily: "Anonymous Pro"
-    fontSize: 16
+    fontFamily: "Anka/Coder"
+    fontSize: 15
     invisibles:
       cr: "↩"
       eol: " "
@@ -81,7 +81,7 @@
   "find-and-replace":
     scrollToResultOnLiveSearch: true
   fonts:
-    fontFamily: "Anonymous Pro"
+    fontFamily: "Anka/Coder"
   "fortune-background-tips":
     fortuneCommand: "fortune -s Computers"
   "fuzzy-finder":
