@@ -2,6 +2,7 @@ tap "nodenv/nodenv"                  # Required for nodenv-package-json-engine
 tap "thoughtbot/formulae"            # Required for parity and rcm
 
 brew "ctags"
+brew "diff-so-fancy"                 # Make command-line git diffs much fancier
 brew "elixir"
 brew "fortune"                       # Dependency of Atom package fortune-background-tips
 brew "fzf"
