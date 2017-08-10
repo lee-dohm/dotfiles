@@ -36,6 +36,9 @@
       "source.ruby": [
         "Brewfile"
       ]
+      "source.shell": [
+        "build"
+      ]
       "text.slim": [
         "slime"
       ]
@@ -45,6 +48,7 @@
     disabledPackages: [
       "background-tips"
       "fonts"
+      "file-type-icons"
     ]
     followSymlinks: true
     ignoredNames: [

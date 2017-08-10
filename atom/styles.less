@@ -141,3 +141,17 @@ atom-text-editor {
 .find-and-replace .close-button {
   display: none;
 }
+
+// -------------------------
+// file-icons customizations
+// -------------------------
+
+// Remove custom colors from icons so they match the text they're with
+.icon:before {
+  color: inherit;
+}
+
+// Treat README.md just like any other Markdown file
+.icon[data-name="README.md"]:before{
+  content: "\f0c9";
+}
