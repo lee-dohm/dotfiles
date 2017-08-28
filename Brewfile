@@ -1,3 +1,4 @@
+tap "buo/cask-upgrade"               # Command to easily upgrade all cask installed apps
 tap "nodenv/nodenv"                  # Required for nodenv-package-json-engine
 tap "thoughtbot/formulae"            # Required for parity and rcm
 
