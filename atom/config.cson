@@ -78,6 +78,7 @@
       tab: "⇥"
     preferredLineLength: 100
     scrollPastEnd: true
+    scrollSensitivity: 80
     showInvisibles: true
     tabType: "soft"
   "exception-reporting":
