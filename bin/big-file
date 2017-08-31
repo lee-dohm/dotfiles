@@ -7,7 +7,7 @@ LOREM = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
 options = {}
 
 OptionParser.new do |opts|
-  opts.on('-cCOUNT', '--chars=CONUT', Integer, 'Number of characters per line') do |c|
+  opts.on('-cCOUNT', '--chars=COUNT', Integer, 'Number of characters per line') do |c|
     options[:chars] = c
   end
 
