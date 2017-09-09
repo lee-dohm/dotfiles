@@ -20,6 +20,7 @@
     ]
   core:
     audioBeep: false
+    closeDeletedFileTabs: true
     customFileTypes:
       "source.git-config": [
         "gitconfig"
@@ -47,7 +48,6 @@
       ]
     disabledPackages: [
       "background-tips"
-      "fonts"
       "file-type-icons"
     ]
     followSymlinks: true
