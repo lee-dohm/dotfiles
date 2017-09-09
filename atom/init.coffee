@@ -2,6 +2,8 @@ path = require 'path'
 
 oldWindowDimensions = {}
 
+console.log("%cHello! My PID is %c" + process.pid, "font-size: 20px;", "font-weight: bold; font-size: 20px;")
+
 atom.commands.add 'atom-workspace',
   'custom:wrap-with-strong': ->
     editor = atom.workspace.getActiveTextEditor()
