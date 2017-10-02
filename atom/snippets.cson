@@ -212,6 +212,9 @@
   'No Doc':
     prefix: 'nodoc'
     body: '@doc false'
+  'Expect Exception':
+    prefix: 'exex'
+    body: 'expect fn -> ${1:body} end |> to(raise_exception ${2:Error})'
 '.source.ruby':
   Before:
     prefix: 'bef'
