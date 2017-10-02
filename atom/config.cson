@@ -14,7 +14,7 @@
     elixirPath: "/usr/local/bin/elixir"
   "autocomplete-plus":
     confirmCompletion: "tab"
-    defaultProvider: "Fuzzy"
+    defaultProvider: "Subsequence"
     scopeBlacklist: [
       ".string .comment"
     ]
