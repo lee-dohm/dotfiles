@@ -7,6 +7,8 @@
   co = checkout
   co-pr = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
   coi = checkout-interactive
+  # See https://haacked.com/archive/2017/10/22/gitcoin/
+  coin = !git log --pretty=format:'%H %ad %an' | sort | head -n1
   cp = cherry-pick
   dmb = delete-merged-branches
   done = !git checkout master && git pull && git delete-merged-branches --yes
