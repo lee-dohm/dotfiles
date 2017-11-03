@@ -12,6 +12,7 @@
   cp = cherry-pick
   dmb = delete-merged-branches
   done = !git checkout master && git pull && git delete-merged-branches --yes
+  ignored = !git status --short --ignored | grep "\\!\\!" | cut -c 4-
   l = log --graph --decorate --pretty=oneline --abbrev-commit --all
   pr = !hub pull-request
   root = rev-parse --show-toplevel
