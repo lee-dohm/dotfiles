@@ -1,0 +1,52 @@
+#!/usr/bin/env elixir
+
+# Clones GitHub repositories into `$REPO_HOME/owner/repo`
+
+defmodule Clone do
+  def ensure_directory(dirname) do
+    case File.mkdir(dirname) do
+      :ok -> :ok
+      {:error, :eexist} -> :ok
+      error -> error
+    end
+  end
+
+  def env(name) do
+    value = System.get_env(name)
+
+    cond do
+      is_nil(value) -> nil
+      String.length(value) == 0 -> nil
+      true -> value
+    end
+  end
+
+  def parse_repo(name) do
+    matches = parse_ssh_repo(name) || parse_https_repo(name) || parse_nwo_repo(name)
+
+    case matches do
+      nil -> nil
+      [_, owner, repo] -> {owner, repo}
+    end
+  end
+
+  defp parse_nwo_repo(name), do: Regex.run(~r{^([^/]+)/(\S+)$}, name)
+
+  defp parse_https_repo(name), do: Regex.run(~r{^https://github.com/([^/]+)/([^. \t]+)\.git$}, name)
+
+  defp parse_ssh_repo(name), do: Regex.run(~r{^git@github.com:([^/]+)/([^. \t]+)\.git$}, name)
+end
+
+home_dir = Clone.env("GITHUB_REPOS_HOME") || Clone.env("ATOM_REPOS_HOME") || "~/Source"
+           |> Path.expand
+
+arg = System.argv()
+      |> List.first
+
+{owner, repo} = Clone.parse_repo(arg)
+:ok = home_dir
+      |> Path.join(owner)
+      |> Clone.ensure_directory
+
+repo_dir = Path.join([home_dir, owner, repo])
+System.cmd("hub", ["clone", arg, repo_dir])
