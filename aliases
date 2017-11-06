@@ -28,3 +28,5 @@ alias flushdns="sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder; ec
 
 # Un-wedge the built-in camera
 alias kill-camera="sudo killall VDCAssistant"
+
+alias ex="exercism"
