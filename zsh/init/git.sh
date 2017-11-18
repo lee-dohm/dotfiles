@@ -7,6 +7,7 @@ if hash hub 2>/dev/null; then
     export GITHUB_USER='lee-dohm'
 fi
 
+export REPO_HOME="$HOME/Source"
 export GITHUB_REPOS_HOME="$HOME/Source"
 
 alias gg='git l'
