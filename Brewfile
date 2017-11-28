@@ -1,10 +1,12 @@
 tap "buo/cask-upgrade"               # Command to easily upgrade all cask installed apps
 tap "nodenv/nodenv"                  # Required for nodenv-package-json-engine
 tap "thoughtbot/formulae"            # Required for parity and rcm
+tap "spencercdixon/formulae"         # Required for exocortex
 
 brew "ctags"
 brew "diff-so-fancy"                 # Make command-line git diffs much fancier
 brew "elixir"
+brew "exocortex"                     # Personal wiki engine
 brew "fortune"                       # Dependency of Atom package fortune-background-tips
 brew "fzf"
 brew "git"
