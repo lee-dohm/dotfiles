@@ -40,15 +40,14 @@
       "source.shell": [
         "build"
       ]
-      "text.slim": [
-        "slime"
-      ]
       "text.xml.plist": [
         "plist"
       ]
     disabledPackages: [
       "background-tips"
       "file-type-icons"
+      "npm-library-description"
+      "minimap"
     ]
     followSymlinks: true
     ignoredNames: [
@@ -67,11 +66,14 @@
       "one-light-ui"
       "one-light-syntax"
     ]
+    useTreeSitterParsers: true
   docblockr:
     align_tags: "no"
+    param_description: false
+    return_description: false
   editor:
     fontFamily: "Anka/Coder"
-    fontSize: 15
+    fontSize: 17
     invisibles:
       cr: "↩"
       eol: " "
@@ -106,11 +108,13 @@
     ignoreWhitespacesInTokens: true
   "package-generator":
     createInDevMode: true
+  "package-sync":
+    createOnChange: true
+    forceOverwrite: true
   pigments:
     ignoredScopes: [
       "\\.elixir"
     ]
-    markerType: "dot"
   "spell-check": {}
   "status-bar":
     cursorPositionFormat: "L:%L C:%C"
