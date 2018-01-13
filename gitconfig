@@ -1,4 +1,6 @@
 [alias]
+  ### Short names for typing efficiency ###
+
   aa = add --all
   aliases = !git config --list | grep alias | cut -c 7-
   ap = add --patch
@@ -20,6 +22,17 @@
   su = submodule update --init --recursive
   up = !git fetch origin && git rebase origin/master
 
+  ### Long names for pseudo-commands ###
+
+  # Get the current branch name (not so useful in itself, but used in
+  # other aliases)
+  branch-name = "!git rev-parse --abbrev-ref HEAD"
+  # Push the current branch to the remote "origin", and set it to track
+  # the upstream branch
+  publish = "!git push -u origin $(git branch-name)"
+  # Delete the remote version of the current branch
+  unpublish = "!git push origin :$(git branch-name)"
+
 [branch]
   autoSetupMerge = always
 
@@ -30,6 +43,12 @@
   current = yellow reverse
   local = yellow
   remote = green
+
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
 
 [color "status"]
   added = green     # Items that have been added to the index
@@ -49,6 +68,15 @@
 [credential]
   helper = osxkeychain
 
+[diff]
+  tool = Kaleidoscope
+
+[difftool "Kaleidoscope"]
+  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+[difftool]
+  prompt = false
+
 [fetch]
   prune = true
 
@@ -56,12 +84,10 @@
   clean = git lfs clean %f
   smudge = git lfs smudge %f
   required = true
+  process = git-lfs filter-process
 
 [github]
   user = lee-dohm
-
-[hub]
-  protocol = https
 
 [include]
   path = ~/.gitconfig.identity
@@ -71,9 +97,8 @@
 
 [push]
   default = current
-
-[color "diff-highlight"]
-  oldNormal = red bold
-  oldHighlight = red bold 52
-  newNormal = green bold
-  newHighlight = green bold 22
+[user]
+  name = lee-dohm
+  email = 1038121+lee-dohm@users.noreply.github.com
+[gpg]
+  program = /usr/local/bin/gpg
