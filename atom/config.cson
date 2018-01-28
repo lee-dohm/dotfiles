@@ -7,6 +7,8 @@
     hideMarkersInComments: true
     hideMarkersInStrings: true
     markersAtEndOfLine: true
+  "atom-ide-ui":
+    "atom-ide-diagnostics-ui": {}
   "autocomplete-elixir":
     elixirPath: "/usr/local/bin/elixir"
     erlangHome: "/usr/local/lib/erlang/bin"
@@ -43,6 +45,7 @@
       "text.xml.plist": [
         "plist"
       ]
+    debugLSP: true
     disabledPackages: [
       "background-tips"
       "file-type-icons"
@@ -72,8 +75,8 @@
     param_description: false
     return_description: false
   editor:
-    fontFamily: "Anka/Coder"
-    fontSize: 17
+    fontFamily: "\"Anka/Coder\""
+    fontSize: 18
     invisibles:
       cr: "↩"
       eol: " "
