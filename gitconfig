@@ -97,8 +97,6 @@
 
 [push]
   default = current
-[user]
-  name = lee-dohm
-  email = 1038121+lee-dohm@users.noreply.github.com
+
 [gpg]
   program = /usr/local/bin/gpg
