@@ -5,6 +5,7 @@ if [ -d .git ] || git rev-parse --git-dir &> /dev/null; then
   url=$(git remote get-url "$remote")
 
   if echo "$url" | grep "github.com" &> /dev/null; then
+    # If using GNU sed, replace `-E` with `-r` on the next line
     nwo=$(echo "$url" | sed -E "s/^[^:]+:([^/]+\/[^.]+).git$/\1/")
     branch=$(git rev-parse --abbrev-ref HEAD)
 
