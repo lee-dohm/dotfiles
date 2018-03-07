@@ -9,6 +9,21 @@
     markersAtEndOfLine: true
   "atom-ide-ui":
     "atom-ide-diagnostics-ui": {}
+    use:
+      "atom-ide-busy-signal": "default"
+      "atom-ide-code-actions": "default"
+      "atom-ide-code-format": "default"
+      "atom-ide-code-highlight": "default"
+      "atom-ide-console": "default"
+      "atom-ide-datatip": "default"
+      "atom-ide-definitions": "default"
+      "atom-ide-diagnostics": "default"
+      "atom-ide-diagnostics-ui": "default"
+      "atom-ide-find-references": "default"
+      "atom-ide-global": "default"
+      "atom-ide-outline-view": "default"
+      "atom-ide-signature-help": "default"
+      hyperclick: "default"
   "autocomplete-elixir":
     elixirPath: "/usr/local/bin/elixir"
     erlangHome: "/usr/local/lib/erlang/bin"
@@ -50,7 +65,6 @@
       "background-tips"
       "file-type-icons"
       "npm-library-description"
-      "minimap"
     ]
     followSymlinks: true
     ignoredNames: [
@@ -67,7 +81,7 @@
     telemetryConsent: "limited"
     themes: [
       "one-light-ui"
-      "one-light-syntax"
+      "atelier-forest-light-syntax"
     ]
     useTreeSitterParsers: true
   docblockr:
@@ -98,6 +112,8 @@
     preserveLastSearch: true
   "highlight-selected":
     showInStatusBar: false
+  "ide-rust":
+    rlsToolchain: "stable"
   "markdown-preview":
     openPreviewInSplitPane: false
     useGitHubStyle: true
@@ -118,7 +134,6 @@
     ignoredScopes: [
       "\\.elixir"
     ]
-  "spell-check": {}
   "status-bar":
     cursorPositionFormat: "L:%L C:%C"
   tabs:
