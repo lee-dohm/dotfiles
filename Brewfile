@@ -1,4 +1,5 @@
 tap "buo/cask-upgrade"               # Command to easily upgrade all cask installed apps
+tap "caskroom/fonts"                 # Fonts installed via Homebrew cask
 tap "github/bootstrap"
 tap "nodenv/nodenv"                  # Required for nodenv-package-json-engine
 tap "thoughtbot/formulae"            # Required for parity and rcm
@@ -27,8 +28,21 @@ brew "the_silver_searcher"
 brew "todo-txt"
 brew "zsh"
 
+# Cask apps
+
 cask "keycastr"
 cask "mojibar"                       # Emoji quick-reference menubar app
+
+# Cask fonts
+
+cask "font-anka-coder"
+cask "font-anonymous-pro"
+cask "font-fira-code"
+cask "font-fira-mono"
+cask "font-iosevka"
+cask "font-source-code-pro"
+
+# Mac App Store apps
 
 mas "1Password", id: 443987910
 mas "Bear", id: 1091189122
