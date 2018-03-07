@@ -1,11 +1,14 @@
 #!/bin/sh
 
+# If in a Git repository
 if [ -d .git ] || git rev-parse --git-dir &> /dev/null; then
   remote=${1-origin}
   url=$(git remote get-url "$remote")
 
+  # If $remote points to a GitHub-backed repo
   if echo "$url" | grep "github.com" &> /dev/null; then
     # If using GNU sed, replace `-E` with `-r` on the next line
+    # Get the GitHub `owner/name` pair from the remote URL
     nwo=$(echo "$url" | sed -E "s/^[^:]+:([^/]+\/[^.]+).git$/\1/")
     branch=$(git rev-parse --abbrev-ref HEAD)
 
