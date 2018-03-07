@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if [ -e "./.git" ]; then
+  remote=${1-origin}
+  url=$(git remote get-url "$remote")
+
+  if echo "$url" | grep "github.com" &> /dev/null; then
+    nwo=$(echo "$url" | sed -E "s/^[^:]+:([^/]+\/[^.]+).git$/\1/")
+    branch=$(git rev-parse --abbrev-ref HEAD)
+
+    echo "Submit PR: https://github.com/$nwo/pull/new/$branch"
+  fi
+fi
