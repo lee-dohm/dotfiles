@@ -24,12 +24,18 @@
 
   ### Long names for pseudo-commands ###
 
+  # Returns true if in a Git repo; false otherwise
+  in-repo = !sh -c '[ -d .git ] || git rev-parse --git-dir &> /dev/null' -
+
   # Get the current branch name (not so useful in itself, but used in
   # other aliases)
   branch-name = "!git rev-parse --abbrev-ref HEAD"
-  # Push the current branch to the remote "origin", and set it to track
-  # the upstream branch
+
+  # Push the current branch to the remote "origin", set it to track
+  # the upstream branch, and display the URL to use to submit a PR if in a
+  # GitHub-backed repository
   publish = !sh -c 'git push -u origin $(git branch-name) && github-pr-url' -
+
   # Delete the remote version of the current branch
   unpublish = "!git push origin :$(git branch-name)"
 
