@@ -33,7 +33,7 @@ module.exports = {
     borderColor: '#333',
 
     // custom css to embed in the main window
-    css: '',
+    css: '.tabs_title { font-size: 14px; }',
 
     // custom css to embed in the terminal window
     termCSS: '',
