@@ -9,7 +9,8 @@ end
 
 if status --is-interactive
   set --global fish_user_abbreviations
-  abbr --add gg 'git l'
+  abbr --add gg 'git graph'
+  abbr --add guf 'git update-fork'
   abbr --add p 'project'
 end
 
