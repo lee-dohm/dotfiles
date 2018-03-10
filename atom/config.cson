@@ -89,7 +89,7 @@
     param_description: false
     return_description: false
   editor:
-    fontFamily: "\"Anka/Coder\""
+    fontFamily: "\"SF Mono\""
     fontSize: 18
     invisibles:
       cr: "↩"
