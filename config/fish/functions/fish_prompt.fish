@@ -2,9 +2,9 @@ function _prompt_dir_component
   _prompt_wrap_text (abbreviated_working_directory) brblue
 end
 
-function _prompt_err_component --argument-names {real_status}
-  if [ $real_status -ne 0 ]
-    _prompt_wrap_text $real_status brred
+function _prompt_err_component --argument-names {error_code}
+  if [ $error_code -ne 0 ]
+    _prompt_wrap_text $error_code brred
   end
 end
 
@@ -41,8 +41,8 @@ function _prompt_wrap_text --argument-names {text,color}
 end
 
 function fish_prompt
-  set --local real_status $status
-  set --local err (_prompt_err_component $real_status)
+  set --local error_code $status
+  set --local err (_prompt_err_component $error_code)
   set --local git (_prompt_git_component)
   set --local dir (_prompt_dir_component)
   echo "$git$dir$err "
