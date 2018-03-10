@@ -9,8 +9,25 @@ function _prompt_err_component --argument-names {real_status}
 end
 
 function _prompt_git_component
-  if git rev-parse --git-dir > /dev/null ^ /dev/null
-    _prompt_wrap_text (git rev-parse --abbrev-ref HEAD) green
+  if git rev-parse --git-dir >/dev/null ^&1
+    set --local sha (git rev-parse HEAD)
+    set --local ref (git show-ref --tags --heads | grep $sha; or echo '')
+
+    set --local parts ''
+    if [ -n $ref ]
+      set parts (string split / -- $ref)
+    else
+      set parts null detached $sha
+    end
+
+    switch $parts[2]
+    case heads
+      _prompt_wrap_text $parts[3] green
+    case tags
+      _prompt_wrap_text $parts[3] yellow
+    case detached
+      _prompt_wrap_text (git rev-parse --short $sha) brred
+    end
   end
 end
 
