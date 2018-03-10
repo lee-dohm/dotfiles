@@ -7,6 +7,6 @@ if [ -z $HOSTNAME ]
   set --export HOSTNAME (hostname -s)
 end
 
-for init in (ls "$HOME/.config/fish/init")
-  source "$HOME/.config/fish/init/$init"
+for init in (ls ~/.config/fish/init)
+  source ~/.config/fish/init/$init
 end
