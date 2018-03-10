@@ -1,6 +1,8 @@
 # Lee's Dotfile Customizations
 
-These are my myriad [dotfiles](http://dotfiles.github.io/). It has grown, morphed, shifted and developed since I discovered the [Thoughtbot dotfiles project](https://github.com/thoughtbot/dotfiles) and based this off of that. Hats off to the Thoughtbot folks for making basing my stuff off of theirs so easy! :laughing:
+These are my myriad [dotfiles](http://dotfiles.github.io/). It has grown, morphed, shifted and developed since I discovered the [Thoughtbot dotfiles project][thoughtbot] and based this off of that. Hats off to the Thoughtbot folks for making basing my stuff off of theirs so easy! :laughing:
+
+[thoughtbot]: https://github.com/thoughtbot/dotfiles
 
 ## Installation
 
