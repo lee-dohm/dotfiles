@@ -14,6 +14,8 @@ if status --is-interactive
   abbr --add p 'project'
 end
 
+set --global fish_prompt_pwd_dir_length 0
+
 for init in (ls ~/.config/fish/init)
   source ~/.config/fish/init/$init
 end
