@@ -11,10 +11,10 @@ end
 function _prompt_git_component
   if git rev-parse --git-dir >/dev/null ^&1
     set --local sha (git rev-parse HEAD)
-    set --local ref (git show-ref --tags --heads | grep $sha; or echo '')
+    set --local ref (git show-ref --tags --heads | grep $sha)
 
     set --local parts ''
-    if [ -n $ref ]
+    if set -q ref
       set parts (string split / -- $ref)
     else
       set parts null detached $sha
