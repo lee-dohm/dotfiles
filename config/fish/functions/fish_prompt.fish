@@ -1,20 +1,20 @@
-function prompt_dir_component
-  prompt_wrap_text (abbreviated_working_directory) brblue
+function _prompt_dir_component
+  _prompt_wrap_text (abbreviated_working_directory) brblue
 end
 
-function prompt_err_component
+function _prompt_err_component
   if [ $argv[1] -ne 0 ]
-    prompt_wrap_text $argv[1] brred
+    _prompt_wrap_text $argv[1] brred
   end
 end
 
-function prompt_git_component
+function _prompt_git_component
   if git rev-parse --git-dir > /dev/null ^ /dev/null
-    prompt_wrap_text (git rev-parse --abbrev-ref HEAD) green
+    _prompt_wrap_text (git rev-parse --abbrev-ref HEAD) green
   end
 end
 
-function prompt_wrap_text --argument-names {text,color}
+function _prompt_wrap_text --argument-names {text,color}
   set_color normal
   echo -n "["
   set_color --bold $color
@@ -25,8 +25,8 @@ end
 
 function fish_prompt
   set --local real_status $status
-  set --local err (prompt_err_component $real_status)
-  set --local git (prompt_git_component)
-  set --local dir (prompt_dir_component)
+  set --local err (_prompt_err_component $real_status)
+  set --local git (_prompt_git_component)
+  set --local dir (_prompt_dir_component)
   echo "$git$dir$err "
 end
