@@ -1,4 +1,4 @@
-if hash hub > /dev/null ^ /dev/null
+if program-exists hub
   set --export GITHUB_USER lee-dohm
 end
 

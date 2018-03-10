@@ -1,4 +1,4 @@
-if hash postgres > /dev/null ^ /dev/null
+if program-exists postgres
   set --export PGDATA /usr/local/var/postgres/10.0
   set --export POSTGRES_LOG $PGDATA/postgres.log
 
