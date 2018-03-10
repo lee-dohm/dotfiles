@@ -8,15 +8,7 @@ function g --wraps git
   end
 
   if [ (count $argv) -gt 0 ]
-    set --local exec_command $git_command
-
-    for i in $argv
-      if string match --regex "\s" -- $i
-        set exec_command "$exec_command \"$i\""
-      else
-        set exec_command "$exec_command $i"
-      end
-    end
+    set --local exec_command $git_command (string escape -- $argv)
 
     eval "$exec_command"
   else
