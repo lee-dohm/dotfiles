@@ -1,5 +1,5 @@
 function _prompt_dir_component
-  _prompt_wrap_text (abbreviated_working_directory) brblue
+  _prompt_wrap_text (abbreviated-working-directory) brblue
 end
 
 function _prompt_err_component --argument-names {error_code}
