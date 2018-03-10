@@ -1,1 +1,1 @@
-set --export PATH $PATH "$HOME/.mix/escripts"
+set --export PATH $PATH ~/.mix/escripts
