@@ -11,20 +11,27 @@ end
 function _prompt_git_component
   if __fish_is_git_repository
     set --local sha (git rev-parse HEAD)
-    set --local ref (git show-ref --tags --heads | grep $sha)
+    set --local branch (git rev-parse --abbrev-ref HEAD)
 
-    set --local parts ''
-    if set -q ref
-      set parts (string split / -- $ref)
+    set --local info ''
+    if [ $branch = HEAD ]
+      set --local ref (git show-ref --tags | grep $sha)
+
+      if set -q ref
+        set --local parts (string split / -- $ref)
+        set info tag $parts[3]
+      else
+        set info detached $sha
+      end
     else
-      set parts null detached $sha
+      set info branch $branch
     end
 
-    switch $parts[2]
-    case heads
-      _prompt_wrap_text $parts[3] green
-    case tags
-      _prompt_wrap_text $parts[3] yellow
+    switch $info[1]
+    case branch
+      _prompt_wrap_text $info[2] green
+    case tag
+      _prompt_wrap_text $info[2] yellow
     case detached
       _prompt_wrap_text (git rev-parse --short $sha) brred
     end
