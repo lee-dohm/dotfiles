@@ -2,9 +2,9 @@ function _prompt_dir_component
   _prompt_wrap_text (abbreviated_working_directory) brblue
 end
 
-function _prompt_err_component
-  if [ $argv[1] -ne 0 ]
-    _prompt_wrap_text $argv[1] brred
+function _prompt_err_component --argument-names {real_status}
+  if [ $real_status -ne 0 ]
+    _prompt_wrap_text $real_status brred
   end
 end
 
