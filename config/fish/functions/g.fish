@@ -1,15 +1,25 @@
 function g --wraps git
-  if hash hub > /dev/null ^ /dev/null
-    if [ (count $argv) -gt 0 ]
-      hub $argv
-    else
-      hub st
-    end
+  set --local git_command ''
+
+  if program-exists hub
+    set git_command hub
   else
-    if [ (count $argv) -gt 0 ]
-      git $argv
-    else
-      git st
+    set git_command git
+  end
+
+  if [ (count $argv) -gt 0 ]
+    set --local exec_command $git_command
+
+    for i in $argv
+      if string match --regex "\s" -- $i
+        set exec_command "$exec_command \"$i\""
+      else
+        set exec_command "$exec_command $i"
+      end
     end
+
+    eval "$exec_command"
+  else
+    eval "$git_command st"
   end
 end
