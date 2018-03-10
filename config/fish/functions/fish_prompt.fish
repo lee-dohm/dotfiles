@@ -9,7 +9,7 @@ function _prompt_err_component --argument-names {error_code}
 end
 
 function _prompt_git_component
-  if git rev-parse --git-dir >/dev/null ^&1
+  if __fish_is_git_repository
     set --local sha (git rev-parse HEAD)
     set --local ref (git show-ref --tags --heads | grep $sha)
 
