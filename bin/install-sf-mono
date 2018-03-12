@@ -1,0 +1,3 @@
+#!/bin/sh
+
+cp /Applications/Utilities/Terminal.app/Contents/Resources/Fonts/*.otf $HOME/Library/Fonts/
