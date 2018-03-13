@@ -21,6 +21,7 @@ packages: [
   "indentation-indicator"
   "language-diff"
   "language-elixir"
+  "language-fish-shell"
   "language-generic-config"
   "language-pegjs"
   "language-rust"
