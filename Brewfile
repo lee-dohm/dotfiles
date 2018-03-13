@@ -12,6 +12,7 @@ brew "exocortex"                     # Personal wiki engine
 brew "fortune"                       # Dependency of Atom package fortune-background-tips
 brew "fzf"
 brew "git"
+brew "gist"
 brew "heroku-toolbelt"
 brew "hub"
 brew "httpie"
