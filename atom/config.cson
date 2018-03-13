@@ -63,7 +63,6 @@
     debugLSP: true
     disabledPackages: [
       "background-tips"
-      "file-type-icons"
       "npm-library-description"
     ]
     followSymlinks: true
@@ -81,7 +80,7 @@
     telemetryConsent: "limited"
     themes: [
       "one-light-ui"
-      "atelier-forest-light-syntax"
+      "one-light-syntax"
     ]
     useTreeSitterParsers: true
   docblockr:
