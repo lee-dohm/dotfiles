@@ -2,7 +2,7 @@
   ### Short names for typing efficiency ###
 
   aa = add --all
-  aliases = !git config --list | grep alias | cut -c 7-
+  aliases = !git config --list | grep alias | cut -c 7- | sort
   ap = add --patch
   ca = commit --amend
   ci = commit
