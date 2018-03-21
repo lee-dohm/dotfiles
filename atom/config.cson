@@ -88,7 +88,7 @@
     param_description: false
     return_description: false
   editor:
-    fontFamily: "\"SF Mono\""
+    fontFamily: "\"SFMono-Light\""
     fontSize: 18
     invisibles:
       cr: "↩"
