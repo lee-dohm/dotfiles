@@ -49,8 +49,9 @@ end
 
 function fish_prompt
   set --local error_code $status
-  set --local err (_prompt_err_component $error_code)
-  set --local git (_prompt_git_component)
-  set --local dir (_prompt_dir_component)
-  echo "$git$dir$err "
+
+  echo -n (_prompt_git_component)
+  echo -n (_prompt_dir_component)
+  echo -n (_prompt_err_component $error_code)
+  echo ' '
 end
