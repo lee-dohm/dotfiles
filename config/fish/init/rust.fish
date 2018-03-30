@@ -1,1 +1,3 @@
-set --export PATH ~/.cargo/bin $PATH
+if [ -d ~/.cargo/bin ]
+  set --export PATH ~/.cargo/bin $PATH
+end
