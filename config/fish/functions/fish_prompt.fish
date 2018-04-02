@@ -15,9 +15,7 @@ function _prompt_git_component
 
     set --local info ''
     if [ $branch = HEAD ]
-      set --local ref (git show-ref --tags | grep $sha)
-
-      if set -q ref
+      if set --local ref (git show-ref --tags | grep $sha)
         set --local parts (string split / -- $ref)
         set info tag $parts[3]
       else
