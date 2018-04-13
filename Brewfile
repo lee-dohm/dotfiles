@@ -23,9 +23,9 @@ brew "nodenv-package-json-engine"    # Reads required node version from `package
 brew "parity"
 brew "rbenv"
 brew "rcm"
+brew "ripgrep"
 brew "ruby-build"
 brew "rust"
-brew "the_silver_searcher"
 brew "todo-txt"
 brew "zsh"
 
