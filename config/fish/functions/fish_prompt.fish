@@ -8,34 +8,38 @@ function _prompt_err_component --argument-names {error_code}
   end
 end
 
-function _git_has_head
+function _prompt_git_has_head
   git rev-parse HEAD >/dev/null ^&1
 end
 
 function _prompt_git_component
-  if __fish_is_git_repository; and _git_has_head
-    set --local sha (git rev-parse HEAD)
-    set --local branch (git rev-parse --abbrev-ref HEAD)
+  if __fish_is_git_repository
+    if _prompt_git_has_head
+      set --local sha (git rev-parse HEAD)
+      set --local branch (git rev-parse --abbrev-ref HEAD)
 
-    set --local info ''
-    if [ $branch = HEAD ]
-      if set --local ref (git show-ref --tags | grep $sha)
-        set --local parts (string split / -- $ref)
-        set info tag $parts[3]
+      set --local info ''
+      if [ $branch = HEAD ]
+        if set --local ref (git show-ref --tags | grep $sha)
+          set --local parts (string split / -- $ref)
+          set info tag $parts[3]
+        else
+          set info detached $sha
+        end
       else
-        set info detached $sha
+        set info branch $branch
+      end
+
+      switch $info[1]
+      case branch
+        _prompt_wrap_text $info[2] green
+      case tag
+        _prompt_wrap_text $info[2] yellow
+      case detached
+        _prompt_wrap_text (git rev-parse --short $sha) brred
       end
     else
-      set info branch $branch
-    end
-
-    switch $info[1]
-    case branch
-      _prompt_wrap_text $info[2] green
-    case tag
-      _prompt_wrap_text $info[2] yellow
-    case detached
-      _prompt_wrap_text (git rev-parse --short $sha) brred
+      _prompt_wrap_text 'no commits yet' brred
     end
   end
 end
