@@ -32,13 +32,18 @@ function _prompt_git_component
 
       switch $info[1]
       case branch
+        # Display the branch name in green when we're on a branch
         _prompt_wrap_text $info[2] green
       case tag
+        # Display the tag name in yellow when we're not on a branch but on a tag
         _prompt_wrap_text $info[2] yellow
       case detached
+        # Display the SHA in red when we're not on a branch or a tag
         _prompt_wrap_text (git rev-parse --short $sha) brred
       end
     else
+      # Display "no commits yet" in red when the repository has just been initialized but no initial
+      # commit has been made
       _prompt_wrap_text 'no commits yet' brred
     end
   end
