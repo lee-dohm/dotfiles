@@ -8,8 +8,12 @@ function _prompt_err_component --argument-names {error_code}
   end
 end
 
+function _git_has_head
+  git rev-parse HEAD >/dev/null ^&1
+end
+
 function _prompt_git_component
-  if __fish_is_git_repository
+  if __fish_is_git_repository; and _git_has_head
     set --local sha (git rev-parse HEAD)
     set --local branch (git rev-parse --abbrev-ref HEAD)
 
