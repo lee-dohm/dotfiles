@@ -12,39 +12,47 @@ function _prompt_git_has_head
   git rev-parse HEAD >/dev/null ^&1
 end
 
+function _prompt_git_component_no_commits
+  # Display "no commits yet" in red when the repository has just been initialized but no initial
+  # commit has been made
+  _prompt_wrap_text 'no commits yet' brred
+end
+
+function _prompt_git_component_with_commits
+  set --local sha (git rev-parse HEAD)
+  set --local branch (git rev-parse --abbrev-ref HEAD)
+
+  set --local info ''
+  if [ $branch = HEAD ]
+    if set --local ref (git show-ref --tags | grep $sha)
+      set --local parts (string split / -- $ref)
+      set info tag $parts[3]
+    else
+      set info detached $sha
+    end
+  else
+    set info branch $branch
+  end
+
+  switch $info[1]
+  case branch
+    # Display the branch name in green when we're on a branch
+    _prompt_wrap_text $info[2] green
+  case tag
+    # Display the tag name in yellow when we're not on a branch but on a tag
+    _prompt_wrap_text $info[2] yellow
+  case detached
+    # Display the SHA in red when we're not on a branch or a tag
+    _prompt_wrap_text (git rev-parse --short $sha) brred
+  end
+end
+
 function _prompt_git_component
   if __fish_is_git_repository
     if _prompt_git_has_head
-      set --local sha (git rev-parse HEAD)
-      set --local branch (git rev-parse --abbrev-ref HEAD)
-
-      set --local info ''
-      if [ $branch = HEAD ]
-        if set --local ref (git show-ref --tags | grep $sha)
-          set --local parts (string split / -- $ref)
-          set info tag $parts[3]
-        else
-          set info detached $sha
-        end
-      else
-        set info branch $branch
-      end
-
-      switch $info[1]
-      case branch
-        # Display the branch name in green when we're on a branch
-        _prompt_wrap_text $info[2] green
-      case tag
-        # Display the tag name in yellow when we're not on a branch but on a tag
-        _prompt_wrap_text $info[2] yellow
-      case detached
-        # Display the SHA in red when we're not on a branch or a tag
-        _prompt_wrap_text (git rev-parse --short $sha) brred
-      end
+      _prompt_git_component_with_commits
     else
-      # Display "no commits yet" in red when the repository has just been initialized but no initial
-      # commit has been made
-      _prompt_wrap_text 'no commits yet' brred
+      _prompt_git_component_no_commits
     end
   end
 end
