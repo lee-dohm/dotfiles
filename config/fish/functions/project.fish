@@ -26,7 +26,7 @@ function project \
       clone $project
     end
 
-    cd $target
+    cd $destination
   case '*'
     # Multiple projects supplied, return an error
     echo "You can only specify one project directory, you specified $arg_count"
