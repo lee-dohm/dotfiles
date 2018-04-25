@@ -12,7 +12,19 @@ function project \
   case 0
     cd $REPO_HOME
   case 1
-    cd $REPO_HOME/$argv[1]
+    set --local project $argv[1]
+    set --local destination $REPO_HOME/$project
+
+    if not [ -d $destination ]
+      if not program-exists clone
+        echo "The project, $project, does not exist in the repository home and the `clone` tool is not installed."
+        return 1
+      end
+
+      clone $project
+    end
+
+    cd $target
   case '*'
     echo "You can only specify one project directory, you specified $arg_count"
     return 2
