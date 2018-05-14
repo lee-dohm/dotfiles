@@ -13,10 +13,12 @@ def parse_github_issue(issue_link)
   else
     raise ArgumentError, "Unrecognized GitHub Issue format: #{issue_link}"
   end
+
   match = $LAST_MATCH_INFO
   [match['owner'] || 'atom', match['repo'] || 'atom', match['issue_number']]
 end
 
+title_only = false
 parser = OptionParser.new do |opts|
   opts.banner = <<EOL
 Creates a Markdown link to the given GitHub Issue after retrieving the Issue title.
@@ -28,6 +30,10 @@ EOL
 
   opts.separator ""
   opts.separator "Specific options:"
+
+  opts.on('-t', '--title-only', 'Only show the title of the issue in the link text') do
+    title_only = true
+  end
 
   opts.on_tail("-h", "--help", "Show this message") do
     puts opts
@@ -45,4 +51,8 @@ web_uri = "https://github.com/#{owner}/#{repo}/issues/#{issue_number}"
 
 issue = OpenStruct.new(JSON.parse(open(api_uri).read))
 
-puts "[#{spec} - #{issue.title}](#{web_uri})"
+if title_only
+  puts "[#{issue.title}](#{web_uri})"
+else
+  puts "[#{spec} - #{issue.title}](#{web_uri})"
+end
