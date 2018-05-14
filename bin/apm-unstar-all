@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# 1. Get list of all starred packages
+# 2. Strip ANSI color codes
+# 3. Cut off the first line of the output
+# 4-6. Cut off the last three lines of the output
+# 7. Strip everything but the package name
+# 8. Unstar each package
+
+apm stars | \
+  perl -pe 's/\\e\\[[\\d;]*m//g' | \
+  tail -n +2 | \
+  tail -r | \
+  tail +4 | \
+  tail -r | \
+  cut -d ' ' -f 4 | \
+  xargs apm unstar
