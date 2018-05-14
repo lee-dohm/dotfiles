@@ -1,16 +1,20 @@
 #!/usr/bin/env ruby
 
+require 'English'
 require 'json'
 require 'open-uri'
 require 'optparse'
 require 'ostruct'
 
-def parse_github_issue_spec(spec)
-  if /((?<owner>[^\/]+)\/(?<repo>[^#]+)#)?(?<issue_number>\d+)/ =~ spec
-    [owner || 'atom', repo || 'atom', issue_number]
+def parse_github_issue(issue_link)
+  case issue_link
+  when /^((?<owner>[^\/]+)\/(?<repo>[^#]+)#)?(?<issue_number>\d+)$/
+  when %r{^https://github.com/((?<owner>[^/]+)/(?<repo>[^/]+))/issues/(?<issue_number>\d+)$}
   else
-    raise ArgumentError, "Unrecognized GitHub Issue format: #{spec}"
+    raise ArgumentError, "Unrecognized GitHub Issue format: #{issue_link}"
   end
+  match = $LAST_MATCH_INFO
+  [match['owner'] || 'atom', match['repo'] || 'atom', match['issue_number']]
 end
 
 parser = OptionParser.new do |opts|
@@ -32,10 +36,10 @@ EOL
 end
 
 parser.parse!(ARGV)
-spec = ARGV[0]
+issue_link = ARGV[0]
 
-owner, repo, issue_number = parse_github_issue_spec(spec)
-spec = "##{spec}" unless spec.include?('#')
+owner, repo, issue_number = parse_github_issue(issue_link)
+spec = "#{owner}/#{repo}\##{issue_number}"
 api_uri = "https://api.github.com/repos/#{owner}/#{repo}/issues/#{issue_number}"
 web_uri = "https://github.com/#{owner}/#{repo}/issues/#{issue_number}"
 
