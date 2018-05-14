@@ -48,7 +48,6 @@
     debugLSP: true
     disabledPackages: [
       "background-tips"
-      "npm-library-description"
     ]
     followSymlinks: true
     ignoredNames: [
