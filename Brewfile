@@ -3,31 +3,25 @@ tap "caskroom/fonts"                 # Fonts installed via Homebrew cask
 tap "github/bootstrap"
 tap "nodenv/nodenv"                  # Required for nodenv-package-json-engine
 tap "thoughtbot/formulae"            # Required for parity and rcm
-tap "spencercdixon/formulae"         # Required for exocortex
 
-brew "ctags"
 brew "diff-so-fancy"                 # Make command-line git diffs much fancier
 brew "elixir"
-brew "exocortex"                     # Personal wiki engine
 brew "fish"
 brew "fortune"                       # Dependency of Atom package fortune-background-tips
 brew "fzf"
 brew "git"
 brew "gist"
-brew "heroku-toolbelt"
+brew "heroku", ignore_dependencies: true
 brew "hub"
 brew "httpie"
 brew "mas"
 brew "node-build"
 brew "nodenv"
 brew "nodenv-package-json-engine"    # Reads required node version from `package.json`
-brew "parity"
 brew "rbenv"
 brew "rcm"
 brew "ripgrep"
 brew "ruby-build"
-brew "rust"
-brew "todo-txt"
 brew "zsh"
 
 # Cask apps
