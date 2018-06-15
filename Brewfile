@@ -9,6 +9,7 @@ brew "ctags"
 brew "diff-so-fancy"                 # Make command-line git diffs much fancier
 brew "elixir"
 brew "exocortex"                     # Personal wiki engine
+brew "fish"
 brew "fortune"                       # Dependency of Atom package fortune-background-tips
 brew "fzf"
 brew "git"
