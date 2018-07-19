@@ -72,8 +72,8 @@
     param_description: false
     return_description: false
   editor:
-    fontFamily: "\"SFMono-Light\""
-    fontSize: 18
+    fontFamily: "Anonymous Pro"
+    fontSize: 19
     invisibles:
       cr: "↩"
       eol: " "
