@@ -233,24 +233,9 @@
     prefix: 'ass'
     body: "assertThat(${1:expected}, ${2:actual});$0"
 '.source.elixir':
-  Context:
-    prefix: 'con'
-    body: 'context "$1" do$0\nend'
   Describe:
     prefix: 'desc'
     body: 'describe "$1" do$0\nend'
-  It:
-    prefix: 'it'
-    body: 'it "$1" do$0\nend'
-  'It One-Line':
-    prefix: 'itd'
-    body: 'it "$1", do: $0'
-  Let:
-    prefix: 'let'
-    body: 'let :$1 do$0\nend'
-  'Let One-Line':
-    prefix: 'letd'
-    body: 'let :$1, do: $0'
   '@typedoc':
     prefix: 'tdoc'
     body: '''
@@ -261,13 +246,10 @@
   'No Doc':
     prefix: 'nodoc'
     body: '@doc false'
-  'Expect Exception':
-    prefix: 'exex'
-    body: 'expect fn -> ${1:body} end |> to(raise_exception ${2:Error})'
   'Test with context':
-    prefix: 'testc'
+    prefix: 'test'
     body: """
-    test "$1", context do
+    test "$1", ${2:context} do
       $0
     end
     """
