@@ -45,7 +45,7 @@
       "text.xml.plist": [
         "plist"
       ]
-    debugLSP: true
+    debugLSP: false
     disabledPackages: [
       "background-tips"
     ]
@@ -72,8 +72,8 @@
     param_description: false
     return_description: false
   editor:
-    fontFamily: "Anonymous Pro"
-    fontSize: 19
+    fontFamily: "\"Anka/Coder\""
+    fontSize: 18
     invisibles:
       cr: "↩"
       eol: " "
