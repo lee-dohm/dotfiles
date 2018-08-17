@@ -6,13 +6,17 @@
 
 @import "packages/red-wavy-underline/styles/red-wavy-underline";
 
+// Increase font size in the UI
 .theme-one-light-ui, .theme-one-dark-ui, .theme-atom-material-ui {
-  .advanced-open-file { font-size: 16px; }
-  .git-Panel { font-size: 16px; }
-  .status-bar { font-size: 16px; }
-  .tab-bar { font-size: 16px; }
-  .town-crier { font-size: 14px; }
-  .tree-view { font-size: 16px; }
+  .advanced-open-file,
+  .git-Panel,
+  .modal,
+  .status-bar,
+  .tab-bar,
+  .town-crier,
+  .tree-view{
+    font-size: 16px;
+  }
 }
 
 .tree-view .selected:before {
@@ -25,11 +29,25 @@
   }
 
   .selected > .header.list-item ~ .entries.list-tree {
-    background: linear-gradient(to right, transparent 24px, darken(@base-background-color, 30%) 24px, darken(@base-background-color, 30%) 25px, transparent 25px);
+    background:
+      linear-gradient(
+        to right,
+        transparent 24px,
+        darken(@base-background-color, 30%) 24px,
+        darken(@base-background-color, 30%) 25px,
+        transparent 25px
+      );
   }
 
   .header.list-item:hover ~ .entries.list-tree {
-    background: linear-gradient(to right, transparent 24px, @text-color 24px, @text-color 25px, transparent 25px);
+    background:
+      linear-gradient(
+        to right,
+        transparent 24px,
+        @text-color 24px,
+        @text-color 25px,
+        transparent 25px
+      );
   }
 }
 
