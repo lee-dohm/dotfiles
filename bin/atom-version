@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+# Used by TextExpander
+
+atom_version = `/usr/local/bin/atom --version`.split("\n")[0]
+
+if atom_version =~ /^(Atom\s*:\s*)?(?<number>.*)$/
+  version = Regexp.last_match[:number]
+  print "Atom v#{version}"
+end

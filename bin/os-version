@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+# Used via TextExpander
+
+hash = {}
+key = nil
+
+File.open('/System/Library/CoreServices/SystemVersion.plist').each_line do |line|
+  case line
+  when /<key>([^<]+)<\/key>/ then key = Regexp.last_match[1]
+  when /<string>([^<]+)<\/string>/ then hash[key] = Regexp.last_match[1]
+  end
+end
+
+product_name = hash['ProductName'] == 'Mac OS X' ? 'macOS' : hash['ProductName']
+
+print "#{product_name} #{hash['ProductVersion']}"
