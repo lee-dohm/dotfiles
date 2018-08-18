@@ -2,9 +2,41 @@
 
 # Used by TextExpander
 
-atom_version = `/usr/local/bin/atom --version`.split("\n")[0]
+require 'optparse'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = 'Use: atom-version [options]'
+
+  opts.on('--nightly', 'Get Atom Nightly channel version') do |n|
+    options[:version] = :nightly
+  end
+
+  opts.on('--beta', 'Get the Atom Beta channel version') do |b|
+    options[:version] = :beta
+  end
+end.parse(ARGV)
+
+executable =
+  case options[:version]
+  when :stable
+    '/usr/local/bin/atom'
+  when :beta
+    '/usr/local/bin/atom-beta'
+  when :nightly
+    '/usr/local/bin/atom-nightly'
+  end
+
+atom_version = `#{executable} --version`.split("\n")[0]
+
+channel =
+  if options[:version] != :stable
+    options[:version].to_s.capitalize + ' '
+  else
+    ''
+  end
 
 if atom_version =~ /^(Atom\s*:\s*)?(?<number>.*)$/
   version = Regexp.last_match[:number]
-  print "Atom v#{version}"
+  print "Atom #{channel}v#{version}"
 end
