@@ -41,5 +41,5 @@ packages: [
   "teletype"
   "toggle-quotes"
   "town-crier"
-  "tree-view-git-status"
+  "vibrance-ui"
 ]
