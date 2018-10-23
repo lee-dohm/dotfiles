@@ -4,8 +4,10 @@ tap "github/bootstrap"
 tap "nodenv/nodenv"                  # Required for nodenv-package-json-engine
 tap "thoughtbot/formulae"            # Required for parity and rcm
 
+brew "bat"                           # Replacement for cat
 brew "diff-so-fancy"                 # Make command-line git diffs much fancier
 brew "elixir"
+brew "exa"                           # Replacement for ls
 brew "fish"
 brew "fortune"                       # Dependency of Atom package fortune-background-tips
 brew "fzf"
