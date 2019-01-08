@@ -106,3 +106,6 @@
 
 [gpg]
   program = /usr/local/bin/gpg
+
+[protocol]
+  version = 2
