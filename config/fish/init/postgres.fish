@@ -1,5 +1,5 @@
 if program-exists postgres
-  set --export PGDATA /usr/local/var/postgres/10.0
+  set --export PGDATA /usr/local/var/postgres
   set --export POSTGRES_LOG $PGDATA/postgres.log
 
   alias pg-start="pg_ctl start --log $POSTGRES_LOG"

@@ -165,3 +165,8 @@
 ".python.source":
   editor:
     tabLength: 4
+".slime.text":
+  whitespace:
+    removeTrailingWhitespace: false
+  "wrap-guide":
+    enabled: false
