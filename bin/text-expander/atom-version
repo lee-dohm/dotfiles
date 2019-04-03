@@ -19,12 +19,12 @@ end.parse(ARGV)
 
 executable =
   case options[:version]
-  when :stable
-    '/usr/local/bin/atom'
   when :beta
     '/usr/local/bin/atom-beta'
   when :nightly
     '/usr/local/bin/atom-nightly'
+  else
+    '/usr/local/bin/atom'
   end
 
 atom_version = `#{executable} --version`.split("\n")[0]
