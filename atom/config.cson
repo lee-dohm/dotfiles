@@ -72,7 +72,7 @@
     param_description: false
     return_description: false
   editor:
-    fontFamily: "\"Anka/Coder\""
+    fontFamily: "\"Input Mono\""
     fontSize: 18
     invisibles:
       cr: "↩"
