@@ -16,6 +16,7 @@ brew "gist"
 brew "heroku"
 brew "hub"
 brew "httpie"
+brew "libusb"                        # Requirement of wally keyboard flashing utility
 brew "node-build"
 brew "nodenv"
 brew "nodenv-package-json-engine"    # Reads required node version from `package.json`
