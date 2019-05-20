@@ -1,0 +1,109 @@
+#!/usr/bin/env ruby
+
+require 'io/console'
+require 'octokit'
+
+SCOPES = ['repo']
+
+# Represents the command-line interface of the script.
+class CLI
+  # Executes the main task.
+  def run
+    login
+    Octokit.auto_paginate = true
+
+    puts 'Repo in owner/repo format:'
+    nwo = gets
+    nwo = nwo.chomp
+
+    1.upto(450) do |num|
+      puts "Create issue ##{num}"
+      Octokit.create_issue(nwo, "Issue #{num}")
+      sleep(1)
+    end
+  end
+
+  private
+
+  # Gets the stored authorization token.
+  #
+  # @return [String] Token for adding or updating labels.
+  def auth_token
+    File.read("#{ENV['HOME']}/.github/my-god-its-full-of-issues")
+  end
+
+  # Creates a GitHub authorization token.
+  #
+  # @return [String] Token for adding or updating labels.
+  def create_auth_token
+    puts 'GitHub Username:'
+    username = gets
+    username = username.chomp
+    puts 'GitHub Password:'
+    password = STDIN.noecho(&:gets)
+    password = password.chomp
+
+    client = Octokit::Client.new(login: username, password: password)
+
+    begin
+      create_auth_token_basic(client)
+    rescue Octokit::OneTimePasswordRequired
+      create_auth_token_two_factor(client)
+    end
+  end
+
+  # Creates a GitHub authorization token by using basic authentication.
+  #
+  # @param client [Octokit::Client] Client used to connect to GitHub.
+  #
+  # @return [String] Token for adding or updating labels.
+  def create_auth_token_basic(client)
+    client.create_authorization(scopes: SCOPES, note: 'my-god-its-full-of-issues script').token
+  end
+
+  # Creates a GitHub authorization token by using two-factor authentication.
+  #
+  # @param client [Octokit::Client] Client used to connect to GitHub.
+  #
+  # @return [String] Token for adding or updating labels.
+  def create_auth_token_two_factor(client)
+    puts 'Two-Factor Token: '
+    two_factor = gets
+    two_factor = two_factor.chomp
+    client.create_authorization(scopes: SCOPES,
+                                note: 'my-god-its-full-of-issues script',
+                                headers: { 'X-GitHub-OTP' => two_factor }).token
+  end
+
+  # Logs in to GitHub.
+  #
+  # The process followed is:
+  #
+  # 1. If an authorization token is found, it is used
+  # 2. If no auth token is found:
+  #     1. Log in
+  #     2. Create an auth token
+  #     3. Store it for future use
+  # 3. Use the auth token for future connections
+  def login
+    if File.exist?("#{ENV['HOME']}/.github/my-god-its-full-of-issues")
+      auth = auth_token
+    else
+      auth = create_auth_token
+      store_auth_token(auth)
+    end
+
+    Octokit.access_token = auth
+  end
+
+  # Stores the authorization token for future use.
+  #
+  # @param auth [String] Authorization token.
+  def store_auth_token(auth)
+    Dir.mkdir("#{ENV['HOME']}/.github") unless Dir.exist?("#{ENV['HOME']}/.github")
+    File.write("#{ENV['HOME']}/.github/my-god-its-full-of-issues", auth)
+  end
+end
+
+cli = CLI.new
+cli.run
