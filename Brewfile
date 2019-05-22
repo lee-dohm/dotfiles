@@ -24,7 +24,6 @@ brew "rbenv"
 brew "rcm"
 brew "ripgrep"
 brew "ruby-build"
-brew "zsh"
 
 # Cask fonts
 
