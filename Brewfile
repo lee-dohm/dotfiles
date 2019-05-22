@@ -10,7 +10,7 @@ brew "elixir"
 brew "exa"                           # Replacement for ls
 brew "fish"
 brew "fortune"                       # Dependency of Atom package fortune-background-tips
-brew "fzf"
+brew "fzf"                           # Command-line fuzzy matcher
 brew "git"
 brew "gist"
 brew "heroku"
