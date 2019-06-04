@@ -60,6 +60,7 @@
       "*.pyc"
       "Thumbs.db"
     ]
+    openEmptyEditorOnStart: false
     projectHome: "/Users/Lee/Source"
     telemetryConsent: "limited"
     themes: [
