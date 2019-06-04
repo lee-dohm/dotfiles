@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+# Pops up a list of remote branches to fuzzy search through, allowing you
+# to select one to track for the current branch
+
+set -e
+
+branches=$(git branch -r)
+branch=$(echo "$branches" | fzf +m | sed -e 's/^[[:space:]]*//')
+
+git branch --set-upstream-to="$branch"
