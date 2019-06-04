@@ -6,7 +6,7 @@
 
 @import "packages/red-wavy-underline/styles/red-wavy-underline";
 
-// Increase font size in the UI
+// Scale UI font sizes based on editor font size
 .theme-one-light-ui, .theme-one-dark-ui, .theme-atom-material-ui {
   .advanced-open-file,
   .git-Panel,
@@ -14,12 +14,13 @@
   .status-bar,
   .tab-bar,
   .town-crier,
-  .tree-view{
-    font-size: 16px;
+  .tree-view {
+    font-size: ~"calc(var(--editor-font-size) * 0.88888888889)";
   }
 
+  .github-Git,
   .github-RecentCommit {
-    font-size: 14px;
+    font-size: ~"calc(var(--editor-font-size) * 0.77777777778)";
   }
 }
 
