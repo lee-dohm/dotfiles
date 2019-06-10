@@ -66,7 +66,7 @@
   gpgsign = true
 
 [core]
-  editor = atom --wait
+  editor = atom-nightly --wait
   excludesfile = ~/.gitignore
   autocrlf = input
   pager = diff-so-fancy | less --tabs=4 -RFX
