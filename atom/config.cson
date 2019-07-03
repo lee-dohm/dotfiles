@@ -160,6 +160,9 @@
 ".json.source":
   "wrap-guide":
     enabled: false
+".makefile.source":
+  "tabs-to-spaces":
+    onSave: "tabify"
 ".python.regexp.source":
   editor:
     tabLength: 4
