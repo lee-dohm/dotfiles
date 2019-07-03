@@ -4,6 +4,8 @@
   'ctrl-shift-alt-t': 'custom:open-todo-list'
 'atom-text-editor':
   'ctrl-shift-a': 'asciidoc-preview:toggle'
+  'alt-up': 'block-travel:move-up'
+  'alt-down': 'block-travel:move-down'
 '.platform-darwin atom-workspace':
   'ctrl-"': 'toggle-quotes:toggle'
   'alt-cmd-n': 'advanced-open-file:toggle'
