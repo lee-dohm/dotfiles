@@ -34,7 +34,7 @@
   # Push the current branch to the remote "origin", set it to track
   # the upstream branch, and display the URL to use to submit a PR if in a
   # GitHub-backed repository
-  publish = !sh -c 'git push -u origin $(git branch-name) && github-pr-url' -
+  publish = !sh -c 'git push -u origin $(git branch-name)' -
 
   # Delete the remote version of the current branch
   unpublish = "!git push origin :$(git branch-name)"
