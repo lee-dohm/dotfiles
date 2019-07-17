@@ -1,6 +1,3 @@
-if program-exists nodenv
-  status --is-interactive; and source (nodenv init -|psub)
-
-  set --export PATH $PATH /usr/local/lib/node_modules
+if program-exists asdf; and asdf where nodejs > /dev/null
   set --export PATH .git/bin-safe/../../node_modules/bin $PATH
 end

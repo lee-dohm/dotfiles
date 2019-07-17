@@ -1,6 +1,4 @@
-if program-exists rbenv
-  status --is-interactive; and source (rbenv init -|psub)
-
+if program-exists asdf; and asdf where ruby > /dev/null
   alias b='bundle'
   alias be='bundle exec'
 end
