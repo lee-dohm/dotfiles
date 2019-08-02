@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+
+# Quick utility to convert some JSON data to CSV to include in a spreadsheet
+
+require 'csv'
+require 'json'
+
+def user_to_array(user)
+  arr = []
+
+  user.keys.reject { |k| ['photo', 'user_fields'].include?(k) }.sort.each do |k|
+    arr << user[k]
+  end
+
+  if user['photo']
+    arr << user['photo']['content_url']
+  else
+    arr << 'No photo'
+  end
+end
+
+record = JSON.parse(IO.read(ARGV[0]))
+
+CSV.open(ARGV[1], 'w') do |csv|
+  first = true
+  record['users'].each do |user|
+    if first
+      keys = user.keys.reject { |k| ['photo', 'user_fields'].include?(k) }.sort
+      keys << 'photo'
+      csv << keys
+    end
+
+    csv << user_to_array(user)
+    first = false
+  end
+end
