@@ -95,9 +95,6 @@
 [github]
   user = lee-dohm
 
-[include]
-  path = ~/.gitconfig.identity
-
 [merge]
   ff = true
 
@@ -109,3 +106,6 @@
 
 [protocol]
   version = 2
+
+[include]
+  path = ~/.gitconfig.identity
