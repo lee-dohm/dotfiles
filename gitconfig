@@ -6,8 +6,7 @@
   ap = add --patch
   ca = commit --amend
   ci = commit
-  co = checkout
-  co-pr = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
+  co-pr = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git switch pr/$1' -
   coi = checkout-interactive
   # See https://haacked.com/archive/2017/10/22/gitcoin/
   coin = !git log --pretty=format:'%H %ad %an' | sort | head -n1
@@ -17,9 +16,11 @@
   ignored = !git status --short --ignored | grep "\\!\\!" | cut -c 4-
   graph = log --graph --decorate --pretty=oneline --abbrev-commit --all
   pr = !hub pull-request
+  re = restore
   root = rev-parse --show-toplevel
   st = status --branch --short
   su = submodule update --init --recursive
+  sw = switch
   up = !git fetch origin && git rebase origin/master
 
   ### Long names for pseudo-commands ###
