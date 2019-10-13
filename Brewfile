@@ -1,7 +1,7 @@
 tap "buo/cask-upgrade"               # Command to easily upgrade all cask installed apps
 tap "caskroom/fonts"                 # Fonts installed via Homebrew cask
 tap "heroku/brew"
-tap "thoughtbot/formulae"            # Required for parity and rcm
+tap "thoughtbot/formulae"            # Required for rcm
 
 brew "asdf"                          # Replacement for nodenv and rbenv
 brew "bat"                           # Replacement for cat
