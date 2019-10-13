@@ -4,6 +4,7 @@ tap "heroku/brew"
 tap "thoughtbot/formulae"            # Required for rcm
 
 brew "asdf"                          # Replacement for nodenv and rbenv
+brew "autoconf"                      # Requirement for asdf erlang plugin
 brew "bat"                           # Replacement for cat
 brew "diff-so-fancy"                 # Make command-line git diffs much fancier
 brew "exa"                           # Replacement for ls
@@ -18,6 +19,7 @@ brew "httpie"
 brew "libusb"                        # Requirement of wally keyboard flashing utility
 brew "rcm"
 brew "ripgrep"
+brew "wxmac"                         # Requirement for asdf erlang plugin
 
 # Cask fonts
 
