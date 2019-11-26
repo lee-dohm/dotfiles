@@ -1,17 +1,7 @@
-function g --wraps git
-  set --local git_command ''
-
-  if program-exists hub
-    set git_command hub
-  else
-    set git_command git
-  end
-
+function g -d "Alias for git: use hub, if available, and defaults to short status when no args are given" --wraps git
   if [ (count $argv) -gt 0 ]
-    set --local exec_command $git_command (string escape -- $argv)
-
-    eval "$exec_command"
+    command -sq hub; and command hub $argv; or command git $argv
   else
-    eval "$git_command st"
+    command -sq hub; and command hub st; or command git st
   end
 end
