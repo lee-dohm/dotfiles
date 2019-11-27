@@ -1,3 +1,8 @@
+#
+# Borrowed from ttscoff
+# https://github.com/ttscoff/fish_files/blob/master/functions/describe.fish
+#
+
 function describe -d 'Show description for function'
   set -l d (functions -Dv $argv)
   echo (set_color --dim brblue)"$d[1]:$d[3] ($d[2])"(set_color normal)

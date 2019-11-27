@@ -1,6 +1,4 @@
-function project \
-  --description 'Shortcut from anywhere to a project directory'
-
+function project --description 'Shortcut from anywhere to a project directory'
   if not set -q REPO_HOME
     echo 'REPO_HOME environment variable must be set to the directory where all projects are stored'
     return 1
