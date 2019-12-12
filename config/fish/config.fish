@@ -3,7 +3,7 @@ set --export CLICOLOR 1
 set --export LSCOLORS Exfxcxdxbxegedabagacad
 
 # Ensure the HOSTNAME environment variable is set so that `rcm` works properly
-if test -z $HOSTNAME
+if ! set --query HOSTNAME
   set --export HOSTNAME (hostname -s)
 end
 
