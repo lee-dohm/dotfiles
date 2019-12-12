@@ -1,4 +1,4 @@
-function _bin-safe_echo --no-scope-shadowing
+function __bin-safe_echo --no-scope-shadowing
   set -q _flag_query; or echo $argv
 end
 
@@ -7,7 +7,7 @@ function bin-safe --description 'Shows or changes the bin-safe state of the git 
   argparse $options -- $argv
 
   if not __fish_is_git_repository
-    _bin-safe_echo 'Not a Git repository'
+    __bin-safe_echo 'Not a Git repository'
     return 3
   end
 
@@ -27,10 +27,10 @@ function bin-safe --description 'Shows or changes the bin-safe state of the git 
     mkdir -p $safe_dir
   case '*'
     if [ -d $safe_dir ]
-      _bin-safe_echo 'Repository is bin-safe'
+      __bin-safe_echo 'Repository is bin-safe'
       return 0
     else
-      _bin-safe_echo 'Repository is not bin-safe'
+      __bin-safe_echo 'Repository is not bin-safe'
       return 1
     end
   end
