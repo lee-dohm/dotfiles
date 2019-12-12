@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Writes the name of the default branch to `STDOUT`
+git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
