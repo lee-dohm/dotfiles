@@ -127,6 +127,7 @@
     onSave: "untabify"
   "tree-view":
     hideIgnoredNames: true
+    hideVcsIgnoredFiles: true
   welcome:
     showOnStartup: false
 ".asciidoc.source":
