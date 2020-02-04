@@ -16,6 +16,7 @@ issue_url = ARGV[0]
 results = issue_url.scan(%r{https://github.com/(.+)/issues/(\d+)})
 nwo, number = results[0]
 
-puts JSON.pretty_generate(client.issue(nwo, number).to_hash)
+issue = client.issue(nwo, number).to_hash
+issue["comments"] = client.issue_comments(nwo, number).map {|c| c.to_hash }
 
-puts JSON.pretty_generate(client.issue_comments(nwo, number).map {|c| c.to_hash })
+puts JSON.pretty_generate(issue)
