@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+require 'json'
+require 'octokit'
+
+token_path = File.join(ENV['HOME'], '.github')
+
+token_file = File.join(token_path, File.basename(__FILE__))
+token_file = File.join(token_path, 'default_token') unless File.exist?(token_file)
+token = File.read(token_file).strip
+
+client = Octokit::Client.new(access_token: token)
+client.auto_paginate = true
+
+issue_url = ARGV[0]
+results = issue_url.scan(%r{https://github.com/(.+)/issues/(\d+)})
+nwo, number = results[0]
+
+puts JSON.pretty_generate(client.issue(nwo, number).to_hash)
+
+puts JSON.pretty_generate(client.issue_comments(nwo, number).map {|c| c.to_hash })
