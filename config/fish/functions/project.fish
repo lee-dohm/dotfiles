@@ -1,6 +1,7 @@
 function project --description 'Shortcut from anywhere to a project directory'
   if not set --query REPO_HOME
     echo 'REPO_HOME environment variable must be set to the directory where all projects are stored'
+
     return 1
   end
 
@@ -16,8 +17,9 @@ function project --description 'Shortcut from anywhere to a project directory'
     set --local destination $REPO_HOME/$project
 
     if not test -d $destination
-      if not program-exists clone
+      if not functions --query clone
         echo "The project, $project, does not exist in the repository home and the `clone` tool is not installed."
+
         return 1
       end
 
@@ -28,6 +30,7 @@ function project --description 'Shortcut from anywhere to a project directory'
   case '*'
     # Multiple projects supplied, return an error
     echo "You can only specify one project directory, you specified $arg_count"
+
     return 2
   end
 end
