@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# Accepts the URL for an issue and outputs the JSON of the issue and all comments on it.
+
 require 'json'
 require 'octokit'
 
