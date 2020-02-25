@@ -15,7 +15,7 @@
   done = !git checkout $(git default-branch) && git pull && git delete-merged-branches --yes
   ignored = !git status --short --ignored | grep "\\!\\!" | cut -c 4-
   graph = log --graph --decorate --pretty=oneline --abbrev-commit --all
-  pr = !hub pull-request
+  pr = !gh pr create
   re = restore
   root = rev-parse --show-toplevel
   st = status --branch --short
@@ -30,7 +30,7 @@
 
   # Get the current branch name (not so useful in itself, but used in
   # other aliases)
-  branch-name = "!git rev-parse --abbrev-ref HEAD"
+  branch-name = !git rev-parse --abbrev-ref HEAD
 
   # Push the current branch to the remote "origin", set it to track
   # the upstream branch, and display the URL to use to submit a PR if in a
@@ -38,7 +38,7 @@
   publish = !sh -c 'git push -u origin $(git branch-name)' -
 
   # Delete the remote version of the current branch
-  unpublish = "!git push origin :$(git branch-name)"
+  unpublish = !git push origin :$(git branch-name)
 
 [branch]
   autoSetupMerge = always
