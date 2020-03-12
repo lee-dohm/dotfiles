@@ -2,14 +2,14 @@ function __prompt_dir_component
   __prompt_wrap_text (prompt_pwd) brblue
 end
 
-function __prompt_err_component --argument-names {error_code}
+function __prompt_err_component --argument-names error_code
   if [ $error_code -ne 0 ]
     __prompt_wrap_text $error_code brred
   end
 end
 
 function __prompt_git_has_head
-  git rev-parse HEAD >/dev/null ^&1
+  git rev-parse HEAD >/dev/null
 end
 
 function __prompt_git_component_no_commits
@@ -57,7 +57,7 @@ function __prompt_git_component
   end
 end
 
-function __prompt_wrap_text --argument-names {text,color}
+function __prompt_wrap_text --argument-names text color
   set_color normal
   echo -n "["
   set_color --bold $color

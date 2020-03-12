@@ -73,7 +73,7 @@
     param_description: false
     return_description: false
   editor:
-    fontFamily: "\"Input Mono\""
+    fontFamily: "MonoLisa"
     fontSize: 18
     invisibles:
       cr: "↩"
@@ -117,6 +117,10 @@
   pigments:
     ignoredScopes: [
       "\\.elixir"
+    ]
+  "spell-check":
+    locales: [
+      "en-US"
     ]
   "status-bar":
     cursorPositionFormat: "L:%L C:%C"
