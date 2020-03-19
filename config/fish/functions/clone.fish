@@ -1,8 +1,11 @@
-function __clone_exec --argument-names {project}
-  set --local result (string match --regex "https://github.com/([^/]+)/([^./]+)" $project)
-  or set --local result (string match --regex "git@github.com/([^/]+)/([^./]+)" $project)
-  or set --local result (string match --regex "([^/]+)/([^./]+)" $project)
-  or return 1
+function __clone_exec --argument-names project
+  if set --local result (string match --regex "https://github.com/([^/]+)/([^./]+)" $project)
+  else if set --local result (string match --regex "git@github.com:([^/]+)/([^./]+)" $project)
+  else if set --local result (string match --regex "([^/]+)/([^./]+)" $project)
+  else
+    echo "`$project` does not match a repository specification, cannot clone it"
+    return 1
+  end
 
   set --local owner $result[2]
   set --local repo $result[3]
@@ -20,7 +23,7 @@ function __clone_exec --argument-names {project}
   hub clone $owner/$repo $REPO_HOME/$owner/$repo
 end
 
-function clone --description 'Clones GitHub repositories into the structure to which I\'ve become accustomed'
+function clone --description "Clones GitHub repositories into the structure to which I've become accustomed"
   if not set --query REPO_HOME
     echo 'REPO_HOME environment variable is not set'
 
