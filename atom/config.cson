@@ -73,7 +73,7 @@
     param_description: false
     return_description: false
   editor:
-    fontFamily: "MonoLisa"
+    fontFamily: "MonoLisa-Light"
     fontSize: 18
     invisibles:
       cr: "↩"
@@ -122,6 +122,7 @@
     locales: [
       "en-US"
     ]
+    useLocales: false
   "status-bar":
     cursorPositionFormat: "L:%L C:%C"
   tabs:
