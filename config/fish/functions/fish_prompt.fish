@@ -9,7 +9,7 @@ function __prompt_err_component --argument-names error_code
 end
 
 function __prompt_git_has_head
-  git rev-parse HEAD >/dev/null
+  git rev-parse HEAD &> /dev/null
 end
 
 function __prompt_git_component_no_commits
