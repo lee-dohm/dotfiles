@@ -110,3 +110,5 @@
 
 [include]
   path = ~/.gitconfig.identity
+[pull]
+	ff = only
