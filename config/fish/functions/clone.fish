@@ -10,8 +10,8 @@ function __clone_exec --argument-names project
   set --local owner $result[2]
   set --local repo $result[3]
 
-  if not command --quiet --search hub
-    echo "`hub` tool is not installed"
+  if not command --quiet --search gh
+    echo "`gh` tool is not installed"
 
     return 1
   end
@@ -20,7 +20,7 @@ function __clone_exec --argument-names project
     command mkdir -p $REPO_HOME/$owner
   end
 
-  hub clone $owner/$repo $REPO_HOME/$owner/$repo
+  gh repo clone $owner/$repo $REPO_HOME/$owner/$repo
 end
 
 function clone --description "Clones GitHub repositories into the structure to which I've become accustomed"
