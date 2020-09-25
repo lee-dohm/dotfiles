@@ -11,10 +11,10 @@ brew "exa"                           # Replacement for ls
 brew "fish"
 brew "fortune"                       # Dependency of Atom package fortune-background-tips
 brew "fzf"                           # Command-line fuzzy matcher
+brew "gh"
 brew "git"
 brew "gist"
 brew "heroku"
-brew "hub"
 brew "httpie"
 brew "libusb"                        # Requirement of wally keyboard flashing utility
 brew "rcm"
