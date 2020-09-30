@@ -9,3 +9,6 @@ alias aa='atom-nightly'
 alias ab='atom-beta'
 alias ad='atom-dev'
 alias an='atom-nightly'
+
+alias c='code'
+alias cc='code'
