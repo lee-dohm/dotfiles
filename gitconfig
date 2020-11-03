@@ -108,7 +108,8 @@
 [protocol]
   version = 2
 
-[include]
-  path = ~/.gitconfig.identity
 [pull]
 	ff = only
+
+[include]
+  path = ~/.gitconfig.identity
