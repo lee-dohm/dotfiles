@@ -1,15 +1,7 @@
-function g --description 'Alias for git: use hub, if available, and defaults to short status when no args are given' --wraps git
-  set --local command ''
-
-  if command --search --quiet hub
-    set command hub
+function g --description 'Alias for git: defaults to short status when no args are given' --wraps git
+  if test (count $argv) -eq 0
+    git st
   else
-    set command git
-  end
-
-  if test (count $argv) -gt 0
-    command $command $argv
-  else
-    command $command st
+    git $argv
   end
 end
