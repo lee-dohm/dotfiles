@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+require 'date'
+require 'json'
+
+def seconds_to_units(seconds)
+  '%d days, %d hours, %d minutes, %d seconds' %
+    # the .reverse lets us put the larger units first for readability
+    [24,60,60].reverse.inject([seconds]) {|result, unitsize|
+      result[0,0] = result.shift.divmod(unitsize)
+      result
+    }
+end
+
+json = `gh api graphql --paginate -f query='query ($endCursor: String) {
+  search(first: 100, query: "is:pr is:closed repo:github/docs created:>2021-01-13 -label:invalid -label:automated-reposync-pr", type: ISSUE, after: $endCursor) {
+    nodes {
+      ... on PullRequest {
+        createdAt
+        closedAt
+        merged
+        mergedAt
+      }
+    }
+
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+}' | jq .data.search.nodes[] | jq -s`
+
+nodes = JSON.parse(json)
+merged = nodes.select { |n| n['merged'] }
+merge_times = merged.map { |m| DateTime.parse(m['mergedAt']).to_time - DateTime.parse(m['createdAt']).to_time }
+
+puts merge_times

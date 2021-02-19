@@ -1,3 +1,10 @@
+# Project management commands.
+#
+# * `project delete <repo spec>` -- Delete the project matching the repo spec unless there are unsynced changes
+# * `project home` -- Navigate to the `REPO_HOME` directory
+# * `project open <repo spec>` -- Change to the project matching the repo spec, cloning it from GitHub if necessary
+# * `project refresh <repo spec>` -- Delete then open the project matching the repo spec
+#
 function project --description 'Shortcut from anywhere to a project directory'
   if not set --query REPO_HOME
     echo 'REPO_HOME environment variable must be set to the directory where all projects are stored'
