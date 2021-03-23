@@ -96,14 +96,17 @@
 [github]
   user = lee-dohm
 
+[gpg]
+  program = /usr/local/bin/gpg
+
+[init]
+	defaultBranch = main
+
 [merge]
   ff = true
 
 [push]
   default = current
-
-[gpg]
-  program = /usr/local/bin/gpg
 
 [protocol]
   version = 2
