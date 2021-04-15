@@ -1,0 +1,31 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- link:
+    ~/.atom/:
+      glob: true
+      path: atom/*
+      exclude: [ atom/packages ]
+    ~/.bin/:
+      glob: true
+      path: bin/*
+    ~/.config/:
+      glob: true
+      path: config/*
+    ~/.agignore:
+    ~/.asdfrc:
+    ~/.gemrc:
+    ~/.gitconfig:
+    ~/.gitconfig.identity:
+      path: host-$HOSTNAME/gitconfig.identity
+    ~/.gitignore:
+    ~/.hushlogin:
+    ~/.hyper.js:
+    ~/.iex.exs:
+    ~/.psqlrc:
+    ~/.rspec:
+    ~/.todo.cfg:
+    ~/.tool-versions:
