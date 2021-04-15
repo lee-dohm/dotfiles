@@ -1,1 +1,0 @@
-EXCLUDES="*.md coffeelint.json Gemfile Gemfile.lock packages"
