@@ -12,9 +12,31 @@
     ~/.bin/:
       glob: true
       path: bin/*
-    ~/.config/:
+    # ~/.config/:
+    #   glob: true
+    #   path: config/*
+    #   exclude: [ config/fish ]
+    ~/.config/fish/:
       glob: true
-      path: config/*
+      create: true
+      path: config/fish/*
+      exclude:
+        - config/fish/fish_variables
+        - config/fish/completions
+        - config/fish/functions
+        - config/fish/init
+    ~/.config/fish/completions/:
+      glob: true
+      create: true
+      path: config/fish/completions/*
+    ~/.config/fish/functions/:
+      glob: true
+      create: true
+      path: config/fish/functions/*
+    ~/.config/fish/init/:
+      glob: true
+      create: true
+      path: config/fish/init/*
     ~/.agignore:
     ~/.asdfrc:
     ~/.gemrc:
