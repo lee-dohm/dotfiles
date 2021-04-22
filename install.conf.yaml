@@ -38,6 +38,8 @@
       glob: true
       create: true
       path: config/fish/init/*
+    ~/.config/gh/config.yml:
+      path: config/gh/config.yml
     ~/.agignore:
     ~/.asdfrc:
     ~/.gemrc:
