@@ -1,8 +1,20 @@
 - defaults:
+    brewfile:
+      stdout: false
+      stderr: false
+      include:
+        - tap
+        - brew
+        - cask
+        - mas
+
     link:
       relink: true
 
 - clean: ['~']
+
+- brewfile:
+    file: Brewfile
 
 - link:
     ~/.atom/:
