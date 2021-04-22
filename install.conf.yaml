@@ -39,6 +39,7 @@
       create: true
       path: config/fish/init/*
     ~/.config/gh/config.yml:
+      create: true
       path: config/gh/config.yml
     ~/.agignore:
     ~/.asdfrc:
