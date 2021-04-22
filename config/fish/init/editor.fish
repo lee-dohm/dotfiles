@@ -1,4 +1,4 @@
-set --export EDITOR atom-nightly --wait
+set --export EDITOR code --wait
 set --export VISUAL $EDITOR
 
 set --export ATOM_DEV_RESOURCE_PATH ~/Source/atom/atom
