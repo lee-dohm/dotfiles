@@ -25,6 +25,7 @@
         - config/fish/completions
         - config/fish/functions
         - config/fish/init
+        - config/fish/README.md
     ~/.config/fish/completions/:
       glob: true
       create: true
