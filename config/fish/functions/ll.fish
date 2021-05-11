@@ -1,3 +1,7 @@
 function ll --description 'List contents of directory using long format'
-  exa --binary --git --group --header --long $argv
+  if command --search --quiet exa
+    exa --binary --git --group --header --long $argv
+  else
+    ls -lhF $argv
+  end
 end

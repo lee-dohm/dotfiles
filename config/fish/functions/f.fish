@@ -4,5 +4,10 @@
 #
 
 function f -d "Open directory in Finder"
-  open -F (fallback $argv ".")
+  if test (uname -s) = "Darwin"
+    open -F (fallback $argv ".")
+  else
+    echo "Error: f function only supported on macOS"
+    return 1
+  end
 end
