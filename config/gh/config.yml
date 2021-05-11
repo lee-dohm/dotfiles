@@ -9,3 +9,4 @@ pager: bat
 # Aliases allow you to create nicknames for gh commands
 aliases:
     co: pr checkout
+    browse: repo view --web
