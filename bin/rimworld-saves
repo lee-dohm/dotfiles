@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+require 'optparse'
+
+SAVE_DIR = "#{Dir.home()}/Library/Application Support/RimWorld/Saves"
+BACKUP_DIR = "#{Dir.home()}/Dropbox/Saves"
+
+options = {}
+
+OptionParser.new do |opts|
+  opts.banner = "Use: #{$0} [options]\n\n"
+
+  opts.on("-b", "--backup", "Backup saves") do |b|
+    options[:restore] = !b
+    options[:backup] = b
+  end
+
+  opts.on("-r", "--restore", "Restore saves") do |r|
+    options[:backup] = !r
+    options[:restore] = r
+  end
+
+  opts.on("-h", "--help", "Prints this help") do |h|
+    puts opts
+    exit
+  end
+end.parse!
+
+if options[:backup]
+  files = Dir[File.join(SAVE_DIR, '*')]
+
+  FileUtils.cp(files, BACKUP_DIR)
+end
+
+if options[:restore]
+  files = Dir[File.join(BACKUP_DIR, '*')]
+
+  FileUtils.cp(files, SAVE_DIR)
+end
+
+if !options[:backup] && !options[:restore]
+  puts "SAVE_DIR = #{SAVE_DIR}"
+  puts "BACKUP_DIR = #{BACKUP_DIR}"
+end
