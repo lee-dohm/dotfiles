@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+# Used via TextExpander
+
+def read_default(path, key)
+  `defaults read #{path} #{key}`.strip
+end
+
+product_name = read_default('/Applications/Safari.app/Contents/Info', 'CFBundleName')
+version = read_default('/Applications/Safari.app/Contents/version', 'CFBundleShortVersionString')
+
+print "#{product_name} v#{version}"

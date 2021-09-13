@@ -2,16 +2,14 @@
 
 # Used via TextExpander
 
-hash = {}
-key = nil
 
-File.open('/System/Library/CoreServices/SystemVersion.plist').each_line do |line|
-  case line
-  when /<key>([^<]+)<\/key>/ then key = Regexp.last_match[1]
-  when /<string>([^<]+)<\/string>/ then hash[key] = Regexp.last_match[1]
-  end
+def read_default(path, key)
+  `defaults read #{path} #{key}`.strip
 end
 
-product_name = hash['ProductName'] == 'Mac OS X' ? 'macOS' : hash['ProductName']
+product_name = read_default('/System/Library/CoreServices/SystemVersion', 'ProductName')
+version = read_default('/System/Library/CoreServices/SystemVersion', 'ProductVersion')
 
-print "#{product_name} #{hash['ProductVersion']}"
+product_name = product_name == 'Mac OS X' ? 'macOS' : product_name
+
+print "#{product_name} v#{version}"
