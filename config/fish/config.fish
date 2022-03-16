@@ -18,6 +18,9 @@ end
 
 set --global fish_prompt_pwd_dir_length 0
 
+# Configure Homebrew before doing the other init scripts
+eval (/opt/homebrew/bin/brew shellenv)
+
 for init in (command ls ~/.config/fish/init)
   source ~/.config/fish/init/$init
 end
