@@ -29,7 +29,6 @@ if test -d /opt/homebrew/bin/brew
   eval (/opt/homebrew/bin/brew shellenv)
 end
 
-
 for init in (command ls ~/.config/fish/init)
   source ~/.config/fish/init/$init
 end
