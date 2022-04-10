@@ -19,10 +19,13 @@
 - link:
     ~/.atom/:
       glob: true
+      create: true
       path: atom/*
-      exclude: [ atom/packages ]
+      exclude:
+        - atom/packages
     ~/.bin/:
       glob: true
+      create: true
       path: bin/*
     # ~/.config/:
     #   glob: true
