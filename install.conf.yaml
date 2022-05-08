@@ -58,6 +58,7 @@
       path: config/gh/config.yml
     ~/.agignore:
     ~/.asdfrc:
+    ~/.default-gems:
     ~/.gemrc:
     ~/.gitconfig:
     ~/.gitconfig.identity:
