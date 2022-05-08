@@ -1,0 +1,146 @@
+#!/usr/bin/env ruby
+
+require 'highline/import'
+require 'optparse'
+require 'octokit'
+
+USERNAME = `id -un`
+HOSTNAME = `hostname`
+
+COMMENT_PATH = 'archive-repo-comment.md'
+NOTE = "archive-repo for #{USERNAME}@#{HOSTNAME}"
+SCOPES = ['repo']
+TOKEN_PATH = "#{ENV['HOME']}/.github/default-token"
+
+
+class CLI
+  def run
+    parse_options
+
+    if @opts[:edit]
+      raise "Opening comment file with `#{ENV['EDITOR']}` failed" unless edit_message
+    end
+
+    login if @opts[:login]
+    Octokit.auto_paginate = true
+
+    repo = ARGV[0]
+    comment = File.read(COMMENT_PATH)
+
+    puts "Close all issues and pull requests in #{repo} with this message?"
+    puts '-----'
+    puts comment
+    puts '-----'
+    puts 'Press ENTER to continue or ^C to exit'
+    STDIN.gets
+
+    puts 'Get open issues'
+    issues = Octokit.list_issues(repo)
+
+    puts 'Close open issues with archive message'
+    issues.each do |issue|
+      puts "Close #{repo}##{issue.number}"
+      Octokit.add_comment(repo, issue.number, comment)
+      Octokit.close_issue(repo, issue.number)
+    end
+
+    puts "Ready to archive #{repo}"
+  end
+
+  private
+
+  # Gets the stored authorization token.
+  #
+  # @return [String] Token for adding or updating labels.
+  def auth_token
+    File.read(TOKEN_PATH)
+  end
+
+  # Creates a GitHub authorization token.
+  #
+  # @return [String] Token for adding or updating labels.
+  def create_auth_token
+    username = ask('GitHub Username: ')
+    password = ask('GitHub Password: ') { |q| q.echo = false }
+
+    client = Octokit::Client.new(login: username, password: password)
+
+    begin
+      create_auth_token_basic(client)
+    rescue Octokit::OneTimePasswordRequired
+      create_auth_token_two_factor(client)
+    end
+  end
+
+  # Creates a GitHub authorization token by using basic authentication.
+  #
+  # @param client [Octokit::Client] Client used to connect to GitHub.
+  #
+  # @return [String] Token for adding or updating labels.
+  def create_auth_token_basic(client)
+    client.create_authorization(scopes: SCOPES, note: NOTE).token
+  end
+
+  # Creates a GitHub authorization token by using two-factor authentication.
+  #
+  # @param client [Octokit::Client] Client used to connect to GitHub.
+  #
+  # @return [String] Token for adding or updating labels.
+  def create_auth_token_two_factor(client)
+    two_factor = ask('Two-Factor Token: ')
+    client.create_authorization(scopes: SCOPES,
+                                note: NOTE,
+                                headers: { 'X-GitHub-OTP' => two_factor }).token
+  end
+
+  # Opens the comment file for editing.
+  def edit_message
+    system("#{ENV['EDITOR']} #{COMMENT_PATH}")
+  end
+
+  # Logs in to GitHub.
+  #
+  # The process followed is:
+  #
+  # 1. If an authorization token is found, it is used
+  # 2. If no auth token is found:
+  #     1. Log in
+  #     2. Create an auth token
+  #     3. Store it for future use
+  # 3. Use the auth token for future connections
+  def login
+    if File.exist?(TOKEN_PATH)
+      auth = auth_token
+    else
+      auth = create_auth_token
+      store_auth_token(auth)
+    end
+
+    Octokit.access_token = auth
+  end
+
+  def parse_options
+    @opts = { login: true }
+
+    OptionParser.new do |opts|
+      opts.on('--edit', 'Edit the message before posting (uses the `EDITOR` environment variable)') do |e|
+        @opts[:edit] = e
+      end
+
+      opts.on('--[no-]login', 'Log in to GitHub first') do |l|
+        @opts[:login] = l
+      end
+    end.parse!
+  end
+
+  # Stores the authorization token for future use.
+  #
+  # @param auth [String] Authorization token.
+  def store_auth_token(auth)
+    Dir.mkdir("#{ENV['HOME']}/.github") unless Dir.exist?("#{ENV['HOME']}/.github")
+    File.write(TOKEN_PATH, auth)
+  end
+end
+
+cli = CLI.new
+cli.run
