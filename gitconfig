@@ -107,6 +107,7 @@
 
 [push]
   default = current
+	autoSetupRemote = true
 
 [protocol]
   version = 2
