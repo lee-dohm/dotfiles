@@ -56,6 +56,9 @@
     ~/.config/gh/config.yml:
       create: true
       path: config/gh/config.yml
+    ~/.config/zed/settings.json:
+      create: true
+      path: config/zed/settings.json
     ~/.agignore:
     ~/.asdfrc:
     ~/.default-gems:
@@ -71,4 +74,3 @@
     ~/.rspec:
     ~/.todo.cfg:
     ~/.tool-versions:
-
