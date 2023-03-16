@@ -1,4 +1,4 @@
-set --export EDITOR code --wait
+set --export EDITOR zed --wait
 set --export VISUAL $EDITOR
 
 set --export ATOM_DEV_RESOURCE_PATH ~/Source/atom/atom
@@ -12,3 +12,5 @@ alias an='atom-nightly'
 
 alias c='code'
 alias cc='code'
+
+alias z='zed'
