@@ -108,7 +108,7 @@ module.exports = {
 
     // for advanced config flags please refer to https://hyper.is/#cfg
     verminal: {
-      fontFamily: '"SFMono-Regular"',
+      fontFamily: '"Monaspace Neon"',
       fontSize: 16
     }
   },
