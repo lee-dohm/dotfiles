@@ -1,3 +1,3 @@
-if test (uname -s) = "Darwin"
-  source (brew --prefix asdf)/libexec/asdf.fish
+if program-exists asdf; and test (uname -s) = "Darwin"
+  set --export PATH $PATH $HOME/.asdf/shims
 end
